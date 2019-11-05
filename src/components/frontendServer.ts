@@ -29,12 +29,12 @@ export class FrontendServer {
             cb && cb();
         };
         protocol.init(this.app);
-        let pomelox = require("../pomelox");
-        let connectorConstructor: I_connectorConstructor = this.app.connectorConfig.connector || pomelox.connector.connectorTcp;
+        let omelox = require("../omelox");
+        let connectorConstructor: I_connectorConstructor = this.app.connectorConfig.connector || omelox.connector.connectorTcp;
         let defaultEncodeDecode: encodeDecode;
-        if (connectorConstructor === pomelox.connector.connectorTcp) {
+        if (connectorConstructor === omelox.connector.connectorTcp) {
             defaultEncodeDecode = protocol.Tcp_EncodeDecode;
-        } else if (connectorConstructor === pomelox.connector.connectorWs) {
+        } else if (connectorConstructor === omelox.connector.connectorWs) {
             defaultEncodeDecode = protocol.Ws_EncodeDecode;
         } else {
             defaultEncodeDecode = protocol.Tcp_EncodeDecode;

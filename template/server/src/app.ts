@@ -1,5 +1,5 @@
 
-import { createApp, Application, Session, connector } from "pomelox";
+import { createApp, Application, Session, connector } from "omelox";
 import roomMgr from "./app/roomMgr";
 let app = createApp();
 

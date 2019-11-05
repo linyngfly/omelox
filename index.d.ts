@@ -10,7 +10,7 @@ export function createApp(): Application;
 export let app: Application;
 
 /**
- * pomelox版本
+ * omelox版本
  */
 export let version: string;
 

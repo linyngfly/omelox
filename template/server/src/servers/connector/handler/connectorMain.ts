@@ -1,4 +1,4 @@
-import { Application, Session, rpcErr } from "pomelox";
+import { Application, Session, rpcErr } from "omelox";
 import Proto = require("../../../app/Proto");
 
 let uid = 1;

@@ -1,4 +1,4 @@
-import { Application, Session } from "pomelox";
+import { Application, Session } from "omelox";
 import Proto = require("../../../app/Proto");
 
 

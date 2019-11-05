@@ -1,4 +1,4 @@
-import { Application, RpcClass, rpcErr } from "pomelox";
+import { Application, RpcClass, rpcErr } from "omelox";
 import roomMgr from "../../../app/roomMgr";
 import Proto = require("../../../app/Proto");
 

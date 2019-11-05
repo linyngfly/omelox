@@ -170,13 +170,13 @@ function startPng(app: Application) {
     let lines = [
         "  ※----------------------※",
         "  ※   ----------------   ※",
-        "  ※  ( pomelox  @ahuang )  ※",
+        "  ※  ( omelox  @ahuang )  ※",
         "  ※   ----------------   ※",
         "  ※                      ※",
         "  ※                      ※",
         "  ※----------------------※",
     ];
-    let version = require("../pomelox").version;
+    let version = require("../omelox").version;
     version = "Ver: " + version;
     console.log("      ");
     console.log("      ");

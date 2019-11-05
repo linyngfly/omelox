@@ -3,7 +3,7 @@ import { I_connectorConstructor } from "./util/interfaceDefine";
 import { ConnectorTcp } from "./connector/connectorProxyTcp";
 import { ConnectorWs } from "./connector/connectorProxyWs";
 
-interface I_pomelox {
+interface I_omelox {
     version: string,
     createApp: () => Application | undefined,
     app: Application,
@@ -15,22 +15,22 @@ interface I_pomelox {
 
 
 let hasCreated = false;
-let pomelox: I_pomelox = {} as any;
-pomelox.version = require("../package.json").version;
-pomelox.createApp = function () {
+let omelox: I_omelox = {} as any;
+omelox.version = require("../package.json").version;
+omelox.createApp = function () {
     if (hasCreated) {
         console.error("the app has already been created");
         return;
     }
     hasCreated = true;
-    pomelox.app = new Application();
-    return pomelox.app;
+    omelox.app = new Application();
+    return omelox.app;
 };
 
-pomelox.connector = {
+omelox.connector = {
     "connectorTcp": ConnectorTcp,
     "connectorWs": ConnectorWs
 };
 
 
-export = pomelox
+export = omelox

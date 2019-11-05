@@ -1,5 +1,5 @@
 /**
- * pomelox list 等cli命令处理模块
+ * omelox list 等cli命令处理模块
  */
 
 
