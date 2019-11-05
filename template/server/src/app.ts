@@ -17,8 +17,8 @@ app.configure("chat", function () {
 });
 
 
-app.onLog(function (level, info) {
-    // console.log(app.serverId, info)
+app.onLog(function (level: string, info: string) {
+    console.log(app.serverId, level, info)
 })
 
 app.start();
