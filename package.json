@@ -1,0 +1,39 @@
+{
+  "name": "omelox",
+  "version": "1.0.0",
+  "description": "a framework of nodejs server, thin pomelo",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitee.com/gamingcity/omelox.git.git"
+  },
+  "bin": {
+    "omelox": "./lib/cli.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitee.com/gamingcity/omelox.git/issues"
+  },
+  "homepage": "https://gitee.com/gamingcity/omelox.git#readme",
+  "dependencies": {
+    "commander": "^2.17.1",
+    "ws": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.5",
+    "@types/ws": "^6.0.3"
+  },
+  "keywords": [
+    "pomelo",
+    "omelox",
+    "server",
+    "nodejs"
+  ]
+}
