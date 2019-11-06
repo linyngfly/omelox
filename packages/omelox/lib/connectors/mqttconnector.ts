@@ -5,11 +5,11 @@ import * as constants from '../util/constants';
 import { MQTTSocket } from './mqttsocket';
 import { MqttAdaptor } from './mqtt/mqttadaptor';
 import * as generate from './mqtt/generate';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { IConnector } from '../interfaces/IConnector';
 import * as mqtt_connection from 'mqtt-connection';
 import * as path from 'path';
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 
 

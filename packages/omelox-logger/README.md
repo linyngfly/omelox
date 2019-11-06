@@ -1,13 +1,13 @@
-[![Build Status](https://travis-ci.org/node-pinus/pinus-logger.svg?branch=master)](https://travis-ci.org/node-pinus/pinus-logger)
+[![Build Status](https://travis-ci.org/node-omelox/omelox-logger.svg?branch=master)](https://travis-ci.org/node-omelox/omelox-logger)
 
-pinus-logger
+omelox-logger
 ========
 
-pinus-logger is a [log4js](https://github.com/nomiddlename/log4js-node) wrapper for [pinus](https://github.com/mybios/pinus) which provides some useful features.  
+omelox-logger is a [log4js](https://github.com/nomiddlename/log4js-node) wrapper for [omelox](https://github.com/mybios/omelox) which provides some useful features.  
 
 ## Installation
 ```
-npm install pinus-logger
+npm install omelox-logger
 ```
 
 ## Features
@@ -16,7 +16,7 @@ besides category, you can output prefix as you like in your log
 prefix can be filename, serverId, serverType, host etc  
 to use this feature, you just pass prefix params to getLogger function  
 ```
-var logger = require('pinus-logger').getLogger(category, prefix1, prefix2, ...);
+var logger = require('omelox-logger').getLogger(category, prefix1, prefix2, ...);
 ```
  log output msg will output with prefix ahead   
 
@@ -27,7 +27,7 @@ to use this feature, add this code
 process.env.LOGGER_LINE = true;
 ```
 
-in pinus, you just configure the log4js file and set **lineDebug** for true  
+in omelox, you just configure the log4js file and set **lineDebug** for true  
 ```
 {
   "appenders": [
@@ -49,7 +49,7 @@ to use this feature, add this code
 process.env.RAW_MESSAGE = true;
 ```
 
-in pinus, you just configure the log4js file and set **rawMessage** for true  
+in omelox, you just configure the log4js file and set **rawMessage** for true  
 ```
 {
   "appenders": [
@@ -65,7 +65,7 @@ in pinus, you just configure the log4js file and set **rawMessage** for true
 ```
 
 ### dynamic configure logger level
-in pinus logger configuration file log4js.json, you can add reloadSecs option. The reloadSecs means reload logger configuration file every given time. For example
+in omelox logger configuration file log4js.json, you can add reloadSecs option. The reloadSecs means reload logger configuration file every given time. For example
 ```
 {
 	"reloadSecs": 30
@@ -76,7 +76,7 @@ the above configuration means reload the configuration file every 30 seconds. Yo
 ## Example
 log.js
 ```
-var logger = require('pinus-logger').getLogger('log', __filename, process.pid);
+var logger = require('omelox-logger').getLogger('log', __filename, process.pid);
 
 process.env.LOGGER_LINE = true;
 logger.info('test1');

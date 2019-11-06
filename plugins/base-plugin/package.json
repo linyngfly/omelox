@@ -1,7 +1,7 @@
 {
-  "name": "pinus-base-plugin",
+  "name": "omelox-base-plugin",
   "version": "1.3.11",
-  "description": "pinus base plugin",
+  "description": "omelox base plugin",
   "files": [
     "dist",
     "src"
@@ -14,7 +14,7 @@
     "test": "yarn run build",
     "cov": "nyc mocha",
     "ci": "yarn run test",
-    "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus-monitor lib/"
+    "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox-monitor lib/"
   },
   "engines": {
     "node": ">=8.5"
@@ -23,7 +23,7 @@
   "types": "./src/index",
   "dependencies": {
     "@types/node": "8.5.7",
-    "pinus": "^1.3.11"
+    "omelox": "^1.3.11"
   },
   "devDependencies": {
     "tslint": "^5.9.1",

@@ -1,6 +1,6 @@
 import * as should from 'should';
 // import { describe, it } from "mocha-typescript"
-let pinus = require('../../lib/index').pinus;
+let omelox = require('../../lib/index').omelox;
 let ChannelService = require('../../lib/common/service/channelService').ChannelService;
 
 let channelName = 'test_channel';
@@ -96,7 +96,7 @@ describe('channel manager test', function () {
         cb();
       };
 
-      let app = pinus.createApp({ base: mockBase });
+      let app = omelox.createApp({ base: mockBase });
       app.rpcInvoke = mockRpcInvoke;
       let channelService = new ChannelService(app);
 
@@ -108,7 +108,7 @@ describe('channel manager test', function () {
 
     it('should return an err if uids is empty', function (done: MochaDone) {
       let mockMsg = { key: 'some remote message' };
-      let app = pinus.createApp({ base: mockBase });
+      let app = omelox.createApp({ base: mockBase });
       let channelService = new ChannelService(app);
 
       channelService.pushMessageByUids(mockMsg, null, function (err: Error) {
@@ -139,7 +139,7 @@ describe('channel manager test', function () {
         cb(new Error('[TestMockError] mock rpc error'));
       };
 
-      let app = pinus.createApp({ base: mockBase });
+      let app = omelox.createApp({ base: mockBase });
       app.rpcInvoke = mockRpcInvoke;
       let channelService = new ChannelService(app);
 
@@ -174,7 +174,7 @@ describe('channel manager test', function () {
         }
       };
 
-      let app = pinus.createApp({ base: mockBase });
+      let app = omelox.createApp({ base: mockBase });
       app.rpcInvoke = mockRpcInvoke;
       let channelService = new ChannelService(app);
 
@@ -224,7 +224,7 @@ describe('channel manager test', function () {
         cb();
       };
 
-      let app = pinus.createApp({ base: mockBase });
+      let app = omelox.createApp({ base: mockBase });
       app.rpcInvoke = mockRpcInvoke;
       app.addServers(mockServers);
       let channelService = new ChannelService(app);

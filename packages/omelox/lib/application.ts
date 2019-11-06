@@ -8,7 +8,7 @@
  * Module dependencies.
  */
 import * as utils from './util/utils';
-import {getLogger, ILogger} from 'pinus-logger';
+import {getLogger, ILogger} from 'omelox-logger';
 import {EventEmitter} from 'events';
 import {default as events, AppEvents} from './util/events';
 import * as appUtil from './util/appUtil';
@@ -34,24 +34,24 @@ import {ConnectionComponent} from './components/connection';
 import {SessionService} from './common/service/sessionService';
 import {ObjectType} from './interfaces/define';
 import {isFunction} from 'util';
-import {IModule, IModuleFactory} from 'pinus-admin';
+import {IModule, IModuleFactory} from 'omelox-admin';
 import {ChannelComponent} from './components/channel';
 import {BackendSessionComponent} from './components/backendSession';
 import {ServerInfo, FRONTENDID} from './util/constants';
 import {BeforeHandlerFilter, AfterHandlerFilter, IHandlerFilter} from './interfaces/IHandlerFilter';
 import {TransactionCondictionFunction, TransactionHandlerFunction} from './common/manager/appManager';
-import {RpcFilter, MailStationErrorHandler, RpcMsg} from 'pinus-rpc';
+import {RpcFilter, MailStationErrorHandler, RpcMsg} from 'omelox-rpc';
 import {ILifeCycle} from './interfaces/ILifeCycle';
 import {ModuleRecord} from './util/moduleUtil';
 import {IPlugin, ApplicationEventContructor} from './interfaces/IPlugin';
 import {Cron} from './server/server';
 import {ServerStartArgs} from './util/appUtil';
 import {RemoterProxyWithRoute, RemoterProxy} from './util/remoterHelper';
-import {listEs6ClassMethods} from 'pinus-rpc';
+import {listEs6ClassMethods} from 'omelox-rpc';
 import {ResponseErrorHandler} from './server/server';
 import {FrontendOrBackendSession, ScheduleOptions, UID, SID, FrontendSession, ISession} from './index';
 
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 
 export type ConfigureCallback = () => void;
@@ -194,7 +194,7 @@ export class Application {
      * Get application base path
      *
      *  // cwd: /home/game/
-     *  pinus start
+     *  omelox start
      *  // app.getBase() -> /home/game
      *
      * @return {String} application base path
@@ -219,7 +219,7 @@ export class Application {
     /**
      * Configure logger with {$base}/config/log4js.json
      *
-     * @param {Object} logger pinus-logger instance without configuration
+     * @param {Object} logger omelox-logger instance without configuration
      *
      * @memberOf Application
      */
@@ -499,7 +499,7 @@ export class Application {
      * @memberOf Application
      */
     beforeStopHook(fun: BeforeStopHookFunction) {
-        logger.warn('this method was deprecated in pinus 0.8');
+        logger.warn('this method was deprecated in omelox 0.8');
         if (!!fun && typeof fun === 'function') {
             this.set(Constants.KEYWORDS.BEFORE_STOP_HOOK, fun);
         }
@@ -590,7 +590,7 @@ export class Application {
      */
     stop(force: boolean) {
         if (this.state > STATE_STARTED) {
-            logger.warn('[pinus application] application is not running now.');
+            logger.warn('[omelox application] application is not running now.');
             return;
         }
         this.state = STATE_STOPED;

@@ -1,5 +1,5 @@
 import { RobotPlugin } from './robotPlugin';
-import { RobotCfg } from 'pinus-robot';
+import { RobotCfg } from 'omelox-robot';
 import * as fs from 'fs';
 export {PinusWSClient, PinusWSClientEvent} from './PinusWSClient';
 

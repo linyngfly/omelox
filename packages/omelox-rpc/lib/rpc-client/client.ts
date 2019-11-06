@@ -1,18 +1,18 @@
-import { getLogger, Logger } from 'pinus-logger';
+import { getLogger, Logger } from 'omelox-logger';
 import { failureProcess } from './failureProcess';
 import { constants } from '../util/constants';
 import * as Station from './mailstation';
 import { MailStation, MailStationErrorHandler, MailStationOpts, RpcFilter, RpcServerInfo } from './mailstation';
 import { Tracer } from '../util/tracer';
-import * as Loader from 'pinus-loader';
-import { LoaderPathType } from 'pinus-loader';
+import * as Loader from 'omelox-loader';
+import { LoaderPathType } from 'omelox-loader';
 import { listEs6ClassMethods } from '../util/utils';
 import * as router from './router';
 import * as async from 'async';
 import { ConsistentHash } from '../util/consistentHash';
 import { RemoteServerCode } from '../../index';
 
-let logger = getLogger('pinus-rpc', 'rpc-client');
+let logger = getLogger('omelox-rpc', 'rpc-client');
 
 /**
  * Client states
@@ -210,7 +210,7 @@ export class RpcClient {
         let self = this;
         this._station.start(function (err: Error) {
             if (err) {
-                logger.error('[pinus-rpc] client start fail for ' + err.stack);
+                logger.error('[omelox-rpc] client start fail for ' + err.stack);
                 return cb(err);
             }
             self._station.on('error', failureProcess.bind(self._station));
@@ -227,7 +227,7 @@ export class RpcClient {
      */
     stop(force: boolean) {
         if (this.state !== STATE_STARTED) {
-            logger.warn('[pinus-rpc] client is not running now.');
+            logger.warn('[omelox-rpc] client is not running now.');
             return;
         }
         this.state = STATE_CLOSED;
@@ -330,8 +330,8 @@ export class RpcClient {
 
         if (this.state !== STATE_STARTED) {
             tracer && tracer.error('client', __filename, 'rpcInvoke', 'fail to do rpc invoke for client is not running');
-            logger.error('[pinus-rpc] fail to do rpc invoke for client is not running');
-            cb ? cb(new Error('[pinus-rpc] fail to do rpc invoke for client is not running')) : null;
+            logger.error('[omelox-rpc] fail to do rpc invoke for client is not running');
+            cb ? cb(new Error('[omelox-rpc] fail to do rpc invoke for client is not running')) : null;
             return;
         }
         this._station.dispatch(tracer, serverId, msg, this.opts, cb);
@@ -395,7 +395,7 @@ export class RpcClient {
      */
     private rpcToRoute(routeParam: any, serviceName: string, methodName: string, args: Array<any>, attach: RemoteServerCode, notify: boolean = false) {
         if (this.state !== STATE_STARTED) {
-            return Promise.reject(new Error('[pinus-rpc] fail to invoke rpc proxy for client is not running'));
+            return Promise.reject(new Error('[omelox-rpc] fail to invoke rpc proxy for client is not running'));
         }
         let serverType = attach.serverType;
         let msg = {
@@ -434,7 +434,7 @@ export class RpcClient {
      */
     private rpcToSpecifiedServer(serverId: string, serviceName: string, methodName: string, args: Array<any>, attach: RemoteServerCode, notify: boolean = false) {
         if (this.state !== STATE_STARTED) {
-            return Promise.reject(new Error('[pinus-rpc] fail to invoke rpc proxy for client is not running'));
+            return Promise.reject(new Error('[omelox-rpc] fail to invoke rpc proxy for client is not running'));
         }
         let serverType = attach.serverType;
         let msg = {
@@ -447,7 +447,7 @@ export class RpcClient {
 
         return new Promise((resolve, reject) => {
             if (typeof serverId !== 'string') {
-                logger.error('[pinus-rpc] serverId is not a string : %s', serverId);
+                logger.error('[omelox-rpc] serverId is not a string : %s', serverId);
                 return;
             }
             let cb = notify ? null : ((err: Error, resp: any) => err ? reject(err) : resolve(resp));
@@ -464,7 +464,7 @@ export class RpcClient {
                 }
                 //   console.log('servers  ', servers);
                 if (!servers) {
-                    logger.error('[pinus-rpc] serverType %s servers not exist', serverType);
+                    logger.error('[omelox-rpc] serverType %s servers not exist', serverType);
                     return;
                 }
                 async.map(servers, (serverId, next) => {
@@ -573,9 +573,9 @@ export class RpcClient {
                 let len = arguments.length;
                 if (len < 1) {
 
-                    logger.error('[pinus-rpc] invalid rpc invoke, arguments length less than 1, namespace: %j, serverType, %j, serviceName: %j, methodName: %j',
+                    logger.error('[omelox-rpc] invalid rpc invoke, arguments length less than 1, namespace: %j, serverType, %j, serviceName: %j, methodName: %j',
                         attach.namespace, attach.serverType, serviceName, methodName);
-                    return Promise.reject(new Error('[pinus-rpc] invalid rpc invoke, arguments length less than 1'));
+                    return Promise.reject(new Error('[omelox-rpc] invalid rpc invoke, arguments length less than 1'));
                 }
 
                 let routeParam = arguments[0];
@@ -612,9 +612,9 @@ export class RpcClient {
                 let len = arguments.length;
                 if (len < 1) {
 
-                    logger.error('[pinus-rpc] invalid rpc invoke, arguments length less than 1, namespace: %j, serverType, %j, serviceName: %j, methodName: %j',
+                    logger.error('[omelox-rpc] invalid rpc invoke, arguments length less than 1, namespace: %j, serverType, %j, serviceName: %j, methodName: %j',
                         attach.namespace, attach.serverType, serviceName, methodName);
-                    return Promise.reject(new Error('[pinus-rpc] invalid rpc invoke, arguments length less than 1'));
+                    return Promise.reject(new Error('[omelox-rpc] invalid rpc invoke, arguments length less than 1'));
                 }
 
                 let routeParam = arguments[0];
@@ -674,7 +674,7 @@ export class RpcClient {
                 route = this.router.route;
                 target = this.router;
             } else {
-                logger.error('[pinus-rpc] invalid route function.');
+                logger.error('[omelox-rpc] invalid route function.');
                 return;
             }
 

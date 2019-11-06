@@ -1,5 +1,5 @@
-import { getLogger } from 'pinus-logger';
-let logger = getLogger('pinus-rpc', 'ws-mailbox');
+import { getLogger } from 'omelox-logger';
+let logger = getLogger('omelox-rpc', 'ws-mailbox');
 import { EventEmitter } from 'events';
 import { constants } from '../../util/constants';
 import { Tracer } from '../../util/tracer';

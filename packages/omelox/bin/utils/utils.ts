@@ -9,7 +9,7 @@ import { FILEREAD_ERROR, CONNECT_ERROR, MASTER_HA_NOT_FOUND, CLOSEAPP_INFO, KILL
 import * as utils from '../../lib/util/utils';
 import * as starter from '../../lib/master/starter';
 import * as constants from '../../lib/util/constants';
-import { AdminClient } from 'pinus-admin';
+import { AdminClient } from 'omelox-admin';
 import { exec } from 'child_process';
 import { ConsoleModule as co } from '../../lib/modules/console';
 

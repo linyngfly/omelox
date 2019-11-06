@@ -1,14 +1,14 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as utils from '../util/utils';
-import * as Loader from 'pinus-loader';
+import * as Loader from 'omelox-loader';
 import * as pathUtil from '../util/pathUtil';
 import * as crypto from 'crypto';
 import { Application } from '../application';
 import { IComponent } from '../interfaces/IComponent';
-import { listEs6ClassMethods } from 'pinus-rpc';
+import { listEs6ClassMethods } from 'omelox-rpc';
 import { RESERVED, ServerInfo } from '../util/constants';
-import { LoaderPathType } from 'pinus-loader';
+import { LoaderPathType } from 'omelox-loader';
 
 export interface DictionaryComponentOptions {
     dict?: string;

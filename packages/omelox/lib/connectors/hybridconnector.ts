@@ -13,7 +13,7 @@ import { ConnectorComponent } from '../components/connector';
 import { DictionaryComponent } from '../components/dictionary';
 import { ProtobufComponent } from '../components/protobuf';
 import { IComponent } from '../interfaces/IComponent';
-import { pinus } from '../pinus';
+import { omelox } from '../omelox';
 import { IConnector } from '../interfaces/IConnector';
 import { TlsOptions } from 'tls';
 import * as WebSocket from 'ws';
@@ -71,7 +71,7 @@ export class HybridConnector extends EventEmitter implements IConnector {
      * Start connector to listen the specified port
      */
     start(cb: () => void) {
-        let app = pinus.app;
+        let app = omelox.app;
         let self = this;
 
         let gensocket = function (socket: IHybridSocket) {

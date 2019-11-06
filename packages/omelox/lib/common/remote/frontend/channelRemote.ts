@@ -3,14 +3,14 @@
  * Receive push request from backend servers and push it to clients.
  */
 import * as utils from '../../../util/utils';
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'omelox-logger';
 import {Application} from '../../../application';
 import {UID, SID} from '../../../util/constants';
 import {ScheduleOptions} from '../../../interfaces/IPushScheduler';
 import {Session} from '../../service/sessionService';
 import * as path from 'path';
 
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 export default function (app: Application) {
     return new ChannelRemote(app);

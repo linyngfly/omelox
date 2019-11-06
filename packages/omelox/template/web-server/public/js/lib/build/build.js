@@ -384,7 +384,7 @@ Emitter.prototype.hasListeners = function(event){
 };
 
 });
-require.register("node-pinus-pinus-protocol/lib/protocol.js", function(exports, require, module){
+require.register("node-omelox-omelox-protocol/lib/protocol.js", function(exports, require, module){
 (function (exports, ByteArray, global) {
   var Protocol = exports;
 
@@ -728,11 +728,11 @@ require.register("node-pinus-pinus-protocol/lib/protocol.js", function(exports, 
 })('object' === typeof module ? module.exports : (this.Protocol = {}),'object' === typeof module ? Buffer : Uint8Array, this);
 
 });
-require.register("pinusnode-pinus-protobuf/lib/client/protobuf.js", function(exports, require, module){
+require.register("pinusnode-omelox-protobuf/lib/client/protobuf.js", function(exports, require, module){
 /* ProtocolBuffer client 0.1.0*/
 
 /**
- * pinus-protobuf
+ * omelox-protobuf
  * @author <zhang0935@gmail.com>
  */
 
@@ -1343,7 +1343,7 @@ require.register("pinusnode-pinus-protobuf/lib/client/protobuf.js", function(exp
 
 
 });
-require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", function(exports, require, module){
+require.register("pinusnode-omelox-jsclient-websocket/lib/omelox-client.js", function(exports, require, module){
 (function() {
   var JS_WS_CLIENT_TYPE = 'js-websocket';
   var JS_WS_CLIENT_VERSION = '0.0.1';
@@ -1366,8 +1366,8 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
   }
 
   var root = window;
-  var pinus = Object.create(EventEmitter.prototype); // object extend from object
-  root.pinus = pinus;
+  var omelox = Object.create(EventEmitter.prototype); // object extend from object
+  root.omelox = omelox;
   var socket = null;
   var reqId = 0;
   var callbacks = {};
@@ -1395,7 +1395,7 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
 
   var initCallback = null;
 
-  pinus.init = function(params, cb){
+  omelox.init = function(params, cb){
     initCallback = cb;
     var host = params.host;
     var port = params.port;
@@ -1424,11 +1424,11 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
       }
     };
     var onerror = function(event) {
-      pinus.emit('io-error', event);
+      omelox.emit('io-error', event);
       console.error('socket error: ', event);
     };
     var onclose = function(event){
-      pinus.emit('close',event);
+      omelox.emit('close',event);
       console.error('socket close: ', event);
     };
     socket = new WebSocket(url);
@@ -1439,7 +1439,7 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
     socket.onclose = onclose;
   };
 
-  pinus.disconnect = function() {
+  omelox.disconnect = function() {
     if(socket) {
       if(socket.disconnect) socket.disconnect();
       if(socket.close) socket.close();
@@ -1457,7 +1457,7 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
     }
   };
 
-  pinus.request = function(route, msg, cb) {
+  omelox.request = function(route, msg, cb) {
     if(arguments.length === 2 && typeof msg === 'function') {
       cb = msg;
       msg = {};
@@ -1476,7 +1476,7 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
     routeMap[reqId] = route;
   };
 
-  pinus.notify = function(route, msg) {
+  omelox.notify = function(route, msg) {
     msg = msg || {};
     sendMessage(0, route, msg);
   };
@@ -1485,7 +1485,7 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
     var type = reqId ? Message.TYPE_REQUEST : Message.TYPE_NOTIFY;
 
     //compress message by protobuf
-    var protos = !!pinus.data.protos?pinus.data.protos.client:{};
+    var protos = !!omelox.data.protos?omelox.data.protos.client:{};
     if(!!protos[route]){
       msg = protobuf.encode(route, msg);
     }else{
@@ -1494,8 +1494,8 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
 
 
     var compressRoute = 0;
-    if(pinus.dict && pinus.dict[route]){
-      route = pinus.dict[route];
+    if(omelox.dict && omelox.dict[route]){
+      route = omelox.dict[route];
       compressRoute = 1;
     }
 
@@ -1543,20 +1543,20 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
       heartbeatTimeoutId = setTimeout(heartbeatTimeoutCb, gap);
     } else {
       console.error('server heartbeat timeout');
-      pinus.emit('heartbeat timeout');
-      pinus.disconnect();
+      omelox.emit('heartbeat timeout');
+      omelox.disconnect();
     }
   };
 
   var handshake = function(data){
     data = JSON.parse(Protocol.strdecode(data));
     if(data.code === RES_OLD_CLIENT) {
-      pinus.emit('error', 'client version not fullfill');
+      omelox.emit('error', 'client version not fullfill');
       return;
     }
 
     if(data.code !== RES_OK) {
-      pinus.emit('error', 'handshake fail');
+      omelox.emit('error', 'handshake fail');
       return;
     }
 
@@ -1584,11 +1584,11 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
 
     msg.body = deCompose(msg);
 
-    processMessage(pinus, msg);
+    processMessage(omelox, msg);
   };
 
   var onKick = function(data) {
-    pinus.emit('onKick');
+    omelox.emit('onKick');
   };
 
   handlers[Package.TYPE_HANDSHAKE] = handshake;
@@ -1600,10 +1600,10 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
     handlers[msg.type](msg.body);
   };
 
-  var processMessage = function(pinus, msg) {
+  var processMessage = function(omelox, msg) {
     if(!msg.id) {
       // server push message
-      pinus.emit(msg.route, msg.body);
+      omelox.emit(msg.route, msg.body);
       return;
     }
 
@@ -1619,15 +1619,15 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
     return;
   };
 
-  var processMessageBatch = function(pinus, msgs) {
+  var processMessageBatch = function(omelox, msgs) {
     for(var i=0, l=msgs.length; i<l; i++) {
-      processMessage(pinus, msgs[i]);
+      processMessage(omelox, msgs[i]);
     }
   };
 
   var deCompose = function(msg){
-    var protos = !!pinus.data.protos?pinus.data.protos.server:{};
-    var abbrs = pinus.data.abbrs;
+    var protos = !!omelox.data.protos?omelox.data.protos.server:{};
+    var abbrs = omelox.data.abbrs;
     var route = msg.route;
 
     //Decompose route from dict
@@ -1663,28 +1663,28 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
     }
   };
 
-  //Initilize data used in pinus client
+  //Initilize data used in omelox client
   var initData = function(data){
     if(!data || !data.sys) {
       return;
     }
-    pinus.data = pinus.data || {};
+    omelox.data = omelox.data || {};
     var dict = data.sys.dict;
     var protos = data.sys.protos;
 
     //Init compress dict
     if(dict){
-      pinus.data.dict = dict;
-      pinus.data.abbrs = {};
+      omelox.data.dict = dict;
+      omelox.data.abbrs = {};
 
       for(var route in dict){
-        pinus.data.abbrs[dict[route]] = route;
+        omelox.data.abbrs[dict[route]] = route;
       }
     }
 
     //Init protobuf protos
     if(protos){
-      pinus.data.protos = {
+      omelox.data.protos = {
         server : protos.server || {},
         client : protos.client || {}
       };
@@ -1694,7 +1694,7 @@ require.register("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", funct
     }
   };
 
-  module.exports = pinus;
+  module.exports = omelox;
 })();
 
 });
@@ -1702,29 +1702,29 @@ require.register("boot/index.js", function(exports, require, module){
   var Emitter = require('emitter');
   window.EventEmitter = Emitter;
 
-  var protocol = require('pinus-protocol');
+  var protocol = require('omelox-protocol');
   window.Protocol = protocol;
 
-  var protobuf = require('pinus-protobuf');
+  var protobuf = require('omelox-protobuf');
   window.protobuf = protobuf;
 
-  var pinus = require('pinus-jsclient-websocket');
-  window.pinus = pinus;
+  var omelox = require('omelox-jsclient-websocket');
+  window.omelox = omelox;
 
 });
-require.alias("boot/index.js", "pinus-client/deps/boot/index.js");
+require.alias("boot/index.js", "omelox-client/deps/boot/index.js");
 require.alias("component-emitter/index.js", "boot/deps/emitter/index.js");
 require.alias("component-indexof/index.js", "component-emitter/deps/indexof/index.js");
 
-require.alias("node-pinus-pinus-protocol/lib/protocol.js", "boot/deps/pinus-protocol/lib/protocol.js");
-require.alias("node-pinus-pinus-protocol/lib/protocol.js", "boot/deps/pinus-protocol/index.js");
-require.alias("node-pinus-pinus-protocol/lib/protocol.js", "node-pinus-pinus-protocol/index.js");
+require.alias("node-omelox-omelox-protocol/lib/protocol.js", "boot/deps/omelox-protocol/lib/protocol.js");
+require.alias("node-omelox-omelox-protocol/lib/protocol.js", "boot/deps/omelox-protocol/index.js");
+require.alias("node-omelox-omelox-protocol/lib/protocol.js", "node-omelox-omelox-protocol/index.js");
 
-require.alias("pinusnode-pinus-protobuf/lib/client/protobuf.js", "boot/deps/pinus-protobuf/lib/client/protobuf.js");
-require.alias("pinusnode-pinus-protobuf/lib/client/protobuf.js", "boot/deps/pinus-protobuf/index.js");
-require.alias("pinusnode-pinus-protobuf/lib/client/protobuf.js", "pinusnode-pinus-protobuf/index.js");
+require.alias("pinusnode-omelox-protobuf/lib/client/protobuf.js", "boot/deps/omelox-protobuf/lib/client/protobuf.js");
+require.alias("pinusnode-omelox-protobuf/lib/client/protobuf.js", "boot/deps/omelox-protobuf/index.js");
+require.alias("pinusnode-omelox-protobuf/lib/client/protobuf.js", "pinusnode-omelox-protobuf/index.js");
 
-require.alias("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", "boot/deps/pinus-jsclient-websocket/lib/pinus-client.js");
-require.alias("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", "boot/deps/pinus-jsclient-websocket/index.js");
-require.alias("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", "pinusnode-pinus-jsclient-websocket/index.js");
+require.alias("pinusnode-omelox-jsclient-websocket/lib/omelox-client.js", "boot/deps/omelox-jsclient-websocket/lib/omelox-client.js");
+require.alias("pinusnode-omelox-jsclient-websocket/lib/omelox-client.js", "boot/deps/omelox-jsclient-websocket/index.js");
+require.alias("pinusnode-omelox-jsclient-websocket/lib/omelox-client.js", "pinusnode-omelox-jsclient-websocket/index.js");
 

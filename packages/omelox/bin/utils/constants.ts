@@ -24,5 +24,5 @@ export let RESTART_SERVER_INFO = 'Successfully restart server.';
 export let INIT_PROJ_NOTICE = ('\nThe default admin user is: \n\n' + '  username' as any).green + ': admin\n  ' + ('password' as any).green + ': admin\n\nYou can configure admin users by editing adminUser.json later.\n ';
 export let SCRIPT_NOT_FOUND = ('Fail to find an appropriate script to run,\nplease check the current work directory or the directory specified by option `--directory`.\n' as any).red;
 export let MASTER_HA_NOT_FOUND = ('Fail to find an appropriate masterha config file, \nplease check the current work directory or the arguments passed to.\n' as any).red;
-export let COMMAND_ERROR = ('Illegal command format. Use `pinus --help` to get more info.\n' as any).red;
+export let COMMAND_ERROR = ('Illegal command format. Use `omelox --help` to get more info.\n' as any).red;
 export let DAEMON_INFO = 'The application is running in the background now.\n';

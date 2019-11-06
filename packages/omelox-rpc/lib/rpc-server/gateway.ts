@@ -1,13 +1,13 @@
 import { createDefaultAcceptor, IAcceptor, IAcceptorFactory } from './acceptor';
 import { EventEmitter } from 'events';
 import { Dispatcher, MsgPkg, Services } from './dispatcher';
-import * as Loader from 'pinus-loader';
+import * as Loader from 'omelox-loader';
 import * as utils from '../util/utils';
 import { Tracer } from '../util/tracer';
 import * as util from 'util';
 import * as fs from 'fs';
 import { AcceptorOpts } from './acceptor';
-import { LoaderPathType } from 'pinus-loader';
+import { LoaderPathType } from 'omelox-loader';
 
 export interface RpcServerOpts extends AcceptorOpts {
     port?: number | string;

@@ -9,8 +9,8 @@ import * as WebSocket from 'ws';
  * Github: https://github.com/govo/PinusForEgret.git
  *
  * Thanks to:
- * D-Deo @ https://github.com/D-Deo/pinus-flash-tcp.git
- * and yicaoyimu @ http://bbs.egret.com/forum.php?mod=viewthread&tid=2538&highlight=pinus
+ * D-Deo @ https://github.com/D-Deo/omelox-flash-tcp.git
+ * and yicaoyimu @ http://bbs.egret.com/forum.php?mod=viewthread&tid=2538&highlight=omelox
  */
 
 

@@ -1,5 +1,5 @@
-import { getLogger } from 'pinus-logger';
-let logger = getLogger('pinus-rpc', 'ws-acceptor');
+import { getLogger } from 'omelox-logger';
+let logger = getLogger('omelox-rpc', 'ws-acceptor');
 import { EventEmitter } from 'events';
 import { Tracer } from '../../util/tracer';
 import * as utils from '../../util/utils';

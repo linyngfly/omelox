@@ -1,6 +1,6 @@
-import { pinus } from 'pinus';
+import { omelox } from 'omelox';
 import { preload } from './preload';
-import { createBasePlugin } from 'pinus-base-plugin';
+import { createBasePlugin } from 'omelox-base-plugin';
 
 /**
  *  替换全局Promise
@@ -12,14 +12,14 @@ preload();
 /**
  * Init app for client.
  */
-let app = pinus.createApp();
-app.set('name', 'pinus-example');
+let app = omelox.createApp();
+app.set('name', 'omelox-example');
 
 // app configuration
 app.configure('production|development', 'connector', function () {
     app.set('connectorConfig',
         {
-            connector: pinus.connectors.hybridconnector,
+            connector: omelox.connectors.hybridconnector,
             heartbeat: 3,
             useDict: true,
             useProtobuf: true

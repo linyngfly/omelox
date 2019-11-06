@@ -1,7 +1,7 @@
-import * as Loader from 'pinus-loader';
+import * as Loader from 'omelox-loader';
 import * as Gateway from './gateway';
 import { Services, Remoters } from './dispatcher';
-import { LoaderPathType } from 'pinus-loader';
+import { LoaderPathType } from 'omelox-loader';
 
 
 let loadRemoteServices = function (paths: Array<Gateway.RemoteServerCode>, context: object, res: Services): Services {

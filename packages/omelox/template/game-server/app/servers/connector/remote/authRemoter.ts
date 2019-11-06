@@ -1,4 +1,4 @@
-import {Application, RemoterClass, FrontendSession} from 'pinus';
+import {Application, RemoterClass, FrontendSession} from 'omelox';
 
 export default function (app: Application) {
     return new AuthRemoter(app);

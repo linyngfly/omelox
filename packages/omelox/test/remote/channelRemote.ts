@@ -3,7 +3,7 @@ import * as should from 'should';
 import { UID, SID } from '../../lib/util/constants';
 import { ScheduleOptions } from '../../lib/interfaces/IPushScheduler';
 
-let pinus = require('../../lib/index').pinus;
+let omelox = require('../../lib/index').omelox;
 let remote = require('../../lib/common/remote/frontend/channelRemote').default;
 let SessionService = require('../../lib/common/service/sessionService').SessionService;
 let ChannelService = require('../../lib/common/service/channelService').ChannelService;
@@ -43,7 +43,7 @@ describe('channel remote test', function () {
                 }
             }
 
-            let app = pinus.createApp({ base: mockBase });
+            let app = omelox.createApp({ base: mockBase });
             app.components.__connector__ = {
                 send: function (reqId: number, route: string, msg: any, recvs: Array<SID>, opts: ScheduleOptions, cb: (err?: Error, resp?: any) => void) {
                     app.components.__pushScheduler__.schedule(reqId, route, msg, recvs, opts, cb);
@@ -98,7 +98,7 @@ describe('channel remote test', function () {
                 }
             }
 
-            let app = pinus.createApp({ base: mockBase });
+            let app = omelox.createApp({ base: mockBase });
             app.components.__connector__ = {
                 send: function (reqId: number, route: string, msg: any, recvs: Array<SID>, opts: ScheduleOptions, cb: (err?: Error, resp?: any) => void) {
                     app.components.__pushScheduler__.schedule(reqId, route, msg, recvs, opts, cb);
@@ -144,7 +144,7 @@ describe('channel remote test', function () {
                 }
             }
 
-            let app = pinus.createApp({ base: mockBase });
+            let app = omelox.createApp({ base: mockBase });
             app.components.__connector__ = {
                 send: function (reqId: number, route: string, msg: any, recvs: Array<SID>, opts: ScheduleOptions, cb: (err?: Error, resp?: any) => void) {
                     app.components.__pushScheduler__.schedule(reqId, route, msg, recvs, opts, cb);

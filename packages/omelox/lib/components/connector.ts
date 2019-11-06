@@ -1,6 +1,6 @@
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'omelox-logger';
 import * as taskManager from '../common/manager/taskManager';
-import {pinus} from '../pinus';
+import {omelox} from '../omelox';
 
 let rsa = require('node-bignumber');
 import {default as events} from '../util/events';
@@ -21,7 +21,7 @@ import {ISocket} from '../interfaces/ISocket';
 import {Session} from '../common/service/sessionService';
 import * as path from 'path';
 
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 export type BlackListFunction = (process: (err: Error, list: string[]) => void) => void;
 
@@ -81,11 +81,11 @@ export class ConnectorComponent implements IComponent {
         this.forwardMsg = opts.forwardMsg;
 
         if (opts.useDict) {
-            app.load(pinus.components.dictionary, app.get('dictionaryConfig'));
+            app.load(omelox.components.dictionary, app.get('dictionaryConfig'));
         }
 
         if (opts.useProtobuf) {
-            app.load(pinus.components.protobuf, app.get('protobufConfig'));
+            app.load(omelox.components.protobuf, app.get('protobufConfig'));
         }
 
         // component dependencies

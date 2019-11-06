@@ -7,14 +7,14 @@ import {UdpSocket} from './udpsocket';
 import * as Kick from './commands/kick';
 import { HandshakeCommand, HandshakeCommandOptions } from './commands/handshake';
 import { HeartbeatCommand, HeartbeatCommandOptions } from './commands/heartbeat';
-import { Package, Message } from 'pinus-protocol';
+import { Package, Message } from 'omelox-protocol';
 import * as coder from './common/coder';
 import { EventEmitter } from 'events';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { SocketType } from 'dgram';
 import { IConnector } from '../interfaces/IConnector';
 import * as path from 'path';
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 
 

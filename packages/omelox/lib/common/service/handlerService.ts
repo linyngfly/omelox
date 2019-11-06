@@ -1,16 +1,16 @@
 import * as fs from 'fs';
 import * as utils from '../../util/utils';
-import * as Loader from 'pinus-loader';
+import * as Loader from 'omelox-loader';
 import * as pathUtil from '../../util/pathUtil';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { Application } from '../../application';
 import { Session, FrontendSession } from './sessionService';
 import { RouteRecord, ServerInfo } from '../../util/constants';
 import { BackendSession } from './backendSessionService';
 import * as path from 'path';
-import { LoaderPathType } from 'pinus-loader';
+import { LoaderPathType } from 'omelox-loader';
 
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 let forwardLogger = getLogger('forward-log', path.basename(__filename));
 
 export interface HandlerServiceOptions {

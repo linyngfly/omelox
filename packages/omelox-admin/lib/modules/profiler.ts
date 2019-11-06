@@ -1,8 +1,8 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as utils from '../util/utils';
 
 import * as path from 'path';
-let logger = getLogger('pinus-admin', path.basename(__filename));
+let logger = getLogger('omelox-admin', path.basename(__filename));
 
 let profiler: any = null;
 try {

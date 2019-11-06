@@ -1,14 +1,14 @@
 import * as os from 'os';
 import * as util from 'util';
 import {exec} from 'child_process';
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'omelox-logger';
 import * as Constants from './constants';
-import {pinus} from '../pinus';
+import {omelox} from '../omelox';
 import {ServerInfo} from './constants';
 import {Application} from '../application';
 import * as path from 'path';
 
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 
 /**
@@ -211,7 +211,7 @@ export function checkPort(server: ServerInfo, cb: (result: string) => void) {
     let host = server.host;
     let generateCommand = function (host: string, port: number) {
         let cmd;
-        let ssh_params = pinus.app.get(Constants.RESERVED.SSH_CONFIG_PARAMS);
+        let ssh_params = omelox.app.get(Constants.RESERVED.SSH_CONFIG_PARAMS);
         if (!!ssh_params && Array.isArray(ssh_params)) {
             ssh_params = ssh_params.join(' ');
         }
@@ -250,7 +250,7 @@ export function checkPort(server: ServerInfo, cb: (result: string) => void) {
 }
 
 export function isLocal(host: string) {
-    let app = pinus.app;
+    let app = omelox.app;
     if (!app) {
         return host === '127.0.0.1' || host === 'localhost' || host === '0.0.0.0' || inLocal(host);
     } else {

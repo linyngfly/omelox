@@ -1,12 +1,12 @@
-[![Build Status](https://travis-ci.org/node-pinus/pinus-scheduler.svg?branch=master)](https://travis-ci.org/node-pinus/pinus-scheduler)
+[![Build Status](https://travis-ci.org/node-omelox/omelox-scheduler.svg?branch=master)](https://travis-ci.org/node-omelox/omelox-scheduler)
 
-# pinus-scheduler
-pinus-schedule is a schedule tool for nodejs, it's purpose is to provide a product level schedule module which is high efficient and can support large number job schedule.You can 
+# omelox-scheduler
+omelox-schedule is a schedule tool for nodejs, it's purpose is to provide a product level schedule module which is high efficient and can support large number job schedule.You can 
 
 As a schedule tool, it support two kinds of trigger: A simple trigger which use a js object and  a Cron time trigger which use a Cron time string.
 ##Installation
 ```
-npm install pinus-scheduler
+npm install omelox-scheduler
 ```
 ##Schedule simple Job
 Simple job will receive a object as a trigger, which take three attributes, a JS function as object, and an object as the parameters in the job.

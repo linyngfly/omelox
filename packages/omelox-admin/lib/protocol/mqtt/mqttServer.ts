@@ -1,10 +1,10 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { EventEmitter } from 'events';
 import * as mqtt_connection from 'mqtt-connection';
 import * as Util from 'util';
 import * as net from 'net';
 import * as path from 'path';
-let logger = getLogger('pinus-admin', path.basename(__filename));
+let logger = getLogger('omelox-admin', path.basename(__filename));
 
 
 export interface MqttSocket extends mqtt_connection {

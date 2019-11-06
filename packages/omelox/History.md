@@ -1,11 +1,11 @@
 2.2.5 / 2017-1-22
 =================
-  * [#815](https://github.com/NetEase/pinus/pull/815)
-  * [#901](https://github.com/NetEase/pinus/pull/901)
+  * [#815](https://github.com/NetEase/omelox/pull/815)
+  * [#901](https://github.com/NetEase/omelox/pull/901)
 
 2.2.4 / 2017-1-20
 =================
-  * [NEW] upgrade pinus-rpc to 1.0.7
+  * [NEW] upgrade omelox-rpc to 1.0.7
 
 2.2.3 / 2017-1-20
 =================
@@ -13,7 +13,7 @@
 
 2.2.2 / 2017-1-20
 =================
-  * [#899](https://github.com/NetEase/pinus/pull/899)
+  * [#899](https://github.com/NetEase/omelox/pull/899)
 
 2.2.1 / 2017-1-20
 =================
@@ -21,118 +21,118 @@
 
 2.2.0 / 2017-1-19
 =================
-  * [NEW] upgrade pinus-rpc to 1.0.6, rpc protocol moved to MQTT
-  * [NEW] upgrade pinus-admin to 1.0.0
+  * [NEW] upgrade omelox-rpc to 1.0.6, rpc protocol moved to MQTT
+  * [NEW] upgrade omelox-admin to 1.0.0
   * [NEW] pure javaScript without need to install c++ addons 
 
 1.2.1 / 2015-12-31
 ================
   * [NEW] upgrade ws to 0.8.0
-  * [#771](https://github.com/NetEase/pinus/pull/771)
-  * [#774](https://github.com/NetEase/pinus/pull/774)
+  * [#771](https://github.com/NetEase/omelox/pull/771)
+  * [#774](https://github.com/NetEase/omelox/pull/774)
   * [FIX] tls: destory connection when clientError
 
 1.2.0 / 2015-09-18
 =================
-  * [NEW] upgrade pinus-admin to 0.4.5
-  * [#751](https://github.com/NetEase/pinus/pull/751)
-  * [#741](https://github.com/NetEase/pinus/pull/741)
-  * [#740](https://github.com/NetEase/pinus/pull/740)
+  * [NEW] upgrade omelox-admin to 0.4.5
+  * [#751](https://github.com/NetEase/omelox/pull/751)
+  * [#741](https://github.com/NetEase/omelox/pull/741)
+  * [#740](https://github.com/NetEase/omelox/pull/740)
   * [FIX] fix wrong variable in protobuf
 
 1.1.9 / 2015-06-05
 =================
-  * [NEW] upgrade pinus-rpc to 0.4.10
-  * [NEW] upgrade pinus-admin to 0.4.4
-  * [NEW] upgrade pinus-logger to 0.1.7
+  * [NEW] upgrade omelox-rpc to 0.4.10
+  * [NEW] upgrade omelox-admin to 0.4.4
+  * [NEW] upgrade omelox-logger to 0.1.7
 
 1.1.8 / 2015-05-29
 =================
   * fix bug on verison calculating when update proto files
   * avoid modules loading error on windows
-  * [NEW] upgrade pinus-protocol to 0.1.6
+  * [NEW] upgrade omelox-protocol to 0.1.6
 
 1.1.7 / 2015-05-12
 =================
-  * [#706](https://github.com/NetEase/pinus/pull/706)
-  * [#707](https://github.com/NetEase/pinus/pull/707)
-  * [#443](https://github.com/NetEase/pinus/pull/443)
-  * [#444](https://github.com/NetEase/pinus/pull/444)
-  * [#713](https://github.com/NetEase/pinus/pull/713)
-  * [NEW] upgrade pinus-rpc to 0.4.9
-  * [NEW] upgrade pinus-admin to 0.4.3
+  * [#706](https://github.com/NetEase/omelox/pull/706)
+  * [#707](https://github.com/NetEase/omelox/pull/707)
+  * [#443](https://github.com/NetEase/omelox/pull/443)
+  * [#444](https://github.com/NetEase/omelox/pull/444)
+  * [#713](https://github.com/NetEase/omelox/pull/713)
+  * [NEW] upgrade omelox-rpc to 0.4.9
+  * [NEW] upgrade omelox-admin to 0.4.3
 
 1.1.6 / 2015-03-12
 =================
   * [NEW] add configure file automatically reload feature
   * [NEW] add mqtt connector heartbeat timeout option
-  * [NEW] upgrade pinus-rpc to 0.4.8
+  * [NEW] upgrade omelox-rpc to 0.4.8
 
 1.1.5 / 2015-02-26
 =================
-  * [NEW] upgrade pinus-rpc to 0.4.7
+  * [NEW] upgrade omelox-rpc to 0.4.7
 
 1.1.4 / 2015-01-23
 =================
-  [#670](https://github.com/NetEase/pinus/pull/670)
-  [#669](https://github.com/NetEase/pinus/pull/669)
-  [#666](https://github.com/NetEase/pinus/pull/666)
-  [#665](https://github.com/NetEase/pinus/pull/665)
-  [#662](https://github.com/NetEase/pinus/pull/662)
-  [#659](https://github.com/NetEase/pinus/pull/659)
-  [#657](https://github.com/NetEase/pinus/pull/657)
-  [#653](https://github.com/NetEase/pinus/pull/653)
+  [#670](https://github.com/NetEase/omelox/pull/670)
+  [#669](https://github.com/NetEase/omelox/pull/669)
+  [#666](https://github.com/NetEase/omelox/pull/666)
+  [#665](https://github.com/NetEase/omelox/pull/665)
+  [#662](https://github.com/NetEase/omelox/pull/662)
+  [#659](https://github.com/NetEase/omelox/pull/659)
+  [#657](https://github.com/NetEase/omelox/pull/657)
+  [#653](https://github.com/NetEase/omelox/pull/653)
 
 1.1.2 / 2014-11-12
 =================
 * [NEW] introduce updateUserInfo for connectionService
-  [#637](https://github.com/NetEase/pinus/pull/637)
+  [#637](https://github.com/NetEase/omelox/pull/637)
 * [FIX] fix wrong variable err using 
-  [#642](https://github.com/NetEase/pinus/pull/642)
+  [#642](https://github.com/NetEase/omelox/pull/642)
 * [NEW] introduce cancelShutdownHook
-  [#644](https://github.com/NetEase/pinus/pull/644)
+  [#644](https://github.com/NetEase/omelox/pull/644)
 * [FIX] revert PR #613, which should not be accepted
-  [#649](https://github.com/NetEase/pinus/pull/649)
+  [#649](https://github.com/NetEase/omelox/pull/649)
 
 1.1.1 / 2014-10-10
 =================
-* [NEW] upgrade pinus-protocol to 0.1.4
-  [#616](https://github.com/NetEase/pinus/pull/616)
+* [NEW] upgrade omelox-protocol to 0.1.4
+  [#616](https://github.com/NetEase/omelox/pull/616)
 * [FIX] incorrect this scope
-  [#622](https://github.com/NetEase/pinus/pull/622)
+  [#622](https://github.com/NetEase/omelox/pull/622)
 * [FIX] fix bug on arg parse
-  [#623](https://github.com/NetEase/pinus/pull/623)
+  [#623](https://github.com/NetEase/omelox/pull/623)
 * [FIX] connection without communication bug
 
 1.1.0 / 2014-09-12
 =================
 * [NEW] fit for libpinus2
-* [NEW] upgrade pinus-rpc to 0.4.5
-  [#612](https://github.com/NetEase/pinus/pull/612)
+* [NEW] upgrade omelox-rpc to 0.4.5
+  [#612](https://github.com/NetEase/omelox/pull/612)
 * [FIX] close http server after WebSocketServer.close
-  [#613](https://github.com/NetEase/pinus/pull/613)
+  [#613](https://github.com/NetEase/omelox/pull/613)
 * [FIX] update timeout.js
-  [#614](https://github.com/NetEase/pinus/pull/614)
+  [#614](https://github.com/NetEase/omelox/pull/614)
 * [FIX] fix typo
 
 1.0.4 / 2014-08-26
 =================
-* [NEW] upgrade pinus-rpc to 0.4.3
-* [NEW] upgrade pinus-logger to 0.1.6
-* [FIX] pinus-masterha-plugin reconnect bug miss parameter env
-* [#582](https://github.com/NetEase/pinus/pull/582)
+* [NEW] upgrade omelox-rpc to 0.4.3
+* [NEW] upgrade omelox-logger to 0.1.6
+* [FIX] omelox-masterha-plugin reconnect bug miss parameter env
+* [#582](https://github.com/NetEase/omelox/pull/582)
 
 1.0.3 / 2014-07-18
 =================
 * [NEW] dictVersion : Similar to `protoVersion`, add `dictVersion` and skip sending dict when handshaking if possible.
-  [#572](https://github.com/NetEase/pinus/pull/572)
-* [FIX] CRON : Upgrade pinus-scheduler to v0.3.9. Fix a bug that will loss tasks if The number of days next month is greater than this month.
-  [#560](https://github.com/NetEase/pinus/pull/560)
-  [pinus-scheduler#4](https://github.com/NetEase/pinus-scheduler/pull/4)
+  [#572](https://github.com/NetEase/omelox/pull/572)
+* [FIX] CRON : Upgrade omelox-scheduler to v0.3.9. Fix a bug that will loss tasks if The number of days next month is greater than this month.
+  [#560](https://github.com/NetEase/omelox/pull/560)
+  [omelox-scheduler#4](https://github.com/NetEase/omelox-scheduler/pull/4)
 * [FIX] hot update : Remove the error logging if a server doesn't have any handler.
-  [#562](https://github.com/NetEase/pinus/pull/562)
+  [#562](https://github.com/NetEase/omelox/pull/562)
 * [NEW] protobuf : Add `protobuf cache` into libpinus, and add `useProto` handshake option to tell the client whether to use the protobuf.
-  [#564](https://github.com/NetEase/pinus/pull/564)
+  [#564](https://github.com/NetEase/omelox/pull/564)
   [libpinus#58](https://github.com/NetEase/libpinus/pull/58)
   [discuss(chinese)](http://nodejs.netease.com/topic/53c6c126898634292c8157a2)
 
@@ -144,7 +144,7 @@
 =================
 * merge pull request #538 #541 #545 #546 #547
 * update master watchdog notify method
-* upgrade pinus-rpc to 0.4.2
+* upgrade omelox-rpc to 0.4.2
 
 1.0.0 / 2014-06-19
 =================
@@ -155,12 +155,12 @@
 1.0.0-pre / 2014-05-16
 =================
 * add udpconnector
-* pinus-rpc load balancing and fault tolerance
+* omelox-rpc load balancing and fault tolerance
 * connector wss & tls support
-* pinus-zookeeper-plugin
-* pinus-scale-plugin
+* omelox-zookeeper-plugin
+* omelox-scale-plugin
 * environment directory configuration support
-* pinus-cli dynamic script
+* omelox-cli dynamic script
 
 0.9.10 / 2014-05-15
 =================
@@ -174,7 +174,7 @@
 * merge pull request #495
 * merge pull request #499
 * merge pull request #501
-* upgrade pinus-admin to 0.3.4
+* upgrade omelox-admin to 0.3.4
 
 0.9.8 / 2014-05-04
 =================
@@ -209,18 +209,18 @@
 
 0.9.3 / 2014-03-11
 =================
-* upgrade pinus-admin to 0.3.2 for npm reason
+* upgrade omelox-admin to 0.3.2 for npm reason
 
 0.9.2 / 2014-03-10
 =================
 * merge pull request sshPort
 * merge pull request #438
 * fix hybridconnector dict bug
-* upgrade pinus-rpc to 0.3.2
+* upgrade omelox-rpc to 0.3.2
 
 0.9.1 / 2014-03-03
 =================
-* fix pinus stop auto-restart bug
+* fix omelox stop auto-restart bug
 * add restart-force option
 * add application.require method
 * export constants.js
@@ -245,28 +245,28 @@
 
 0.8.7 / 2014-01-28
 =================
-* refactor pinus command, report remained servers if kill failed 
+* refactor omelox command, report remained servers if kill failed 
 
 0.8.6 / 2014-01-22
 =================
-* upgrade pinus-rpc 0.2.9
-* upgrade pinus-admin 0.2.9
+* upgrade omelox-rpc 0.2.9
+* upgrade omelox-admin 0.2.9
 
 0.8.5 / 2014-01-22
 =================
-* upgrade pinus-rpc 0.2.8
-* upgrade pinus-scheduler 0.3.8
+* upgrade omelox-rpc 0.2.8
+* upgrade omelox-scheduler 0.3.8
 
 0.8.4 / 2014-01-20
 =================
-* fix bin/pinus spell bug
+* fix bin/omelox spell bug
 
 0.8.3 / 2014-01-16
 =================
 * add tcp socket close option
-* upgrade pinus-rpc 0.2.7
-* upgrade pinus-admin 0.2.8
-* upgrade pinus-schedule 0.3.7
+* upgrade omelox-rpc 0.2.7
+* upgrade omelox-admin 0.2.8
+* upgrade omelox-schedule 0.3.7
 
 0.8.2 / 2014-01-03
 =================
@@ -275,40 +275,40 @@
 
 0.8.1 / 2013-12-31
 =================
-* upgrade pinus-rpc to 0.2.6
+* upgrade omelox-rpc to 0.2.6
 * handle rpc filter error
 * add test cases
 
 0.8.0 / 2013-12-24
 =================
-* refactor bin/pinus
+* refactor bin/omelox
 * pushScheduler add option
 * add rpc invoke method
 * lifecycle callback feature
 * add rcp filter interface
 * simplify servers.json configuration
-* pinus-logger dynamic log level
-* pinus-rpc & pinus-admin white list
-* pinus-data-plugin
+* omelox-logger dynamic log level
+* omelox-rpc & omelox-admin white list
+* omelox-data-plugin
 
 0.7.7 / 2013-12-16
 =================
-* upgrade pinus-loader to 0.0.6
-* upgrade pinus-logger to 0.1.2(add dynamic change logger level feature)
+* upgrade omelox-loader to 0.0.6
+* upgrade omelox-logger to 0.1.2(add dynamic change logger level feature)
 
 0.7.6 / 2013-12-3
 =================
-* upgrade pinus-rpc to 0.2.4
-* upgrade pinus-admin to 0.2.6(fix reconnect bug)
+* upgrade omelox-rpc to 0.2.4
+* upgrade omelox-admin to 0.2.6(fix reconnect bug)
 
 0.7.5 / 2013-11-27
 =================
-* fix pinus kill bug
+* fix omelox kill bug
 * fix rpc toobusy filter bug
 
 0.7.4 / 2013-11-20
 =================
-* fix pinus add command
+* fix omelox add command
 * master start servers in 2 mode, detached in production, no detched in development
 
 0.7.3 / 2013-11-15
@@ -318,9 +318,9 @@
 0.7.2 / 2013-11-14
 =================
 * add start server detached mode
-* add masterha for pinus stop&list
+* add masterha for omelox stop&list
 * fix auto-restart disconnect bug
-* update pinus start for different envs
+* update omelox start for different envs
 
 0.7.1 / 2013-11-11
 =================
@@ -332,12 +332,12 @@
 * crontab
 * global filter
 * transaction
-* pinus-cli auto-complete
+* omelox-cli auto-complete
 * some components rename
 
 0.6.8 / 2013-11-4
 =================
-* update pinus-admin version
+* update omelox-admin version
 
 0.6.7 / 2013-10-14
 =================
@@ -346,19 +346,19 @@
 0.6.6 / 2013-10-12
 =================
 * merge pull request #303 replace tab & remove session get value argument
-* upgrade pinus-admin to 0.2.4
-* upgrade pinus-monitor to 0.3.7
-* upgrade pinus-rpc to 0.2.2
+* upgrade omelox-admin to 0.2.4
+* upgrade omelox-monitor to 0.3.7
+* upgrade omelox-rpc to 0.2.2
 
 0.6.5 / 2013-9-30
 =================
 * fix server reconnect bug
-* upgrade pinus-admin to 0.2.3
+* upgrade omelox-admin to 0.2.3
 
 0.6.4 / 2013-9-27
 =================
 * update logger config && test log4js config
-* update require pinus path & unuse module
+* update require omelox path & unuse module
 * merge pull request update readme #295
 
 0.6.3 / 2013-9-10
@@ -369,13 +369,13 @@
 
 0.6.2 / 2013-9-5
 =================
-* upgrade pinus-admin to 0.2.2
+* upgrade omelox-admin to 0.2.2
 * update test cases
 * fix socket.on end bug
 
 0.6.1 / 2013-9-2
 =================
-* update pinus-admin & pinus-rpc to 0.2.1
+* update omelox-admin & omelox-rpc to 0.2.1
 * add rpcDebug module in master
 
 0.6.0 / 2013-8-26
@@ -398,7 +398,7 @@
 
 0.5.4 / 2013-7-25
 =================
-* update pinus-protocol version
+* update omelox-protocol version
 
 0.5.3 / 2013-7-25
 =================
@@ -414,7 +414,7 @@
 
 0.5.1 / 2013-7-19
 =================
-* update pinus-protobuf version
+* update omelox-protobuf version
 * receive servers console data event in production environment
 
 
@@ -430,7 +430,7 @@
 0.4.6 / 2013-7-15
 =================
 
-* fix pinus-protocol bug, which will lose message when requestId is 128 multiple
+* fix omelox-protocol bug, which will lose message when requestId is 128 multiple
 
 0.4.5 / 2013-7-3
 =================
@@ -462,7 +462,7 @@
 0.3.10 / 2013-5-20
 ==================
 
-* `pinus-protocol` upgrades to 0.3.4
+* `omelox-protocol` upgrades to 0.3.4
 * fix session bind bug in backend server
 * replace `childprocess.exec` with `spawn` in `starter.js`
 
@@ -504,7 +504,7 @@
 ==================
 
 * fix server not verifing useDict, useProtobuf bug
-* fix can not start pinus from ide bug
+* fix can not start omelox from ide bug
 * add host param in listen for hybridconnector, which is important for some load balance strategy
 
 0.3.3 / 2013-3-12
@@ -544,7 +544,7 @@
 0.2.3 / 2012-12-25
 ==================
 
-* add mkdirp, update pinus-admin version
+* add mkdirp, update omelox-admin version
 * solve windows comptaible problem
 
 0.2.2 / 2012-12-9

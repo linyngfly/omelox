@@ -3,20 +3,20 @@
  * Copyright(c) 2012 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as countDownLatch from '../util/countDownLatch';
 import * as utils from '../util/utils';
 import * as Constants from '../util/constants';
 import * as starter from '../master/starter';
 import { exec } from 'child_process';
 import { Application } from '../application';
-import { IModule, MonitorCallback, MasterAgent, MasterCallback } from 'pinus-admin';
-import { MonitorAgent } from 'pinus-admin';
+import { IModule, MonitorCallback, MasterAgent, MasterCallback } from 'omelox-admin';
+import { MonitorAgent } from 'omelox-admin';
 import { ServerInfo } from '../util/constants';
 import * as path from 'path';
 import * as os from 'os';
 
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 
 export interface ConsoleModuleOptions {

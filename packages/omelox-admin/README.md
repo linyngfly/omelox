@@ -1,26 +1,26 @@
-[![Build Status](https://travis-ci.org/node-pinus/pinus-admin.svg?branch=master)](https://travis-ci.org/node-pinus/pinus-admin)
+[![Build Status](https://travis-ci.org/node-omelox/omelox-admin.svg?branch=master)](https://travis-ci.org/node-omelox/omelox-admin)
 
-#pinus-admin
+#omelox-admin
 
-`pinus-admin` is an admin console library for [pinus](https://github.com/NetEase/pinus). It provides the a series of utilities to monitor the `pinus` server clusters.
+`omelox-admin` is an admin console library for [omelox](https://github.com/NetEase/omelox). It provides the a series of utilities to monitor the `omelox` server clusters.
 
 ##Installation
 
 ```
-npm install pinus-admin
+npm install omelox-admin
 ```
 
 ##Basic conception
 
 ###Process roles
 
-There are three process roles in `pinus-admin`: master, monitor and client.
+There are three process roles in `omelox-admin`: master, monitor and client.
 
 + master - the master server process, collects and maintains all the client and monitor status and exports the cluster status for the clients.  
 
 + monitor - monitor proxy, in every server process which needs to be monitored. It should be started during the process starts and registers itself to the master server and reports the monitored process status to the master. 
 
-+ client - `pinus-admin` client process that fetches the status from master server, such as [pinus-admin-web](https://github.com/NetEase/pinus-admin-web) and [pinus-cli](https://github.com/NetEase/pinus-cli).
++ client - `omelox-admin` client process that fetches the status from master server, such as [omelox-admin-web](https://github.com/NetEase/omelox-admin-web) and [omelox-cli](https://github.com/NetEase/omelox-cli).
 
 ###Message types
 
@@ -34,19 +34,19 @@ There are two message types of the communication between processes.
 
 ###ConsoleService 
 
-Main service of `pinus-admin` that runs in both master and monitor processes. It maintains the master agent or monitor agent for the process, loads the registed modules and provides the messages routing service for the messages from other processes.
+Main service of `omelox-admin` that runs in both master and monitor processes. It maintains the master agent or monitor agent for the process, loads the registed modules and provides the messages routing service for the messages from other processes.
 
 ###MasterAgent  
 
-`pinus-admin` agent that runs on the master process to provide the basic network communication and protocol encoding and decoding.
+`omelox-admin` agent that runs on the master process to provide the basic network communication and protocol encoding and decoding.
 
 ###MonitorAgent  
 
-`pinus-admin` agent that runs on the monitor process to provide the basic network communication and protocol encoding and decoding. 
+`omelox-admin` agent that runs on the monitor process to provide the basic network communication and protocol encoding and decoding. 
 
 ###Module  
  
-Module is the place to implement the monitor logic, such as process status collecting. Developer can register modules in `pinus-admin` to customize all kinds of system monitors.
+Module is the place to implement the monitor logic, such as process status collecting. Developer can register modules in `omelox-admin` to customize all kinds of system monitors.
 
 There are three optional callback functions in each module.
 
@@ -59,13 +59,13 @@ There are three optional callback functions in each module.
 The relations of the components is as below:
 
 <center>
-![pinus-admin-arch](http://pinus.netease.com/resource/documentImage/pinus-admin-arch.png)
+![omelox-admin-arch](http://omelox.netease.com/resource/documentImage/omelox-admin-arch.png)
 </center>
 
 ##Usage
 
 ```javascript
-var admin = require("pinus-admin");
+var admin = require("omelox-admin");
 ```
 
 Create a consoleService instance in master process.
@@ -120,7 +120,7 @@ Module.moduleId = 'helloPinus';
 module.exports = Module;
 
 Module.prototype.monitorHandler = function(agent, msg) {
-  var word = agent.id + ' hello pinus';
+  var word = agent.id + ' hello omelox';
   // notify admin messages to master
   agent.notify(Module.moduleId, {serverId: agent.id, body: word});
 };
@@ -149,7 +149,7 @@ Module.prototype.clientHandler = function(agent, msg, cb) {
 
 ###Register customized modules
 
-you must register your customized modules to pinus to make it work.  
+you must register your customized modules to omelox to make it work.  
 write in app.js which is in your project's root directory  
 
 ```javascript
@@ -159,7 +159,7 @@ app.configure('production|development', function() {
 ```
 
 ##User level control  
-pinus-admin defines user level for admin client to login master server in this schema  
+omelox-admin defines user level for admin client to login master server in this schema  
 ```javascript
 {
     "id": "user-1",
@@ -197,8 +197,8 @@ adminUser.json
 ```
 
 ##Self-defined auth 
-pinus-admin provides a simple auth function in [pinus-admin auth](https://github.com/NetEase/pinus-admin/blob/master/lib/util/utils.js#L78)  
-developers can provide self-defined auth in pinus by  
+omelox-admin provides a simple auth function in [omelox-admin auth](https://github.com/NetEase/omelox-admin/blob/master/lib/util/utils.js#L78)  
+developers can provide self-defined auth in omelox by  
 in master server
 ```javascript
 app.set('adminAuthUser', function(msg, cb){
@@ -212,8 +212,8 @@ app.set('adminAuthUser', function(msg, cb){
 
 ##Server master auth  
 server connect to master with authorization  
-pinus-admin provides a simple auth function in [pinus-admin auth](https://github.com/NetEase/pinus-admin/blob/master/lib/util/utils.js#L117)  
-developers can provide self-defined auth in pinus by  
+omelox-admin provides a simple auth function in [omelox-admin auth](https://github.com/NetEase/omelox-admin/blob/master/lib/util/utils.js#L117)  
+developers can provide self-defined auth in omelox by  
 in master server
 ```javascript
 app.set('adminAuthServerMaster', function(msg, cb){
@@ -253,11 +253,11 @@ adminServer.json
 ```
 
 **type** is the serverType, **token** is a string you can genrate by yourself  
-when using in pinus, you should fill all your servers with type:token  
+when using in omelox, you should fill all your servers with type:token  
 
 ###Notes  
 
-`pinus-admin` provides a series of useful system modules by default. But most of them are turned off by default. Add a simple line of code in `app.js` as below to enable them.
+`omelox-admin` provides a series of useful system modules by default. But most of them are turned off by default. Add a simple line of code in `app.js` as below to enable them.
 
 ```javascript
 app.configure('development', function() {

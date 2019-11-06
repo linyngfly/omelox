@@ -1,7 +1,7 @@
 /* ProtocolBuffer client 0.1.0*/
 
 /**
- * pinus-protobuf
+ * omelox-protobuf
  * @author <zhang0935@gmail.com>
  */
 

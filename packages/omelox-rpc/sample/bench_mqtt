@@ -5,7 +5,7 @@ mqtt
 
 
 使用mock_data_1测试
-PS C:\pinus\packages\pinus-rpc\dist\sample> node .\bench_client.js
+PS C:\omelox\packages\omelox-rpc\dist\sample> node .\bench_client.js
 1.033203125k
 rpc client start ok.
 runParallel 100000 num requests(maxParallel:1) cost 22309ms , 4482.50ops/sec
@@ -25,7 +25,7 @@ runParallel 100000 num requests(maxParallel:8192) cost 2488ms , 40192.93ops/sec
 runParallel 100000 num requests(maxParallel:10000) cost 2621ms , 38153.38ops/sec
 runParallel 100000 num requests(maxParallel:10000) cost 2669ms , 37467.22ops/sec
 runParallel 100000 num requests(maxParallel:10000) cost 2655ms , 37664.78ops/sec
-PS C:\pinus\packages\pinus-rpc\dist\sample> node .\bench_client.js
+PS C:\omelox\packages\omelox-rpc\dist\sample> node .\bench_client.js
 1.033203125k
 rpc client start ok.
 runParallel 100000 num requests(maxParallel:1) cost 21287ms , 4697.70ops/sec
@@ -44,7 +44,7 @@ runParallel 100000 num requests(maxParallel:4096) cost 2281ms , 43840.42ops/sec
 runParallel 100000 num requests(maxParallel:8192) cost 2493ms , 40112.31ops/sec
 runParallel 100000 num requests(maxParallel:10000) cost 2617ms , 38211.69ops/sec
 runParallel 100000 num requests(maxParallel:10000) cost 2624ms , 38109.76ops/sec
-PS C:\pinus\packages\pinus-rpc\dist\sample> node .\bench_client.js
+PS C:\omelox\packages\omelox-rpc\dist\sample> node .\bench_client.js
 1.033203125k
 rpc client start ok.
 runParallel 100000 num requests(maxParallel:1) cost 20749ms , 4819.51ops/sec
@@ -64,7 +64,7 @@ runParallel 100000 num requests(maxParallel:8192) cost 2554ms , 39154.27ops/sec
 runParallel 100000 num requests(maxParallel:10000) cost 2661ms , 37579.86ops/sec
 runParallel 100000 num requests(maxParallel:10000) cost 2660ms , 37593.98ops/sec
 runParallel 100000 num requests(maxParallel:10000) cost 2663ms , 37551.63ops/sec
-PS C:\pinus\packages\pinus-rpc\dist\sample> node .\bench_client.js
+PS C:\omelox\packages\omelox-rpc\dist\sample> node .\bench_client.js
 1.033203125k
 rpc client start ok.
 runSerial 100000 num requests cost 22204ms , 4503.69ops/sec
@@ -79,7 +79,7 @@ runSerial 100000 num requests cost 21499ms , 4651.38ops/sec
 
 
 使用mock_data_3测试
-PS C:\pinus\packages\pinus-rpc\dist\sample> node .\bench_client.js
+PS C:\omelox\packages\omelox-rpc\dist\sample> node .\bench_client.js
 1.033203125k
 rpc client start ok.
 runParallel 100000 num requests(maxParallel:1) cost 24710ms , 4046.94ops/sec
@@ -98,7 +98,7 @@ runParallel 100000 num requests(maxParallel:4096) cost 3966ms , 25214.32ops/sec
 runParallel 100000 num requests(maxParallel:8192) cost 4547ms , 21992.52ops/sec
 runParallel 100000 num requests(maxParallel:10000) cost 4718ms , 21195.42ops/sec
 runParallel 100000 num requests(maxParallel:10000) cost 4527ms , 22089.68ops/sec
-PS C:\pinus\packages\pinus-rpc\dist\sample> node .\bench_client.js
+PS C:\omelox\packages\omelox-rpc\dist\sample> node .\bench_client.js
 1.033203125k
 rpc client start ok.
 runSerial 100000 num requests cost 24778ms , 4035.84ops/sec

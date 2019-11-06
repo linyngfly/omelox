@@ -1,5 +1,5 @@
-import { getLogger } from 'pinus-logger';
-let logger = getLogger('pinus-rpc', 'failprocess');
+import { getLogger } from 'omelox-logger';
+let logger = getLogger('omelox-rpc', 'failprocess');
 import { constants } from '../util/constants';
 import * as utils from '../util/utils';
 
@@ -65,7 +65,7 @@ let failover = function (this: any, code: number, tracer: {servers: object}, ser
     tracer && (tracer.servers = servers);
 
     if (!servers.length) {
-        logger.error('[pinus-rpc] rpc failed with all this type of servers, with serverType: %s', serverType);
+        logger.error('[omelox-rpc] rpc failed with all this type of servers, with serverType: %s', serverType);
         cb(new Error('rpc failed with all this type of servers, with serverType: ' + serverType));
         return;
     }

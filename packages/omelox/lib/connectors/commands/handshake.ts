@@ -1,5 +1,5 @@
-import { pinus } from '../../pinus';
-import { Package } from 'pinus-protocol';
+import { omelox } from '../../omelox';
+import { Package } from 'omelox-protocol';
 import { ISocket } from '../../interfaces/ISocket';
 
 let CODE_OK = 200;
@@ -69,33 +69,33 @@ export class HandshakeCommand {
         };
 
         if (this.useDict) {
-            let dictVersion = pinus.app.components.__dictionary__.getVersion();
+            let dictVersion = omelox.app.components.__dictionary__.getVersion();
             if (!msg.sys.dictVersion || msg.sys.dictVersion !== dictVersion) {
 
                 // may be deprecated in future
-                opts.dict = pinus.app.components.__dictionary__.getDict();
+                opts.dict = omelox.app.components.__dictionary__.getDict();
 
                 // 用不到这个。
-            //    opts.routeToCode = pinus.app.components.__dictionary__.getDict();
-           //     opts.codeToRoute = pinus.app.components.__dictionary__.getAbbrs();
+            //    opts.routeToCode = omelox.app.components.__dictionary__.getDict();
+           //     opts.codeToRoute = omelox.app.components.__dictionary__.getAbbrs();
                 opts.dictVersion = dictVersion;
             }
             opts.useDict = true;
         }
 
         if (this.useProtobuf) {
-            let protoVersion = pinus.app.components.__protobuf__.getVersion();
+            let protoVersion = omelox.app.components.__protobuf__.getVersion();
             if (!msg.sys.protoVersion || msg.sys.protoVersion !== protoVersion) {
-                opts.protos = pinus.app.components.__protobuf__.getProtos();
+                opts.protos = omelox.app.components.__protobuf__.getProtos();
             }
             opts.useProto = true;
         }
 
-        if (!!pinus.app.components.__decodeIO__protobuf__) {
+        if (!!omelox.app.components.__decodeIO__protobuf__) {
             if (!!this.useProtobuf) {
                 throw new Error('protobuf can not be both used in the same project.');
             }
-            let component = pinus.app.components.__decodeIO__protobuf__ as any;
+            let component = omelox.app.components.__decodeIO__protobuf__ as any;
             let version = component.getVersion();
             if (!msg.sys.protoVersion || msg.sys.protoVersion < version) {
                 opts.protos = component.getProtos();
@@ -104,7 +104,7 @@ export class HandshakeCommand {
         }
 
         if (this.useCrypto) {
-            pinus.app.components.__connector__.setPubKey(socket.id, msg.sys.rsa);
+            omelox.app.components.__connector__.setPubKey(socket.id, msg.sys.rsa);
         }
 
         if (typeof this.userHandshake === 'function') {

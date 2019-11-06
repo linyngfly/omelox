@@ -1,14 +1,14 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import {MonitorAgent} from './monitor/monitorAgent';
 import { EventEmitter } from 'events';
 import { MasterAgent, MasterAgentOptions } from './master/masterAgent';
-import * as schedule from 'pinus-scheduler';
+import * as schedule from 'omelox-scheduler';
 import * as protocol from './util/protocol';
 import * as utils from './util/utils';
 import * as util from 'util';
 import { AdminServerInfo, ServerInfo, AdminUserInfo, Callback } from './util/constants';
 import * as path from 'path';
-let logger = getLogger('pinus-admin', path.basename(__filename));
+let logger = getLogger('omelox-admin', path.basename(__filename));
 
 let MS_OF_SECOND = 1000;
 

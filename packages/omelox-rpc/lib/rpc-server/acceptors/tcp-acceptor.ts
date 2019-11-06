@@ -6,8 +6,8 @@ import * as util from 'util';
 import * as net from 'net';
 import * as Coder from '../../util/coder';
 import {AcceptorOpts, IAcceptor, AcceptorCallback} from '../acceptor';
-import { getLogger, Logger } from 'pinus-logger';
-let logger = getLogger('pinus-rpc', 'tcp-acceptor');
+import { getLogger, Logger } from 'omelox-logger';
+let logger = getLogger('omelox-rpc', 'tcp-acceptor');
 
 export interface AcceptorPkg {
     source: string;

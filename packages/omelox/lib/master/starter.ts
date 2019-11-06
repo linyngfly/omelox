@@ -1,14 +1,14 @@
 import * as cp from 'child_process';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as util from 'util';
 import * as utils from '../util/utils';
 import * as Constants from '../util/constants';
 import * as os from 'os';
-import {pinus} from '../pinus';
+import {omelox} from '../omelox';
 import { Application } from '../application';
 import { ServerInfo } from '../util/constants';
 import * as path from 'path';
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 
 
@@ -160,7 +160,7 @@ export function kill(pids: string[], servers: ServerInfo[]) {
 export function sshrun(cmd: string, host: string, cb ?: (err?: string | number) => void) {
     let args = [];
     args.push(host);
-    let ssh_params = pinus.app.get(Constants.RESERVED.SSH_CONFIG_PARAMS);
+    let ssh_params = omelox.app.get(Constants.RESERVED.SSH_CONFIG_PARAMS);
     if (!!ssh_params && Array.isArray(ssh_params)) {
         args = args.concat(ssh_params);
     }

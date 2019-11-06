@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/node-pinus/pinus-monitor.svg?branch=master)](https://travis-ci.org/node-pinus/pinus-monitor)
+[![Build Status](https://travis-ci.org/node-omelox/omelox-monitor.svg?branch=master)](https://travis-ci.org/node-omelox/omelox-monitor)
 
 ## Monitor
 
@@ -7,11 +7,11 @@ Simple, comprehensive monitoring tool for operating-system and process in nodejs
 
 ## Installation
 
-	$ npm install -g pinus-monitor
+	$ npm install -g omelox-monitor
 
 ## Usage
 
-	var monitor = require(pinus-monitor);
+	var monitor = require(omelox-monitor);
 
 	var param = {
 		pid: process.pid,

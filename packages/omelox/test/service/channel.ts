@@ -1,6 +1,6 @@
 import * as should from 'should';
 // import { describe, it } from "mocha-typescript"
-let pinus = require('../../lib/index').pinus;
+let omelox = require('../../lib/index').omelox;
 let ChannelService = require('../../lib/common/service/channelService').ChannelService;
 
 let mockBase = process.cwd() + '/test';
@@ -131,7 +131,7 @@ describe('channel test', function () {
         cb();
       };
 
-      let app = pinus.createApp({ base: mockBase });
+      let app = omelox.createApp({ base: mockBase });
       app.rpcInvoke = mockRpcInvoke;
       let channelService = new ChannelService(app);
 

@@ -1,5 +1,5 @@
 import * as uuid from 'uuid';
-import { Logger } from 'pinus-logger';
+import { Logger } from 'omelox-logger';
 
 let getModule = function (module: string) {
     let rs = '';

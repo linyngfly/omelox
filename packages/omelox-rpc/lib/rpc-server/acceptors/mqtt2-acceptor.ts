@@ -1,5 +1,5 @@
-import { getLogger } from 'pinus-logger';
-let logger = getLogger('pinus-rpc', 'mqtt2-acceptor');
+import { getLogger } from 'omelox-logger';
+let logger = getLogger('omelox-rpc', 'mqtt2-acceptor');
 import { EventEmitter } from 'events';
 import {constants} from '../../util/constants';
 import { Tracer } from '../../util/tracer';

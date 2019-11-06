@@ -1,5 +1,5 @@
 {
-	"name": "pinus-scheduler",
+	"name": "omelox-scheduler",
 	"version": "1.3.11",
 	"author": "mybios <mybios@qq.com>",
 	"main": "./dist/schedule",
@@ -17,14 +17,14 @@
 		"test": "yarn run build",
 		"cov": "nyc mocha",
 		"ci": "yarn run test",
-		"gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus-scheduler lib/"
+		"gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox-scheduler lib/"
 	},
 	"engines": {
 		"node": ">=8.5"
 	},
 	"dependencies": {
 		"@types/node": "8.5.7",
-		"pinus-logger": "^1.3.11"
+		"omelox-logger": "^1.3.11"
 	},
 	"devDependencies": {
 		"tslint": "^5.9.1",

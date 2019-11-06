@@ -6,9 +6,9 @@ import * as Job from './job';
 import { SimpleTriggerOpts } from './simpleTrigger';
 
 
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as path from 'path';
-let logger = getLogger('pinus-scheduler', path.basename(__filename));
+let logger = getLogger('omelox-scheduler', path.basename(__filename));
 
 let timerCount = 0;
 let map: {[key: number]: Job.Job} = {};

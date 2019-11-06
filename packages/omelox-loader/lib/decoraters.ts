@@ -1,8 +1,8 @@
 ﻿import * as reflect from 'reflect-metadata';
 export enum LoaderPathType {
-    PINUS_REMOTER = 'pinus:remoter',
-    PINUS_HANDLER = 'pinus:hanlder',
-    PINUS_CRONNER = 'pinus:cronner'
+    PINUS_REMOTER = 'omelox:remoter',
+    PINUS_HANDLER = 'omelox:hanlder',
+    PINUS_CRONNER = 'omelox:cronner'
 }
 
 const DUPLICATED_REMOTER_DECORATOR = 'Cannot apply @remoter decorator multiple times.';

@@ -1,5 +1,5 @@
 {
-  "name": "pinus-robot",
+  "name": "omelox-robot",
   "version": "1.3.11",
   "private": false,
   "dependencies": {
@@ -21,7 +21,7 @@
     "test": "yarn run build",
     "cov": "nyc mocha",
     "ci": "yarn run test",
-    "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus lib/"
+    "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox lib/"
   },
   "files": [
     "dist",
@@ -30,15 +30,15 @@
   ],
   "readmeFilename": "README.md",
   "gitHead": "d33db82d670b7a5d21c95e15f91548f8a8ba7821",
-  "description": "pinus-robot is a simple tool to benchmark the socket.io server's performance.",
+  "description": "omelox-robot is a simple tool to benchmark the socket.io server's performance.",
   "main": "./dist/index",
   "types": "./index.ts",
   "repository": {
     "type": "git",
-    "url": "git://github.com/node-pinus/pinus.git"
+    "url": "git://github.com/node-omelox/omelox.git"
   },
   "keywords": [
-    "pinus",
+    "omelox",
     "client",
     "robot"
   ],

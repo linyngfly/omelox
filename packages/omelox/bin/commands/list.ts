@@ -2,7 +2,7 @@
 import * as program from 'commander';
 import { DEFAULT_USERNAME, DEFAULT_PWD, DEFAULT_MASTER_HOST, DEFAULT_MASTER_PORT } from '../utils/constants';
 import { connectToMaster } from '../utils/utils';
-import {AdminClient} from 'pinus-admin';
+import {AdminClient} from 'omelox-admin';
 import * as cliff from 'cliff';
 import { ConsoleModule as co } from '../../lib/modules/console';
 
@@ -18,7 +18,7 @@ export default function (program: program.CommanderStatic) {
     });
 }
 /**
- * List pinus processes.
+ * List omelox processes.
  *
  * @param {Object} opts options for `list` operation
  */

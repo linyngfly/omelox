@@ -1,6 +1,6 @@
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'omelox-logger';
 
-let logger = getLogger('pinus-rpc', 'mqtt2-mailbox');
+let logger = getLogger('omelox-rpc', 'mqtt2-mailbox');
 import {EventEmitter} from 'events';
 import {Tracer} from '../../util/tracer';
 import * as utils from '../../util/utils';
@@ -103,7 +103,7 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
                 }
             } catch(err) {
                 if(err) {
-                    logger.error('[pinus-rpc] tcp mailbox process data error: %j', err.stack);
+                    logger.error('[omelox-rpc] tcp mailbox process data error: %j', err.stack);
                 }
             }
         });

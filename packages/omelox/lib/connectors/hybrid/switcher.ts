@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 import * as util from 'util';
 import { WSProcessor } from './wsprocessor';
 import { TCPProcessor } from './tcpprocessor';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as net from 'net';
 import * as tls from 'tls';
 import { TlsOptions } from 'tls';
@@ -10,7 +10,7 @@ import * as WebSocket from 'ws';
 import { TcpSocket } from './tcpsocket';
 import { IHybridSocket } from './IHybridSocket';
 import * as path from 'path';
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 
 let HTTP_METHODS = [

@@ -1,4 +1,4 @@
-var schedule = require('pinus-scheduler');
+var schedule = require('omelox-scheduler');
 
 var cronJob = function() {
 	console.log('doing %s', Date.now())

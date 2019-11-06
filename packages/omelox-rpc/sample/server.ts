@@ -2,10 +2,10 @@ require('source-map-support/register');
 import {preload} from './preload';
 preload();
 import {createServer, createTcpAcceptor} from '../index';
-import { configure } from 'pinus-logger';
-import {getLogger} from 'pinus-logger';
+import { configure } from 'omelox-logger';
+import {getLogger} from 'omelox-logger';
 // configure('./config/log4js.json');
-let logger = getLogger('pinus-rpc', 'sample-server');
+let logger = getLogger('omelox-rpc', 'sample-server');
 
 // remote service path info list
 let paths = [

@@ -1,7 +1,7 @@
 import {MQTTAcceptor} from './acceptors/mqtt-acceptor';
 import {Tracer} from '../util/tracer';
 import {TCPAcceptor} from './acceptors/tcp-acceptor';
-import {Logger} from 'pinus-logger';
+import {Logger} from 'omelox-logger';
 import {EventEmitter} from 'events';
 import {MsgPkg} from './dispatcher';
 import * as Gateway from './gateway';

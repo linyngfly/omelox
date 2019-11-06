@@ -1,5 +1,5 @@
-import * as pinus from './PinusForEgret';
-import { Actor } from 'pinus-robot';
+import * as omelox from './PinusForEgret';
+import { Actor } from 'omelox-robot';
 
 
 export class Client {
@@ -9,25 +9,25 @@ export class Client {
 
     openid = String(Math.round(Math.random() * 1000));
 
-    pinusClient = new pinus.WSClient();
+    pinusClient = new omelox.WSClient();
 
     public connectGate(): void {
 
         let host = '127.0.0.1';
         let port = '3014';
-        this.pinusClient.on(pinus.WSClient.EVENT_IO_ERROR, function(event) {
+        this.pinusClient.on(omelox.WSClient.EVENT_IO_ERROR, function(event) {
             // 错误处理
             console.error('error', event);
         });
-        this.pinusClient.on(pinus.WSClient.EVENT_CLOSE, function(event) {
+        this.pinusClient.on(omelox.WSClient.EVENT_CLOSE, function(event) {
             // 关闭处理
             console.error('close', event);
         });
-        this.pinusClient.on(pinus.WSClient.EVENT_HEART_BEAT_TIMEOUT, function(event) {
+        this.pinusClient.on(omelox.WSClient.EVENT_HEART_BEAT_TIMEOUT, function(event) {
             // 心跳timeout
             console.error('heart beat timeout', event);
         });
-        this.pinusClient.on(pinus.WSClient.EVENT_KICK, function(event) {
+        this.pinusClient.on(omelox.WSClient.EVENT_KICK, function(event) {
             // 踢出
             console.error('kick', event);
         });

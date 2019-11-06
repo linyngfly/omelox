@@ -1,5 +1,5 @@
-import { getLogger } from 'pinus-logger';
-let logger = getLogger('pinus-rpc', 'OutputBuffer');
+import { getLogger } from 'omelox-logger';
+let logger = getLogger('omelox-rpc', 'OutputBuffer');
 import * as Utils from '../utils';
 let BUFFER_SIZE_DEFAULT = 32;
 

@@ -1,10 +1,10 @@
 {
-  "name": "pinus",
+  "name": "omelox",
   "version": "1.3.11",
-  "homepage": "https://github.com/mybios/pinus",
+  "homepage": "https://github.com/mybios/omelox",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mybios/pinus.git"
+    "url": "https://github.com/mybios/omelox.git"
   },
   "scripts": {
     "build": "tsc",
@@ -15,23 +15,23 @@
     "cov": "nyc mocha",
     "ci": "yarn run test",
     "mochatest": "cd dist && mocha --require source-map-support/register --recursive",
-    "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus lib/"
+    "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox lib/"
   },
   "engines": {
     "node": ">=8.5"
   },
   "bugs": {
-    "url": "https://github.com/mybios/pinus/issues"
+    "url": "https://github.com/mybios/omelox/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/mybios/pinus#license"
+      "url": "https://github.com/mybios/omelox#license"
     }
   ],
   "keywords": [
-    "pinus",
-    "pinus",
+    "omelox",
+    "omelox",
     "framework",
     "game",
     "web",
@@ -49,7 +49,7 @@
   "types": "./lib/index",
   "dependencies": {
     "@types/mocha": "^2.2.46",
-    "@types/mqtt-connection": "git+https://github.com/node-pinus/types-mqtt-connection.git",
+    "@types/mqtt-connection": "git+https://github.com/node-omelox/types-mqtt-connection.git",
     "@types/socket.io": "^2.1.3",
     "async": "^2.6.0",
     "cliff": "^0.1.10",
@@ -59,19 +59,19 @@
     "mkdirp": "^0.5.1",
     "mqtt-connection": "^3.2.0",
     "node-bignumber": "^1.2.1",
-    "pinus-admin": "^1.3.11",
-    "pinus-loader": "^1.3.11",
-    "pinus-logger": "^1.3.11",
-    "pinus-protobuf": "^1.3.11",
-    "pinus-protocol": "^1.3.11",
-    "pinus-rpc": "^1.3.11",
-    "pinus-scheduler": "^1.3.11",
+    "omelox-admin": "^1.3.11",
+    "omelox-loader": "^1.3.11",
+    "omelox-logger": "^1.3.11",
+    "omelox-protobuf": "^1.3.11",
+    "omelox-protocol": "^1.3.11",
+    "omelox-rpc": "^1.3.11",
+    "omelox-scheduler": "^1.3.11",
     "seq-queue": "^0.0.5",
     "socket.io": "^2.0.4",
     "ws": "^3.3.3"
   },
   "bin": {
-    "pinus": "./dist/bin/pinus.js"
+    "omelox": "./dist/bin/omelox.js"
   },
   "devDependencies": {
     "@types/async": "^2.0.46",

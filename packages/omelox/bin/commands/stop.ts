@@ -12,7 +12,7 @@ import { exec } from 'child_process';
 
 export default function (program: program.CommanderStatic) {
     program.command('stop')
-    .description('stop the servers, for multiple servers, use `pinus stop server-id-1 server-id-2`')
+    .description('stop the servers, for multiple servers, use `omelox stop server-id-1 server-id-2`')
     .option('-u, --username <username>', 'administration user name', DEFAULT_USERNAME)
     .option('-p, --password <password>', 'administration password', DEFAULT_PWD)
     .option('-h, --host <master-host>', 'master server host', DEFAULT_MASTER_HOST)

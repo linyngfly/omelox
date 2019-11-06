@@ -2,9 +2,9 @@
  * This is the trigger used to decode the cronTimer and calculate the next excution time of the cron Trigger.
  */
 import { Job } from './job';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as path from 'path';
-let logger = getLogger('pinus-scheduler', path.basename(__filename));
+let logger = getLogger('omelox-scheduler', path.basename(__filename));
 
 let SECOND = 0;
 let MIN = 1;

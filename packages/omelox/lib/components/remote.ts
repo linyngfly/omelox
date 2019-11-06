@@ -4,10 +4,10 @@
  */
 import * as fs from 'fs';
 import * as pathUtil from '../util/pathUtil';
-import { createServer, Gateway, RpcServerOpts, Remoters, Remoter, RemoteServerCode } from 'pinus-rpc';
+import { createServer, Gateway, RpcServerOpts, Remoters, Remoter, RemoteServerCode } from 'omelox-rpc';
 import { Application } from '../application';
 import { IComponent } from '../interfaces/IComponent';
-import { getLogger, Logger } from 'pinus-logger';
+import { getLogger, Logger } from 'omelox-logger';
 import { ServerInfo } from '../util/constants';
 import * as path from 'path';
 

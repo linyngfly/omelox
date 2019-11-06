@@ -1,11 +1,11 @@
 {
-	"name": "pinus-workspaces",
+	"name": "omelox-workspaces",
 	"version": "0.0.1",
 	"devDependencies": {
 		"lerna": "^2.5.1",
 		"lerna-relinker": "^1.4.0",
 		"nyc": "^11.2.1",
-		"pinus-site-tools": "^1.0.6",
+		"omelox-site-tools": "^1.0.6",
 		"ts-node": "^3.2.0",
 		"tslint": "^5.9.1",
 		"typedoc": "^0.9.0",
@@ -36,20 +36,20 @@
 	},
 	"keywords": [
 		"netease",
-		"pinus",
+		"omelox",
 		"server",
 		"framework",
 		"game server",
-		"pinus",
+		"omelox",
 		"runtime",
 		"cluster",
 		"service",
 		"application"
 	],
-	"homepage": "https://github.com/node-pinus/pinus",
+	"homepage": "https://github.com/node-omelox/omelox",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/node-pinus/pinus.git"
+		"url": "https://github.com/node-omelox/omelox.git"
 	},
 	"engines": {
 		"node": ">= 8.5.0"

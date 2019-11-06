@@ -1,5 +1,5 @@
 {
-    "name": "pinus-admin",
+    "name": "omelox-admin",
     "version": "1.3.11",
     "main": "./dist/index",
     "types": "./lib/index",
@@ -18,18 +18,18 @@
         "test": "yarn run build",
         "cov": "nyc mocha",
         "ci": "yarn run test",
-        "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus-admin lib/"
+        "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox-admin lib/"
     },
     "engines": {
         "node": ">=8.5"
     },
     "dependencies": {
-        "@types/mqtt-connection": "git+https://github.com/node-pinus/types-mqtt-connection.git",
+        "@types/mqtt-connection": "git+https://github.com/node-omelox/types-mqtt-connection.git",
         "@types/node": "8.5.7",
         "mqtt-connection": "^3.2.0",
-        "pinus-logger": "^1.3.11",
-        "pinus-monitor": "^1.3.11",
-        "pinus-scheduler": "^1.3.11",
+        "omelox-logger": "^1.3.11",
+        "omelox-monitor": "^1.3.11",
+        "omelox-scheduler": "^1.3.11",
         "read-last-lines": "^1.3.0"
     },
     "devDependencies": {

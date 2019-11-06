@@ -1,33 +1,33 @@
-pinus-cli
+omelox-cli
 ========
 
-pinus-cli is a command-line tool for [pinus](https://github.com/NetEase/pinus).  
-you can use pinus-cli to connect to pinus master and do lots of things.
+omelox-cli is a command-line tool for [omelox](https://github.com/NetEase/omelox).  
+you can use omelox-cli to connect to omelox master and do lots of things.
 
 ##Installation
 ```
-npm install -g pinus-cli
+npm install -g omelox-cli
 ```
 ##Usage
-Use pinus-cli to connect to pinus master  
+Use omelox-cli to connect to omelox master  
 
 ```
-pinus-cli -h host -P port -u username -p password  
+omelox-cli -h host -P port -u username -p password  
 ```  
 
-The default parameter of pinus-cli is as follows:
+The default parameter of omelox-cli is as follows:
 
 ```  
-pinus-cli -h 127.0.0.1 -P 3005 -u monitor -p monitor 
+omelox-cli -h 127.0.0.1 -P 3005 -u monitor -p monitor 
 ```  
 
-After that, pinus-cli will enter repl mode. You can type 'help' for more information. 
+After that, omelox-cli will enter repl mode. You can type 'help' for more information. 
 Enjoy it:
-![pinus-cli help](http://ww1.sinaimg.cn/mw690/b7bc844fgw1eaa5s16o2uj20hv0k4whw.jpg)
+![omelox-cli help](http://ww1.sinaimg.cn/mw690/b7bc844fgw1eaa5s16o2uj20hv0k4whw.jpg)
 
 ## Links
-[user level control](https://github.com/NetEase/pinus-admin#user-level-control)  
-[commands wiki](https://github.com/NetEase/pinus-cli/wiki/pinus-cli-man-page)
+[user level control](https://github.com/NetEase/omelox-admin#user-level-control)  
+[commands wiki](https://github.com/NetEase/omelox-cli/wiki/omelox-cli-man-page)
 
 ## License
 

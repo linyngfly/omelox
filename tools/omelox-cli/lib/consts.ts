@@ -1,7 +1,7 @@
 export let consts = {
     CONSOLE_MODULE: '__console__',
 
-    PROMPT: '@pinus : ',
+    PROMPT: '@omelox : ',
 
     WELCOME_INFO: ['\nWelcome to Pinus interactive client.',
         'Pinus is a fast, scalable game server framework for node.js. ',
@@ -10,7 +10,7 @@ export let consts = {
 
     HELP_INFO_1: [
         '\nFor information about Pinus products and services, visit:',
-        '   https://pinus.io/',
+        '   https://omelox.io/',
         '\nList of all Pinus commands:\n'
     ],
 
@@ -22,22 +22,22 @@ export let consts = {
     HELP_LOGIN: [
         '\nWelcome to Pinus interactive client.',
         'Pinus is a fast, scalable game server framework for node.js. ',
-        'You can use following command to connect to pinus master',
-        'pinus-cli -h host -P port -u user -p password',
-        'Default type pinus-cli equals to:',
-        'pinus-cli -h 127.0.0.1 -P 3005 -u admin -p admin\n'
+        'You can use following command to connect to omelox master',
+        'omelox-cli -h host -P port -u user -p password',
+        'Default type omelox-cli equals to:',
+        'omelox-cli -h 127.0.0.1 -P 3005 -u admin -p admin\n'
     ],
 
     COMANDS_ALL: [
         ['command', '  description'],
         ['?', '  symbol for help'],
         ['help', '  display the help'],
-        ['quit', '  quit pinus-cli'],
+        ['quit', '  quit omelox-cli'],
         ['kill', '  kill all servers'],
         ['exec', '  exec script files'],
         ['get', '  equal to app.get(key) '],
         ['set', '  equal to app.set(key, value)'],
-        ['add', '  add server to pinus clusters'],
+        ['add', '  add server to omelox clusters'],
         ['stop', '  stop server. Takes serverId as argument'],
         ['show', '  show infos like : user, servers, connections'],
         ['use', '  use another server. Takes serverId as argument'],
@@ -52,7 +52,7 @@ export let consts = {
 
     COMANDS_MAP: {
         'help': 1,
-        'add': ['\nadd server to pinus clusters',
+        'add': ['\nadd server to omelox clusters',
             'add args are key=value from servers.json config files',
             'example: add host=127.0.0.1 port=3451 serverType=chat id=chat-server-2',
             'example: add host=127.0.0.1 port=3152 serverType=connector id=connector-server-3 clientPort=3012 frontend=true\n',
@@ -74,7 +74,7 @@ export let consts = {
             'example: show config remote',
             'example: show config connection',
             'note: show config xxx command show configuration from app.get(\\\'xxxConfig\\\')',
-            'in pinus you can pass opt config to component to make your like-style server',
+            'in omelox you can pass opt config to component to make your like-style server',
             'but you should keep in mind to use it in a proper context\n'
         ],
         'use': ['\nuse another server. takes serverId|all as argument',
@@ -122,7 +122,7 @@ export let consts = {
         ],
         'exec': ['\nexec script files',
             'example: exec <filepath>',
-            'filepath can be relative path to your pinus-cli pwd path',
+            'filepath can be relative path to your omelox-cli pwd path',
             'example : exec xxx.js',
             'equals to : exec pwd/xxx.js',
             'filepath also can be absolute with \\\' / \\\' ahead',
@@ -228,7 +228,7 @@ export let consts = {
     COMANDS_STOP_ERROR: '\nstop command error\n',
     COMANDS_EXEC_ERROR: '\nexec command script filepath error\n',
     COMANDS_CONTEXT_ERROR: 'this command is not used in this context\nyou can use command \\\'use\\\' to switch context',
-    MODULE_INFO: 'there are following modules registered in pinus clusters',
+    MODULE_INFO: 'there are following modules registered in omelox clusters',
     COMPONENTS_INFO: 'there are following components registered in current server',
     STATUS_ERROR: 'can not get status in this server',
     KILL_QUESTION_INFO: 'warning : do you really want to kill all servers [yes/no] ',

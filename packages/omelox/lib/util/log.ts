@@ -1,8 +1,8 @@
-import * as logger from 'pinus-logger';
+import * as logger from 'omelox-logger';
 import { Application } from '../application';
 
 /**
- * Configure pinus logger
+ * Configure omelox logger
  */
 export function configure(app: Application, filename: string) {
   let serverId = app.getServerId();

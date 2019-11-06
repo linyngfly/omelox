@@ -128,7 +128,7 @@ export class Pinus {
     }
 
     /**
-     * Create an pinus application.
+     * Create an omelox application.
      *
      * @return {Application}
      * @memberOf Pinus
@@ -149,4 +149,4 @@ export class Pinus {
     }
 }
 
-export let pinus = new Pinus();
+export let omelox = new Pinus();

@@ -1,12 +1,12 @@
 import {EventEmitter} from 'events';
 import * as  util from 'util';
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'omelox-logger';
 import * as utils from '../../util/utils';
 import {SID, FRONTENDID, UID} from '../../util/constants';
 import {ISocket} from '../../interfaces/ISocket';
 import * as path from 'path';
 
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 let FRONTEND_SESSION_FIELDS = ['id', 'frontendId', 'uid', '__sessionService__'];
 let EXPORTED_SESSION_FIELDS = ['id', 'frontendId', 'uid', 'settings'];

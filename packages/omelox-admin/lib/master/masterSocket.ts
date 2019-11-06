@@ -1,4 +1,4 @@
-import { getLogger } from 'pinus-logger'; let logger = getLogger('pinus-admin', 'MasterSocket');
+import { getLogger } from 'omelox-logger'; let logger = getLogger('omelox-admin', 'MasterSocket');
 import * as Constants from '../util/constants';
 import * as protocol from '../util/protocol';
 import { MasterAgent, AuthServerRequest, AuthUserRequest } from './masterAgent';

@@ -1,4 +1,4 @@
-export * from './pinus';
+export * from './omelox';
 
 export * from './application';
 export * from './common/service/backendSessionService';
@@ -65,10 +65,10 @@ export * from './interfaces/IPushScheduler';
 export * from './interfaces/ISocket';
 export * from './interfaces/IStore';
 
-export * from 'pinus-admin';
-export * from 'pinus-loader';
-export * from 'pinus-logger';
-export * from 'pinus-protobuf';
-export * from 'pinus-protocol';
-export * from 'pinus-rpc';
-export * from 'pinus-scheduler';
+export * from 'omelox-admin';
+export * from 'omelox-loader';
+export * from 'omelox-logger';
+export * from 'omelox-protobuf';
+export * from 'omelox-protocol';
+export * from 'omelox-rpc';
+export * from 'omelox-scheduler';

@@ -5,11 +5,11 @@ require('source-map-support/register');
 import {preload} from './preload';
 preload();
 import * as pinusrpc from '..';
-import {configure} from 'pinus-logger';
-import {getLogger} from 'pinus-logger';
+import {configure} from 'omelox-logger';
+import {getLogger} from 'omelox-logger';
 import {createTcpMailBox} from '..';
 // configure('./config/log4js.json');
-let logger = getLogger('pinus-rpc', 'sample-client');
+let logger = getLogger('omelox-rpc', 'sample-client');
 
 // remote service interface path info list
 const records = [

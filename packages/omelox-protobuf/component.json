@@ -1,8 +1,8 @@
 {
-  "name": "pinus-protobuf",
-  "description": "pinus-protobuf",
+  "name": "omelox-protobuf",
+  "description": "omelox-protobuf",
   "keywords": [
-    "pinus",
+    "omelox",
     "protobuf"
   ],
   "version": "0.2.0",
@@ -10,5 +10,5 @@
   "scripts": [
     "lib/client/protobuf.js"
   ],
-  "repo": "https://github.com/pinusnode/pinus-protobuf"
+  "repo": "https://github.com/pinusnode/omelox-protobuf"
 }

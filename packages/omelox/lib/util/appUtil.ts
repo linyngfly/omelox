@@ -5,13 +5,13 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as Constants from './constants';
 import * as starter from '../master/starter';
-import * as Loader from 'pinus-loader';
-import { getLogger } from 'pinus-logger'; import { Application } from '../application';
-import { pinus } from '../pinus';
+import * as Loader from 'omelox-loader';
+import { getLogger } from 'omelox-logger'; import { Application } from '../application';
+import { omelox } from '../omelox';
 import { ServerInfo } from './constants';
 import { IComponent, ILifeCycle } from '../index';
 import { isFunction } from 'util';
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 
 /**
@@ -52,28 +52,28 @@ export function startByType(app: Application, cb: (err?: Error) => void) {
 export function loadDefaultComponents(app: Application) {
     // load system default components
     if (app.serverType === Constants.RESERVED.MASTER) {
-        app.load(pinus.components.master, app.get('masterConfig'));
+        app.load(omelox.components.master, app.get('masterConfig'));
     } else {
-        app.load(pinus.components.proxy, app.get('proxyConfig'));
+        app.load(omelox.components.proxy, app.get('proxyConfig'));
         if (app.getCurServer().port) {
-            app.load(pinus.components.remote, app.get('remoteConfig'));
+            app.load(omelox.components.remote, app.get('remoteConfig'));
         }
         if (app.isFrontend()) {
-            app.load(pinus.components.connection, app.get('connectionConfig'));
-            app.load(pinus.components.connector, app.get('connectorConfig'));
-            app.load(pinus.components.session, app.get('sessionConfig'));
+            app.load(omelox.components.connection, app.get('connectionConfig'));
+            app.load(omelox.components.connector, app.get('connectorConfig'));
+            app.load(omelox.components.session, app.get('sessionConfig'));
             // compatible for schedulerConfig
             if (app.get('schedulerConfig')) {
-                app.load(pinus.components.pushScheduler, app.get('schedulerConfig'));
+                app.load(omelox.components.pushScheduler, app.get('schedulerConfig'));
             } else {
-                app.load(pinus.components.pushScheduler, app.get('pushSchedulerConfig'));
+                app.load(omelox.components.pushScheduler, app.get('pushSchedulerConfig'));
             }
         }
-        app.load(pinus.components.backendSession, app.get('backendSessionConfig'));
-        app.load(pinus.components.channel, app.get('channelConfig'));
-        app.load(pinus.components.server, app.get('serverConfig'));
+        app.load(omelox.components.backendSession, app.get('backendSessionConfig'));
+        app.load(omelox.components.channel, app.get('channelConfig'));
+        app.load(omelox.components.server, app.get('serverConfig'));
     }
-    app.load(pinus.components.monitor, app.get('monitorConfig'));
+    app.load(omelox.components.monitor, app.get('monitorConfig'));
 }
 
 /**

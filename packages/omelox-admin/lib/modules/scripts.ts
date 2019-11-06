@@ -4,8 +4,8 @@
  * MIT Licensed
  */
 
-import { getLogger } from 'pinus-logger';
-import * as monitor from 'pinus-monitor';
+import { getLogger } from 'omelox-logger';
+import * as monitor from 'omelox-monitor';
 import * as vm from 'vm';
 import * as fs from 'fs';
 import * as util from 'util';
@@ -13,7 +13,7 @@ import * as path from 'path';
 import { IModule, MonitorCallback, MasterCallback } from '../consoleService';
 import { MonitorAgent } from '../monitor/monitorAgent';
 import { MasterAgent } from '../master/masterAgent';
-let logger = getLogger('pinus-admin', path.basename(__filename));
+let logger = getLogger('omelox-admin', path.basename(__filename));
 
 export class ScriptsModule implements IModule {
     app: any;

@@ -9,7 +9,7 @@ import { DEFAULT_USERNAME, DEFAULT_PWD, DEFAULT_MASTER_HOST, DEFAULT_MASTER_PORT
 
 export default function (program: program.CommanderStatic) {
     program.command('restart')
-    .description('restart the servers, for multiple servers, use `pinus restart server-id-1 server-id-2`')
+    .description('restart the servers, for multiple servers, use `omelox restart server-id-1 server-id-2`')
     .option('-u, --username <username>', 'administration user name', DEFAULT_USERNAME)
     .option('-p, --password <password>', 'administration password', DEFAULT_PWD)
     .option('-h, --host <master-host>', 'master server host', DEFAULT_MASTER_HOST)

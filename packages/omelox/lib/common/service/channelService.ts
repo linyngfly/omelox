@@ -1,7 +1,7 @@
 import * as countDownLatch from '../../util/countDownLatch';
 import * as utils from '../../util/utils';
 import { ChannelRemote } from '../remote/frontend/channelRemote';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { Application } from '../../application';
 import { IComponent } from '../../interfaces/IComponent';
 import { IStore } from '../../interfaces/IStore';
@@ -9,7 +9,7 @@ import { IHandlerFilter } from '../../interfaces/IHandlerFilter';
 import { FRONTENDID, UID, SID } from '../../util/constants';
 import * as path from 'path';
 
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 /**
  * constant
@@ -27,7 +27,7 @@ export interface ChannelServiceOptions {
  * Create and maintain channels for server local.
  *
  * ChannelService is created by channel component which is a default loaded
- * component of pinus and channel service would be accessed by `app.get('channelService')`.
+ * component of omelox and channel service would be accessed by `app.get('channelService')`.
  *
  * @class
  * @constructor

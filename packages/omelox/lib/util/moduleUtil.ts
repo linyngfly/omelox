@@ -1,18 +1,18 @@
 import * as os from 'os';
-import * as admin from 'pinus-admin';
+import * as admin from 'omelox-admin';
 import * as utils from './utils';
 import * as Constants from './constants';
 import * as pathUtil from './pathUtil';
 import * as starter from '../master/starter';
-import { getLogger } from 'pinus-logger'; import { Application } from '../application';
-import { ConsoleService, IModule, IModuleFactory } from 'pinus-admin';
+import { getLogger } from 'omelox-logger'; import { Application } from '../application';
+import { ConsoleService, IModule, IModuleFactory } from 'omelox-admin';
 import { MasterWatcherModule } from '../modules/masterwatcher';
 import { MonitorWatcherModule } from '../modules/monitorwatcher';
 import { WatchServerModule } from '../modules/watchServer';
 import { OnlineUserModule } from '../modules/onlineUser';
 import { ConsoleModule } from '../modules/console';
 import * as path from 'path';
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 
 export interface ModuleRecord {

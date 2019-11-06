@@ -1,10 +1,10 @@
-import {pinus} from 'pinus';
+import {omelox} from 'omelox';
 import './app/servers/user.rpc.define'
 import * as  routeUtil from './app/util/routeUtil';
 import {preload} from './preload';
 
 
-import _pinus = require('pinus');
+import _pinus = require('omelox');
 
 const filePath = (_pinus as any).FILEPATH;
 filePath.MASTER = '/config/master';
@@ -31,14 +31,14 @@ preload();
 /**
  * Init app for client.
  */
-let app = pinus.createApp();
+let app = omelox.createApp();
 app.set('name', 'chatofpomelo-websocket');
 
 // app configuration
 app.configure('production|development', 'connector', function () {
     app.set('connectorConfig',
         {
-            connector: pinus.connectors.hybridconnector,
+            connector: omelox.connectors.hybridconnector,
             heartbeat: 3,
             useDict: true,
             useProtobuf: true
@@ -48,7 +48,7 @@ app.configure('production|development', 'connector', function () {
 app.configure('production|development', 'gate', function () {
     app.set('connectorConfig',
         {
-            connector: pinus.connectors.hybridconnector,
+            connector: omelox.connectors.hybridconnector,
             useProtobuf: true
         });
 });
@@ -59,7 +59,7 @@ app.configure('production|development', function () {
     app.route('chat', routeUtil.chat);
 
     // filter configures
-    app.filter(new pinus.filters.timeout());
+    app.filter(new omelox.filters.timeout());
 });
 
 app.configure('development', function () {

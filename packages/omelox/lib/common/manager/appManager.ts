@@ -1,7 +1,7 @@
 import * as async from 'async';
 import * as utils from '../../util/utils';
-import { getLogger } from 'pinus-logger';
-let logger = getLogger('pinus', __filename);
+import { getLogger } from 'omelox-logger';
+let logger = getLogger('omelox', __filename);
 let transactionLogger = getLogger('transaction-log', __filename);
 let transactionErrorLogger = getLogger('transaction-error-log', __filename);
 

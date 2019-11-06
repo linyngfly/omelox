@@ -1,5 +1,5 @@
-import { getLogger } from 'pinus-logger';
-let logger = getLogger('pinus-rpc', 'blackhole');
+import { getLogger } from 'omelox-logger';
+let logger = getLogger('omelox-rpc', 'blackhole');
 import { EventEmitter } from 'events';
 import * as utils from '../../util/utils';
 import { Tracer } from '../../util/tracer';

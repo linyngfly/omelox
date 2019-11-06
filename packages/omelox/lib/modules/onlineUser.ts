@@ -3,13 +3,13 @@
  * Copyright(c) 2012 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as utils from '../util/utils';
-import { IModule, MonitorCallback, MasterCallback, ModuleType ,  MonitorAgent, MasterAgent } from 'pinus-admin';
+import { IModule, MonitorCallback, MasterCallback, ModuleType ,  MonitorAgent, MasterAgent } from 'omelox-admin';
 import { Application } from '../application';
-import { pinus } from '../pinus';
+import { omelox } from '../omelox';
 import * as path from 'path';
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 
 
 export class OnlineUserModule implements IModule {
@@ -22,7 +22,7 @@ export class OnlineUserModule implements IModule {
 
     constructor(opts?: { type?: ModuleType, interval?: number }) {
         opts = opts || {};
-        this.app = pinus.app;
+        this.app = omelox.app;
         this.type = opts.type || ModuleType.pull;
         this.interval = opts.interval || 5;
     }

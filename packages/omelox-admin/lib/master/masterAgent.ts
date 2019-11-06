@@ -1,4 +1,4 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { MqttServer, MqttSocket } from '../protocol/mqtt/mqttServer';
 import { EventEmitter } from 'events';
 import { MasterSocket } from './masterSocket';
@@ -9,7 +9,7 @@ import { ConsoleService } from '../consoleService';
 import * as mqtt_connection from 'mqtt-connection';
 import { ServerInfo, AdminUserInfo, AdminServerInfo, Callback } from '../util/constants';
 import * as path from 'path';
-let logger = getLogger('pinus-admin', path.basename(__filename));
+let logger = getLogger('omelox-admin', path.basename(__filename));
 
 let ST_INITED = 1;
 let ST_STARTED = 2;

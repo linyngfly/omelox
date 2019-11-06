@@ -122,7 +122,7 @@ export class SIOConnector extends EventEmitter implements IConnector {
      */
     start(cb: () => void) {
         let self = this;
-        // issue https://github.com/NetEase/pinus-cn/issues/174
+        // issue https://github.com/NetEase/omelox-cn/issues/174
         let opts: SIOConnectorOptions;
         if (!!this.opts) {
             opts = this.opts;

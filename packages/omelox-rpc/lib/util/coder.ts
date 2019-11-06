@@ -1,5 +1,5 @@
-import { getLogger } from 'pinus-logger';
-let logger = getLogger('pinus-rpc', 'Coder');
+import { getLogger } from 'omelox-logger';
+let logger = getLogger('omelox-rpc', 'Coder');
 import * as OutBuffer from './buffer/outputBuffer';
 import * as InBuffer from './buffer/inputBuffer';
 // import * as bBuffer from 'bearcat-buffer';

@@ -1,5 +1,5 @@
-import {Application} from 'pinus';
-import {FrontendSession} from 'pinus';
+import {Application} from 'omelox';
+import {FrontendSession} from 'omelox';
 
 export default function (app: Application) {
     return new EntryHandler(app);

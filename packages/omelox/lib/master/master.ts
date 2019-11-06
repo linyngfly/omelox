@@ -1,17 +1,17 @@
 import * as starter from './starter';
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'omelox-logger';
 import * as path from 'path';
 
-let logger = getLogger('pinus', path.basename(__filename));
+let logger = getLogger('omelox', path.basename(__filename));
 let crashLogger = getLogger('crash-log', path.basename(__filename));
 let adminLogger = getLogger('admin-log', path.basename(__filename));
-import * as admin from 'pinus-admin';
+import * as admin from 'omelox-admin';
 import * as util from 'util';
 import * as utils from '../util/utils';
 import * as moduleUtil from '../util/moduleUtil';
 import * as Constants from '../util/constants';
 import {Application} from '../application';
-import {ConsoleService, ConsoleServiceOpts} from 'pinus-admin';
+import {ConsoleService, ConsoleServiceOpts} from 'omelox-admin';
 import {IModule} from '../index';
 
 
