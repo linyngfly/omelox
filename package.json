@@ -49,7 +49,7 @@
 	"homepage": "https://gitee.com/gamingcity/omelox.git",
 	"repository": {
 		"type": "git",
-		"url": "https://gitee.com/gamingcity/omelox.git.git"
+		"url": "https://gitee.com/gamingcity/omelox.git"
 	},
 	"engines": {
 		"node": ">= 8.5.0"
