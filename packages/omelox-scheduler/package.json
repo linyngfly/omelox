@@ -1,7 +1,7 @@
 {
 	"name": "omelox-scheduler",
 	"version": "1.3.11",
-	"author": "mybios <mybios@qq.com>",
+	"author": "linyngfly <linyngfly@gmail.com>",
 	"main": "./dist/schedule",
 	"types": "./lib/schedule",
 	"files": [
