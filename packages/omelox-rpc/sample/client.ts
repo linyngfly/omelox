@@ -7,7 +7,7 @@ preload();
 import * as pinusrpc from '..';
 import {configure} from 'pinus-logger';
 import {getLogger} from 'pinus-logger';
-import {createTcpMailBox} from '../';
+import {createTcpMailBox} from '..';
 // configure('./config/log4js.json');
 let logger = getLogger('pinus-rpc', 'sample-client');
 

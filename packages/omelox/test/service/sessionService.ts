@@ -3,7 +3,7 @@ import * as should from 'should';
 let pomelo = require('../../lib/index');
 import { SessionService, Session, FrontendSession } from '../../lib/common/service/sessionService';
 import { SID, FRONTENDID, UID } from '../../lib/util/constants';
-import { ISocket } from '../../lib//interfaces/ISocket';
+import { ISocket } from '../../lib/interfaces/ISocket';
 
 describe('session service test', function () {
   describe('#bind', function () {

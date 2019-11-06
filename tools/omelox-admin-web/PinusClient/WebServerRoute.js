@@ -1,6 +1,6 @@
 const net = require('net');
 const MqttCon = require('mqtt-connection');
-const config = require('./../config/admin');
+const config = require('../config/admin');
 const websocket = require('websocket-stream');
 const protcol = require('./protocol');
 const WebSocketServer = require('ws').Server;
