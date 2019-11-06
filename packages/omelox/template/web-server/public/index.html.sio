@@ -48,7 +48,7 @@
       </div>
       <div class="g-link">
         Home:
-        <a href="https://github.com/node-omelox/omelox">https://github.com/node-omelox/omelox</a>
+        <a href="https://gitee.com/gamingcity/omelox.git">https://gitee.com/gamingcity/omelox.git</a>
       </div>
       <div class="g-button">
         <input id="test" type="button" value="Test Game Server" onclick="show()"/>

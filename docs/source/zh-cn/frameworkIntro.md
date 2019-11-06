@@ -135,7 +135,7 @@ omelox framework的组成架构如图所示：
 
 请求的api与web应用的ajax请求很象，基于Convention over configuration的原则， 请求不需要任何配置。 如下图所示，请求的route字符串：chat.chatHandler.send， 它可以将请求分发到chat服务器上chatHandler文件定义的send方法。
  
-Pinus的框架里还实现了request的filter机制，广播/组播机制，详细介绍见[pinus框架参考](https://github.com/node-omelox/omelox/wiki/Pinus-Framework)。
+Pinus的框架里还实现了request的filter机制，广播/组播机制，详细介绍见[pinus框架参考](https://gitee.com/gamingcity/omelox.git/wiki/Pinus-Framework)。
 
 ###  服务器间RPC调用的抽象介绍
 架构中各服务器之间的通讯主要是通过底层RPC框架来完成的，该RPC框架主要解决了进程间消息的路由和RPC底层通讯协议的选择两个问题。
@@ -160,7 +160,7 @@ RPC框架目前在底层采用socket.io作为通讯协议，但协议对上层�
 
 ### pinus支持可插拔的component扩展架构
 component是pinus自定义组件，开发者可自加载自定义的component。
-component在[pinus框架参考](https://github.com/node-omelox/omelox/wiki/Pinus-Framework)将有更深入的讨论。
+component在[pinus框架参考](https://gitee.com/gamingcity/omelox.git/wiki/Pinus-Framework)将有更深入的讨论。
 以下是component的生命周期图：
 
 ![components](http://omelox.netease.com/resource/documentImage/components.png)

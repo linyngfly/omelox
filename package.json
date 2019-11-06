@@ -46,10 +46,10 @@
 		"service",
 		"application"
 	],
-	"homepage": "https://github.com/node-omelox/omelox",
+	"homepage": "https://gitee.com/gamingcity/omelox.git",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/node-omelox/omelox.git"
+		"url": "https://gitee.com/gamingcity/omelox.git.git"
 	},
 	"engines": {
 		"node": ">= 8.5.0"

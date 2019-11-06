@@ -26,7 +26,7 @@ omelox init
 ### 框架编译方法
 
 ```
-git clone https://github.com/node-omelox/omelox.git
+git clone https://gitee.com/gamingcity/omelox.git.git
 cd omelox
 yarn
 yarn run build

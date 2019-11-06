@@ -5,7 +5,7 @@
   "description": "A distributed load test framework",
   "repository": {
     "type": "git",
-    "url": "https://github.com/node-omelox/omelox"
+    "url": "https://gitee.com/gamingcity/omelox.git"
   },
   "engines": {
     "node": ">=8.5"
