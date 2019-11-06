@@ -1,0 +1,35 @@
+{
+  "name": "pinus-example-robot",
+  "version": "1.3.11",
+  "private": false,
+  "description": "A distributed load test framework",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/node-pinus/pinus"
+  },
+  "engines": {
+    "node": ">=8.5"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "yarn run build && cd dist &&  node app",
+    "lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json **/*.ts",
+    "fix-lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json **/*.ts --fix",
+    "test": "yarn run build",
+    "cov": "nyc mocha",
+    "ci": "yarn run test",
+    "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus-loader lib/"
+  },
+  "dependencies": {
+    "@types/node": "8.5.7",
+    "@types/ws": "^3.2.0",
+    "pinus-protobuf": "^1.3.11",
+    "pinus-protocol": "^1.3.11",
+    "pinus-robot": "^1.3.11",
+    "ws": "^3.2.0"
+  },
+  "devDependencies": {
+    "tslint": "^5.9.1",
+    "typescript": "^2.9.2"
+  }
+}
