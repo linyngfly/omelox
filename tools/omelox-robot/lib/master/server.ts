@@ -1,7 +1,7 @@
 import * as io from 'socket.io';
 import * as __ from 'underscore';
-import * as  _nodeclient from './nodeclient.js.js';
-import * as  _wc from './webclient.js.js';
+import * as  _nodeclient from './nodeclient.js';
+import * as  _wc from './webclient.js';
 import { logging, Logger } from '../common/logging';
 import * as  stat from '../monitor/stat';
 import * as  starter from './starter';
