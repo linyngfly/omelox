@@ -1,6 +1,6 @@
 {
   "name": "omelox-robot",
-  "version": "1.3.11",
+  "version": "1.4.0-alpha.a35986d3",
   "private": false,
   "dependencies": {
     "@types/cliff": "^0.1.4",

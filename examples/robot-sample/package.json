@@ -1,6 +1,6 @@
 {
   "name": "omelox-example-robot",
-  "version": "1.3.11",
+  "version": "1.4.0-alpha.a35986d3",
   "private": false,
   "description": "A distributed load test framework",
   "repository": {
@@ -23,9 +23,9 @@
   "dependencies": {
     "@types/node": "8.5.7",
     "@types/ws": "^3.2.0",
-    "omelox-protobuf": "^1.3.11",
-    "omelox-protocol": "^1.3.11",
-    "omelox-robot": "^1.3.11",
+    "omelox-protobuf": "^1.4.0-alpha.a35986d3",
+    "omelox-protocol": "^1.4.0-alpha.a35986d3",
+    "omelox-robot": "^1.4.0-alpha.a35986d3",
     "ws": "^3.2.0"
   },
   "devDependencies": {

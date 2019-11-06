@@ -1,6 +1,6 @@
 {
   "name": "omelox",
-  "version": "1.3.12",
+  "version": "1.4.0-alpha.a35986d3",
   "homepage": "https://gitee.com/gamingcity/omelox",
   "repository": {
     "type": "git",
@@ -59,13 +59,13 @@
     "mkdirp": "^0.5.1",
     "mqtt-connection": "^3.2.0",
     "node-bignumber": "^1.2.1",
-    "omelox-admin": "^1.3.11",
-    "omelox-loader": "^1.3.11",
-    "omelox-logger": "^1.3.11",
-    "omelox-protobuf": "^1.3.11",
-    "omelox-protocol": "^1.3.11",
-    "omelox-rpc": "^1.3.11",
-    "omelox-scheduler": "^1.3.11",
+    "omelox-admin": "^1.4.0-alpha.a35986d3",
+    "omelox-loader": "^1.4.0-alpha.a35986d3",
+    "omelox-logger": "^1.4.0-alpha.a35986d3",
+    "omelox-protobuf": "^1.4.0-alpha.a35986d3",
+    "omelox-protocol": "^1.4.0-alpha.a35986d3",
+    "omelox-rpc": "^1.4.0-alpha.a35986d3",
+    "omelox-scheduler": "^1.4.0-alpha.a35986d3",
     "seq-queue": "^0.0.5",
     "socket.io": "^2.0.4",
     "ws": "^3.3.3"
