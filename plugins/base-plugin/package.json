@@ -1,6 +1,6 @@
 {
   "name": "omelox-base-plugin",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "omelox base plugin",
   "files": [
     "dist",
@@ -23,7 +23,7 @@
   "types": "./src/index",
   "dependencies": {
     "@types/node": "12.13.0",
-    "omelox": "^2.1.0"
+    "omelox": "^2.1.1"
   },
   "devDependencies": {
     "tslint": "^5.9.1",
