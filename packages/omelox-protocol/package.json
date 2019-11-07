@@ -1,6 +1,6 @@
 {
  "name": "omelox-protocol",
- "version": "1.4.0-alpha.a35986d3",
+ "version": "2.0.0",
  "private": false,
  "main": "./dist",
  "types": "./lib/index",
