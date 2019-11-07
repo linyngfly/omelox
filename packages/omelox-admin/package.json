@@ -1,6 +1,6 @@
 {
     "name": "omelox-admin",
-    "version": "1.3.11",
+    "version": "1.4.0-alpha.a35986d3",
     "main": "./dist/index",
     "types": "./lib/index",
     "files": [
@@ -27,9 +27,9 @@
         "@types/mqtt-connection": "git+https://github.com/node-pinus/types-mqtt-connection.git",
         "@types/node": "8.5.7",
         "mqtt-connection": "^3.2.0",
-        "omelox-logger": "^1.3.11",
-        "omelox-monitor": "^1.3.11",
-        "omelox-scheduler": "^1.3.11",
+        "omelox-logger": "^1.4.0-alpha.a35986d3",
+        "omelox-monitor": "^1.4.0-alpha.a35986d3",
+        "omelox-scheduler": "^1.4.0-alpha.a35986d3",
         "read-last-lines": "^1.3.0"
     },
     "devDependencies": {
