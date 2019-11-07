@@ -1,7 +1,7 @@
 {
  "name": "omelox-monitor",
  "description": "monitor the operating-system and process information",
- "version": "2.1.1",
+ "version": "2.2.3",
  "main": "./dist/index",
  "types": "./lib/index",
  "files": [

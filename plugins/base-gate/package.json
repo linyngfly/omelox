@@ -1,6 +1,6 @@
 {
   "name": "omelox-base-gate",
-  "version": "2.1.1",
+  "version": "2.2.3",
   "description": "omelox base gate plugin",
   "files": [
     "dist",
@@ -31,7 +31,7 @@
     "@types/node": "12.13.0",
     "bluebird": "^3.5.1",
     "crc": "^3.5.0",
-    "omelox": "^2.1.1",
+    "omelox": "^2.2.3",
     "omelox-robot-plugin": "^2.1.0",
     "reflect-metadata": "^0.1.10",
     "source-map-support": "^0.5.0"
