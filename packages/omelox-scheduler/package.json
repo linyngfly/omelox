@@ -23,7 +23,7 @@
 		"node": ">=8.5"
 	},
 	"dependencies": {
-		"@types/node": "8.5.7",
+		"@types/node": "12.13.0",
 		"omelox-logger": "^2.1.0"
 	},
 	"devDependencies": {

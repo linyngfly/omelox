@@ -22,7 +22,7 @@
   "main": "./dist/index",
   "types": "./src/index",
   "dependencies": {
-    "@types/node": "8.5.7",
+    "@types/node": "12.13.0",
     "@types/yargs": "^10.0.1",
     "omelox": "^2.1.0",
     "yargs": "^10.0.3"

@@ -21,7 +21,7 @@
     "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox-loader lib/"
   },
   "dependencies": {
-    "@types/node": "8.5.7",
+    "@types/node": "12.13.0",
     "@types/ws": "^3.2.0",
     "omelox-protobuf": "^2.1.0",
     "omelox-protocol": "^2.1.0",
