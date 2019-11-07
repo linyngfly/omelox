@@ -1,6 +1,6 @@
 {
 	"name": "omelox-scheduler",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"author": "linyngfly <linyngfly@gmail.com>",
 	"main": "./dist/schedule",
 	"types": "./lib/schedule",
@@ -24,7 +24,7 @@
 	},
 	"dependencies": {
 		"@types/node": "8.5.7",
-		"omelox-logger": "^2.0.0"
+		"omelox-logger": "^2.1.0"
 	},
 	"devDependencies": {
 		"tslint": "^5.9.1",

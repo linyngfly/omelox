@@ -1,6 +1,6 @@
 {
 	"name": "omelox-rpc",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"main": "./dist/index",
 	"types": "./lib/index",
 	"files": [
@@ -34,8 +34,8 @@
 		"bluebird": "^3.5.1",
 		"crc": "^0.2.1",
 		"mqtt-connection": "^3.2.0",
-		"omelox-loader": "^2.0.0",
-		"omelox-logger": "^2.0.0",
+		"omelox-loader": "^2.1.0",
+		"omelox-logger": "^2.1.0",
 		"socket.io": "^2.0.4",
 		"source-map-support": "^0.5.0",
 		"stream-pkg": "0.0.5",
