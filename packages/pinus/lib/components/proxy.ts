@@ -5,13 +5,13 @@
 import * as crc from 'crc';
 import * as utils from '../util/utils';
 import { default as events } from '../util/events';
-import { RpcClient, createClient } from 'pinus-rpc';
+import { RpcClient, createClient } from 'omelox-rpc';
 import * as pathUtil from '../util/pathUtil';
 import * as Constants from '../util/constants';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { Application } from '../application';
 import { IComponent } from '../interfaces/IComponent';
-import { RpcClientOpts } from 'pinus-rpc';
+import { RpcClientOpts } from 'omelox-rpc';
 import { ServerInfo } from '../util/constants';
 import { Session } from '../index';
 import * as path from 'path';

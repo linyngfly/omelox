@@ -1,6 +1,6 @@
 import {EventEmitter} from 'events';
 import * as  util from 'util';
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'omelox-logger';
 import * as utils from '../../util/utils';
 import {SID, FRONTENDID, UID} from '../../util/constants';
 import {ISocket} from '../../interfaces/ISocket';

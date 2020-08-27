@@ -384,7 +384,7 @@ Emitter.prototype.hasListeners = function(event){
 };
 
 });
-require.register("node-pinus-pinus-protocol/lib/protocol.js", function(exports, require, module){
+require.register("node-pinus-omelox-protocol/lib/protocol.js", function(exports, require, module){
 (function (exports, ByteArray, global) {
   var Protocol = exports;
 
@@ -728,11 +728,11 @@ require.register("node-pinus-pinus-protocol/lib/protocol.js", function(exports, 
 })('object' === typeof module ? module.exports : (this.Protocol = {}),'object' === typeof module ? Buffer : Uint8Array, this);
 
 });
-require.register("pinusnode-pinus-protobuf/lib/client/protobuf.js", function(exports, require, module){
+require.register("pinusnode-omelox-protobuf/lib/client/protobuf.js", function(exports, require, module){
 /* ProtocolBuffer client 0.1.0*/
 
 /**
- * pinus-protobuf
+ * omelox-protobuf
  * @author <zhang0935@gmail.com>
  */
 
@@ -1702,10 +1702,10 @@ require.register("boot/index.js", function(exports, require, module){
   var Emitter = require('emitter');
   window.EventEmitter = Emitter;
 
-  var protocol = require('pinus-protocol');
+  var protocol = require('omelox-protocol');
   window.Protocol = protocol;
 
-  var protobuf = require('pinus-protobuf');
+  var protobuf = require('omelox-protobuf');
   window.protobuf = protobuf;
 
   var pinus = require('pinus-jsclient-websocket');
@@ -1716,13 +1716,13 @@ require.alias("boot/index.js", "pinus-client/deps/boot/index.js");
 require.alias("component-emitter/index.js", "boot/deps/emitter/index.js");
 require.alias("component-indexof/index.js", "component-emitter/deps/indexof/index.js");
 
-require.alias("node-pinus-pinus-protocol/lib/protocol.js", "boot/deps/pinus-protocol/lib/protocol.js");
-require.alias("node-pinus-pinus-protocol/lib/protocol.js", "boot/deps/pinus-protocol/index.js");
-require.alias("node-pinus-pinus-protocol/lib/protocol.js", "node-pinus-pinus-protocol/index.js");
+require.alias("node-pinus-omelox-protocol/lib/protocol.js", "boot/deps/omelox-protocol/lib/protocol.js");
+require.alias("node-pinus-omelox-protocol/lib/protocol.js", "boot/deps/omelox-protocol/index.js");
+require.alias("node-pinus-omelox-protocol/lib/protocol.js", "node-pinus-omelox-protocol/index.js");
 
-require.alias("pinusnode-pinus-protobuf/lib/client/protobuf.js", "boot/deps/pinus-protobuf/lib/client/protobuf.js");
-require.alias("pinusnode-pinus-protobuf/lib/client/protobuf.js", "boot/deps/pinus-protobuf/index.js");
-require.alias("pinusnode-pinus-protobuf/lib/client/protobuf.js", "pinusnode-pinus-protobuf/index.js");
+require.alias("pinusnode-omelox-protobuf/lib/client/protobuf.js", "boot/deps/omelox-protobuf/lib/client/protobuf.js");
+require.alias("pinusnode-omelox-protobuf/lib/client/protobuf.js", "boot/deps/omelox-protobuf/index.js");
+require.alias("pinusnode-omelox-protobuf/lib/client/protobuf.js", "pinusnode-omelox-protobuf/index.js");
 
 require.alias("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", "boot/deps/pinus-jsclient-websocket/lib/pinus-client.js");
 require.alias("pinusnode-pinus-jsclient-websocket/lib/pinus-client.js", "boot/deps/pinus-jsclient-websocket/index.js");

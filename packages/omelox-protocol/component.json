@@ -1,0 +1,14 @@
+{
+  "name": "omelox-protocol",
+  "description": "omelox-protocol",
+  "keywords": [
+    "pinus",
+    "protocol"
+  ],
+  "version": "0.1.3",
+  "main":"lib/protocol.js",
+  "scripts": [
+    "lib/protocol.js"
+  ],
+  "repo": "https://github.com/NetEase/omelox-protocol"
+}

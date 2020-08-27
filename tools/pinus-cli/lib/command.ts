@@ -3,7 +3,7 @@ import * as util from './util';
 require('cliff');
 import * as fs from 'fs';
 import { isFunction } from 'util';
-import { AdminClient } from 'pinus-admin';
+import { AdminClient } from 'omelox-admin';
 import { ReadLine } from 'readline';
 
 export interface ICommand {

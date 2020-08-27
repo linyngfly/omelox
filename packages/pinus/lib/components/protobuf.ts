@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Protobuf } from 'pinus-protobuf';
+import { Protobuf } from 'omelox-protobuf';
 import * as Constants from '../util/constants';
 import * as crypto from 'crypto';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { Application } from '../application';
 import { IComponent } from '../interfaces/IComponent';
 import AppEvents from '../util/events';
@@ -14,7 +14,7 @@ export interface ProtobufComponentOptions {
     serverProtos?: string;
     clientProtos?: string;
     /**
-     指定 pinus-protobuf encode使用 buffer缓存大小
+     指定 omelox-protobuf encode使用 buffer缓存大小
      使用方法  在 connector配置参数
      app.set('protobufConfig', {
         // protobuf Encoder 使用 5m 的缓存 需要保证每个消息不会超过指定的缓存大小，超过了就会抛出异常
@@ -26,7 +26,7 @@ export interface ProtobufComponentOptions {
      at boundsError (internal/buffer.js:53:9)
      at writeU_Int8 (internal/buffer.js:562:5)
      at Buffer.writeUInt8 (internal/buffer.js:569:10)
-     at Encoder.writeBytes (F:\develop\gong4-server\logicServer\pinus\packages\pinus-protobuf\lib\encoder.ts:195:20)
+     at Encoder.writeBytes (F:\develop\gong4-server\logicServer\pinus\packages\omelox-protobuf\lib\encoder.ts:195:20)
      */
     encoderCacheSize?: number;
     // decode 客户端请求消息时校验消息

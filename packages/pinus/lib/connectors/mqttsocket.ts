@@ -2,7 +2,7 @@ import * as util from 'util';
 import { EventEmitter } from 'events';
 import { ISocket } from '../interfaces/ISocket';
 import { MqttAdaptor } from './mqtt/mqttadaptor';
-import { MqttConnection } from 'pinus-admin';
+import { MqttConnection } from 'omelox-admin';
 
 let ST_INITED = 1;
 let ST_CLOSED = 2;

@@ -1,8 +1,8 @@
 import * as util from 'util';
 import { default as handler } from './common/handler';
-import { Package } from 'pinus-protocol';
+import { Package } from 'omelox-protocol';
 import * as EventEmitter from 'events';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { ISocket } from '../interfaces/ISocket';
 import * as dgram from 'dgram';
 import * as path from 'path';

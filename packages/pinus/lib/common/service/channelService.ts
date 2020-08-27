@@ -1,7 +1,7 @@
 import * as countDownLatch from '../../util/countDownLatch';
 import * as utils from '../../util/utils';
 import { ChannelRemote } from '../remote/frontend/channelRemote';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { Application } from '../../application';
 import { IComponent } from '../../interfaces/IComponent';
 import { IStore } from '../../interfaces/IStore';

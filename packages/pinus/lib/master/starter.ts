@@ -1,5 +1,5 @@
 import * as cp from 'child_process';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as util from 'util';
 import * as utils from '../util/utils';
 import * as Constants from '../util/constants';

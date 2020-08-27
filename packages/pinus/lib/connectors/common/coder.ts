@@ -1,6 +1,6 @@
-import { Message } from 'pinus-protocol';
+import { Message } from 'omelox-protocol';
 import * as  Constants from '../../util/constants';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { IConnector } from '../../interfaces/IConnector';
 import * as path from 'path';
 let logger = getLogger('pinus', path.basename(__filename));

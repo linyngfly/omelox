@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 import * as util from 'util';
 import { WSProcessor } from './wsprocessor';
 import { TCPProcessor } from './tcpprocessor';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as net from 'net';
 import * as tls from 'tls';
 import { TlsOptions } from 'tls';

@@ -1,0 +1,35 @@
+{
+	"name": "omelox-loader",
+	"version": "1.4.10",
+	"main": "./dist/index",
+	"types": "./lib/index",
+	"files": [
+		"dist",
+		"lib",
+		"test",
+		"index.ts"
+	],
+	"scripts": {
+		"build": "tsc",
+		"start": "yarn run build && node dist/index",
+		"lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json lib/**/*.ts test/**/*.ts",
+		"fix-lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json lib/**/*.ts test/**/*.ts --fix",
+		"test": "yarn run build",
+		"cov": "nyc mocha",
+		"ci": "yarn run test",
+		"gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox-loader lib/"
+	},
+	"engines": {
+		"node": ">=8.5"
+	},
+	"dependencies": {
+		"reflect-metadata": "0.1.13"
+	},
+	"devDependencies": {
+		"@types/node": "8.10.54",
+		"mocha": "6.2.2",
+		"should": "13.2.3",
+		"tslint": "5.20.1",
+		"typescript": "3.7.3"
+	}
+}

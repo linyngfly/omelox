@@ -1,6 +1,6 @@
 import * as path from 'path';
-import { getLogger } from 'pinus-logger';
-import { ConsoleService, IModule, MasterAgent, MonitorAgent, MonitorCallback } from 'pinus-admin';
+import { getLogger } from 'omelox-logger';
+import { ConsoleService, IModule, MasterAgent, MonitorAgent, MonitorCallback } from 'omelox-admin';
 import { Application } from '../application';
 import { KEYWORDS, ServerInfo } from '../util/constants';
 import { events } from '../index';

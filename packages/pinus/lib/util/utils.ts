@@ -1,7 +1,7 @@
 import * as os from 'os';
 import * as util from 'util';
 import {exec} from 'child_process';
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'omelox-logger';
 import * as Constants from './constants';
 import {pinus} from '../pinus';
 import {ServerInfo} from './constants';

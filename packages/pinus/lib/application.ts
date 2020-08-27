@@ -8,7 +8,7 @@
  * Module dependencies.
  */
 import * as utils from './util/utils';
-import { getLogger, ILogger } from 'pinus-logger';
+import { getLogger, ILogger } from 'omelox-logger';
 import { EventEmitter } from 'events';
 import { AppEvents, default as events } from './util/events';
 import * as appUtil from './util/appUtil';
@@ -36,11 +36,11 @@ import { ConnectorComponent, ConnectorComponentOptions } from './components/conn
 import { ConnectionComponent } from './components/connection';
 import { SessionService } from './common/service/sessionService';
 import { ObjectType } from './interfaces/define';
-import { IModule, IModuleFactory } from 'pinus-admin';
+import { IModule, IModuleFactory } from 'omelox-admin';
 import { ChannelComponent } from './components/channel';
 import { BackendSessionComponent } from './components/backendSession';
 import { AfterHandlerFilter, BeforeHandlerFilter, IHandlerFilter } from './interfaces/IHandlerFilter';
-import { MailStationErrorHandler, RpcFilter, RpcMsg } from 'pinus-rpc';
+import { MailStationErrorHandler, RpcFilter, RpcMsg } from 'omelox-rpc';
 import { ModuleRecord } from './util/moduleUtil';
 import { ApplicationEventContructor, IPlugin } from './interfaces/IPlugin';
 import { Cron, ResponseErrorHandler } from './server/server';
@@ -215,7 +215,7 @@ export class Application {
     /**
      * Configure logger with {$base}/config/log4js.json
      *
-     * @param {Object} logger pinus-logger instance without configuration
+     * @param {Object} logger omelox-logger instance without configuration
      *
      * @memberOf Application
      */

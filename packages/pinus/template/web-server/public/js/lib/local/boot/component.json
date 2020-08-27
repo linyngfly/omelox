@@ -3,8 +3,8 @@
   "description": "Main app boot component",
   "dependencies": {
     "component/emitter":"master",
-    "node-pinus/pinus-protocol": "master",
-    "pinusnode/pinus-protobuf": "*",
+    "node-pinus/omelox-protocol": "master",
+    "pinusnode/omelox-protobuf": "*",
     "pinusnode/pinus-jsclient-websocket": "master"
   },
   "scripts": ["index.js"]

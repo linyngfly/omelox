@@ -1,4 +1,4 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as path from 'path';
 let logger = getLogger('pinus-cli', path.basename(__filename));
 import * as util from '../util';
@@ -6,7 +6,7 @@ import { consts } from '../consts';
 import * as cliff from 'cliff';
 import { ICommand, AgentCommand } from '../command';
 import { ReadLine } from 'readline';
-import { AdminClient } from 'pinus-admin';
+import { AdminClient } from 'omelox-admin';
 
 export default function (opts: object) {
     return new Command(opts);

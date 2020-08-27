@@ -1,6 +1,6 @@
 import * as WebSocket from 'ws';
-import {Package, Message, Protocol} from 'pinus-protocol';
-import {Protobuf} from 'pinus-protobuf';
+import {Package, Message, Protocol} from 'omelox-protocol';
+import {Protobuf} from 'omelox-protobuf';
 import {EventEmitter} from 'events';
 import {cacheClass} from "./cacheClass";
 import { MyLogger } from "./my.logger";

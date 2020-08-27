@@ -3,14 +3,14 @@
  * Copyright(c) 2013 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as countDownLatch from '../util/countDownLatch';
-import * as monitor from 'pinus-monitor';
+import * as monitor from 'omelox-monitor';
 import * as utils from '../util/utils';
 import * as util from 'util';
 import * as fs from 'fs';
 import * as vm from 'vm';
-import { IModule, MonitorCallback, MasterCallback, ModuleType ,  MonitorAgent, MasterAgent } from 'pinus-admin';
+import { IModule, MonitorCallback, MasterCallback, ModuleType ,  MonitorAgent, MasterAgent } from 'omelox-admin';
 import { ServerInfo } from '../util/constants';
 import { Application } from '../application';
 import * as path from 'path';
@@ -524,7 +524,7 @@ function dumpMemory(handle: HandleType, _agent: MonitorAgent | MasterAgent, comd
                 heapdump.writeSnapshot(filepath);
                 cb(null, filepath + ' memory dump ok');
             } catch (e) {
-                cb('pinus-admin require heapdump');
+                cb('omelox-admin require heapdump');
             }
         });
     }

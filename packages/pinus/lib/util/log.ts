@@ -1,4 +1,4 @@
-import * as logger from 'pinus-logger';
+import * as logger from 'omelox-logger';
 import { Application } from '../application';
 
 /**

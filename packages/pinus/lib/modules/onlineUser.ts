@@ -3,9 +3,9 @@
  * Copyright(c) 2012 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as utils from '../util/utils';
-import { IModule, MonitorCallback, MasterCallback, ModuleType ,  MonitorAgent, MasterAgent } from 'pinus-admin';
+import { IModule, MonitorCallback, MasterCallback, ModuleType ,  MonitorAgent, MasterAgent } from 'omelox-admin';
 import { Application } from '../application';
 import { pinus } from '../pinus';
 import * as path from 'path';

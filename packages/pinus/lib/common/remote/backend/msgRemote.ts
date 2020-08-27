@@ -1,5 +1,5 @@
 import * as utils from '../../../util/utils';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { Application } from '../../../application';
 import { BackendSession } from '../../service/backendSessionService';
 import * as path from 'path';

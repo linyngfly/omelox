@@ -2,13 +2,13 @@
  * Implementation of server component.
  * Init and start server instance.
  */
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as path from 'path';
 import * as pathUtil from '../util/pathUtil';
-import * as Loader from 'pinus-loader';
-import { LoaderPathType } from 'pinus-loader';
+import * as Loader from 'omelox-loader';
+import { LoaderPathType } from 'omelox-loader';
 import * as utils from '../util/utils';
-import * as schedule from 'pinus-scheduler';
+import * as schedule from 'omelox-scheduler';
 import { default as events } from '../util/events';
 import * as Constants from '../util/constants';
 import { RouteRecord } from '../util/constants';

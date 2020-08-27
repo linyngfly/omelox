@@ -1,4 +1,4 @@
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import * as utils from '../util/utils';
 import * as Constants from '../util/constants';
 import * as countDownLatch from '../util/countDownLatch';
@@ -6,7 +6,7 @@ import { EventEmitter } from 'events';
 import * as util from 'util';
 import { Application } from '../application';
 import { ServerInfo } from '../util/constants';
-import { ConsoleService, MasterAgent } from 'pinus-admin';
+import { ConsoleService, MasterAgent } from 'omelox-admin';
 import * as path from 'path';
 let logger = getLogger('pinus', path.basename(__filename));
 

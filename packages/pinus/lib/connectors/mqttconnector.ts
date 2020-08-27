@@ -5,10 +5,10 @@ import * as constants from '../util/constants';
 import { MQTTSocket } from './mqttsocket';
 import { MqttAdaptor } from './mqtt/mqttadaptor';
 import * as generate from './mqtt/generate';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { IConnector } from '../interfaces/IConnector';
 import * as path from 'path';
-import { MqttConnectionConstructor } from 'pinus-admin';
+import { MqttConnectionConstructor } from 'omelox-admin';
 let logger = getLogger('pinus', path.basename(__filename));
 const mqtt_connection: MqttConnectionConstructor = require('mqtt-connection');
 

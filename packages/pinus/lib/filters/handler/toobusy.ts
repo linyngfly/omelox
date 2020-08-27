@@ -2,7 +2,7 @@
  * Filter for toobusy.
  * if the process is toobusy, just skip the new request
  */
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'omelox-logger';
 import {IHandlerFilter} from '../../interfaces/IHandlerFilter';
 import {RouteRecord} from '../../util/constants';
 import {HandlerCallback} from '../../common/service/handlerService';

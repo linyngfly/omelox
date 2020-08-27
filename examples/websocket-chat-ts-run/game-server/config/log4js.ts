@@ -67,18 +67,18 @@ module.exports = {
             },
             'backups': 5
         },
-        'pinus-admin': {
+        'omelox-admin': {
             'type': 'file',
-            'filename': '${opts:base}/logs/pinus-admin.log',
+            'filename': '${opts:base}/logs/omelox-admin.log',
             'maxLogSize': 1048576,
             'layout': {
                 'type': 'basic'
             },
             'backups': 5
         },
-        'pinus-rpc': {
+        'omelox-rpc': {
             'type': 'file',
-            'filename': '${opts:base}/logs/pinus-rpc-${opts:serverId}.log',
+            'filename': '${opts:base}/logs/omelox-rpc-${opts:serverId}.log',
             'maxLogSize': 1048576,
             'layout': {
                 'type': 'basic'
@@ -116,12 +116,12 @@ module.exports = {
             'appenders': ['admin-log'],
             'level': 'debug'
         },
-        'pinus-admin': {
-            'appenders': ['pinus-admin'],
+        'omelox-admin': {
+            'appenders': ['omelox-admin'],
             'level': 'debug'
         },
-        'pinus-rpc': {
-            'appenders': ['pinus-rpc'],
+        'omelox-rpc': {
+            'appenders': ['omelox-rpc'],
             'level': 'debug'
         },
 

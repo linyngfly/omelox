@@ -1,5 +1,5 @@
 import { pinus } from '../../pinus';
-import { Package } from 'pinus-protocol';
+import { Package } from 'omelox-protocol';
 import { ISocket } from '../../interfaces/ISocket';
 
 let CODE_OK = 200;

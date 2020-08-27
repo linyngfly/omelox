@@ -1,7 +1,7 @@
 import { IPushScheduler, ScheduleOptions, IPushSchedulerOrCtor, MultiPushSchedulerOptions, IPushSelector } from '../interfaces/IPushScheduler';
 import { Application } from '../application';
 import { isFunction } from 'util';
-import { getLogger } from 'pinus-logger';
+import { getLogger } from 'omelox-logger';
 import { SID } from '../util/constants';
 import * as path from 'path';
 let logger = getLogger('pinus', path.basename(__filename));

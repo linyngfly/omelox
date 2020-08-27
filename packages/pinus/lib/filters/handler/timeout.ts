@@ -2,7 +2,7 @@
  * Filter for timeout.
  * Print a warn information when request timeout.
  */
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'omelox-logger';
 
 let logger = getLogger('pinus', __filename);
 import * as  utils from '../../util/utils';

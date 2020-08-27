@@ -58,7 +58,7 @@ app.configure('production|development', 'connector', function () {
      at boundsError (internal/buffer.js:53:9)
      at writeU_Int8 (internal/buffer.js:562:5)
      at Buffer.writeUInt8 (internal/buffer.js:569:10)
-     at Encoder.writeBytes (F:\develop\gong4-server\logicServer\pinus\packages\pinus-protobuf\lib\encoder.ts:195:20)
+     at Encoder.writeBytes (F:\develop\gong4-server\logicServer\pinus\packages\omelox-protobuf\lib\encoder.ts:195:20)
      */
     app.set('protobufConfig', {
         // protobuf Encoder 使用 5m 的缓存 需要保证每个消息不会超过指定的缓存大小，超过了就会抛出异常

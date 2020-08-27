@@ -1,7 +1,7 @@
 /**
  * Filter to keep request sequence.
  */
-import {getLogger} from 'pinus-logger';
+import {getLogger} from 'omelox-logger';
 import * as taskManager from '../../common/manager/taskManager';
 import {RouteRecord} from '../../util/constants';
 import {IHandlerFilter} from '../../interfaces/IHandlerFilter';

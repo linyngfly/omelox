@@ -1,4 +1,4 @@
-import { getLogger } from 'pinus-logger'; import { RouteRecord } from '../../util/constants';
+import { getLogger } from 'omelox-logger'; import { RouteRecord } from '../../util/constants';
 import { HandlerCallback } from './handlerService';
 import { BeforeHandlerFilter, AfterHandlerFilter } from '../../interfaces/IHandlerFilter';
 import { FrontendOrBackendSession } from '../../server/server';

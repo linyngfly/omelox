@@ -2,8 +2,8 @@
  * Filter for rpc log.
  * Reject rpc request when toobusy
  */
-import {getLogger} from 'pinus-logger';
-import {IRpcFilter} from 'pinus-rpc';
+import {getLogger} from 'omelox-logger';
+import {IRpcFilter} from 'omelox-rpc';
 
 let rpcLogger = getLogger('rpc-log', __filename);
 let toobusy: any = null;
