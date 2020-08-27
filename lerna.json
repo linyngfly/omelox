@@ -1,15 +1,15 @@
 {
   "lerna": "3.19.0",
   "packages": [
-    "packages/*",
-    "tools/*",
-    "plugins/*",
+    "examples/robot-sample",
     "examples/simple-example/*",
-    "examples/websocket-chat/*",
     "examples/websocket-chat-ts-run/*",
-    "examples/robot-sample"
+    "examples/websocket-chat/*",
+    "packages/*",
+    "plugins/*",
+    "tools/*"
   ],
-  "version": "3.0.1",
+  "version": "3.0.2",
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": false
 }
