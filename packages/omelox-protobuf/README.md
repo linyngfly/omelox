@@ -6,7 +6,7 @@ Of course, omelox-protobuf can also be used independently in other projects.
 ##Architecture
 Unlike the google protobuf, we provide a universal encoder and decoder in omelox-protobuf. We use protos file as meta data to encode/decode messages, so you do not need to add any code to your project, instead , what you need is to add a protos.json (or two for different encoder and decoder messages) files to define the message need to encode by protobuf.The architecture of omelox-protobuf is as follow:
 
-![omelox protobuf](http://omelox.netease.com/resource/documentImage/protocol/Protobuf_pinus.png)
+![omelox protobuf](http://omelox.netease.com/resource/documentImage/protocol/Protobuf_omelox.png)
 
 ##Usage
 ###Define protos

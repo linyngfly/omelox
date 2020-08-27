@@ -1,7 +1,7 @@
-# pinus架构概览
-pinus之所以简单易用、功能全面，并且具有高可扩展性、可伸缩性等特点，这与它的技术选型和方案设计是密不可分的。在研究大量游戏引擎设计思路基础上，结合以往游戏开发的经验，确定了pinus框架的设计方案。
+# omelox架构概览
+omelox之所以简单易用、功能全面，并且具有高可扩展性、可伸缩性等特点，这与它的技术选型和方案设计是密不可分的。在研究大量游戏引擎设计思路基础上，结合以往游戏开发的经验，确定了omelox框架的设计方案。
 
-## pinus为什么采用node.js开发？
+## omelox为什么采用node.js开发？
 node.js自身特点与游戏服务器的特性惊人的吻合。 在node.js的官方定义中， fast、scalable、realtime、network这几个特性都非常符合游戏服务器的要求。游戏服务器是个网络密集型的应用，对实时性要求极高，而node.js在网络io上的优势也完全可以满足这点。使用node.js开发游戏服务器的优势总结：
 *  io与可伸缩性的优势。io密集型的应用采用node.js是最合适的， 可达到最好的可伸缩性。
 *  多进程单线程的应用架构。node.js天生采用单线程， 使它在处理复杂逻辑的时候无需考虑线程同步、锁、死锁等一系列问题， 减少了很多逻辑错误。 由多进程node.js组成的服务器群是最理想的应用架构。
@@ -35,22 +35,22 @@ node.js自身特点与游戏服务器的特性惊人的吻合。 在node.js的�
 
 ### 如此复杂的运行架构， 我们需要一个框架来简化开发
 游戏的运行架构很复杂，要想支撑起如此复杂的运行架构，必须要有一个框架来简化开发。
-pinus正是这样一个框架，它使我们用最少的代码， 最清晰的结构来实现复杂的运行架构。
+omelox正是这样一个框架，它使我们用最少的代码， 最清晰的结构来实现复杂的运行架构。
 
-## pinus的框架介绍
+## omelox的框架介绍
 
 omelox framework的组成架构如图所示：
 
 
- ![pinus框架](http://omelox.netease.com/resource/documentImage/omelox-arch.png)
+ ![omelox框架](http://omelox.netease.com/resource/documentImage/omelox-arch.png)
 
 
-* server management, pinus是个真正多进程、分布式的游戏服务器。因此各游戏server(进程)的管理是pinus很重要的部分，框架通过抽象使服务器的管理非常容易。
+* server management, omelox是个真正多进程、分布式的游戏服务器。因此各游戏server(进程)的管理是omelox很重要的部分，框架通过抽象使服务器的管理非常容易。
 * network, 请求、响应、广播、RPC、session管理等构成了整个游戏框架的脉络，所有游戏流程都构建在这个脉络上。
-* application, 应用的定义、component管理，上下文配置， 这些使pinus framework的对外接口很简单， 并且具有松耦合、可插拔架构。
+* application, 应用的定义、component管理，上下文配置， 这些使omelox framework的对外接口很简单， 并且具有松耦合、可插拔架构。
 
 
-### pinus的架构设计目标
+### omelox的架构设计目标
 * 服务器（进程）的抽象与扩展
 
 在web应用中， 每个服务器是无状态、对等的， 开发者无需通过框架或容器来管理服务器。
@@ -135,7 +135,7 @@ omelox framework的组成架构如图所示：
 
 请求的api与web应用的ajax请求很象，基于Convention over configuration的原则， 请求不需要任何配置。 如下图所示，请求的route字符串：chat.chatHandler.send， 它可以将请求分发到chat服务器上chatHandler文件定义的send方法。
  
-Omelox的框架里还实现了request的filter机制，广播/组播机制，详细介绍见[pinus框架参考](https://github.com/node-omelox/omelox/wiki/Omelox-Framework)。
+Omelox的框架里还实现了request的filter机制，广播/组播机制，详细介绍见[omelox框架参考](https://github.com/node-omelox/omelox/wiki/Omelox-Framework)。
 
 ###  服务器间RPC调用的抽象介绍
 架构中各服务器之间的通讯主要是通过底层RPC框架来完成的，该RPC框架主要解决了进程间消息的路由和RPC底层通讯协议的选择两个问题。
@@ -158,9 +158,9 @@ app.rpc.chat.chatRemote.kick(session, uid, player, function(data){
 这个调用会根据特定的路由规则转发到特定的服务器。（如场景服务的请求会根据玩家在哪个场景直接转发到对应的server）。
 RPC框架目前在底层采用socket.io作为通讯协议，但协议对上层是透明的，以后可以替换成任意的协议。
 
-### pinus支持可插拔的component扩展架构
-component是pinus自定义组件，开发者可自加载自定义的component。
-component在[pinus框架参考](https://github.com/node-omelox/omelox/wiki/Omelox-Framework)将有更深入的讨论。
+### omelox支持可插拔的component扩展架构
+component是omelox自定义组件，开发者可自加载自定义的component。
+component在[omelox框架参考](https://github.com/node-omelox/omelox/wiki/Omelox-Framework)将有更深入的讨论。
 以下是component的生命周期图：
 
 ![components](http://omelox.netease.com/resource/documentImage/components.png)
@@ -173,4 +173,4 @@ app.load([name], comp, [opts])
 ```
 
 ## 总结
-上面的应用框架构成了pinus framework的基础。在此基础上，配合pinus提供的游戏开发库和相关工具集，开发游戏服务器将变得非常方便。 后面的[tutorial](quickstart.html)将带我们进入开发游戏应用的实际案例。
+上面的应用框架构成了omelox framework的基础。在此基础上，配合omelox提供的游戏开发库和相关工具集，开发游戏服务器将变得非常方便。 后面的[tutorial](quickstart.html)将带我们进入开发游戏应用的实际案例。

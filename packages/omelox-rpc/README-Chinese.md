@@ -1,12 +1,12 @@
 [![Build Status](https://travis-ci.org/node-omelox/omelox-rpc.svg?branch=master)](https://travis-ci.org/node-omelox/omelox-rpc)
 
 #omelox-rpc - rpc framework for omelox
-omelox-rpc是pinus项目底层的rpc框架，提供了一个多服务器进程间进行rpc调用的基础设施。
+omelox-rpc是omelox项目底层的rpc框架，提供了一个多服务器进程间进行rpc调用的基础设施。
 omelox-rpc分为客户端和服务器端两个部分。
 客户端部分提供了rpc代理生成，消息路由和网络通讯等功能，并支持动态添加代理和远程服务器配置。
 服务器端提供了远程服务暴露，请求派发，网络通讯等功能。
 
-远程服务代码加载由pinus-loader模块完成，相关规则可以参考https://github.com/node-omelox/omelox-loader
+远程服务代码加载由omelox-loader模块完成，相关规则可以参考https://github.com/node-omelox/omelox-loader
 
 + Tags: node.js
 

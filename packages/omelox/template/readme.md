@@ -1,4 +1,4 @@
-﻿这是pinus的简单示例工程，包含：
+﻿这是omelox的简单示例工程，包含：
 1、game-server，游戏服务器
 2、web-server，网页客户端的服务
 

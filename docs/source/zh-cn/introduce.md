@@ -5,7 +5,7 @@ Omelox是基于node.js的高性能,分布式游戏服务器框架。它包括基
 Omelox不但适用于游戏服务器开发， 也可用于开发高实时web应用，它的分布式架构可以使Omelox比普通的实时web框架扩展性更好。
 
 下图是Omelox框架的组成：
-![Omelox框架](http://omelox.netease.com/resource/documentImage/pinusFramework.png)
+![Omelox框架](http://omelox.netease.com/resource/documentImage/omeloxFramework.png)
 
 Omelox包括三部分:
 * 框架, Omelox的核心, 与以往单进程的游戏框架不同, 它是高性能、分布式的游戏服务器框架，并且使用很简单

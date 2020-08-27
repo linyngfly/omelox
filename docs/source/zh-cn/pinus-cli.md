@@ -1,12 +1,12 @@
 概述
 ==========
 
-命令行工具pinus是Omelox框架提供的一个小工具，该工具能够帮助开发者更便捷、更有效率地进行应用开发。该工具包括的命令支持绝大多数的应用开发操作，包括创建初始项目、启动应用、停止应用、关闭应用等。用户可以通过pinus --help命令查询相关命令及其使用说明。
+命令行工具omelox是Omelox框架提供的一个小工具，该工具能够帮助开发者更便捷、更有效率地进行应用开发。该工具包括的命令支持绝大多数的应用开发操作，包括创建初始项目、启动应用、停止应用、关闭应用等。用户可以通过omelox --help命令查询相关命令及其使用说明。
 
 命令行安装
 ===========
 
-当使用如下命令安装Omelox的时候，pinus会自动安装在相应的bin目录下:
+当使用如下命令安装Omelox的时候，omelox会自动安装在相应的bin目录下:
 
     $ npm install omelox -g
 
@@ -14,17 +14,17 @@
 命令介绍
 =========
 
-目前pinus支持如下命令及选项:
+目前omelox支持如下命令及选项:
 
-* init: 创建一个新项目，该项目中包含创建pinus应用的基本文件及pinus应用的简单示例。
+* init: 创建一个新项目，该项目中包含创建omelox应用的基本文件及omelox应用的简单示例。
 * start: 启动应用及服务器。
 * list: 列出当前应用开启的所有服务器的信息，包括服务器Id、服务器类型、pid、堆使用情况、启动时长。
 * stop: 关闭应用及服务器或者停止指定的服务器。
 * kill: 强制关闭应用及服务器。
 * add: 运行时动态添加服务器。
 * masterha: 当启用masterha高可用的时候，用来启动master服务器的slave节点。
-* --version：列出当前使用pinus的版本信息。
-* --help：列出所有pinus支持的命令及使用说明。
+* --version：列出当前使用omelox的版本信息。
+* --help：列出所有omelox支持的命令及使用说明。
 
 
 ## 命令使用说明
@@ -55,9 +55,9 @@
 
 * list
 
-当应用启动后，该命令列出所有服务器信息。由于当执行此操作时，pinus是作为监控管理框架的一个客户端的，在连接注册到master上的时候，需要进行身份验证。默认生成的项目中，有一个默认的用户名admin，口令也为admin，因此在不指定用户名和口令的时候，默认使用的用户名和口令均为admin，下面的stop命令和kill命令均需要使用用户名和口令验证，默认值与此处相同。应用的管理用户可以通过修改config/adminUser.json文件进行配置,具体的配置格式可以参考pinus init生成的项目中的相关配置。
+当应用启动后，该命令列出所有服务器信息。由于当执行此操作时，omelox是作为监控管理框架的一个客户端的，在连接注册到master上的时候，需要进行身份验证。默认生成的项目中，有一个默认的用户名admin，口令也为admin，因此在不指定用户名和口令的时候，默认使用的用户名和口令均为admin，下面的stop命令和kill命令均需要使用用户名和口令验证，默认值与此处相同。应用的管理用户可以通过修改config/adminUser.json文件进行配置,具体的配置格式可以参考omelox init生成的项目中的相关配置。
 
-执行本命令时，还需要指定master服务器的ip和port, 这样可以是的pinus list可以在任意地方执行。omelox stop/kill/add等也同样需要指定master服务器的ip和port，默认使用127.0.0.1:3005作为master服务器的地址。
+执行本命令时，还需要指定master服务器的ip和port, 这样可以是的omelox list可以在任意地方执行。omelox stop/kill/add等也同样需要指定master服务器的ip和port，默认使用127.0.0.1:3005作为master服务器的地址。
 
 命令格式如下: 
 
@@ -66,7 +66,7 @@
 
 * stop 
 
-stop用来停止当前应用，优雅地关闭应用。和kill命令不同，这种关闭首先会切断客户端与服务器的连接，然后逐一关闭所有服务器。如果指定了服务器serverId的话，则会关闭特定的服务器，而不是关闭所有的服务器。与list命令一样，需要权限验证，默认的用户名和密码均为admin,也需要指定master服务器的位置, 跟pinus list一样，默认使用127.0.0.1:3005。
+stop用来停止当前应用，优雅地关闭应用。和kill命令不同，这种关闭首先会切断客户端与服务器的连接，然后逐一关闭所有服务器。如果指定了服务器serverId的话，则会关闭特定的服务器，而不是关闭所有的服务器。与list命令一样，需要权限验证，默认的用户名和密码均为admin,也需要指定master服务器的位置, 跟omelox list一样，默认使用127.0.0.1:3005。
 
 命令格式如下:
     
@@ -86,7 +86,7 @@ stop用来停止当前应用，优雅地关闭应用。和kill命令不同，这
 
 * add
 
-该命令用来运行时动态增加服务器，与pinus list等命令类似，omelox add也需要身份验证以及指定master服务器的地址。具体命令格式如下:
+该命令用来运行时动态增加服务器，与omelox list等命令类似，omelox add也需要身份验证以及指定master服务器的地址。具体命令格式如下:
 
      omelox add [-u,--username <username>] [-p,--password <password>]
                 [-h,--host <master-host>] [-P,--port <master-port>]
@@ -99,7 +99,7 @@ args参数是用来指定新增服务器的参数的，包括服务器类型，�
 
 * masterha
 
-当启用了master服务器的高可用后，该命令用来启动master服务器的slave节点，需要在game-server/config目录下配置masterha.json。其他的命令行参数类似于pinus start，格式如下：
+当启用了master服务器的高可用后，该命令用来启动master服务器的slave节点，需要在game-server/config目录下配置masterha.json。其他的命令行参数类似于omelox start，格式如下：
 
     omelox masterha [-d,--direcotry <code directory>]
 
@@ -109,7 +109,7 @@ args参数是用来指定新增服务器的参数的，包括服务器类型，�
     
     omelox --version
 
-查看pinus命令行工具的帮助时，可以使用如下命令:
+查看omelox命令行工具的帮助时，可以使用如下命令:
 
     omelox --help
     omelox add --help
@@ -117,4 +117,4 @@ args参数是用来指定新增服务器的参数的，包括服务器类型，�
 
 * 注:
 
-一般来说在开发环境中，master服务器的地址会一直是127.0.0.1:3005,使用的管理用户的username和password直接使用默认的admin即可，这样的话，开发调试时，在执行具体的pinus命令的时候，maser服务器的地址信息以及管理用户信息都可以省略。
+一般来说在开发环境中，master服务器的地址会一直是127.0.0.1:3005,使用的管理用户的username和password直接使用默认的admin即可，这样的话，开发调试时，在执行具体的omelox命令的时候，maser服务器的地址信息以及管理用户信息都可以省略。

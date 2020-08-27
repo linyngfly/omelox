@@ -106,7 +106,7 @@
 
 1.1.0 / 2014-09-12
 =================
-* [NEW] fit for libpinus2
+* [NEW] fit for libomelox2
 * [NEW] upgrade omelox-rpc to 0.4.5
   [#612](https://github.com/NetEase/omelox/pull/612)
 * [FIX] close http server after WebSocketServer.close
@@ -131,9 +131,9 @@
   [omelox-scheduler#4](https://github.com/NetEase/omelox-scheduler/pull/4)
 * [FIX] hot update : Remove the error logging if a server doesn't have any handler.
   [#562](https://github.com/NetEase/omelox/pull/562)
-* [NEW] protobuf : Add `protobuf cache` into libpinus, and add `useProto` handshake option to tell the client whether to use the protobuf.
+* [NEW] protobuf : Add `protobuf cache` into libomelox, and add `useProto` handshake option to tell the client whether to use the protobuf.
   [#564](https://github.com/NetEase/omelox/pull/564)
-  [libpinus#58](https://github.com/NetEase/libpinus/pull/58)
+  [libomelox#58](https://github.com/NetEase/libomelox/pull/58)
   [discuss(chinese)](http://nodejs.netease.com/topic/53c6c126898634292c8157a2)
 
 1.0.2 / 2014-07-10

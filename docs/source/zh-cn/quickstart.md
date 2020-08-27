@@ -17,7 +17,7 @@ npm i omelox --save   // 安装在应用
 
 ## 新建项目
 
-使用pinus的命令行工具可以快速创建一个项目，命令如下：
+使用omelox的命令行工具可以快速创建一个项目，命令如下：
 
     $ omelox init ./HelloWorld
 
@@ -27,7 +27,7 @@ npm i omelox --save   // 安装在应用
     $ cd HelloWorld
     $ omelox init
 
-这两种创建方式是等价的，更多关于pinus命令行使用的文档，请参阅[pinus命令行工具使用](pinus命令行工具使用)。在初始化项目的时候，用户需要选择其底层使用的通信协议（**暂时只支持1 websocket模式**），分为socket.io和websocket。
+这两种创建方式是等价的，更多关于omelox命令行使用的文档，请参阅[omelox命令行工具使用](omelox命令行工具使用)。在初始化项目的时候，用户需要选择其底层使用的通信协议（**暂时只支持1 websocket模式**），分为socket.io和websocket。
 
 然后，进入到HelloWorld文件夹，安装依赖包：
 
@@ -37,7 +37,7 @@ windows用户，可以直接运行 `npm-install.bat`
 
 ## 项目目录结构
 
-让我们来看看一个pinus项目的大致结构
+让我们来看看一个omelox项目的大致结构
 
 新建立的项目结构如下图所示：
 
@@ -46,7 +46,7 @@ windows用户，可以直接运行 `npm-install.bat`
 该目录结构很清楚地展示了游戏项目的前后端分层结构，分别在各个目录下填写相关代码，即可快速开发游戏。下面对各个目录进行简要分析：
 
 #### game-server
-game-server是用pinus框架搭建的游戏服务器，以文件app.js作为入口，运行游戏的所有逻辑和功能。在接下来的开发中，所有游戏逻辑、功能、配置等都在该目录下进行。
+game-server是用omelox框架搭建的游戏服务器，以文件app.js作为入口，运行游戏的所有逻辑和功能。在接下来的开发中，所有游戏逻辑、功能、配置等都在该目录下进行。
 
 * app子目录
 
@@ -119,9 +119,9 @@ web-server是用[express 3.x](http://expressjs.com)框架搭建的web服务器�
     $ cd game-server/dist
     $ omelox kill
 
-其中`omelox stop`比较优雅，`omelox kill`比较粗暴，安全性低，开发环境下可以使用，产品环境慎用，更详细的pinus命令行用法请参阅[pinus命令行工具使用](pinus命令行工具使用)。
+其中`omelox stop`比较优雅，`omelox kill`比较粗暴，安全性低，开发环境下可以使用，产品环境慎用，更详细的omelox命令行用法请参阅[omelox命令行工具使用](omelox命令行工具使用)。
 
 ## 小结
 
-到这里为止，我们已经成功安装了pinus，并成功运行了HelloWorld。接下来，建议你看一下pinus整体的一个较详细的概述。
-如果你已经迫不及待地想写代码，可以去pinus例子教程, 那里以一个chat应用为例，一步一步地向你展示如何来使用pinus进行一个实际应用的开发，以及pinus的一些API的使用方式等。
+到这里为止，我们已经成功安装了omelox，并成功运行了HelloWorld。接下来，建议你看一下omelox整体的一个较详细的概述。
+如果你已经迫不及待地想写代码，可以去omelox例子教程, 那里以一个chat应用为例，一步一步地向你展示如何来使用omelox进行一个实际应用的开发，以及omelox的一些API的使用方式等。
