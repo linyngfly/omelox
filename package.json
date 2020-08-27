@@ -5,7 +5,7 @@
 		"lerna": "3.19.0",
 		"lerna-relinker": "1.5.0",
 		"nyc": "14.1.1",
-		"omelox-site-tools": "1.0.6",
+		"pinus-site-tools": "1.0.6",
 		"ts-node": "8.5.4",
 		"tslint": "5.20.1",
 		"typedoc": "0.15.3",
@@ -56,7 +56,7 @@
 		"node": ">= 8.5.0"
 	},
 	"license": "MIT",
-	"private": false,
+	"private": true,
 	"workspaces": [
 		"packages/*",
 		"tools/*",
