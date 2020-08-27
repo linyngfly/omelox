@@ -480,7 +480,7 @@ require.register("node-omelox-omelox-protocol/lib/protocol.js", function(exports
   /**
    * Package protocol encode.
    *
-   * Pinus package format:
+   * Omelox package format:
    * +------+-------------+------------------+
    * | type | body length |       body       |
    * +------+-------------+------------------+
