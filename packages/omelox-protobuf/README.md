@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/node-omelox/omelox-protobuf.svg?branch=master)](https://travis-ci.org/node-omelox/omelox-protobuf)
 
-#Pinus-protobuf
+#Omelox-protobuf
   Protobuf protocol is a high efficient binary protocol for data encode, this module implement the protobuf protocol, and used in [omelox](https://github.com/mybios/omelox) for data transfer.
 Of course, omelox-protobuf can also be used independently in other projects.
 ##Architecture
@@ -77,7 +77,7 @@ you can write rootMessage in protos for global usage
 ```
 
 ###Server side and Client side
-Pinus-protobuf has server code and client code for js.
+Omelox-protobuf has server code and client code for js.
 
 - The server code run in Node.JS environment, use Buffer to represent the binary data.
 - The client side code run on browser, use ByteArray to represent the binary data.
@@ -147,8 +147,8 @@ Some how we has some changes in the proto file, and there are some features we d
 
 - **package** : The array with simple content (integer, float) are packaged by default.And the complex content(message, string) are not packaged.
 
-- **long** : Pinus protocol do not support long type, because there are no long int in javascript.All the integer bigger than 32 bits will be translate to a 64bit float, which has only has 52 bits significant figure. It will lost presion for any integer has more than 52 bits significant figures.
+- **long** : Omelox protocol do not support long type, because there are no long int in javascript.All the integer bigger than 32 bits will be translate to a 64bit float, which has only has 52 bits significant figure. It will lost presion for any integer has more than 52 bits significant figures.
 
-- **default** : Pinus-protobuf do not support default keyword, for the default value is only used to initialized the element at the decoder side, which can be done by the constructor.
+- **default** : Omelox-protobuf do not support default keyword, for the default value is only used to initialized the element at the decoder side, which can be done by the constructor.
 
-- **enum** : Pinus-protobuf do not support the enum keyword.
+- **enum** : Omelox-protobuf do not support the enum keyword.

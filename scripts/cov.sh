@@ -18,11 +18,11 @@ do
         rm -rf ".nyc_output"
       fi
       echo "*****************************************"
-      echo "********** Pinus Coverage ******* X ***"
+      echo "********** Omelox Coverage ******* X ***"
       echo "*****************************************"
       echo ">>>>>>" $pkg
       echo "*****************************************"
-      echo "************************ © Pinus **"
+      echo "************************ © Omelox **"
       npm run cov
       if [ -d ".nyc_output" ]; then
         cp .nyc_output/* $cwd/.nyc_output/

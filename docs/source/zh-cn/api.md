@@ -1,7 +1,7 @@
 title: API Reference
 ---
 
-### 所有 Pinus 内置的 Node.js 包
+### 所有 Omelox 内置的 Node.js 包
 
 * [omelox](/api-reference/omelox/globals.html)
 * [omelox-admin](/api-reference/omelox-admin/globals.html)

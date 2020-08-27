@@ -115,7 +115,7 @@ var Module = function(app, opts) {
   this.interval = opts.interval || 5; // pull or push interval
 };
 
-Module.moduleId = 'helloPinus';
+Module.moduleId = 'helloOmelox';
 
 module.exports = Module;
 
@@ -154,7 +154,7 @@ write in app.js which is in your project's root directory
 
 ```javascript
 app.configure('production|development', function() {
-  app.registerAdmin('helloPinus',new helloPinus());
+  app.registerAdmin('helloOmelox',new helloOmelox());
 });
 ```
 

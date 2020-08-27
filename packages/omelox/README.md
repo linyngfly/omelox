@@ -13,11 +13,11 @@ cd testProject
 omelox init
 
 
-## Pinus -- a fast, scalable game server framework for node.js
+## Omelox -- a fast, scalable game server framework for node.js
 
-Pinus is a fast, scalable game server framework for [node.js](http://nodejs.org).
+Omelox is a fast, scalable game server framework for [node.js](http://nodejs.org).
 It provides the basic development framework and many related components, including libraries and tools.
-Pinus is also suitable for real-time web applications; its distributed architecture makes omelox scale better than other real-time web frameworks.
+Omelox is also suitable for real-time web applications; its distributed architecture makes omelox scale better than other real-time web frameworks.
 
 ## Features
 
@@ -42,7 +42,7 @@ Pinus is also suitable for real-time web applications; its distributed architect
 
 * Many clients support, including javascript, flash, android, iOS, cocos2d-x, C
 * Many libraries and tools, including command line tool, admin tool, performance test tool, AI, path finding etc.
-* Good reference materials: full docs, many examples and [an open-source MMO RPG demo](https://github.com/NetEase/omelox/wiki/Introduction-to--Lord-of-Pinus)
+* Good reference materials: full docs, many examples and [an open-source MMO RPG demo](https://github.com/NetEase/omelox/wiki/Introduction-to--Lord-of-Omelox)
 
 ### Extensible
 
@@ -51,5 +51,5 @@ Pinus is also suitable for real-time web applications; its distributed architect
 
 ## Why should I use omelox?
 Fast, scalable, real-time game server development is not an easy job, and a good container or framework can reduce its complexity.
-Unfortunately, unlike web, finding a game server framework solution is difficult, especially an open source solution. Pinus fills this gap, providing a full solution for building game server frameworks.
+Unfortunately, unlike web, finding a game server framework solution is difficult, especially an open source solution. Omelox fills this gap, providing a full solution for building game server frameworks.
 

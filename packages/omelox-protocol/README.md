@@ -2,12 +2,12 @@
 
 #omelox-protocol
 
-Encode and decode binary protocol for Pinus framework.
+Encode and decode binary protocol for Omelox framework.
 
-More details about Pinus Protocol, please refer
-[Pinus Protocol](https://github.com/NetEase/omelox/wiki/Pinus-%E5%8D%8F%E8%AE%AE)
+More details about Omelox Protocol, please refer
+[Omelox Protocol](https://github.com/NetEase/omelox/wiki/Omelox-%E5%8D%8F%E8%AE%AE)
 and
-[Pinus data compression](https://github.com/NetEase/omelox/wiki/Pinus-%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9%E5%8D%8F%E8%AE%AE).
+[Omelox data compression](https://github.com/NetEase/omelox/wiki/Omelox-%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9%E5%8D%8F%E8%AE%AE).
 
 And the English document would provide later.
 

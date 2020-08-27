@@ -1,18 +1,18 @@
-title: Pinus介绍 
+title: Omelox介绍 
 ---
 
-Pinus是基于node.js的高性能,分布式游戏服务器框架。它包括基础的开发框架和相关的扩展组件（库和工具包），可以帮助你省去游戏开发枯燥中的重复劳动和底层逻辑的开发。
-Pinus不但适用于游戏服务器开发， 也可用于开发高实时web应用，它的分布式架构可以使Pinus比普通的实时web框架扩展性更好。
+Omelox是基于node.js的高性能,分布式游戏服务器框架。它包括基础的开发框架和相关的扩展组件（库和工具包），可以帮助你省去游戏开发枯燥中的重复劳动和底层逻辑的开发。
+Omelox不但适用于游戏服务器开发， 也可用于开发高实时web应用，它的分布式架构可以使Omelox比普通的实时web框架扩展性更好。
 
-下图是Pinus框架的组成：
-![Pinus框架](http://omelox.netease.com/resource/documentImage/pinusFramework.png)
+下图是Omelox框架的组成：
+![Omelox框架](http://omelox.netease.com/resource/documentImage/pinusFramework.png)
 
-Pinus包括三部分:
-* 框架, Pinus的核心, 与以往单进程的游戏框架不同, 它是高性能、分布式的游戏服务器框架，并且使用很简单
+Omelox包括三部分:
+* 框架, Omelox的核心, 与以往单进程的游戏框架不同, 它是高性能、分布式的游戏服务器框架，并且使用很简单
 * 库, 包括了开发游戏的常用工具库， 如人工智能(ai), 寻路， aoi等 
 * 工具包, 包括管理控制台, 命令行工具, 压力测试工具等
 
-## Pinus特性
+## Omelox特性
 ### 高可伸缩、性能
 * 分布式（多进程）架构
 * 服务器扩展灵活、方便
@@ -27,16 +27,16 @@ Pinus包括三部分:
 * 库和工具包完整、强大
 * 参考和文档齐全，并有完整的MMO demo
 
-## 为什么使用Pinus？
+## 为什么使用Omelox？
 高并发、高实时的游戏服务器的开发是很复杂的工作。跟web应用一样， 一个好的开源容器或开发框架可以大大减少游戏开发的复杂性，让开发变得更加容易。  
 遗憾的是目前在游戏服务器开发领域一直没有太好的开源解决方案。
-Pinus将填补这个空白， 打造一款完全开源的高性能（并发）游戏服务器框架。 Pinus的优势有以下几点：
+Omelox将填补这个空白， 打造一款完全开源的高性能（并发）游戏服务器框架。 Omelox的优势有以下几点：
 * 架构的可伸缩性好。 采用多进程单线程的运行架构，扩展服务器非常方便， node.js的网络io优势提供了高可伸缩性。
 * 使用非常容易， 开发模型与web应用的开发类似，基于convention over configuration的理念， 几乎零配置， api的设计也很精简， 很容易上手。
 * 框架的松耦合和可扩展性好， 遵循node.js微模块的原则， framework本身只有很少的代码，所有component、库、工具都可以用npm module的形式扩展进来。任何第三方都可以根据自己的需要开发自定义module。
 * 提供完整的开源MMO游戏demo参考(基于HTML 5)。 一个超过1万行代码的游戏demo，使开发者可以随时借鉴demo的设计与开发思路。
 
-## 如何使用Pinus开发？
-通过以下参考资料将使我们很快地熟悉Pinus的全貌与开发过程：
-* [Pinus架构概览](frameworkIntro.html)  
+## 如何使用Omelox开发？
+通过以下参考资料将使我们很快地熟悉Omelox的全貌与开发过程：
+* [Omelox架构概览](frameworkIntro.html)  
 * [快速使用指南](quickstart.html)

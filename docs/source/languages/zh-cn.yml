@@ -9,8 +9,8 @@ menu:
   release: 发布日志
 
 guide_toc:
-  introduce: "Pinus 是什么？"
+  introduce: "Omelox 是什么？"
   quickstart: "快速入门"
-  frameworkIntro: "Pinus架构概览"
+  frameworkIntro: "Omelox架构概览"
   api: API 接口
   
