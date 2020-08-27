@@ -2,7 +2,7 @@
 import * as egret from './ByteArray';
 import * as WebSocket from 'ws';
 
-export enum PinusWSClientEvent {
+export enum OmeloxWSClientEvent {
      EVENT_IO_ERROR = 'io-error',
      EVENT_CLOSE = 'close',
      EVENT_KICK = 'onKick',
@@ -102,7 +102,7 @@ export class PinusWSClient {
         this.initWebSocket(host, port, cb);
     }
     private initWebSocket(host: string, port: number, cb: Function): void {
-        console.log('[Pinus] connect to:', host, port);
+        console.log('[Omelox] connect to:', host, port);
 
         let url = 'ws://' + host;
         if (port) {
@@ -126,10 +126,10 @@ export class PinusWSClient {
     }
 
 
-    public on(event: PinusWSClientEvent.EVENT_IO_ERROR, fn: (err: Error) => void): void;
-    public on(event: PinusWSClientEvent.EVENT_CLOSE, fn: (err: Error) => void): void;
-    public on(event: PinusWSClientEvent.EVENT_KICK, fn: (err: Error) => void): void;
-    public on(event: PinusWSClientEvent.EVENT_HEART_BEAT_TIMEOUT, fn: (err: Error) => void): void;
+    public on(event: OmeloxWSClientEvent.EVENT_IO_ERROR, fn: (err: Error) => void): void;
+    public on(event: OmeloxWSClientEvent.EVENT_CLOSE, fn: (err: Error) => void): void;
+    public on(event: OmeloxWSClientEvent.EVENT_KICK, fn: (err: Error) => void): void;
+    public on(event: OmeloxWSClientEvent.EVENT_HEART_BEAT_TIMEOUT, fn: (err: Error) => void): void;
     public on(event: string, fn: (msg: any) => void) {
         (this._callbacks[event] = this._callbacks[event] || []).push(fn);
     }
@@ -181,12 +181,12 @@ export class PinusWSClient {
     }
 
     private onConnect(): void {
-        console.log('[Pinus] connect success');
+        console.log('[Omelox] connect success');
         this.send(this._package.encode(Package.TYPE_HANDSHAKE, Protocol.strencode(JSON.stringify(this.handshakeBuffer))));
     }
 
     private onClose(e: any): void {
-        console.error('[Pinus] connect close:', e);
+        console.error('[Omelox] connect close:', e);
         // this.emit(Pinus.EVENT_CLOSE,e);
     }
 
@@ -327,7 +327,7 @@ export class PinusWSClient {
         this._disconnect();
     }
     private _disconnect(): void {
-        console.warn('[Pinus] client disconnect ...');
+        console.warn('[Omelox] client disconnect ...');
 
         if (this.socket) this.socket.close();
         this.socket = null;

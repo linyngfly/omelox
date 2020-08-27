@@ -1,4 +1,4 @@
-let DEFAULT_PREFIX = 'PINUS:CHANNEL';
+let DEFAULT_PREFIX = 'OMELOX:CHANNEL';
 let utils = require('../../lib/util/utils');
 import { ChannelServiceOptions } from '../../lib/common/service/channelService';
 import { Application } from '../../lib/application';

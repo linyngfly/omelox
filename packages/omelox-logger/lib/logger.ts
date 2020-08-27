@@ -15,7 +15,7 @@ let funcs: { [key: string]: (name: string, opts: any) => string } = {
 let logLevel = 0;
 
 // 支持动态更改日志级别
-function setPinusLogLevel(newLevel: 0 | 1 | 2 | 3 | 4 | 5) {
+function setOmeloxLogLevel(newLevel: 0 | 1 | 2 | 3 | 4 | 5) {
     console.warn('change omelox log level:', newLevel, 'oldLevel:', logLevel);
     logLevel = newLevel;
 }
@@ -311,5 +311,5 @@ export
 {
     getLogger,
     configure,
-    setPinusLogLevel,
+    setOmeloxLogLevel,
 };

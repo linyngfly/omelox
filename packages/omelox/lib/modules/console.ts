@@ -1,5 +1,5 @@
 /*!
- * Pinus -- consoleModule serverStop stop/kill
+ * Omelox -- consoleModule serverStop stop/kill
  * Copyright(c) 2012 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */

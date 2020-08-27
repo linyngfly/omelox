@@ -141,7 +141,7 @@ export class HandlerService {
     }
 
     private parseHandler(serverType: string, handlerPath: string) {
-        let modules = Loader.load(handlerPath, this.app, false, true, LoaderPathType.PINUS_HANDLER) as Handlers;
+        let modules = Loader.load(handlerPath, this.app, false, true, LoaderPathType.OMELOX_HANDLER) as Handlers;
         for (let name in modules) {
             let targetHandlers = this.handlerMap[serverType];
             if (!targetHandlers) {
@@ -183,7 +183,7 @@ export function manualReloadHandlers(app: Application) {
         return;
     }
     const handlerMap: HandlerMap = app.components.__server__.server.handlerService.handlerMap;
-    handlerMap[app.serverType] = Loader.load(p, app, true, true, LoaderPathType.PINUS_HANDLER);
+    handlerMap[app.serverType] = Loader.load(p, app, true, true, LoaderPathType.OMELOX_HANDLER);
 }
 
 let watchHandlers = function (app: Application, handlerMap: HandlerMap) {
@@ -191,7 +191,7 @@ let watchHandlers = function (app: Application, handlerMap: HandlerMap) {
     if (!!p) {
         fs.watch(p, function (event, name) {
             if (event === 'change') {
-                handlerMap[app.serverType] = Loader.load(p, app, true, true, LoaderPathType.PINUS_HANDLER);
+                handlerMap[app.serverType] = Loader.load(p, app, true, true, LoaderPathType.OMELOX_HANDLER);
             }
         });
     }

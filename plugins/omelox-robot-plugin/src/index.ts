@@ -1,7 +1,7 @@
 import { RobotPlugin } from './robotPlugin';
 import { RobotCfg } from 'omelox-robot';
 import * as fs from 'fs';
-export {PinusWSClient, PinusWSClientEvent} from './PinusWSClient';
+export {PinusWSClient, OmeloxWSClientEvent} from './PinusWSClient';
 
 export function createRobotPlugin(robotScriptFile: string): RobotPlugin;
 export function createRobotPlugin(robotScriptFile: RobotCfg): RobotPlugin;

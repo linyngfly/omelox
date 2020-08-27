@@ -3,15 +3,15 @@ export let consts = {
 
     PROMPT: '@omelox : ',
 
-    WELCOME_INFO: ['\nWelcome to Pinus interactive client.',
-        'Pinus is a fast, scalable game server framework for node.js. ',
+    WELCOME_INFO: ['\nWelcome to Omelox interactive client.',
+        'Omelox is a fast, scalable game server framework for node.js. ',
         'Type \\\'help\\\' for more information.\n'
     ],
 
     HELP_INFO_1: [
-        '\nFor information about Pinus products and services, visit:',
+        '\nFor information about Omelox products and services, visit:',
         '   https://omelox.io/',
-        '\nList of all Pinus commands:\n'
+        '\nList of all Omelox commands:\n'
     ],
 
     HELP_INFO_2: [
@@ -20,8 +20,8 @@ export let consts = {
     ],
 
     HELP_LOGIN: [
-        '\nWelcome to Pinus interactive client.',
-        'Pinus is a fast, scalable game server framework for node.js. ',
+        '\nWelcome to Omelox interactive client.',
+        'Omelox is a fast, scalable game server framework for node.js. ',
         'You can use following command to connect to omelox master',
         'omelox-cli -h host -P port -u user -p password',
         'Default type omelox-cli equals to:',
@@ -210,7 +210,7 @@ export let consts = {
     ASCII_LOGO: [
         '.__________________.',
         '|                  |',
-        '|      PINUS       |',
+        '|      OMELOX       |',
         '|__________________|',
     ],
 

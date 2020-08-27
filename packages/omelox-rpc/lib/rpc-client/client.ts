@@ -520,7 +520,7 @@ export class RpcClient {
             return res;
         }
         let res: { [key: string]: any }, name;
-        let modules: { [key: string]: any } = Loader.load(record.path, context, false, false, LoaderPathType.PINUS_REMOTER);
+        let modules: { [key: string]: any } = Loader.load(record.path, context, false, false, LoaderPathType.OMELOX_REMOTER);
         if (modules) {
             res = {};
             for (name in modules) {

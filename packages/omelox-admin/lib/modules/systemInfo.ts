@@ -1,5 +1,5 @@
 /*!
- * Pinus -- consoleModule systemInfo
+ * Omelox -- consoleModule systemInfo
  * Copyright(c) 2012 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */

@@ -1,8 +1,8 @@
 ﻿import * as reflect from 'reflect-metadata';
 export enum LoaderPathType {
-    PINUS_REMOTER = 'omelox:remoter',
-    PINUS_HANDLER = 'omelox:hanlder',
-    PINUS_CRONNER = 'omelox:cronner'
+    OMELOX_REMOTER = 'omelox:remoter',
+    OMELOX_HANDLER = 'omelox:hanlder',
+    OMELOX_CRONNER = 'omelox:cronner'
 }
 
 const DUPLICATED_REMOTER_DECORATOR = 'Cannot apply @remoter decorator multiple times.';
@@ -15,12 +15,12 @@ export const DESIGN_PARAM_TYPES = 'design:paramtypes';
 export function remoter() {
     return function (target: any) {
 
-        if (Reflect.hasOwnMetadata(LoaderPathType.PINUS_REMOTER, target)) {
+        if (Reflect.hasOwnMetadata(LoaderPathType.OMELOX_REMOTER, target)) {
             throw new Error(DUPLICATED_REMOTER_DECORATOR);
         }
 
         const types = Reflect.getMetadata(DESIGN_PARAM_TYPES, target) || [];
-        Reflect.defineMetadata(LoaderPathType.PINUS_REMOTER, types, target);
+        Reflect.defineMetadata(LoaderPathType.OMELOX_REMOTER, types, target);
 
         return target;
     };
@@ -28,12 +28,12 @@ export function remoter() {
 export function handler() {
     return function (target: any) {
 
-        if (Reflect.hasOwnMetadata(LoaderPathType.PINUS_HANDLER, target)) {
+        if (Reflect.hasOwnMetadata(LoaderPathType.OMELOX_HANDLER, target)) {
             throw new Error(DUPLICATED_HANDLER_DECORATOR);
         }
 
         const types = Reflect.getMetadata(DESIGN_PARAM_TYPES, target) || [];
-        Reflect.defineMetadata(LoaderPathType.PINUS_HANDLER, types, target);
+        Reflect.defineMetadata(LoaderPathType.OMELOX_HANDLER, types, target);
 
         return target;
     };
@@ -41,12 +41,12 @@ export function handler() {
 export function cronner() {
     return function (target: any) {
 
-        if (Reflect.hasOwnMetadata(LoaderPathType.PINUS_CRONNER, target)) {
+        if (Reflect.hasOwnMetadata(LoaderPathType.OMELOX_CRONNER, target)) {
             throw new Error(DUPLICATED_CRONNER_DECORATOR);
         }
 
         const types = Reflect.getMetadata(DESIGN_PARAM_TYPES, target) || [];
-        Reflect.defineMetadata(LoaderPathType.PINUS_CRONNER, types, target);
+        Reflect.defineMetadata(LoaderPathType.OMELOX_CRONNER, types, target);
 
         return target;
     };
@@ -68,15 +68,15 @@ export function method() {
 }
 
 export function isRemoter(ctor: Function) {
-    return Reflect.hasMetadata(LoaderPathType.PINUS_REMOTER, ctor);
+    return Reflect.hasMetadata(LoaderPathType.OMELOX_REMOTER, ctor);
 }
 
 export function isHandler(ctor: Function) {
-    return Reflect.hasMetadata(LoaderPathType.PINUS_HANDLER, ctor);
+    return Reflect.hasMetadata(LoaderPathType.OMELOX_HANDLER, ctor);
 }
 
 export function isCronner(ctor: Function) {
-    return Reflect.hasMetadata(LoaderPathType.PINUS_CRONNER, ctor);
+    return Reflect.hasMetadata(LoaderPathType.OMELOX_CRONNER, ctor);
 }
 
 export function isDefined(ctor: Function, pathType: LoaderPathType) {

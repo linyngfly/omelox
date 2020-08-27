@@ -5,7 +5,7 @@ import * as WebSocket from 'ws';
 /**
  * Created by govo on 15/8/14.
  *
- * Pinus Client for Egret, with protobuf support, with js ws client version 0.0.5
+ * Omelox Client for Egret, with protobuf support, with js ws client version 0.0.5
  * Github: https://github.com/govo/PinusForEgret.git
  *
  * Thanks to:
@@ -113,7 +113,7 @@ export class WSClient {
         this.initWebSocket(host, port, cb);
     }
     private initWebSocket(host, port, cb: Function): void {
-        console.log('[Pinus] connect to:', host, port);
+        console.log('[Omelox] connect to:', host, port);
 
         let onopen = (event) => {
             this.onConnect();
@@ -192,12 +192,12 @@ export class WSClient {
     }
 
     private onConnect(): void {
-        console.log('[Pinus] connect success');
+        console.log('[Omelox] connect success');
         this.send(this._package.encode(Package.TYPE_HANDSHAKE, Protocol.strencode(JSON.stringify(this.handshakeBuffer))));
     }
 
     private onClose(e: any): void {
-        console.error('[Pinus] connect close:', e);
+        console.error('[Omelox] connect close:', e);
         // this.emit(Pinus.EVENT_CLOSE,e);
     }
 
@@ -339,7 +339,7 @@ export class WSClient {
         this._disconnect();
     }
     private _disconnect(): void {
-        console.warn('[Pinus] client disconnect ...');
+        console.warn('[Omelox] client disconnect ...');
 
         if (this.socket) this.socket.close();
         this.socket = null;

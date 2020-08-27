@@ -9,7 +9,7 @@ let loadRemoteServices = function (paths: Array<Gateway.RemoteServerCode>, conte
     let item: Gateway.RemoteServerCode, m: Remoters;
     for (let i = 0, l = paths.length; i < l; i++) {
         item = paths[i];
-        m = Loader.load(item.path, context, false, true, LoaderPathType.PINUS_REMOTER);
+        m = Loader.load(item.path, context, false, true, LoaderPathType.OMELOX_REMOTER);
 
         if (m) {
             createNamespace(item.namespace, res);

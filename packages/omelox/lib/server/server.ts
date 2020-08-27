@@ -253,7 +253,7 @@ let loadCronHandlers = function (app: Application, manualReload = false) {
     let all: { [key: string]: any } = {};
     let p = pathUtil.getCronPath(app.getBase(), app.getServerType());
     if (p) {
-        let crons = Loader.load(p, app, manualReload, true, LoaderPathType.PINUS_CRONNER);
+        let crons = Loader.load(p, app, manualReload, true, LoaderPathType.OMELOX_CRONNER);
         for (let name in crons) {
             all[name] = crons[name];
         }
@@ -265,7 +265,7 @@ let loadCronHandlers = function (app: Application, manualReload = false) {
                 logger.error(`插件[${ plugin.name }的cronPath[${ plugin.cronPath }不存在。]]`);
                 continue;
             }
-            let crons = Loader.load(plugin.cronPath, app, manualReload, true, LoaderPathType.PINUS_CRONNER);
+            let crons = Loader.load(plugin.cronPath, app, manualReload, true, LoaderPathType.OMELOX_CRONNER);
             for (let name in crons) {
                 all[name] = crons[name];
             }

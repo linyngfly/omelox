@@ -1,5 +1,5 @@
 /*!
- * Pinus -- consoleModule watchServer
+ * Omelox -- consoleModule watchServer
  * Copyright(c) 2013 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */

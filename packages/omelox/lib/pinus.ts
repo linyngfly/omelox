@@ -1,5 +1,5 @@
 /*!
- * Pinus
+ * Omelox
  * Copyright(c) 2012 xiechengchao <xiecc@163.com>
  * MIT Licensed
  */

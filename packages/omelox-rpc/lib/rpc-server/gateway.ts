@@ -98,7 +98,7 @@ export class Gateway extends EventEmitter {
 
     private reloadRemoter(app: any, item: any) {
         let res: { [key: string]: any } = {};
-        let m: { [key: string]: any } = Loader.load(item.path, app, true, true, LoaderPathType.PINUS_REMOTER);
+        let m: { [key: string]: any } = Loader.load(item.path, app, true, true, LoaderPathType.OMELOX_REMOTER);
         if (m) {
             createNamespace(item.namespace, res);
             for (let s in m) {

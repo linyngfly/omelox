@@ -53,7 +53,7 @@ export namespace Package {
   /**
    * Package protocol encode.
    *
-   * Pinus package format:
+   * Omelox package format:
    * +------+-------------+------------------+
    * | type | body length |       body       |
    * +------+-------------+------------------+

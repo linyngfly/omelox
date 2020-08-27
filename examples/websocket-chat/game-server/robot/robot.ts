@@ -1,6 +1,6 @@
 
 import { Actor } from 'omelox-robot';
-import { PinusWSClient, PinusWSClientEvent} from 'omelox-robot-plugin';
+import { PinusWSClient, OmeloxWSClientEvent} from 'omelox-robot-plugin';
 
 
 export class Robot {
@@ -16,19 +16,19 @@ export class Robot {
 
         let host = '127.0.0.1';
         let port = '3014';
-        this.pinusClient.on(PinusWSClientEvent.EVENT_IO_ERROR, (event) => {
+        this.pinusClient.on(OmeloxWSClientEvent.EVENT_IO_ERROR, (event) => {
             // 错误处理
             console.error('error', event);
         });
-        this.pinusClient.on(PinusWSClientEvent.EVENT_CLOSE, function(event) {
+        this.pinusClient.on(OmeloxWSClientEvent.EVENT_CLOSE, function(event) {
             // 关闭处理
             console.error('close', event);
         });
-        this.pinusClient.on(PinusWSClientEvent.EVENT_HEART_BEAT_TIMEOUT, function(event) {
+        this.pinusClient.on(OmeloxWSClientEvent.EVENT_HEART_BEAT_TIMEOUT, function(event) {
             // 心跳timeout
             console.error('heart beat timeout', event);
         });
-        this.pinusClient.on(PinusWSClientEvent.EVENT_KICK, function(event) {
+        this.pinusClient.on(OmeloxWSClientEvent.EVENT_KICK, function(event) {
             // 踢出
             console.error('kick', event);
         });

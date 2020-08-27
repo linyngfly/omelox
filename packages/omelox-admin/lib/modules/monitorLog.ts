@@ -1,5 +1,5 @@
 /*!
- * Pinus -- consoleModule monitorLog
+ * Omelox -- consoleModule monitorLog
  * Copyright(c) 2012 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */

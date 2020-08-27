@@ -1,5 +1,5 @@
 /*!
- * Pomelo -- consoleModule onlineUser
+ * Omelox -- consoleModule onlineUser
  * Copyright(c) 2012 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */

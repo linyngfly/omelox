@@ -1,5 +1,5 @@
 /*!
- * Pinus -- consoleModule runScript
+ * Omelox -- consoleModule runScript
  * Copyright(c) 2012 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */

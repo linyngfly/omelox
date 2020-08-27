@@ -1,5 +1,5 @@
 /*!
- * Pinus -- consoleModule nodeInfo processInfo
+ * Omelox -- consoleModule nodeInfo processInfo
  * Copyright(c) 2012 fantasyni <fantasyni@163.com>
  * MIT Licensed
  */
