@@ -1,5 +1,5 @@
 import { dispatch } from '../../../util/dispatcher';
-import { Application , BackendSession} from 'pinus';
+import { Application , BackendSession} from 'omelox';
 
 export default function (app: Application) {
     return new GateHandler(app);

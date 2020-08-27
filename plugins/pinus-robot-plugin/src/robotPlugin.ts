@@ -1,5 +1,5 @@
-﻿import { Application , IPlugin} from 'pinus';
-import { Robot, RobotCfg } from 'pinus-robot';
+﻿import { Application , IPlugin} from 'omelox';
+import { Robot, RobotCfg } from 'omelox-robot';
 import * as  fs from 'fs';
 import * as  path from 'path';
 

@@ -392,7 +392,7 @@ let doFilter = function (tracer: Tracer, err: Error, serverId: string, msg: Mail
     if (typeof filter === 'function') {
         filter(serverId, msg, opts, function (target: any, message: MailBoxMessage, options: object) {
             index++;
-            // compatible for pinus filter next(err) method
+            // compatible for omelox filter next(err) method
             if (utils.getObjectClass(target) === 'Error') {
                 doFilter(tracer, target, serverId, msg, opts, filters, index, operate, cb);
             } else {

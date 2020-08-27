@@ -1,6 +1,6 @@
 import { ChatRemote } from '../remote/chatRemote';
-import {Application, BackendSession} from 'pinus';
-import { FrontendSession } from 'pinus';
+import {Application, BackendSession} from 'omelox';
+import { FrontendSession } from 'omelox';
 
 export default function(app: Application) {
     return new ChatHandler(app);

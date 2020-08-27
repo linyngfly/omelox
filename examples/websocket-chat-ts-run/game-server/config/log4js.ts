@@ -58,9 +58,9 @@ module.exports = {
             },
             'backups': 5
         },
-        'pinus': {
+        'omelox': {
             'type': 'file',
-            'filename': '${opts:base}/logs/pinus-${opts:serverId}.log',
+            'filename': '${opts:base}/logs/omelox-${opts:serverId}.log',
             'maxLogSize': 1048576,
             'layout': {
                 'type': 'basic'
@@ -89,7 +89,7 @@ module.exports = {
 
     'categories': {
         'default': {
-            'appenders': ['console', 'pinus'],
+            'appenders': ['console', 'omelox'],
             'level': 'debug'
         },
         'con-log': {

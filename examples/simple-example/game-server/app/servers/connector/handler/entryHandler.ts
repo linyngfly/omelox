@@ -1,4 +1,4 @@
-import { Application, FrontendSession } from 'pinus';
+import { Application, FrontendSession } from 'omelox';
 
 export default function (app: Application) {
     return new Handler(app);

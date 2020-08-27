@@ -16,7 +16,7 @@ let logLevel = 0;
 
 // 支持动态更改日志级别
 function setPinusLogLevel(newLevel: 0 | 1 | 2 | 3 | 4 | 5) {
-    console.warn('change pinus log level:', newLevel, 'oldLevel:', logLevel);
+    console.warn('change omelox log level:', newLevel, 'oldLevel:', logLevel);
     logLevel = newLevel;
 }
 

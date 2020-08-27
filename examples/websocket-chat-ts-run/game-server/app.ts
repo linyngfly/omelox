@@ -3,16 +3,16 @@ import {
     createTcpMailBox,
     FrontendOrBackendSession,
     HandlerCallback,
-    pinus,
+    omelox,
     RESERVED,
     RouteRecord
-} from 'pinus';
+} from 'omelox';
 import './app/servers/user.rpc.define'
 import * as  routeUtil from './app/util/routeUtil';
 import { preload } from './preload';
 
 // TODO 需要整理。
-import _pinus = require('pinus');
+import _pinus = require('omelox');
 
 const filePath = (_pinus as any).FILEPATH;
 filePath.MASTER = '/config/master';
@@ -39,14 +39,14 @@ preload();
 /**
  * Init app for client.
  */
-let app = pinus.createApp();
+let app = omelox.createApp();
 app.set('name', 'chatofpomelo-websocket');
 
 // app configuration
 app.configure('production|development', 'connector', function () {
     app.set('connectorConfig',
         {
-            connector: pinus.connectors.hybridconnector,
+            connector: omelox.connectors.hybridconnector,
             heartbeat: 60,
             useDict: true,
             useProtobuf: true
@@ -54,11 +54,11 @@ app.configure('production|development', 'connector', function () {
 
     /**
      // 缓存大小不够 日志示例
-     [2020-03-27T10:44:48.752] [ERROR] pinus - [chat-server-1 channelService.js] [pushMessage] fail to dispatch msg to serverId: connector-server-1, err:RangeError [ERR_OUT_OF_RANGE]: The value of "offset" is out of range. It must be >= 0 and <= 0. Received 1
+     [2020-03-27T10:44:48.752] [ERROR] omelox - [chat-server-1 channelService.js] [pushMessage] fail to dispatch msg to serverId: connector-server-1, err:RangeError [ERR_OUT_OF_RANGE]: The value of "offset" is out of range. It must be >= 0 and <= 0. Received 1
      at boundsError (internal/buffer.js:53:9)
      at writeU_Int8 (internal/buffer.js:562:5)
      at Buffer.writeUInt8 (internal/buffer.js:569:10)
-     at Encoder.writeBytes (F:\develop\gong4-server\logicServer\pinus\packages\omelox-protobuf\lib\encoder.ts:195:20)
+     at Encoder.writeBytes (F:\develop\gong4-server\logicServer\omelox\packages\omelox-protobuf\lib\encoder.ts:195:20)
      */
     app.set('protobufConfig', {
         // protobuf Encoder 使用 5m 的缓存 需要保证每个消息不会超过指定的缓存大小，超过了就会抛出异常
@@ -71,7 +71,7 @@ app.configure('production|development', 'connector', function () {
 app.configure('production|development', 'gate', function () {
     app.set('connectorConfig',
         {
-            connector: pinus.connectors.hybridconnector,
+            connector: omelox.connectors.hybridconnector,
             useProtobuf: true
         });
 });
@@ -79,7 +79,7 @@ app.configure('production|development', 'gate', function () {
 
 function errorHandler(err: Error, msg: any, resp: any,
                       session: FrontendOrBackendSession, cb: HandlerCallback) {
-    console.error(`${ pinus.app.serverId } error handler msg[${ JSON.stringify(msg) }] ,resp[${ JSON.stringify(resp) }] ,
+    console.error(`${ omelox.app.serverId } error handler msg[${ JSON.stringify(msg) }] ,resp[${ JSON.stringify(resp) }] ,
     to resolve unknown exception: sessionId:${ JSON.stringify(session.export()) } ,
      error stack: ${ err.stack }`);
     if (!resp) {
@@ -90,7 +90,7 @@ function errorHandler(err: Error, msg: any, resp: any,
 
 export function globalErrorHandler(err: Error, msg: any, resp: any,
                                    session: FrontendOrBackendSession, cb: HandlerCallback) {
-    console.error(`${ pinus.app.serverId } globalErrorHandler msg[${ JSON.stringify(msg) }] ,resp[${ JSON.stringify(resp) }] ,
+    console.error(`${ omelox.app.serverId } globalErrorHandler msg[${ JSON.stringify(msg) }] ,resp[${ JSON.stringify(resp) }] ,
     to resolve unknown exception: sessionId:${ JSON.stringify(session.export()) } ,
      error stack: ${ err.stack }`);
 
@@ -120,7 +120,7 @@ app.configure('production|development', function () {
     app.route('chat', routeUtil.chat);
 
     // filter configures
-    app.filter(new pinus.filters.timeout());
+    app.filter(new omelox.filters.timeout());
 
     // RPC 启用TCP协议
     app.set('proxyConfig', {

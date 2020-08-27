@@ -1,4 +1,4 @@
-import { ILifeCycle, Application } from 'pinus';
+import { ILifeCycle, Application } from 'omelox';
 
 export default function () {
     return new Lifecycle();

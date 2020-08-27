@@ -1,5 +1,5 @@
 {
-    "name": "pinus-sample-websocket-chat-game-server-ts-run",
+    "name": "omelox-sample-websocket-chat-game-server-ts-run",
     "version": "1.4.10",
     "private": false,
     "main": "./dist/app",
@@ -18,9 +18,9 @@
         "@types/node": "8.10.54",
         "bluebird": "^3.5.1",
         "crc": "^3.5.0",
-        "pinus": "^1.4.10",
-        "pinus-robot": "^1.4.10",
-        "pinus-robot-plugin": "^1.4.10",
+        "omelox": "^1.4.10",
+        "omelox-robot": "^1.4.10",
+        "omelox-robot-plugin": "^1.4.10",
         "reflect-metadata": "^0.1.10",
         "source-map-support": "^0.5.0",
         "ts-node": "^8.2.0"

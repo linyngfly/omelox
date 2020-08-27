@@ -1,6 +1,6 @@
 
-import { Actor } from 'pinus-robot';
-import { PinusWSClient, PinusWSClientEvent} from 'pinus-robot-plugin';
+import { Actor } from 'omelox-robot';
+import { PinusWSClient, PinusWSClientEvent} from 'omelox-robot-plugin';
 
 
 export class Robot {

@@ -1,4 +1,4 @@
-import { Application, ChannelService, RemoterClass, FrontendSession } from 'pinus';
+import { Application, ChannelService, RemoterClass, FrontendSession } from 'omelox';
 
 export default function (app: Application) {
     return new ChatRemote(app);

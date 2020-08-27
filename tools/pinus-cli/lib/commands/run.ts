@@ -1,6 +1,6 @@
 import { getLogger } from 'omelox-logger';
 import * as path from 'path';
-let logger = getLogger('pinus-cli', path.basename(__filename));
+let logger = getLogger('omelox-cli', path.basename(__filename));
 import * as util from '../util';
 import { consts } from '../consts';
 require('cliff');

@@ -1,6 +1,6 @@
 
 import { dispatch} from './dispatcher';
-import { Session, Application } from 'pinus';
+import { Session, Application } from 'omelox';
 
 export function chat(session: Session, msg: any, app: Application, cb: (err: Error , serverId ?: string) => void) {
     let chatServers = app.getServersByType('chat');

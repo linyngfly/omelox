@@ -1,7 +1,7 @@
 {
-  "name": "pinus-robot-plugin",
+  "name": "omelox-robot-plugin",
   "version": "1.4.10",
-  "description": "pinus robot plugin",
+  "description": "omelox robot plugin",
   "files": [
     "dist",
     "src"
@@ -22,7 +22,7 @@
   "main": "./dist/index",
   "types": "./src/index",
   "dependencies": {
-    "pinus": "^1.4.10",
+    "omelox": "^1.4.10",
     "yargs": "^15.0.0"
   },
   "devDependencies": {

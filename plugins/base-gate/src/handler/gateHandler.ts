@@ -1,5 +1,5 @@
 
-import { Application, ServerInfo, FrontendSession } from 'pinus';
+import { Application, ServerInfo, FrontendSession } from 'omelox';
 import { createHash } from 'crypto';
 import { Code, ConnectorHost, common } from '../common';
 
