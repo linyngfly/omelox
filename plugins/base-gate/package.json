@@ -1,6 +1,6 @@
 {
   "name": "omelox-base-gate",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "omelox base gate plugin",
   "files": [
     "dist",
@@ -28,8 +28,8 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "crc": "^3.5.0",
-    "omelox": "^3.0.5",
-    "omelox-robot-plugin": "^3.0.5",
+    "omelox": "^3.0.6",
+    "omelox-robot-plugin": "^3.0.6",
     "reflect-metadata": "^0.1.10",
     "source-map-support": "^0.5.0"
   },
@@ -41,5 +41,6 @@
     "typescript": "3.7.3"
   },
   "license": "MIT",
-  "publishConfig": {}
+  "publishConfig": {},
+  "gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
 }

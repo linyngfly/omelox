@@ -1,6 +1,6 @@
 {
 	"name": "omelox-rpc",
-	"version": "3.0.5",
+	"version": "3.0.6",
 	"main": "./dist/index",
 	"types": "./lib/index",
 	"files": [
@@ -26,8 +26,8 @@
 		"bluebird": "^3.5.1",
 		"crc": "^0.2.1",
 		"mqtt-connection": "^3.2.0",
-		"omelox-loader": "^3.0.5",
-		"omelox-logger": "^3.0.5",
+		"omelox-loader": "^3.0.6",
+		"omelox-logger": "^3.0.6",
 		"socket.io": "^2.3.0",
 		"source-map-support": "^0.5.0",
 		"stream-pkg": "0.0.5",
@@ -47,5 +47,6 @@
 		"should": "13.2.3",
 		"tslint": "5.20.1",
 		"typescript": "3.7.3"
-	}
+	},
+	"gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
 }

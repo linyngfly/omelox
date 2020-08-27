@@ -1,8 +1,9 @@
 {
 	"name": "omelox-sample-websocket-chat-web-server",
-	"version": "3.0.5",
+	"version": "3.0.6",
 	"private": false,
 	"dependencies": {
 		"express": "3.4.0"
-	}
+	},
+	"gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
 }

@@ -1,6 +1,6 @@
 {
     "name": "omelox-logger",
-    "version": "3.0.5",
+    "version": "3.0.6",
     "private": false,
     "main": "./dist/index",
     "types": "./lib/index",
@@ -31,5 +31,6 @@
         "should": "13.2.3",
         "tslint": "5.20.1",
         "typescript": "3.7.3"
-    }
+    },
+    "gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
 }

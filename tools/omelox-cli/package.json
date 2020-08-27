@@ -1,6 +1,6 @@
 {
   "name": "omelox-cli",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "omelox command line client for managing omelox",
   "scripts": {
     "build": "tsc",
@@ -32,8 +32,8 @@
   "dependencies": {
     "async": "^3.0.0",
     "cliff": "^0.1.10",
-    "omelox-admin": "^3.0.5",
-    "omelox-logger": "^3.0.5",
+    "omelox-admin": "^3.0.6",
+    "omelox-logger": "^3.0.6",
     "optimist": "^0.6.1"
   },
   "devDependencies": {
@@ -44,5 +44,6 @@
     "tslint": "5.20.1",
     "typescript": "3.7.3"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
 }

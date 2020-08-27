@@ -1,6 +1,6 @@
 {
   "name": "omelox-robot",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "private": false,
   "dependencies": {
     "cliff": "^0.1.10",
@@ -30,7 +30,7 @@
     "index.ts"
   ],
   "readmeFilename": "README.md",
-  "gitHead": "d33db82d670b7a5d21c95e15f91548f8a8ba7821",
+  "gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719",
   "description": "omelox-robot is a simple tool to benchmark the socket.io server's performance.",
   "main": "./dist/index",
   "types": "./index.ts",

@@ -1,6 +1,6 @@
 {
   "name": "omelox",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "homepage": "https://github.com/mybios/omelox",
   "repository": {
     "type": "git",
@@ -57,13 +57,13 @@
     "mkdirp": "^0.5.1",
     "mqtt-connection": "^4.0.0",
     "node-bignumber": "^1.2.1",
-    "omelox-admin": "^3.0.5",
-    "omelox-loader": "^3.0.5",
-    "omelox-logger": "^3.0.5",
-    "omelox-protobuf": "^3.0.5",
-    "omelox-protocol": "^3.0.5",
-    "omelox-rpc": "^3.0.5",
-    "omelox-scheduler": "^3.0.5",
+    "omelox-admin": "^3.0.6",
+    "omelox-loader": "^3.0.6",
+    "omelox-logger": "^3.0.6",
+    "omelox-protobuf": "^3.0.6",
+    "omelox-protocol": "^3.0.6",
+    "omelox-rpc": "^3.0.6",
+    "omelox-scheduler": "^3.0.6",
     "seq-queue": "^0.0.5",
     "socket.io": "^2.3.0",
     "ws": "^7.0.0"
@@ -86,5 +86,6 @@
     "should": "13.2.3",
     "tslint": "5.20.1",
     "typescript": "3.7.3"
-  }
+  },
+  "gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
 }
