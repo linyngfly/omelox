@@ -1,4 +1,4 @@
-import { IComponent, Application } from 'omelox';
+import { IComponent, Application } from 'pinus';
 
 
 export class TestComponent implements IComponent {

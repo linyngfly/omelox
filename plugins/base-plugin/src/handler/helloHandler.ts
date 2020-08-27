@@ -1,5 +1,5 @@
 
-import { Application, FrontendSession, BackendSession } from 'omelox';
+import { Application, FrontendSession, BackendSession } from 'pinus';
 
 // handler入口示例
 export class HelloHandler {

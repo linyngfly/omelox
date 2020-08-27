@@ -5,7 +5,7 @@ Pinus是基于node.js的高性能,分布式游戏服务器框架。它包括基�
 Pinus不但适用于游戏服务器开发， 也可用于开发高实时web应用，它的分布式架构可以使Pinus比普通的实时web框架扩展性更好。
 
 下图是Pinus框架的组成：
-![Pinus框架](http://omelox.netease.com/resource/documentImage/pinusFramework.png)
+![Pinus框架](http://pinus.netease.com/resource/documentImage/pinusFramework.png)
 
 Pinus包括三部分:
 * 框架, Pinus的核心, 与以往单进程的游戏框架不同, 它是高性能、分布式的游戏服务器框架，并且使用很简单
@@ -13,17 +13,17 @@ Pinus包括三部分:
 * 工具包, 包括管理控制台, 命令行工具, 压力测试工具等
 
 ## Pinus特性
-###高可伸缩、性能
+### 高可伸缩、性能
 * 分布式（多进程）架构
 * 服务器扩展灵活、方便
 * 充分的压力测试和优化
 
-###易用
+### 易用
 * 极简的API，请求、响应、广播 
 * 几乎零配置，Convention over configuration
 * 基于node.js，轻量，开发快速
 
-###强大
+### 强大
 * 库和工具包完整、强大
 * 参考和文档齐全，并有完整的MMO demo
 

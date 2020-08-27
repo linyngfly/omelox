@@ -1,4 +1,4 @@
-import {Application, FrontendSession, RemoterClass} from 'omelox';
+import {Application, FrontendSession, RemoterClass} from 'pinus';
 
 
 // UserRpc的命名空间自动合并

@@ -3,13 +3,13 @@ title: API Reference
 
 ### 所有 Pinus 内置的 Node.js 包
 
-* [omelox](/api-reference/omelox/globals.html)
-* [omelox-admin](/api-reference/omelox-admin/globals.html)
-* [omelox-cli](/api-reference/omelox-cli/globals.html)
-* [omelox-loader](/api-reference/omelox-loader/globals.html)
-* [omelox-logger](/api-reference/omelox-logger/globals.html)
-* [omelox-monitor](/api-reference/omelox-monitor/globals.html)
-* [omelox-protobuf](/api-reference/omelox-protobuf/globals.html)
-* [omelox-protocol](/api-reference/omelox-protocol/globals.html)
-* [omelox-rpc](/api-reference/omelox-rpc/globals.html)
-* [omelox-scheduler](/api-reference/omelox-scheduler/globals.html)
+* [pinus](/api-reference/pinus/globals.html)
+* [pinus-admin](/api-reference/pinus-admin/globals.html)
+* [pinus-cli](/api-reference/pinus-cli/globals.html)
+* [pinus-loader](/api-reference/pinus-loader/globals.html)
+* [pinus-logger](/api-reference/pinus-logger/globals.html)
+* [pinus-monitor](/api-reference/pinus-monitor/globals.html)
+* [pinus-protobuf](/api-reference/pinus-protobuf/globals.html)
+* [pinus-protocol](/api-reference/pinus-protocol/globals.html)
+* [pinus-rpc](/api-reference/pinus-rpc/globals.html)
+* [pinus-scheduler](/api-reference/pinus-scheduler/globals.html)

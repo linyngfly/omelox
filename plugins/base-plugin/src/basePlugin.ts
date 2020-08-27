@@ -1,4 +1,4 @@
-﻿import { Application , IPlugin , getPluginHandlerPath , getPluginRemotePath} from 'omelox';
+﻿import { Application , IPlugin , getPluginHandlerPath , getPluginRemotePath} from 'pinus';
 import { TestComponent } from './components/testComponent';
 
 

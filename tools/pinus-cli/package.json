@@ -1,0 +1,48 @@
+{
+  "name": "pinus-cli",
+  "version": "1.4.10",
+  "description": "pinus command line client for managing pinus",
+  "scripts": {
+    "build": "tsc",
+    "start": "yarn run build && node dist/index",
+    "fix-lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json lib/**/*.ts test/**/*.ts --fix",
+    "test": "yarn run build",
+    "cov": "nyc mocha",
+    "ci": "yarn run test",
+    "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/pinus-cli lib/"
+  },
+  "repository": "",
+  "keywords": [
+    "pinus",
+    "command",
+    "line",
+    "maintening"
+  ],
+  "files": [
+    "bin",
+    "dist",
+    "lib",
+    "test",
+    "index.ts"
+  ],
+  "main": "./dist/index",
+  "bin": {
+    "pinus-cli": "./dist/bin/pinus-cli.js"
+  },
+  "dependencies": {
+    "async": "^3.0.0",
+    "cliff": "^0.1.10",
+    "optimist": "^0.6.1",
+    "pinus-admin": "^1.4.10",
+    "pinus-logger": "^1.4.10"
+  },
+  "devDependencies": {
+    "@types/async": "^3.0.0",
+    "@types/cliff": "^0.1.4",
+    "@types/node": "8.10.54",
+    "@types/optimist": "0.0.29",
+    "tslint": "5.20.1",
+    "typescript": "3.7.3"
+  },
+  "license": "MIT"
+}

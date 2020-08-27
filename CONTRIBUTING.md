@@ -1,4 +1,4 @@
-# Contributing to omelox
+# Contributing to pinus
 
 
 ## 开发规范
@@ -86,12 +86,12 @@
 ### debug 埋点规范
 
 ```
-const debug = require('debug')('omelox:pakageName:ClassName');
+const debug = require('debug')('pinus:pakageName:ClassName');
 ```
 
 * 直接require一个debug包
 * 埋点名称由三部分组成
-    * `omelox`
+    * `pinus`
     * 包名称
     * 类名或组件名
 
@@ -105,7 +105,7 @@ const debug = require('debug')('omelox:pakageName:ClassName');
 
 ### 关于版本
 
-1. omelox 下的所有版本都是固定的，所有的更新都体现在 omelox 的版本变化上
+1. pinus 下的所有版本都是固定的，所有的更新都体现在 pinus 的版本变化上
 2. 类似 Linux 偶数表示稳固版本，奇数表示开发中版本
 
 ### 操作系统

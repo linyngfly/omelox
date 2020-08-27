@@ -1,5 +1,5 @@
 {
-	"name": "omelox-workspaces",
+	"name": "pinus-workspaces",
 	"version": "0.0.1",
 	"devDependencies": {
 		"lerna": "3.19.0",
@@ -37,20 +37,20 @@
 	},
 	"keywords": [
 		"netease",
-		"omelox",
+		"pinus",
 		"server",
 		"framework",
 		"game server",
-		"omelox",
+		"pinus",
 		"runtime",
 		"cluster",
 		"service",
 		"application"
 	],
-	"homepage": "https://gitee.com/gamingcity/omelox.git",
+	"homepage": "https://github.com/node-pinus/pinus",
 	"repository": {
 		"type": "git",
-		"url": "https://gitee.com/gamingcity/omelox.git"
+		"url": "https://github.com/node-pinus/pinus.git"
 	},
 	"engines": {
 		"node": ">= 8.5.0"

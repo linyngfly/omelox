@@ -1,7 +1,7 @@
 {
-  "name": "omelox-base-gate",
-  "version": "2.2.3",
-  "description": "omelox base gate plugin",
+  "name": "pinus-base-gate",
+  "version": "1.4.10",
+  "description": "pinus base gate plugin",
   "files": [
     "dist",
     "src"
@@ -18,7 +18,7 @@
   },
   "repository": "",
   "keywords": [
-    "omelox"
+    "pinus"
   ],
   "main": "./dist/index",
   "types": "./src/index",
@@ -26,19 +26,19 @@
     "node": ">=8.5"
   },
   "dependencies": {
-    "@types/bluebird": "^3.5.19",
-    "@types/crc": "^3.4.0",
-    "@types/node": "12.13.0",
     "bluebird": "^3.5.1",
     "crc": "^3.5.0",
-    "omelox": "^2.2.3",
-    "omelox-robot-plugin": "^2.1.0",
+    "pinus": "^1.4.10",
+    "pinus-robot-plugin": "^1.4.10",
     "reflect-metadata": "^0.1.10",
     "source-map-support": "^0.5.0"
   },
   "devDependencies": {
-    "tslint": "^5.9.1",
-    "typescript": "^2.9.2"
+    "@types/bluebird": "^3.5.19",
+    "@types/crc": "^3.4.0",
+    "@types/node": "8.10.54",
+    "tslint": "5.20.1",
+    "typescript": "3.7.3"
   },
   "license": "MIT",
   "publishConfig": {}
