@@ -1,10 +1,15 @@
 {
-  "lerna": "2.5.1",
+  "lerna": "3.19.0",
   "packages": [
-    "packages/*"
+    "packages/*",
+    "tools/*",
+    "plugins/*",
+    "examples/simple-example/*",
+    "examples/websocket-chat/*",
+    "examples/websocket-chat-ts-run/*",
+    "examples/robot-sample"
   ],
-  "version": "2.2.3",
-  "registry": "https://registry.npmjs.org/",
+  "version": "1.4.10",
   "npmClient": "yarn",
   "useWorkspaces": true
 }
