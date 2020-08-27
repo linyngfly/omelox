@@ -1,6 +1,6 @@
 {
 	"name": "omelox-scheduler",
-	"version": "1.4.13",
+	"version": "3.0.0",
 	"author": "mybios <mybios@qq.com>",
 	"main": "./dist/schedule",
 	"types": "./lib/schedule",
@@ -23,7 +23,7 @@
 		"node": ">=8.5"
 	},
 	"dependencies": {
-		"omelox-logger": "^1.4.13"
+		"omelox-logger": "^3.0.0"
 	},
 	"devDependencies": {
 		"@types/node": "8.10.54",
