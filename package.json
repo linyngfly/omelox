@@ -56,7 +56,7 @@
 		"node": ">= 8.5.0"
 	},
 	"license": "MIT",
-	"private": true,
+	"private": false,
 	"workspaces": [
 		"packages/*",
 		"tools/*",
