@@ -1,4 +1,4 @@
-import { pinus } from 'pinus';
+import { omelox } from 'omelox';
 import { preload } from './preload';
 
 /**
@@ -11,14 +11,14 @@ preload();
 /**
  * Init app for client.
  */
-var app = pinus.createApp();
+var app = omelox.createApp();
 app.set('name', '$');
 
 // app configuration
 app.configure('production|development', 'connector', function(){
   app.set('connectorConfig',
     {
-      connector : pinus.connectors.mqttconnector,
+      connector : omelox.connectors.mqttconnector,
       publishRoute: 'connector.entryHandler.publish',
       subscribeRoute: 'connector.entryHandler.subscribe'
     });

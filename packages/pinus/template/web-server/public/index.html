@@ -10,23 +10,23 @@
     <meta http-equiv="content-scripte-type" content="text/javascript" />
     <meta name="author" content="netease" />
     <meta name="version" content="1.0" />
-    <meta name="keywords" content="pinus" />
+    <meta name="keywords" content="omelox" />
     <link type="text/css" rel="stylesheet" href="css/base.css" />
     <script src="js/lib/build/build.js" type="text/javascript"></script>
     <script type="text/javascript">
       require('boot');
     </script> 
     <script type="text/javascript">
-      var pinus = window.pinus;
+      var omelox = window.omelox;
       var host = "127.0.0.1";
       var port = "3010";
       function show() {
-        pinus.init({
+        omelox.init({
           host: host,
           port: port,
           log: true
         }, function() {
-        pinus.request("connector.entryHandler.entry", "hello pinus", function(data) {
+        omelox.request("connector.entryHandler.entry", "hello omelox", function(data) {
             alert(data.msg);
           });
         });
@@ -47,7 +47,7 @@
       </div>
       <div class="g-link">
         Home:
-        <a href="https://github.com/node-pinus/pinus">https://github.com/node-pinus/pinus</a>
+        <a href="https://github.com/node-omelox/omelox">https://github.com/node-omelox/omelox</a>
       </div>
       <div class="g-button">
         <input id="test" type="button" value="Test Game Server" onclick="show()"/>

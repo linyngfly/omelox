@@ -316,14 +316,14 @@ var bt2Str = function(byteArray,start,end) {
   }
 
   var root = window;
-  var pinus = Object.create(EventEmitter.prototype); // object extend from object
-  root.pinus = pinus;
+  var omelox = Object.create(EventEmitter.prototype); // object extend from object
+  root.omelox = omelox;
   var socket = null;
   var id = 1;
   var callbacks = {};
 
-  pinus.init = function(params, cb){
-    pinus.params = params;
+  omelox.init = function(params, cb){
+    omelox.params = params;
     params.debug = true;
     var host = params.host;
     var port = params.port;
@@ -351,9 +351,9 @@ var bt2Str = function(byteArray,start,end) {
         data = JSON.parse(data);
       }
       if(data instanceof Array) {
-        processMessageBatch(pinus, data);
+        processMessageBatch(omelox, data);
       } else {
-        processMessage(pinus, data);
+        processMessage(omelox, data);
       }
     });
 
@@ -362,18 +362,18 @@ var bt2Str = function(byteArray,start,end) {
     });
 
     socket.on('disconnect', function(reason) {
-      pinus.emit('disconnect', reason);
+      omelox.emit('disconnect', reason);
     });
   };
 
-  pinus.disconnect = function() {
+  omelox.disconnect = function() {
     if(socket) {
       socket.disconnect();
       socket = null;
     }
   };
 
-  pinus.request = function(route) {
+  omelox.request = function(route) {
     if(!route) {
       return;
     }
@@ -397,11 +397,11 @@ var bt2Str = function(byteArray,start,end) {
     socket.send(sg);
   };
 
-  pinus.notify = function(route,msg) {
+  omelox.notify = function(route,msg) {
     this.request(route, msg);
   };
 
-  var processMessage = function(pinus, msg) {
+  var processMessage = function(omelox, msg) {
     var route;
     if(msg.id) {
       //if have a id then find the callback function with the request
@@ -427,25 +427,25 @@ var bt2Str = function(byteArray,start,end) {
         if (!!msg.body) {
           var body = msg.body.body;
           if (!body) {body = msg.body;}
-          pinus.emit(route, body);
+          omelox.emit(route, body);
         } else {
-          pinus.emit(route,msg);
+          omelox.emit(route,msg);
         }
       } else {
-          pinus.emit(msg.body.route,msg.body);
+          omelox.emit(msg.body.route,msg.body);
       }
     }
   };
 
-  var processMessageBatch = function(pinus, msgs) {
+  var processMessageBatch = function(omelox, msgs) {
     for(var i=0, l=msgs.length; i<l; i++) {
-      processMessage(pinus, msgs[i]);
+      processMessage(omelox, msgs[i]);
     }
   };
 
   function filter(msg,route){
     if(route.indexOf('area.') === 0){
-      msg.areaId = pinus.areaId;
+      msg.areaId = omelox.areaId;
     }
 
     msg.timestamp = Date.now();

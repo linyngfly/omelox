@@ -1,24 +1,24 @@
-[![Build Status](https://travis-ci.org/node-pinus/pinus-rpc.svg?branch=master)](https://travis-ci.org/node-pinus/pinus-rpc)
+[![Build Status](https://travis-ci.org/node-omelox/omelox-rpc.svg?branch=master)](https://travis-ci.org/node-omelox/omelox-rpc)
 
-#pinus-rpc - rpc framework for pinus
-pinus-rpc是pinus项目底层的rpc框架，提供了一个多服务器进程间进行rpc调用的基础设施。
-pinus-rpc分为客户端和服务器端两个部分。
+#omelox-rpc - rpc framework for omelox
+omelox-rpc是pinus项目底层的rpc框架，提供了一个多服务器进程间进行rpc调用的基础设施。
+omelox-rpc分为客户端和服务器端两个部分。
 客户端部分提供了rpc代理生成，消息路由和网络通讯等功能，并支持动态添加代理和远程服务器配置。
 服务器端提供了远程服务暴露，请求派发，网络通讯等功能。
 
-远程服务代码加载由pinus-loader模块完成，相关规则可以参考https://github.com/node-pinus/pinus-loader
+远程服务代码加载由pinus-loader模块完成，相关规则可以参考https://github.com/node-omelox/omelox-loader
 
 + Tags: node.js
 
 ##安装
 ```
-npm install pinus-rpc
+npm install omelox-rpc
 ```
 
 ##用法
 ###Server
 ``` javascript
-var Server = require('pinus-rpc').server;
+var Server = require('omelox-rpc').server;
 
 // remote service path info list
 var paths = [
@@ -34,7 +34,7 @@ console.log('rpc server started.');
 
 ###Client
 ``` javascript
-var Client = require('pinus-rpc').client;
+var Client = require('omelox-rpc').client;
 
 // remote service interface path info list
 var records = [

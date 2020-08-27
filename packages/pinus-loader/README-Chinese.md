@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.org/node-pinus/pinus-loader.svg?branch=master)](https://travis-ci.org/node-pinus/pinus-loader)
+[![Build Status](https://travis-ci.org/node-omelox/omelox-loader.svg?branch=master)](https://travis-ci.org/node-omelox/omelox-loader)
 
-#pinus-loader - loader module for pinus
-pinus中使用Convention over Configuration的形式管理工程目录，不同的功能按约定放在不同的目录下。pinus-loader为pinus提供了按目录加载模块的功能。
+#omelox-loader - loader module for omelox
+pinus中使用Convention over Configuration的形式管理工程目录，不同的功能按约定放在不同的目录下。omelox-loader为pinus提供了按目录加载模块的功能。
 
-pinus-rpc可以批量加载指定目录下的模块，挂到一个空对象下返回（但不会递归加载子目录），同时提供模块命名机制。
+omelox-rpc可以批量加载指定目录下的模块，挂到一个空对象下返回（但不会递归加载子目录），同时提供模块命名机制。
 
 + Tags: node.js
 
@@ -30,12 +30,12 @@ module.exports = function(context) {
 
 ##安装
 ```
-npm install pinus-loader
+npm install omelox-loader
 ```
 
 ##用法
 ``` javascript
-var Loader = require('pinus-loader');
+var Loader = require('omelox-loader');
 
 var res = Loader.load('.');
 console.log('res: %j', res);

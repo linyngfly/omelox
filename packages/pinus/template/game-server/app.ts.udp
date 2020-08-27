@@ -1,4 +1,4 @@
-import { pinus } from 'pinus';
+import { omelox } from 'omelox';
 import { preload } from './preload';
 
 /**
@@ -11,14 +11,14 @@ preload();
 /**
  * Init app for client.
  */
-var app = pinus.createApp();
+var app = omelox.createApp();
 app.set('name', '$');
 
 // app configuration
 app.configure('production|development', function(){
   app.set('connectorConfig',
     {
-      connector : pinus.connectors.udpconnector,
+      connector : omelox.connectors.udpconnector,
      	heartbeat : 3
     });
 });

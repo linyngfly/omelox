@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.org/node-pinus/pinus-loader.svg?branch=master)](https://travis-ci.org/node-pinus/pinus-loader)
+[![Build Status](https://travis-ci.org/node-omelox/omelox-loader.svg?branch=master)](https://travis-ci.org/node-omelox/omelox-loader)
 
-#pinus-loader - loader module for pinus
+#omelox-loader - loader module for omelox
 
-Load codes for pinus based on the convention over configuration rules.
+Load codes for omelox based on the convention over configuration rules.
 
-pinus-rpc could load modules in batch but not load the sub-directory recursively.
+omelox-rpc could load modules in batch but not load the sub-directory recursively.
 
 + Tags: node.js
 
@@ -23,7 +23,7 @@ the return result would be: ```{test: require('./lib/a')}```
 
 Module definiation
 
-If the module exported as a function, pinus-loader would take it as a factory method and generate a new instance of module by calling the function. And it would return the module directly for other situation.
+If the module exported as a function, omelox-loader would take it as a factory method and generate a new instance of module by calling the function. And it would return the module directly for other situation.
 
 ```javascript
 module.exports = function(context) {
@@ -33,12 +33,12 @@ module.exports = function(context) {
 
 ##Installation
 ```
-npm install pinus-loader
+npm install omelox-loader
 ```
 
 ##Usage
 ``` javascript
-var Loader = require('pinus-loader');
+var Loader = require('omelox-loader');
 
 var res = Loader.load('.');
 console.log('res: %j', res);

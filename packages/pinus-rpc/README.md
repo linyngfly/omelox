@@ -1,26 +1,26 @@
-[![Build Status](https://travis-ci.org/node-pinus/pinus-rpc.svg?branch=master)](https://travis-ci.org/node-pinus/pinus-rpc)
+[![Build Status](https://travis-ci.org/node-omelox/omelox-rpc.svg?branch=master)](https://travis-ci.org/node-omelox/omelox-rpc)
 
-#pinus-rpc - rpc framework for pinus
+#omelox-rpc - rpc framework for omelox
 
-pinus-rpc is the low level RPC framework for pinus project. It contains two parts: client and server.
+omelox-rpc is the low level RPC framework for omelox project. It contains two parts: client and server.
 
 The client part generates the RPC client proxy, routes the message to the appropriate remote server and manages the network communications. Support add proxies and remote server information dynamically.
 
 The server part exports the remote services, dispatches the remote requests to the services and also manages the network communications.
 
-And the remote service codes would loaded by pinus-loader module and more details please access this [link](https://github.com/node-pinus/pinus-loader).
+And the remote service codes would loaded by omelox-loader module and more details please access this [link](https://github.com/node-omelox/omelox-loader).
 
 + Tags: node.js
 
 ##Installation
 ```
-npm install pinus-rpc
+npm install omelox-rpc
 ```
 
 ##Usage
 ###Server
 ``` javascript
-var Server = require('pinus-rpc').server;
+var Server = require('omelox-rpc').server;
 
 // remote service path info list
 var paths = [
@@ -36,7 +36,7 @@ console.log('rpc server started.');
 
 ###Client
 ``` javascript
-var Client = require('pinus-rpc').client;
+var Client = require('omelox-rpc').client;
 
 // remote service interface path info list
 var records = [

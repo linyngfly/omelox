@@ -1,9 +1,9 @@
-# pinus-admin-web
-pinus-admin-web is a web console for [pinus](https://github.com/node-pinus/pinus). it is based on [pinus-admin](https://github.com/node-pinus/pinus-admin). it is just an web console example, you can implement your style like web console.      
+# omelox-admin-web
+omelox-admin-web is a web console for [omelox](https://github.com/node-omelox/omelox). it is based on [omelox-admin](https://github.com/node-omelox/omelox-admin). it is just an web console example, you can implement your style like web console.      
 
 ##Installation
 ```
-npm install pinus-admin-web  
+npm install omelox-admin-web  
 ```
 ##Usage
 just run  
