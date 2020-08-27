@@ -1,6 +1,6 @@
 {
   "name": "omelox-base-plugin",
-  "version": "1.4.12",
+  "version": "1.4.13",
   "description": "omelox base plugin",
   "files": [
     "dist",
@@ -22,7 +22,7 @@
   "main": "./dist/index",
   "types": "./src/index",
   "dependencies": {
-    "omelox": "^1.4.12"
+    "omelox": "^1.4.13"
   },
   "devDependencies": {
     "@types/node": "8.10.54",

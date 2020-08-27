@@ -1,6 +1,6 @@
 {
     "name": "omelox-admin",
-    "version": "1.4.12",
+    "version": "1.4.13",
     "main": "./dist/index",
     "types": "./lib/index",
     "files": [
@@ -25,9 +25,9 @@
     },
     "dependencies": {
         "mqtt-connection": "^3.2.0",
-        "omelox-logger": "^1.4.12",
-        "omelox-monitor": "^1.4.12",
-        "omelox-scheduler": "^1.4.12",
+        "omelox-logger": "^1.4.13",
+        "omelox-monitor": "^1.4.13",
+        "omelox-scheduler": "^1.4.13",
         "read-last-lines": "^1.3.0"
     },
     "devDependencies": {
