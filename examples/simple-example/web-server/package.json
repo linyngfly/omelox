@@ -1,0 +1,8 @@
+{
+  "name": "pinus-simple-example-web-server",
+  "version": "1.4.10",
+  "private": false,
+  "dependencies": {
+    "express": "3.4.8"
+  }
+}
