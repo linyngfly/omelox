@@ -1,6 +1,8 @@
 {
   "name": "omelox-protobuf",
   "version": "3.0.6",
+  "author": "yng <linyngfly@163.com>",
+  "private": false,
   "main": "./dist/protobuf",
   "types": "./lib/protobuf",
   "files": [
@@ -17,6 +19,11 @@
     "cov": "nyc mocha",
     "ci": "yarn run test",
     "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox-protobuf lib/"
+  },
+  "homepage": "https://gitee.com/gamingcity/omelox",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/gamingcity/omelox.git"
   },
   "engines": {
     "node": ">=8.5"

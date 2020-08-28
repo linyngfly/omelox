@@ -1,34 +1,41 @@
 {
- "name": "omelox-monitor",
- "description": "monitor the operating-system and process information",
- "version": "3.0.6",
- "main": "./dist/index",
- "types": "./lib/index",
- "files": [
-  "bin",
-  "dist",
-  "lib",
-  "test",
-  "utils",
-  "index.ts"
- ],
- "scripts": {
-  "build": "tsc",
-  "start": "yarn run build && node dist/index",
-  "lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json lib/**/*.ts test/**/*.ts",
-  "fix-lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json lib/**/*.ts test/**/*.ts --fix",
-  "test": "yarn run build",
-  "cov": "nyc mocha",
-  "ci": "yarn run test",
-  "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox-monitor lib/"
- },
- "engines": {
-  "node": ">=8.5"
- },
- "devDependencies": {
-  "@types/node": "8.10.54",
-  "tslint": "5.20.1",
-  "typescript": "3.7.3"
- },
- "gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
+    "name": "omelox-monitor",
+    "version": "3.0.6",
+    "author": "yng <linyngfly@163.com>",
+    "private": false,
+    "main": "./dist/index",
+    "types": "./lib/index",
+    "files": [
+        "bin",
+        "dist",
+        "lib",
+        "test",
+        "utils",
+        "index.ts"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "start": "yarn run build && node dist/index",
+        "lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json lib/**/*.ts test/**/*.ts",
+        "fix-lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json lib/**/*.ts test/**/*.ts --fix",
+        "test": "yarn run build",
+        "cov": "nyc mocha",
+        "ci": "yarn run test",
+        "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox-monitor lib/"
+    },
+    "homepage": "https://gitee.com/gamingcity/omelox",
+    "repository": {
+        "type": "git",
+        "url": "https://gitee.com/gamingcity/omelox.git"
+    },
+    "engines": {
+        "node": ">=8.5"
+    },
+    "devDependencies": {
+        "@types/node": "8.10.54",
+        "tslint": "5.20.1",
+        "typescript": "3.7.3"
+    },
+    "description": "monitor the operating-system and process information",
+    "gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
 }

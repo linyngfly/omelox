@@ -1,0 +1,39 @@
+{
+  "name": "omelox-excel",
+  "version": "3.0.6",
+  "author": "yng <linyngfly@163.com>",
+  "private": false,
+  "description": "excel to h5 json configuration",
+  "main": "./dist/lib/index",
+  "types": "./lib/index",
+  "dependencies": {
+    "xlsx": "^0.16.6"
+  },
+  "devDependencies": {
+    "@types/node": "^14.6.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "yarn run build && node dist/index",
+    "lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json lib/**/*.ts test/**/*.ts",
+    "fix-lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json lib/**/*.ts test/**/*.ts --fix",
+    "test": "yarn run build",
+    "cov": "nyc mocha",
+    "ci": "yarn run test",
+    "mochatest": "cd dist && mocha --require source-map-support/register --recursive",
+    "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox lib/"
+  },
+  "homepage": "https://gitee.com/gamingcity/omelox",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/gamingcity/omelox.git"
+  },
+  "keywords": [
+    "excel",
+    "excel json",
+    "excel ts",
+    "convert",
+    "tool"
+  ],
+  "license": "ISC"
+}

@@ -1,6 +1,7 @@
 {
   "name": "omelox-robot",
   "version": "3.0.6",
+  "author": "yng <linyngfly@163.com>",
   "private": false,
   "dependencies": {
     "cliff": "^0.1.10",
@@ -43,6 +44,5 @@
     "client",
     "robot"
   ],
-  "author": "palmtoy",
   "license": "MIT"
 }

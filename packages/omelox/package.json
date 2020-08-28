@@ -1,10 +1,12 @@
 {
   "name": "omelox",
   "version": "3.0.6",
-  "homepage": "https://github.com/mybios/omelox",
+  "author": "yng <linyngfly@163.com>",
+	"private": false,
+  "homepage": "https://gitee.com/gamingcity/omelox",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mybios/omelox.git"
+    "url": "https://gitee.com/gamingcity/omelox.git"
   },
   "scripts": {
     "build": "tsc",
@@ -21,12 +23,12 @@
     "node": ">=8.5"
   },
   "bugs": {
-    "url": "https://github.com/mybios/omelox/issues"
+    "url": "https://gitee.com/gamingcity/omelox/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/mybios/omelox#license"
+      "url": "https://gitee.com/gamingcity/omelox#license"
     }
   ],
   "keywords": [

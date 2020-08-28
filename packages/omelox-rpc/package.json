@@ -1,6 +1,8 @@
 {
 	"name": "omelox-rpc",
 	"version": "3.0.6",
+	"author": "yng <linyngfly@163.com>",
+	"private": false,
 	"main": "./dist/index",
 	"types": "./lib/index",
 	"files": [
@@ -20,6 +22,11 @@
 		"ci": "yarn run test",
 		"gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox-rpc lib/"
 	},
+	"homepage": "https://gitee.com/gamingcity/omelox",
+    "repository": {
+      "type": "git",
+      "url": "https://gitee.com/gamingcity/omelox.git"
+    },
 	"dependencies": {
 		"async": "^3.0.0",
 		"bearcat-buffer": "^0.1.x",
