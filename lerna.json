@@ -9,7 +9,7 @@
     "plugins/*",
     "tools/*"
   ],
-  "version": "3.0.6",
+  "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": false
 }
