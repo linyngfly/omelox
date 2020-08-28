@@ -1,9 +1,9 @@
-import * as commander from 'commander';
+import * as program from 'commander';
 import * as fs from 'fs';
 import ExportTS from '../../lib/exportTS';
 
-export default function (program: commander.CommanderStatic) {
-    program.command('gen')
+export default function (programs: program.CommanderStatic) {
+    programs.command('gen')
         .description('gen excels to json config')
         .option('-c, --channel, <publish channel>', 'the used publish channel', 'default')
         .option('-i, --inputdir', 'excel input dir')

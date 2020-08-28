@@ -45,7 +45,7 @@
     "template",
     "test"
   ],
-  "main": "./dist/lib/exportBase",
-  "types": "./lib/exportBase",
+  "main": "./dist/lib/index",
+  "types": "./lib/index",
   "license": "ISC"
 }

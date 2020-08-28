@@ -187,7 +187,7 @@ export abstract class ExportBase {
             return;
         }
 
-        let useRange = Number(descriptionSheetJson[3][1]);
+        // let useRange = Number(descriptionSheetJson[3][1]);
         let config_type = descriptionSheetJson[4][1];
         if (Object.values(CONFIG_TYPE).indexOf(config_type) === -1) {
             console.log(`${filePath} description描述表单config_type不支持，只支持${Object.values(CONFIG_TYPE)}`);
