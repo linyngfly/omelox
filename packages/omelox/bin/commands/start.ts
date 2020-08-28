@@ -5,7 +5,7 @@ import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import * as util from 'util';
-import * as program from 'commander';
+import * as commander from 'commander';
 import * as constants from '../../lib/util/constants';
 import { connectToMaster, abort } from '../utils/utils';
 import { ConsoleModule as co } from '../../lib/modules/console';
@@ -14,17 +14,17 @@ import { exec, spawn } from 'child_process';
 
 
 
-export default function (program: program.CommanderStatic) {
+export default function (program: commander.CommanderStatic) {
     program.command('start')
-    .description('start the application')
-    .option('-e, --env <env>', 'the used environment', DEFAULT_ENV)
-    .option('-D, --daemon', 'enable the daemon start')
-    .option('-d, --directory, <directory>', 'the code directory', DEFAULT_GAME_SERVER_DIR)
-    .option('-t, --type <server-type>,', 'start server type')
-    .option('-i, --id <server-id>', 'start server id')
-    .action(function (opts) {
-        start(opts);
-    });
+        .description('start the application')
+        .option('-e, --env <env>', 'the used environment', DEFAULT_ENV)
+        .option('-D, --daemon', 'enable the daemon start')
+        .option('-d, --directory, <directory>', 'the code directory', DEFAULT_GAME_SERVER_DIR)
+        .option('-t, --type <server-type>,', 'start server type')
+        .option('-i, --id <server-id>', 'start server id')
+        .action(function (opts) {
+            start(opts);
+        });
 }
 /**
  * Start application.

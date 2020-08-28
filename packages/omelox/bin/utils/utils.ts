@@ -13,7 +13,7 @@ import { AdminClient } from 'omelox-admin';
 import { exec } from 'child_process';
 import { ConsoleModule as co } from '../../lib/modules/console';
 
-export let version = require('../../../package.json').version;
+export const version = require('../../../package.json').version;
 
 export function connectToMaster(id: string, opts: any, cb: (client: AdminClient) => void) {
     let client = new AdminClient({ username: opts.username, password: opts.password, md5: true });
