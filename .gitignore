@@ -8,7 +8,7 @@ dist
 coverage
 .idea
 package-lock.json
-.*
+# .*
 docs/api-reference
 _book
 coverage
