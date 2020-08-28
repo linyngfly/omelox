@@ -15,7 +15,7 @@ export default class ExportTS extends ExportBase {
 const config_data_file_name = {\r\n`
         let keys = Object.keys(this.dataFileName);
         for (let item of keys) {
-            str += `\t${item}:\"${this.dataFileName[item]}\",\r\n`
+            str += `\t${item}: \'${this.dataFileName[item]}\',\r\n`
         }
         str += `}\r\n`
         str += `\r\n`
@@ -25,8 +25,8 @@ const config_data_file_name = {\r\n`
     }
 
     protected genBaseModel() {
-        let str = `import path = require("path");
-import fs = require("fs");
+        let str = `import path = require('path');
+import fs = require('fs');
 
 export abstract class config_model_base {
     public static getUrl(filename: string): string {
@@ -67,8 +67,8 @@ export interface ConfigClass<T extends config_model_base> {
         const oriFilename = path.parse(filename).name;
         let modelrName = `${oriFilename}_model`;
 
-        let str = `import { config_data_file_name } from "./config_data_file_name";
-import { config_model_base } from "./config_model";
+        let str = `import { config_data_file_name } from './config_data_file_name';
+import { config_model_base } from './config_model';
 
 /**
  * ${content}
@@ -83,7 +83,7 @@ export class ${modelrName} extends config_model_base {\r\n`
 
         str += `\r\n`
         str += `\tpublic static getClassName(): string {
-        return \"${modelrName}\"
+        return \'${modelrName}\'
     }
 
     public static getConfigName(filename?: string): string {
@@ -99,8 +99,8 @@ export class ${modelrName} extends config_model_base {\r\n`
         let modelrName = `${oriFilename}_model`;
         let defaultDataName = `${oriFilename}`;
 
-        let str = `import { config_data_file_name } from "./config_data_file_name";
-import { config_model_base } from "./config_model";
+        let str = `import { config_data_file_name } from './config_data_file_name';
+import { config_model_base } from './config_model';
 
 /**
  * ${content}
@@ -112,7 +112,7 @@ export class ${modelrName} extends config_model_base {\r\n`
 
         str += `\r\n`
         str += `\tpublic static getClassName(): string {
-        return \"${modelrName}\"
+        return \'${modelrName}\'
     }
 
     public static getConfigName(filename?: string): string {
@@ -127,8 +127,8 @@ export class ${modelrName} extends config_model_base {\r\n`
         const oriFilename = path.parse(filename).name;
         let modelrName = `${oriFilename}_model`;
 
-        let str = `import path = require("path");
-import { config_model_base } from "./config_model";
+        let str = `import path = require('path');
+import { config_model_base } from './config_model';
 
 /**
  * ${content}
@@ -140,7 +140,7 @@ export class ${modelrName} extends config_model_base {\r\n`
 
         str += `\r\n`
         str += `\tpublic static getClassName(): string {
-        return \"${modelrName}\"
+        return \'${modelrName}\'
     }
 
     public static getConfigName(filename?: string): string {
@@ -162,7 +162,7 @@ export class ${modelrName} extends config_model_base {\r\n`
     }
 
     protected genConfigDataGetter() {
-        let str = `import { config_model_base, ConfigClass } from "./config_model";
+        let str = `import { config_model_base, ConfigClass } from './config_model';
 
 interface DataConfigStruct {
 	fieldData: any[];
@@ -317,7 +317,7 @@ export class config_data_getter {
     }
 
     protected genConfigConstGetter() {
-        let str = `import { config_model_base, ConfigClass } from "./config_model";
+        let str = `import { config_model_base, ConfigClass } from './config_model';
 export class config_const_getter {
     /** 配置数据 */
     private modelDatas = new Map<string, any>();
@@ -362,7 +362,7 @@ export class config_const_getter {
     }
 
     protected genConfigLangGetter() {
-        let str = `import { config_model_base, ConfigClass } from "./config_model";
+        let str = `import { config_model_base, ConfigClass } from './config_model';
 export class config_lang_getter {
     /** 配置数据 */
     private modelDatas = new Map<string, any>();
@@ -612,8 +612,6 @@ export class config_lang_getter {
                 value = JSON.stringify(value);
             }
 
-            // 常量说明
-            str += `\t\"_comment_${i}\":\"${rowArray[3]}\",\r\n`
             str += `\t\"${keyCst}\":${value}${datas.length - 1 === i ? '' : ','}\r\n`
         }
         str += `}\r\n`

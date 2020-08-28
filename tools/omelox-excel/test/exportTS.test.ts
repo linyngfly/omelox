@@ -1,3 +1,45 @@
+import * as should from 'should';
+import ExportTS from '../lib/exportTS';
+
+let exportTS = new ExportTS({
+    inputdir: '../template',
+    outdir: '../out',
+    channel: 'wechat,google',
+    type: 1,
+});
+exportTS.genConfig()
+
+
+// describe('utils test', function () {
+//     describe('#invokeCallback', function () {
+//         it('should gen config ok', function () {
+//             let exportTS = new ExportTS({
+//                 inputdir: '../template',
+//                 outdir: '../out',
+//                 channel: 'wechat,google',
+//                 type: 1,
+//             });
+//             exportTS.genConfig()
+
+//             // let p1 = 1, p2 = 'str';
+
+//             // let func = function (arg1: number, arg2: string) {
+//             //     p1.should.equal(arg1);
+//             //     p2.should.equal(arg2);
+//             // };
+
+//             // utils.invokeCallback(func, p1, p2);
+//         });
+
+//         it('should gen config fail', function () {
+//             let p1 = 1, p2 = 'str';
+//             (function () {
+//                 // utils.invokeCallback(null, p1, p2);
+//             }).should.not.throw();
+//         });
+//     });
+// });
+
 // process.env.PUB_VER = "wechat";
 
 // let tt = config_data_getter.instance.getRowByIndex(fishery_fish_model, fishery_fish_model.FIELDS.ID, "key_denglongyu_boss");

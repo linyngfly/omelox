@@ -12,13 +12,13 @@
   },
   "rules": {
     "jsdoc-format": false,
-    "class-name": true,
+    "class-name": false,
     "comment-format": [
       true,
       "check-space"
     ],
     "indent": [
-      true,
+      false,
       "spaces"
     ],
     "no-duplicate-variable": true,

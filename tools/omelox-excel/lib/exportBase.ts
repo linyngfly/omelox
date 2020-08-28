@@ -1,4 +1,4 @@
-import XLSX from 'xlsx';
+import * as XLSX from 'xlsx';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as consts from './constants';
@@ -21,7 +21,8 @@ export abstract class ExportBase {
     constructor(opts: any) {
         this.excelDir = opts.inputdir;
         this.outRootDir = opts.outdir;
-        this.publishChannel = opts.channel;
+        let chans = opts.channel.split(',');
+        this.publishChannel = chans;
         this.publishType = opts.type;
     }
 
@@ -147,6 +148,7 @@ export abstract class ExportBase {
     }
 
     private walkExcels(dir) {
+        console.log(dir);
         fs.readdirSync(dir).forEach((filename) => {
             const subDir = dir + '/' + filename;
             const stat = fs.statSync(subDir);
@@ -155,6 +157,8 @@ export abstract class ExportBase {
             }
             else {
                 const info = path.parse(subDir);
+                console.log(subDir,info.ext);
+
                 if (consts.SUPPORT_EXCEL_TYPE.length > 0 && consts.SUPPORT_EXCEL_TYPE.indexOf(info.ext) === -1) {
                     return;
                 }

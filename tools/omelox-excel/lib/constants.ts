@@ -50,4 +50,4 @@ export const USE_RANGE = {
 export const CONFIG_SKIP_ROW = 3;
 
 /** 支持的excel类型 */
-export const SUPPORT_EXCEL_TYPE = ['xlsx', 'xls', 'xlsm'];
+export const SUPPORT_EXCEL_TYPE = ['.xlsx', '.xls', '.xlsm'];
