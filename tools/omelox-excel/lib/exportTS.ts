@@ -230,7 +230,7 @@ export class config_data_getter {
 			return;
 		}
 
-		let rowDataIndex = configData.fieldMap[key + "_" + value.toString()];
+		let rowDataIndex = configData.fieldMap[key + '_' + value.toString()];
 		if (null == rowDataIndex) {
 			console.log(\`在模型配置文件\${configClass.getClassName()}中,字段【\${key}】未创建索引, 不能通过该字段查找数据\`);
 			return null;
@@ -257,7 +257,7 @@ export class config_data_getter {
 		}
 
 		for (let i = 0; i <= configData.fieldData.length; i++) {
-			let rowData: T = this.getRowById(configClass, i, dataFile);
+			let rowData: any = this.getRowById(configClass, i, dataFile) as any;
 			if (rowData && rowData[key] === value) {
 				return rowData;
 			}
@@ -514,7 +514,7 @@ export class config_lang_getter {
             if (fieldType === FIELD_TYPE.UNEXPORT) {
                 continue;
             }
-            str += `\t\t${fields[i].toUpperCase()}: \"${fields[i]}\",\r\n`
+            str += `\t\t${fields[i].toUpperCase()}: \'${fields[i]}\',\r\n`
         }
 
         return str;

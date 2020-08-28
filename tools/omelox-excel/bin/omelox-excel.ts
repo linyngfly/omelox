@@ -1,7 +1,9 @@
+#!/usr/bin/env node
+require('cliff');
 import * as program from 'commander';
 import * as fs from 'fs';
 import { isFunction } from 'util';
-const version = require('../package.json').version;
+const version = require('../../package.json').version;
 const COMMAND_ERROR = ('Illegal command format. Use `omelox-excel --help` to get more info.\n' as any).red;
 
 program.version(version);
