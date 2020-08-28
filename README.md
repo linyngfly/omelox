@@ -3,7 +3,7 @@
 [![Actions Status](https://github.com/node-omelox/omelox/workflows/ci/badge.svg?branch=master&event=push)](https://github.com/node-omelox/omelox/actions)
 
 官方网站：[https://omelox.io](https://omelox.io)
-欢迎加Omelox官方QQ群：102530089
+欢迎加Omelox官方QQ群：xxxxxxxx
 
 
 示例工程请参见：https://github.com/node-omelox/omelox/tree/master/examples/simple-example

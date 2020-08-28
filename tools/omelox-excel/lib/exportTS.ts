@@ -10,7 +10,7 @@ TSTypeLink[FIELD_TYPE.STRING] = 'string';
 TSTypeLink[FIELD_TYPE.TABLE] = 'any';
 
 export default class ExportTS extends ExportBase {
-    protected genDataFileName() {
+    protected genDataFileName(): void {
         let str = `/** 数据文件名 */
 const config_data_file_name = {\r\n`
         let keys = Object.keys(this.dataFileName);
@@ -24,7 +24,7 @@ const config_data_file_name = {\r\n`
         fs.writeFileSync(`${this.outRootDir}/config_data_file_name.ts`, str);
     }
 
-    protected genBaseModel() {
+    protected genBaseModel(): void {
         let str = `import path = require('path');
 import fs = require('fs');
 
@@ -63,7 +63,7 @@ export interface ConfigClass<T extends config_model_base> {
         fs.writeFileSync(targetFilename, str);
     }
 
-    protected genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[]) {
+    protected genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[]): void {
         const oriFilename = path.parse(filename).name;
         let modelrName = `${oriFilename}_model`;
 
@@ -94,7 +94,7 @@ export class ${modelrName} extends config_model_base {\r\n`
         fs.writeFileSync(`${path.parse(filename).dir}/${modelrName}.ts`, str);
     }
 
-    protected genConstModel(filename: string, content: string, datas: any[]) {
+    protected genConstModel(filename: string, content: string, datas: any[]): void {
         const oriFilename = path.parse(filename).name;
         let modelrName = `${oriFilename}_model`;
         let defaultDataName = `${oriFilename}`;
@@ -123,7 +123,7 @@ export class ${modelrName} extends config_model_base {\r\n`
         fs.writeFileSync(`${path.parse(filename).dir}/${modelrName}.ts`, str);
     }
 
-    protected genLangModel(filename: string, content: string, datas: any[]) {
+    protected genLangModel(filename: string, content: string, datas: any[]): void {
         const oriFilename = path.parse(filename).name;
         let modelrName = `${oriFilename}_model`;
 
@@ -161,7 +161,7 @@ export class ${modelrName} extends config_model_base {\r\n`
         fs.writeFileSync(`${path.parse(filename).dir}/${modelrName}.ts`, str);
     }
 
-    protected genConfigDataGetter() {
+    protected genConfigDataGetter(): void {
         let str = `import { config_model_base, ConfigClass } from './config_model';
 
 interface DataConfigStruct {
@@ -316,7 +316,7 @@ export class config_data_getter {
         fs.writeFileSync(`${this.outRootDir}/config_data_getter.ts`, str);
     }
 
-    protected genConfigConstGetter() {
+    protected genConfigConstGetter(): void {
         let str = `import { config_model_base, ConfigClass } from './config_model';
 export class config_const_getter {
     /** 配置数据 */
@@ -361,7 +361,7 @@ export class config_const_getter {
         fs.writeFileSync(`${this.outRootDir}/config_const_getter.ts`, str);
     }
 
-    protected genConfigLangGetter() {
+    protected genConfigLangGetter(): void {
         let str = `import { config_model_base, ConfigClass } from './config_model';
 export class config_lang_getter {
     /** 配置数据 */
@@ -414,7 +414,7 @@ export class config_lang_getter {
      * @param datas 数据
      * @param descs 描述
      */
-    protected genDataBuffer(filename: any, fmtType: any, fields: any, types: any, datas: any, descs: any) {
+    protected genDataBuffer(filename: string, fmtType: string, fields: string[], types: any[], datas: any[], descs: string[]): void {
         let oriFilename = path.parse(filename).name;
         let str = null;
         switch (fmtType) {
@@ -445,7 +445,7 @@ export class config_lang_getter {
      * @param types 字段类型
      * @param descs 字段描述
      */
-    private _genFieldDefine(fields, types, descs) {
+    private _genFieldDefine(fields: string[], types: string[], descs: string[]) {
         let str = '';
         for (let i = 0; i < fields.length; i++) {
             let fieldType = types[i].split(',')[0];
@@ -486,7 +486,7 @@ export class config_lang_getter {
      * 生成语言字段定义
      * @param datas 数据
      */
-    private _genLangFieldDefine(datas) {
+    private _genLangFieldDefine(datas: any[]) {
         let str = '';
         for (let i = 0; i < datas.length; i++) {
             let rowArray = datas[i];
@@ -507,7 +507,7 @@ export class config_lang_getter {
      * @param types 类型
      * @param fields 字段
      */
-    private _genFIELDS(types, fields) {
+    private _genFIELDS(types: string[], fields: string[]) {
         let str = '';
         for (let i = 0; i < fields.length; i++) {
             let fieldType = types[i].split(',')[0];
@@ -527,7 +527,7 @@ export class config_lang_getter {
      * @param types 字段类型
      * @param datas 数据
      */
-    private genDataConfigBuffer(oriFilename, fields, types, datas) {
+    private genDataConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[]): string {
         let str = `{\r\n`
         str += `\t\"fieldData\" : [`;
         for (let i = 0; i < datas.length; i++) {
@@ -589,7 +589,7 @@ export class config_lang_getter {
      * @param types 字段类型
      * @param datas 数据
      */
-    private genConstConfigBuffer(oriFilename, fields, types, datas, descs) {
+    private genConstConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
 
         let str = `{\r\n`;
         for (let i = 0; i < datas.length; i++) {
@@ -625,7 +625,7 @@ export class config_lang_getter {
      * @param types 字段类型
      * @param datas 数据
      */
-    private genLangConfigBuffer(filename, fields, types, datas, descs) {
+    private genLangConfigBuffer(filename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
 
         for (let i = 1; i < fields.length; i++) {
             let oriFilenameData = fields[i];
@@ -656,6 +656,5 @@ export class config_lang_getter {
 
         }
     }
-
 
 }

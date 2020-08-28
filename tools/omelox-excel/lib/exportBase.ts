@@ -38,12 +38,12 @@ export abstract class ExportBase {
     /**
      * 生成配置文件名集合
      */
-    protected abstract genDataFileName();
+    protected abstract genDataFileName(): void;
 
     /**
      * 生成模型基类
      */
-    protected abstract genBaseModel();
+    protected abstract genBaseModel(): void;
 
     /**
      * 生成数据配置模型
@@ -51,7 +51,7 @@ export abstract class ExportBase {
      * @param content 文件功能描述
      * @param datas 数据
      */
-    protected abstract genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[]);
+    protected abstract genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[]): void;
 
     /**
      * 生成常量模型
@@ -59,7 +59,7 @@ export abstract class ExportBase {
      * @param content 文件功能描述
      * @param datas 数据
      */
-    protected abstract genConstModel(filename: string, content: string, datas: any[]);
+    protected abstract genConstModel(filename: string, content: string, datas: any[]): void;
 
     /**
      * 生成语言模型
@@ -67,22 +67,22 @@ export abstract class ExportBase {
      * @param content 文件功能描述
      * @param datas 数据
      */
-    protected abstract genLangModel(filename: string, content: string, datas: any[]);
+    protected abstract genLangModel(filename: string, content: string, datas: any[]): void;
 
     /**
      * 生成数据配置读取器
      */
-    protected abstract genConfigDataGetter();
+    protected abstract genConfigDataGetter(): void;
 
     /**
      * 生成常量配置读取器
      */
-    protected abstract genConfigConstGetter();
+    protected abstract genConfigConstGetter(): void;
 
     /**
      * 生成语言配置读取器
      */
-    protected abstract genConfigLangGetter();
+    protected abstract genConfigLangGetter(): void;
 
     /**
      * 生成数据配置文件
@@ -93,9 +93,9 @@ export abstract class ExportBase {
      * @param datas 数据
      * @param descs 字段描述
      */
-    protected abstract genDataBuffer(filename, fmtType, fields, types, datas, descs);
+    protected abstract genDataBuffer(filename: string, fmtType: string, fields: string[], types: any[], datas: any[], descs: string[]): void;
 
-    protected paresFieldValue(value, type) {
+    protected paresFieldValue(value: any, type: string): any {
         let result = null;
 
         if (null == value) {
@@ -136,7 +136,7 @@ export abstract class ExportBase {
         return result;
     }
 
-    protected mkdirsSync(dirName) {
+    protected mkdirsSync(dirName: string): boolean {
         if (fs.existsSync(dirName)) {
             return true;
         } else {
@@ -147,7 +147,7 @@ export abstract class ExportBase {
         }
     }
 
-    private walkExcels(dir) {
+    private walkExcels(dir: string): void {
         console.log(dir);
         fs.readdirSync(dir).forEach((filename) => {
             const subDir = dir + '/' + filename;
@@ -157,7 +157,7 @@ export abstract class ExportBase {
             }
             else {
                 const info = path.parse(subDir);
-                console.log(subDir,info.ext);
+                console.log(subDir, info.ext);
 
                 if (consts.SUPPORT_EXCEL_TYPE.length > 0 && consts.SUPPORT_EXCEL_TYPE.indexOf(info.ext) === -1) {
                     return;
@@ -167,7 +167,7 @@ export abstract class ExportBase {
         });
     }
 
-    private handleExcel(filePath) {
+    private handleExcel(filePath: string): void {
         let oriFilename = path.parse(filePath).name;
         if (oriFilename.startsWith('~$')) {
             return;
@@ -180,14 +180,14 @@ export abstract class ExportBase {
             console.log(`${filePath} 无description描述表单`);
             return;
         }
-        let descriptionSheetJson = XLSX.utils.sheet_to_json(descriptionData, { header: 1, raw: true, blankrows: false });
+        let descriptionSheetJson: any = XLSX.utils.sheet_to_json(descriptionData, { header: 1, raw: true, blankrows: false });
 
         if (descriptionSheetJson[3][0] !== 'use_range' || descriptionSheetJson[4][0] !== 'config_type') {
             console.log(`${filePath} description描述表单配置缺少client_use_only、config_type定义`);
             return;
         }
 
-        let use_range = Number(descriptionSheetJson[3][1]);
+        let useRange = Number(descriptionSheetJson[3][1]);
         let config_type = descriptionSheetJson[4][1];
         if (Object.values(CONFIG_TYPE).indexOf(config_type) === -1) {
             console.log(`${filePath} description描述表单config_type不支持，只支持${Object.values(CONFIG_TYPE)}`);
@@ -262,11 +262,11 @@ export abstract class ExportBase {
             let sheetJson = XLSX.utils.sheet_to_json(sheetData, { header: 1, raw: true, blankrows: false });
 
             // 字段名
-            let fields = sheetJson[0];
+            let fields: any = sheetJson[0];
             // 数据类型：unexport（不导出）、float（小数）、int(整数)、string（字符串）、table(对象)、key,cst第一列类型可以取key（map）、cst(常量)
-            let types = sheetJson[1];
+            let types: any = sheetJson[1];
             // 字段描述
-            let descs = sheetJson[2];
+            let descs: any = sheetJson[2];
 
 
             let filename = `${this.outRootDir}/${pub}/${oriFilename}`;

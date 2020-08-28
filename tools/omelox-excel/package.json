@@ -5,10 +5,12 @@
   "private": false,
   "description": "excel to h5 json configuration",
   "dependencies": {
-    "xlsx": "^0.16.6"
+    "xlsx": "^0.16.6",
+    "commander": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node": "^14.6.0"
+    "@types/node": "^14.6.0",
+    "@types/commander": "2.12.2"
   },
   "scripts": {
     "build": "tsc",
@@ -36,5 +38,14 @@
     "convert",
     "tool"
   ],
+  "files": [
+    "bin",
+    "dist",
+    "lib",
+    "template",
+    "test"
+  ],
+  "main": "./dist/lib/exportBase",
+  "types": "./lib/exportBase",
   "license": "ISC"
 }
