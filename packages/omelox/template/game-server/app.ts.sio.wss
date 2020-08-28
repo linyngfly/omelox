@@ -21,8 +21,8 @@ app.configure('production|development', function(){
   app.set('connectorConfig',
     {
       connector : omelox.connectors.sioconnector,
-      key: fs.readFileSync('../../shared/server.key'),
-  		cert: fs.readFileSync('../../shared/server.crt')
+      key: fs.readFileSync('../../shared/cert/server.key'),
+  		cert: fs.readFileSync('../../shared/cert/server.crt')
     });
 });
 
