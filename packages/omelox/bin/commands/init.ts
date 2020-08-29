@@ -1,7 +1,7 @@
 
 import * as program from 'commander';
 import { CUR_DIR, INIT_PROJ_NOTICE, TIME_INIT, FILEREAD_ERROR } from '../utils/constants';
-import {  confirm, abort, version, prompt } from '../utils/utils';
+import { confirm, abort, version, prompt } from '../utils/utils';
 
 import * as fs from 'fs';
 import * as os from 'os';
@@ -25,7 +25,7 @@ export default function (program: program.CommanderStatic) {
  */
 function connectorType(cb: Function) {
     prompt('Please select underly connector, 1 for websocket(native socket), 2 for socket.io, 3 for wss, 4 for socket.io(wss), 5 for udp, 6 for mqtt: [1]', function (msg: string) {
-        console.log('selected' , msg);
+        console.log('selected', msg);
         switch (msg.trim()) {
             case '':
                 cb(1);
@@ -53,7 +53,7 @@ function connectorType(cb: Function) {
  * @param {Function} fn
  */
 export function emptyDirectory(path: string) {
-    if(!fs.existsSync(path))
+    if (!fs.existsSync(path))
         return true;
     let files = fs.readdirSync(path);
     return (!files || !files.length);
@@ -134,7 +134,7 @@ function copy(origin: string, target: string) {
 function createApplicationAt(ph: string, type: string) {
     let name = path.basename(path.resolve(CUR_DIR, ph));
     copy(path.join(__dirname, '../../../template/'), ph);
-    mkdir(path.join(ph, 'game-server/dist/logs'));
+    mkdir(path.join(ph, 'build/logs'));
     mkdir(path.join(ph, 'shared'));
     // rmdir -r
     let rmdir = function (dir: string) {
@@ -155,17 +155,11 @@ function createApplicationAt(ph: string, type: string) {
     switch (type) {
         case '1':
             // use websocket
-            unlinkFiles = ['game-server/app.ts.sio',
-                'game-server/app.ts.wss',
-                'game-server/app.ts.mqtt',
-                'game-server/app.ts.sio.wss',
-                'game-server/app.ts.udp',
-                'web-server/app.js.https',
-                'web-server/public/index.html.sio',
-                'web-server/public/js/lib/pinusclient.js',
-                'web-server/public/js/lib/pinusclient.js.wss',
-                'web-server/public/js/lib/build/build.js.wss',
-                'web-server/public/js/lib/socket.io.js'];
+            unlinkFiles = ['app.ts.sio',
+                'app.ts.wss',
+                'app.ts.mqtt',
+                'app.ts.sio.wss',
+                'app.ts.udp'];
             for (let i = 0; i < unlinkFiles.length; ++i) {
                 let f = path.resolve(ph, unlinkFiles[i]);
                 console.log('delete : ' + f);
@@ -174,120 +168,77 @@ function createApplicationAt(ph: string, type: string) {
             break;
         case '2':
             // use socket.io
-            unlinkFiles = ['game-server/app.ts',
-                'game-server/app.ts.wss',
-                'game-server/app.ts.udp',
-                'game-server/app.ts.mqtt',
-                'game-server/app.ts.sio.wss',
-                'web-server/app.js.https',
-                'web-server/public/index.html',
-                'web-server/public/js/lib/component.json',
-                'web-server/public/js/lib/pinusclient.js.wss'];
+            unlinkFiles = ['app.ts',
+                'app.ts.wss',
+                'app.ts.udp',
+                'app.ts.mqtt',
+                'app.ts.sio.wss'];
             for (let i = 0; i < unlinkFiles.length; ++i) {
                 fs.unlinkSync(path.resolve(ph, unlinkFiles[i]));
             }
 
-            fs.renameSync(path.resolve(ph, 'game-server/app.ts.sio'), path.resolve(ph, 'game-server/app.ts'));
-            fs.renameSync(path.resolve(ph, 'web-server/public/index.html.sio'), path.resolve(ph, 'web-server/public/index.html'));
-
-            rmdir(path.resolve(ph, 'web-server/public/js/lib/build'));
-            rmdir(path.resolve(ph, 'web-server/public/js/lib/local'));
+            fs.renameSync(path.resolve(ph, 'app.ts.sio'), path.resolve(ph, 'app.ts'));
             break;
         case '3':
             // use websocket wss
-            unlinkFiles = ['game-server/app.ts.sio',
-                'game-server/app.ts',
-                'game-server/app.ts.udp',
-                'game-server/app.ts.sio.wss',
-                'game-server/app.ts.mqtt',
-                'web-server/app.js',
-                'web-server/public/index.html.sio',
-                'web-server/public/js/lib/pinusclient.js',
-                'web-server/public/js/lib/pinusclient.js.wss',
-                'web-server/public/js/lib/build/build.js',
-                'web-server/public/js/lib/socket.io.js'];
+            unlinkFiles = ['app.ts.sio',
+                'app.ts',
+                'app.ts.udp',
+                'app.ts.sio.wss',
+                'app.ts.mqtt'];
             for (let i = 0; i < unlinkFiles.length; ++i) {
                 fs.unlinkSync(path.resolve(ph, unlinkFiles[i]));
             }
 
-            fs.renameSync(path.resolve(ph, 'game-server/app.ts.wss'), path.resolve(ph, 'game-server/app.ts'));
-            fs.renameSync(path.resolve(ph, 'web-server/app.js.https'), path.resolve(ph, 'web-server/app.js'));
-            fs.renameSync(path.resolve(ph, 'web-server/public/js/lib/build/build.js.wss'), path.resolve(ph, 'web-server/public/js/lib/build/build.js'));
+            fs.renameSync(path.resolve(ph, 'app.ts.wss'), path.resolve(ph, 'app.ts'));
             break;
         case '4':
             // use socket.io wss
-            unlinkFiles = ['game-server/app.ts.sio',
-                'game-server/app.ts',
-                'game-server/app.ts.udp',
-                'game-server/app.ts.wss',
-                'game-server/app.ts.mqtt',
-                'web-server/app.js',
-                'web-server/public/index.html',
-                'web-server/public/js/lib/pinusclient.js'];
+            unlinkFiles = ['app.ts.sio',
+                'app.ts',
+                'app.ts.udp',
+                'app.ts.wss',
+                'app.ts.mqtt'];
             for (let i = 0; i < unlinkFiles.length; ++i) {
                 fs.unlinkSync(path.resolve(ph, unlinkFiles[i]));
             }
 
-            fs.renameSync(path.resolve(ph, 'game-server/app.ts.sio.wss'), path.resolve(ph, 'game-server/app.ts'));
-            fs.renameSync(path.resolve(ph, 'web-server/app.js.https'), path.resolve(ph, 'web-server/app.js'));
-            fs.renameSync(path.resolve(ph, 'web-server/public/index.html.sio'), path.resolve(ph, 'web-server/public/index.html'));
-            fs.renameSync(path.resolve(ph, 'web-server/public/js/lib/pinusclient.js.wss'), path.resolve(ph, 'web-server/public/js/lib/pinusclient.js'));
-
-            rmdir(path.resolve(ph, 'web-server/public/js/lib/build'));
-            rmdir(path.resolve(ph, 'web-server/public/js/lib/local'));
-            fs.unlinkSync(path.resolve(ph, 'web-server/public/js/lib/component.json'));
+            fs.renameSync(path.resolve(ph, 'app.ts.sio.wss'), path.resolve(ph, 'app.ts'));
             break;
         case '5':
             // use socket.io wss
-            unlinkFiles = ['game-server/app.ts.sio',
-                'game-server/app.ts',
-                'game-server/app.ts.wss',
-                'game-server/app.ts.mqtt',
-                'game-server/app.ts.sio.wss',
-                'web-server/app.js.https',
-                'web-server/public/index.html',
-                'web-server/public/js/lib/component.json',
-                'web-server/public/js/lib/pinusclient.js.wss'];
+            unlinkFiles = ['app.ts.sio',
+                'app.ts',
+                'app.ts.wss',
+                'app.ts.mqtt',
+                'app.ts.sio.wss']
             for (let i = 0; i < unlinkFiles.length; ++i) {
                 fs.unlinkSync(path.resolve(ph, unlinkFiles[i]));
             }
 
-            fs.renameSync(path.resolve(ph, 'game-server/app.ts.udp'), path.resolve(ph, 'game-server/app.ts'));
-            fs.renameSync(path.resolve(ph, 'web-server/public/index.html.sio'), path.resolve(ph, 'web-server/public/index.html'));
-
-            rmdir(path.resolve(ph, 'web-server/public/js/lib/build'));
-            rmdir(path.resolve(ph, 'web-server/public/js/lib/local'));
+            fs.renameSync(path.resolve(ph, 'app.ts.udp'), path.resolve(ph, 'app.ts'));
             break;
         case '6':
             // use socket.io
-            unlinkFiles = ['game-server/app.ts',
-                'game-server/app.ts.wss',
-                'game-server/app.ts.udp',
-                'game-server/app.ts.sio',
-                'game-server/app.ts.sio.wss',
-                'web-server/app.js.https',
-                'web-server/public/index.html',
-                'web-server/public/js/lib/component.json',
-                'web-server/public/js/lib/pinusclient.js.wss'];
+            unlinkFiles = ['app.ts',
+                'app.ts.wss',
+                'app.ts.udp',
+                'app.ts.sio',
+                'app.ts.sio.wss']
             for (let i = 0; i < unlinkFiles.length; ++i) {
                 fs.unlinkSync(path.resolve(ph, unlinkFiles[i]));
             }
 
-            fs.renameSync(path.resolve(ph, 'game-server/app.ts.mqtt'), path.resolve(ph, 'game-server/app.ts'));
-            fs.renameSync(path.resolve(ph, 'web-server/public/index.html.sio'), path.resolve(ph, 'web-server/public/index.html'));
-
-            rmdir(path.resolve(ph, 'web-server/public/js/lib/build'));
-            rmdir(path.resolve(ph, 'web-server/public/js/lib/local'));
+            fs.renameSync(path.resolve(ph, 'app.ts.mqtt'), path.resolve(ph, 'app.ts'));
             break;
     }
-    let replaceFiles = ['game-server/app.ts',
-        'game-server/package.json',
-        'web-server/package.json'];
+    let replaceFiles = ['app.ts',
+        'package.json'];
     for (let j = 0; j < replaceFiles.length; j++) {
         let str = fs.readFileSync(path.resolve(ph, replaceFiles[j])).toString();
         fs.writeFileSync(path.resolve(ph, replaceFiles[j]), str.replace('$', name));
     }
-    let f = path.resolve(ph, 'game-server/package.json');
+    let f = path.resolve(ph, 'package.json');
     let content = fs.readFileSync(f).toString();
     fs.writeFileSync(f, content.replace('#', version));
 }
