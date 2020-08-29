@@ -48,6 +48,5 @@
   ],
   "main": "./dist/lib/index",
   "types": "./lib/index",
-  "license": "ISC",
-  "gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
+  "license": "ISC"
 }

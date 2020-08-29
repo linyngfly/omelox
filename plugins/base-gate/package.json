@@ -41,6 +41,5 @@
     "typescript": "3.7.3"
   },
   "license": "MIT",
-  "publishConfig": {},
-  "gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
+  "publishConfig": {}
 }

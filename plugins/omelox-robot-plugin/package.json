@@ -31,6 +31,5 @@
     "tslint": "5.20.1",
     "typescript": "3.7.3"
   },
-  "license": "MIT",
-  "gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
+  "license": "MIT"
 }

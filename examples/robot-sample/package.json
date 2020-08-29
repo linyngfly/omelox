@@ -30,6 +30,5 @@
   "devDependencies": {
     "tslint": "^5.14.0",
     "typescript": "3.7.3"
-  },
-  "gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
+  }
 }

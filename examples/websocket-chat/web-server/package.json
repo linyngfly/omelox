@@ -4,6 +4,5 @@
 	"private": false,
 	"dependencies": {
 		"express": "3.4.0"
-	},
-	"gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
+	}
 }

@@ -35,6 +35,5 @@
 		"@types/node": "8.10.54",
 		"tslint": "5.20.1",
 		"typescript": "3.7.3"
-	},
-	"gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
+	}
 }

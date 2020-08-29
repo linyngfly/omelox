@@ -17,6 +17,5 @@
   "devDependencies": {
     "tslint": "5.20.1",
     "webpack": "4.41.2"
-  },
-  "gitHead": "a43027c1b3d9c941810d48b18f638baf2ea25719"
+  }
 }
