@@ -5,13 +5,13 @@
   "private": false,
   "description": "excel to h5 json configuration",
   "dependencies": {
-    "commander": "^3.0.0",
     "cliff": "^0.1.10",
-    "xlsx": "^0.16.6"
+    "xlsx": "^0.16.6",
+    "commander": "^3.0.0"
   },
   "devDependencies": {
-    "@types/commander": "2.12.2",
-    "@types/node": "^14.6.0"
+    "@types/node": "8.10.54",
+    "@types/commander": "2.12.2"
   },
   "scripts": {
     "build": "tsc",
