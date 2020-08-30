@@ -17,7 +17,6 @@ declare global {
 
 export class AuthRemoter {
     constructor(private app: Application) {
-
     }
 
     /**
