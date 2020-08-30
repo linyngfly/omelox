@@ -1,12 +1,42 @@
 {
   "development":{
+    "auth":[
+      {"id": "auth", "host": "127.0.0.1", "port": 10001, "httpHost": "127.0.0.1", "httpPort": 10201, "args" : " --inspect=10101"}
+    ],
+    "gate":[
+      {"id": "gate", "host": "127.0.0.1", "port": 11001, "httpHost": "127.0.0.1", "httpPort": 11201, "args" : " --inspect=11101"},
+      {"id": "gate", "host": "127.0.0.1", "port": 11002, "httpHost": "127.0.0.1", "httpPort": 11202, "args" : " --inspect=11101"}
+    ],
     "connector": [
-    {"id": "connector-server-1", "host": "127.0.0.1", "port": 3150, "clientHost": "127.0.0.1", "clientPort": 3010, "frontend": true , "args" : " --inspect=10001"}
+      {"id": "connector11", "host": "127.0.0.1", "port": 12001, "clientHost": "127.0.0.1", "clientPort": 12301, "frontend": true , "args" : " --inspect=12101"},
+      {"id": "connector11", "host": "127.0.0.1", "port": 12002, "clientHost": "127.0.0.1", "clientPort": 12302, "frontend": true , "args" : " --inspect=12102"}
+    ],
+    "gm": [
+      {"id": "gm", "host": "127.0.0.1", "port": 13001, "httpHost": "127.0.0.1", "httpPort": 13201, "args" : " --inspect=13101"}
+    ],
+    "game": [
+      {"id": "game-1-moba-1", "host": "127.0.0.1", "port": 50001, "args" : " --inspect=50101"},
+      {"id": "game-1-mmorpg-1", "host": "127.0.0.1", "port": 50002, "args" : " --inspect=50102"}
     ]
   },
   "production":{
+    "auth":[
+      {"id": "auth", "host": "127.0.0.1", "port": 10001, "httpHost": "127.0.0.1", "httpPort": 10201, "auto-restart" : true}
+    ],
+    "gate":[
+      {"id": "gate", "host": "127.0.0.1", "port": 11001, "httpHost": "127.0.0.1", "httpPort": 11201, "auto-restart" : true},
+      {"id": "gate", "host": "127.0.0.1", "port": 11002, "httpHost": "127.0.0.1", "httpPort": 11202, "auto-restart" : true}
+    ],
     "connector": [
-    {"id": "connector-server-1", "host": "127.0.0.1", "port": 3150, "clientHost": "127.0.0.1", "clientPort": 3010, "frontend": true , "args" : " --inspect=10002"}
+      {"id": "connector11", "host": "127.0.0.1", "port": 12001, "clientHost": "127.0.0.1", "clientPort": 12301, "frontend": true, "auto-restart" : true},
+      {"id": "connector11", "host": "127.0.0.1", "port": 12002, "clientHost": "127.0.0.1", "clientPort": 12302, "frontend": true, "auto-restart" : true}
+    ],
+    "gm": [
+      {"id": "gm", "host": "127.0.0.1", "port": 13001, "httpHost": "127.0.0.1", "httpPort": 13201, "auto-restart" : true}
+    ],
+    "game": [
+      {"id": "game-1-moba-1", "host": "127.0.0.1", "port": 50001, "auto-restart" : true},
+      {"id": "game-1-mmorpg-1", "host": "127.0.0.1", "port": 50002, "auto-restart" : true}
     ]
   }
 }
