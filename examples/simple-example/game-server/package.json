@@ -1,6 +1,6 @@
 {
     "name": "omelox-simple-example-game-server",
-    "version": "3.0.10",
+    "version": "3.0.11",
     "private": false,
     "bin": {
         "$": "./dist/bin/app.js"
@@ -21,8 +21,8 @@
         "@types/bluebird": "^3.5.19",
         "@types/node": "8.10.54",
         "bluebird": "^3.5.1",
-        "omelox": "^3.0.10",
-        "omelox-base-plugin": "^3.0.10",
+        "omelox": "^3.0.11",
+        "omelox-base-plugin": "^3.0.11",
         "reflect-metadata": "^0.1.10",
         "source-map-support": "^0.5.0"
     },
