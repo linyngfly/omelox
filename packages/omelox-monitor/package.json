@@ -1,6 +1,6 @@
 {
     "name": "omelox-monitor",
-    "version": "3.0.11",
+    "version": "3.0.10",
     "author": "yng <linyngfly@163.com>",
     "private": false,
     "main": "./dist/index",
@@ -36,5 +36,6 @@
         "tslint": "5.20.1",
         "typescript": "3.7.3"
     },
-    "description": "monitor the operating-system and process information"
+    "description": "monitor the operating-system and process information",
+    "gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"
 }

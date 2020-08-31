@@ -1,8 +1,9 @@
 {
   "name": "omelox-simple-example-web-server",
-  "version": "3.0.11",
+  "version": "3.0.10",
   "private": false,
   "dependencies": {
     "express": "3.4.8"
-  }
+  },
+  "gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"
 }

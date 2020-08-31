@@ -1,6 +1,6 @@
 {
   "name": "omelox-base-plugin",
-  "version": "3.0.11",
+  "version": "3.0.10",
   "description": "omelox base plugin",
   "files": [
     "dist",
@@ -22,12 +22,13 @@
   "main": "./dist/index",
   "types": "./src/index",
   "dependencies": {
-    "omelox": "^3.0.11"
+    "omelox": "^3.0.10"
   },
   "devDependencies": {
     "@types/node": "8.10.54",
     "tslint": "5.20.1",
     "typescript": "3.7.3"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"
 }

@@ -1,6 +1,6 @@
 {
   "name": "omelox-robot",
-  "version": "3.0.11",
+  "version": "3.0.10",
   "author": "yng <linyngfly@163.com>",
   "private": false,
   "dependencies": {
@@ -43,5 +43,6 @@
     "client",
     "robot"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"
 }

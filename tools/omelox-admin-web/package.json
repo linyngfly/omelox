@@ -1,6 +1,6 @@
 {
   "name": "omelox-admin-web",
-  "version": "3.0.11",
+  "version": "3.0.10",
   "private": false,
   "dependencies": {
     "body-parser": "1.19.0",
@@ -17,5 +17,6 @@
   "devDependencies": {
     "tslint": "5.20.1",
     "webpack": "4.41.2"
-  }
+  },
+  "gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"
 }
