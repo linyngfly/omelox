@@ -19,7 +19,7 @@
     },
     "dependencies": {
         "@types/bluebird": "^3.5.19",
-        "@types/node": "8.10.54",
+        "@types/node": "^12.12.6",
         "bluebird": "^3.5.1",
         "omelox": "^3.0.12",
         "omelox-base-plugin": "^3.0.12",

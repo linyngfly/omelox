@@ -1,7 +1,7 @@
 {
-  "name": "omelox-robot-plugin",
-  "version": "3.0.12",
-  "description": "omelox robot plugin",
+  "name": "omelox-http-plugin",
+  "version": "3.0.10",
+  "description": "omelox http plugin",
   "files": [
     "dist",
     "src"
@@ -22,10 +22,22 @@
   "main": "./dist/index",
   "types": "./src/index",
   "dependencies": {
-    "omelox": "^3.0.12",
-    "yargs": "^15.0.0"
+    "co-body": "^5.2.0",
+    "debug": "^3.2.6",
+    "ejs": "^2.7.4",
+    "formidable": "^1.2.2",
+    "ioredis": "^3.2.2",
+    "koa": "^2.13.0",
+    "koa-convert": "^1.2.0",
+    "koa-json": "^2.0.2",
+    "koa-onerror": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.3",
+    "koa-views": "^6.3.0"
   },
   "devDependencies": {
+    "@types/koa": "^2.11.4",
+    "@types/koa-router": "^7.4.1",
     "@types/node": "^12.12.6",
     "@types/yargs": "^13.0.0",
     "tslint": "5.20.1",

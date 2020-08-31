@@ -10,7 +10,10 @@
       "node_modules"
     ]
   },
+
+
   "rules": {
+    "experimentalDecorators": false,
     "jsdoc-format": false,
     "class-name": false,
     "comment-format": [

@@ -30,7 +30,7 @@
   "node": ">=8.5"
  },
  "devDependencies": {
-  "@types/node": "8.10.54",
+  "@types/node": "^12.12.6",
   "jscoverage": "0.6.0",
   "mocha": "6.2.2",
   "should": "13.2.3",
