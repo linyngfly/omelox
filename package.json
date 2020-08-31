@@ -24,7 +24,7 @@
 		"publish": "lerna publish",
 		"version": "lerna version",
 		"force-publish": "lerna publish --force-publish=*",
-		"bootstrap": "lerna bootstrap",
+		"bootstrap": "lerna bootstrap --hoist",
 		"clean": "lerna clean --yes",
 		"updated": "lerna updated",
 		"li": "lerna init",
