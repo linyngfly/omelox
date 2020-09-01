@@ -38,6 +38,7 @@
   "devDependencies": {
     "@types/koa": "^2.11.4",
     "@types/koa-router": "^7.4.1",
+    "@types/koa-static": "^4.0.1",
     "@types/node": "^12.12.6",
     "@types/yargs": "^13.0.0",
     "tslint": "5.20.1",

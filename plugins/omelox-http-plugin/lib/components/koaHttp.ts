@@ -7,17 +7,22 @@ import * as assert from 'assert';
 import * as views from 'koa-views';
 import * as json from 'koa-json';
 import * as onerror from 'koa-onerror';
+import * as koastatic from 'koa-static';
 import cors from '../cors';
 import bodyparser from '../body';
 import session from '../session';
 import { IComponent, Application } from 'omelox';
-
 import * as cluster from 'cluster';
 import * as os from 'os';
 const numCPUs = os.cpus().length;
 import * as Router from 'koa-router';
 import { getLogger, ILogger } from 'omelox-logger';
-let logger = getLogger('omelox', path.basename(__filename));
+const logger = getLogger('omelox', path.basename(__filename));
+
+interface HttpOpts {
+    cors: boolean;
+
+}
 
 
 export class KoaHttpComponent implements IComponent {
@@ -30,7 +35,7 @@ export class KoaHttpComponent implements IComponent {
     sslOpts: any = {};
     host: string;
     port: number;
-    httpServer: Server
+    httpServer: https.Server | http.Server;
 
     static beforeFilters: any[] = [];
     static afterFilters: any[] = [];
@@ -55,25 +60,22 @@ export class KoaHttpComponent implements IComponent {
             return;
         }
         this.opts = serverOpts;
-        this.useCluster = opts.useCluster;
 
-        if (opts.useSSL) {
-            this.host = opts.https.host;
-            this.port = opts.https.port;
+        this.useCluster = this.opts.useCluster;
+        this.host = this.opts.host;
+        this.port = this.opts.port;
+        if (this.opts.useSSL) {
             this.sslOpts = {};
-            this.sslOpts.key = fs.readFileSync(path.join(app.getBase(), opts.https.keyFile));
-            this.sslOpts.cert = fs.readFileSync(path.join(app.getBase(), opts.https.certFile));
+            this.sslOpts.key = fs.readFileSync(path.join(app.getBase(), this.opts.keyFile));
+            this.sslOpts.cert = fs.readFileSync(path.join(app.getBase(), this.opts.certFile));
             this.useSSL = true;
-        } else {
-            this.host = opts.http.host;
-            this.port = opts.http.port;
         }
 
         // session
-        if (!!opts.session) {
+        if (!!this.opts.session) {
             this.http.use(session({
-                // store: new RedisStore(opts.session.store),
-                maxAge: opts.session.maxAge
+                // store: new RedisStore(this.opts.session.store),
+                maxAge: this.opts.session.maxAge
             }));
         }
 
@@ -81,7 +83,7 @@ export class KoaHttpComponent implements IComponent {
         onerror(this.http);
 
         // middlewares
-        if (opts.cors !== false) {
+        if (this.opts.cors !== false) {
             this.http.use(cors({
                 credentials: true,
                 allowMethods: ['GET', 'POST', 'DELETE'],
@@ -92,7 +94,7 @@ export class KoaHttpComponent implements IComponent {
         this.http.use(bodyparser());
         this.http.use(json());
 
-        if (opts.views) {
+        if (this.opts.views) {
             this.http.use(views(path.join(this.app.getBase(), 'app/servers', this.app.getServerType(), 'views'), {
                 extension: 'ejs'
             }));
@@ -110,7 +112,7 @@ export class KoaHttpComponent implements IComponent {
                 const router = new Router();
                 require(routePath)(router);
                 // routes
-                this.http.use(router.routes(), router.allowedMethods());
+                this.http.use(router.routes());
             }
         });
     }
@@ -134,8 +136,11 @@ export class KoaHttpComponent implements IComponent {
             });
         });
 
-        if (this.opts.static) {
-            this.http.use(require('koa-static')(path.join(this.app.getBase(), 'app/servers', this.app.getServerType(), 'public')));
+        if (this.opts.useStatic) {
+            let staticRoot = this.opts.staticRoot || path.join(this.app.getBase(), 'app/servers', this.app.getServerType(), 'public');
+            let staticOpts: any = {};
+            staticOpts.index = 'index.html' || this.opts.staticIndex;
+            this.http.use(koastatic(staticRoot, staticOpts));
         }
 
         this.loadRoutes();
