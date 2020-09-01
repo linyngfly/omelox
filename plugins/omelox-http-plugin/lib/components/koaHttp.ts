@@ -21,7 +21,6 @@ const logger = getLogger('omelox', path.basename(__filename));
 
 interface HttpOpts {
     cors: boolean;
-
 }
 
 
@@ -41,25 +40,30 @@ export class KoaHttpComponent implements IComponent {
     static afterFilters: any[] = [];
 
     constructor(app: Application, opts: any) {
-        console.log(`KoaHttpComponent constructor app:${app.getBase()} opts:${opts ? JSON.stringify(opts) : ''}`);
+        logger.info(`KoaHttpComponent constructor app:${app.getBase()} opts:${opts ? JSON.stringify(opts) : ''}`);
         this.app = app;
         this.http = new Koa();
 
         let serverType = app.getServerType();
         let serverId = app.getServerId();
         let serverOpts = opts[serverType];
-        serverOpts.forEach(function (item: any) {
-            if (item.id === serverId) {
-                serverOpts = item;
-            }
-        });
-
         if (!serverOpts) {
-            assert.ok(false, 'http config is empty');
+            assert.ok(false, `${serverType} http config is empty`);
             process.exit(0);
             return;
         }
-        this.opts = serverOpts;
+
+        serverOpts.forEach((item: any) => {
+            if (item.id === serverId) {
+                this.opts = item;
+            }
+        });
+
+        if (!this.opts) {
+            assert.ok(false, `${serverType}-${serverId} http config is empty`);
+            process.exit(0);
+            return;
+        }
 
         this.useCluster = this.opts.useCluster;
         this.host = this.opts.host;
