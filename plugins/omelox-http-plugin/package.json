@@ -20,7 +20,7 @@
     "node": ">=8.5"
   },
   "main": "./dist/index",
-  "types": "./src/index",
+  "types": "./index",
   "dependencies": {
     "co-body": "^5.2.0",
     "debug": "^3.2.6",
