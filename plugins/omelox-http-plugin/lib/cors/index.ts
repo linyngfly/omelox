@@ -12,7 +12,7 @@
  * @api public
  */
 export default function crossOrigin(options: any = {}) {
-  const defaultOptions = {
+  const defaultOptions: any = {
     allowMethods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
   };
 
@@ -23,7 +23,7 @@ export default function crossOrigin(options: any = {}) {
     }
   }
 
-  return async function (ctx, next) {
+  return async function (ctx: any, next: Function) {
     let origin;
     if (typeof options.origin === 'function') {
       origin = options.origin(ctx);

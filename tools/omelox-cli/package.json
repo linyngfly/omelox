@@ -42,7 +42,7 @@
     "@types/node": "^12.12.6",
     "@types/optimist": "0.0.29",
     "tslint": "5.20.1",
-    "typescript": "3.7.3"
+    "typescript": "^3.9.7"
   },
   "license": "MIT",
   "gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"

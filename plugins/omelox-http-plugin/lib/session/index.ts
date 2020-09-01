@@ -5,7 +5,7 @@ export default (opts: any = {}) => {
         key = 'koa:sess', store = new Store()
     } = opts;
 
-    return async (ctx, next) => {
+    return async (ctx: any, next: any) => {
         let id = ctx.cookies.get(key, opts);
 
         if (!id) {

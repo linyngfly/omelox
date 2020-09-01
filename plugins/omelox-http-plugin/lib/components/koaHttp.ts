@@ -6,7 +6,7 @@ import * as fs from 'fs';
 import * as assert from 'assert';
 import * as views from 'koa-views';
 import * as json from 'koa-json';
-import * as onerror from 'koa-onerror';
+const onerror = require('koa-onerror');
 import * as koastatic from 'koa-static';
 import cors from '../cors';
 import bodyparser from '../body';
@@ -48,7 +48,7 @@ export class KoaHttpComponent implements IComponent {
         let serverType = app.getServerType();
         let serverId = app.getServerId();
         let serverOpts = opts[serverType];
-        serverOpts.forEach(function (item) {
+        serverOpts.forEach(function (item: any) {
             if (item.id === serverId) {
                 serverOpts = item;
             }
@@ -117,7 +117,7 @@ export class KoaHttpComponent implements IComponent {
         });
     }
 
-    start(cb) {
+    start(cb: Function) {
         KoaHttpComponent.beforeFilters.forEach((item) => {
             this.http.use(item);
         })
@@ -163,13 +163,13 @@ export class KoaHttpComponent implements IComponent {
             logger.info(`http cluster master ${process.pid} running`);
         } else {
             if (this.useSSL) {
-                this.httpServer = https.createServer(this.sslOpts, this.http.callback()).listen(this.port, this.host, function () {
+                this.httpServer = https.createServer(this.sslOpts, this.http.callback()).listen(this.port, this.host, () => {
                     logger.info('http start', this.app.getServerId(), 'url: https://' + this.host + ':' + this.port);
                     logger.info('http start success');
                     process.nextTick(cb);
                 });
             } else {
-                this.httpServer = http.createServer(this.http.callback()).listen(this.port, this.host, function () {
+                this.httpServer = http.createServer(this.http.callback()).listen(this.port, this.host, () => {
                     logger.info('http start', this.app.getServerId(), 'url: http://' + this.host + ':' + this.port);
                     logger.info('http start success');
                     process.nextTick(cb);
@@ -180,12 +180,12 @@ export class KoaHttpComponent implements IComponent {
         }
     }
 
-    afterStart(cb) {
+    afterStart(cb: Function) {
         logger.info('Http afterStart');
         process.nextTick(cb);
     }
 
-    stop(force, cb) {
+    stop(force: any, cb: Function) {
         this.httpServer.close(function () {
             logger.info('Http stop');
             cb();

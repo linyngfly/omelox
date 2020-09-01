@@ -1,4 +1,4 @@
-﻿import {Promise} from 'bluebird';
+﻿import { Promise } from 'bluebird';
 // 支持注解
 import 'reflect-metadata';
 
@@ -9,7 +9,7 @@ import 'reflect-metadata';
  */
 export function preload() {
     // 使用bluebird输出完整的promise调用链
-    global.Promise = Promise;
+    global.Promise = Promise as any;
     // 开启长堆栈
     Promise.config({
         // Enable warnings

@@ -18,17 +18,17 @@
         "node": ">=8.5"
     },
     "dependencies": {
-        "@types/bluebird": "^3.5.19",
-        "@types/node": "^12.12.6",
-        "bluebird": "^3.5.1",
+        "bluebird": "^3.7.2",
         "omelox": "^3.0.12",
         "omelox-base-plugin": "^3.0.12",
         "reflect-metadata": "^0.1.10",
         "source-map-support": "^0.5.0"
     },
     "devDependencies": {
+        "@types/bluebird": "^3.5.32",
+        "@types/node": "^12.12.6",
         "tslint": "^5.9.1",
-        "typescript": "3.7.3"
+        "typescript": "^3.9.7"
     },
     "gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"
 }

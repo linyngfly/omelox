@@ -20,7 +20,7 @@ export default function requestbody(opts?: any) {
   opts.textLimit = 'textLimit' in opts ? opts.textLimit : '56kb';
   opts.strict = 'strict' in opts ? opts.strict : true;
 
-  return function (ctx, next) {
+  return function (ctx: any, next: Function) {
     let bodyPromise;
     // so don't parse the body in strict mode
     if (!opts.strict || ["GET", "HEAD", "DELETE"].indexOf(ctx.method.toUpperCase()) === -1) {
@@ -54,7 +54,7 @@ export default function requestbody(opts?: any) {
     }
 
     bodyPromise = bodyPromise || Promise.resolve({});
-    return bodyPromise.catch(function (parsingError) {
+    return bodyPromise.catch(function (parsingError: any) {
       if (typeof opts.onError === 'function') {
         opts.onError(parsingError, ctx);
       } else {
@@ -62,7 +62,7 @@ export default function requestbody(opts?: any) {
       }
       return next();
     })
-      .then(function (body) {
+      .then(function (body: any) {
         if (opts.patchNode) {
           ctx.req.body = body;
         }
@@ -82,19 +82,19 @@ export default function requestbody(opts?: any) {
  * @return {Object}
  * @api private
  */
-function formy(ctx, opts) {
+function formy(ctx: any, opts: any) {
   return new Promise(function (resolve, reject) {
-    let fields = {};
-    let files = {};
+    let fields: any = {};
+    let files: any = {};
     let form = new forms.IncomingForm(opts);
     form.on('end', function () {
       return resolve({
         fields: fields,
         files: files
       });
-    }).on('error', function (err) {
+    }).on('error', function (err: any) {
       return reject(err);
-    }).on('field', function (field, value) {
+    }).on('field', function (field: any, value: any) {
       if (fields[field]) {
         if (Array.isArray(fields[field])) {
           fields[field].push(value);
@@ -104,7 +104,7 @@ function formy(ctx, opts) {
       } else {
         fields[field] = value;
       }
-    }).on('file', function (field, file) {
+    }).on('file', function (field: any, file: any) {
       if (files[field]) {
         if (Array.isArray(files[field])) {
           files[field].push(file);

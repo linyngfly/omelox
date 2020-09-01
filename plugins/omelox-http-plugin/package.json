@@ -37,12 +37,14 @@
   },
   "devDependencies": {
     "@types/koa": "^2.11.4",
+    "@types/koa-json": "^2.0.18",
     "@types/koa-router": "^7.4.1",
     "@types/koa-static": "^4.0.1",
+    "@types/koa-views": "^2.0.4",
     "@types/node": "^12.12.6",
     "@types/yargs": "^13.0.0",
     "tslint": "5.20.1",
-    "typescript": "3.7.3"
+    "typescript": "^3.9.7"
   },
   "license": "MIT",
   "gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"

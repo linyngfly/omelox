@@ -30,7 +30,7 @@
 	"dependencies": {
 		"async": "^3.0.0",
 		"bearcat-buffer": "^0.1.x",
-		"bluebird": "^3.5.1",
+		"bluebird": "^3.7.2",
 		"crc": "^0.2.1",
 		"mqtt-connection": "^3.2.0",
 		"omelox-loader": "^3.0.12",
@@ -43,7 +43,7 @@
 	},
 	"devDependencies": {
 		"@types/async": "^3.0.0",
-		"@types/bluebird": "^3.5.19",
+		"@types/bluebird": "^3.5.32",
 		"@types/crc": "^3.4.0",
 		"@types/node": "^12.12.6",
 		"@types/socket.io": "^2.1.6",
@@ -53,7 +53,7 @@
 		"mocha": "6.2.2",
 		"should": "13.2.3",
 		"tslint": "5.20.1",
-		"typescript": "3.7.3"
+		"typescript": "^3.9.7"
 	},
 	"gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"
 }

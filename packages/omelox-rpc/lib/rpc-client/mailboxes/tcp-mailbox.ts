@@ -1,16 +1,16 @@
-import {getLogger} from 'omelox-logger';
+import { getLogger } from 'omelox-logger';
 
 let logger = getLogger('omelox-rpc', 'mqtt2-mailbox');
-import {EventEmitter} from 'events';
-import {Tracer} from '../../util/tracer';
+import { EventEmitter } from 'events';
+import { Tracer } from '../../util/tracer';
 import * as utils from '../../util/utils';
 
-import  {Composer} from '../../util/composer';
+import { Composer } from '../../util/composer';
 
 import * as util from 'util';
 import * as net from 'net';
-import {Msg} from '../../util/coder';
-import {IMailBox, MailBoxOpts, MailBoxPkg} from '../mailbox';
+import { Msg } from '../../util/coder';
+import { IMailBox, MailBoxOpts, MailBoxPkg } from '../mailbox';
 
 const DEFAULT_CALLBACK_TIMEOUT = 10 * 1000;
 const DEFAULT_INTERVAL = 50;
@@ -39,9 +39,9 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
     composer: Composer;
     ping: number;
     pong: number;
-    timer: {ping?: NodeJS.Timer, pong?: NodeJS.Timer};
+    timer: { ping?: NodeJS.Timer, pong?: NodeJS.Timer };
 
-    constructor(serverInfo: {id: string, host: string, port: number}, opts: MailBoxOpts) {
+    constructor(serverInfo: { id: string, host: string, port: number }, opts: MailBoxOpts) {
         super();
         this.opts = opts || <any>{};
         this.id = serverInfo.id;
@@ -74,7 +74,7 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
         this.socket = net.connect(<any>{
             port: this.port,
             host: this.host
-        }, (err: Error) => {
+        }, () => {
             // success to connect
             this.connected = true;
             this.closed = false;
@@ -85,7 +85,7 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
                 }, this.interval);
             }
             this.heartbeat();
-            utils.invokeCallback(cb, err);
+            utils.invokeCallback(cb, null);
         });
 
         this.composer.on('data', (data: Buffer) => {
@@ -96,13 +96,13 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
             }
             try {
                 const pkg = JSON.parse(data.toString('utf-8', 1));
-                if(pkg instanceof Array) {
+                if (pkg instanceof Array) {
                     this.processMsgs(pkg);
                 } else {
                     this.processMsg(pkg);
                 }
-            } catch(err) {
-                if(err) {
+            } catch (err) {
+                if (err) {
                     logger.error('[omelox-rpc] tcp mailbox process data error: %j', err.stack);
                 }
             }
@@ -117,7 +117,7 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
                 utils.invokeCallback(cb, err);
                 return;
             }
-         //   this.emit('error', err, this);
+            //   this.emit('error', err, this);
             this.emit('close', this.id);
         });
 
@@ -140,7 +140,7 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
             clearInterval(this._interval);
             this._interval = null;
         }
-        if(Object.keys(this.timer).length) {
+        if (Object.keys(this.timer).length) {
             clearTimeout(this.timer['ping']);
             this.timer['ping'] = null;
             clearTimeout(this.timer['pong']);
@@ -174,9 +174,9 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
         }
 
         let id = 0;
-        if(cb) {
+        if (cb) {
             id = this.curId++ & 0xffffffff;
-            if(!id) {
+            if (!id) {
                 id = this.curId++ & 0xffffffff;
             }
             this.requests[id] = cb;
@@ -214,14 +214,14 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
      * @api private
      */
     heartbeat() {
-        if(!this.ping) return;
+        if (!this.ping) return;
 
-        if(this.timer['pong']) {
+        if (this.timer['pong']) {
             clearTimeout(this.timer['pong']);
             this.timer['pong'] = null;
         }
 
-        if(!this.timer['ping']) {
+        if (!this.timer['ping']) {
             this.timer['ping'] = setTimeout(ping, this.ping);
         }
 
@@ -232,7 +232,7 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
          * @api private
          */
         function pong() {
-            if(self.timer['pong']) {
+            if (self.timer['pong']) {
                 clearTimeout(self.timer['pong']);
                 self.timer['pong'] = null;
             }
@@ -247,7 +247,7 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
          * @api private
          */
         function ping() {
-            if(self.timer['ping']) {
+            if (self.timer['ping']) {
                 clearTimeout(self.timer['ping']);
                 self.timer['ping'] = null;
             }
@@ -296,7 +296,7 @@ export class TCPMailBox extends EventEmitter implements IMailBox {
                 delete this.requests[id];
             }
             logger.error('rpc callback timeout, remote server host: %s, port: %s', this.host, this.port);
-            if(cb) {
+            if (cb) {
                 cb(tracer, new Error('rpc callback timeout'));
             }
         }, this.timeoutValue);

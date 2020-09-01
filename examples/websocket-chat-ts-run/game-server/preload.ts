@@ -10,7 +10,7 @@ import { omelox } from 'omelox';
  */
 export function preload() {
     // 使用bluebird输出完整的promise调用链
-    global.Promise = Promise;
+    global.Promise = Promise as any;
     // 开启长堆栈
     Promise.config({
         // Enable warnings
