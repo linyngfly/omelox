@@ -32,9 +32,9 @@ export abstract class config_model_base {
     public static getUrl(filename: string): string {
         let configUrl = null;
         if (process.env.CONFIG_DIR) {
-            configUrl = \`\${path.join(process.env.CONFIG_DIR, filename)}\`;
+            configUrl = \`\${path.join(process.env.CONFIG_DIR, process.env.PUB_PLATFORM, filename)}\`;
         } else {
-            configUrl = \`\${path.join(__dirname, process.env.PUB_VER, filename)}\`;
+            configUrl = \`\${path.join(__dirname, process.env.PUB_PLATFORM, filename)}\`;
         }
         return configUrl;
     }
