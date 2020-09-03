@@ -148,7 +148,6 @@ export abstract class ExportBase {
     }
 
     private walkExcels(dir: string): void {
-        console.log(dir);
         fs.readdirSync(dir).forEach((filename) => {
             const subDir = dir + '/' + filename;
             const stat = fs.statSync(subDir);
@@ -157,8 +156,6 @@ export abstract class ExportBase {
             }
             else {
                 const info = path.parse(subDir);
-                console.log(subDir, info.ext);
-
                 if (consts.SUPPORT_EXCEL_TYPE.length > 0 && consts.SUPPORT_EXCEL_TYPE.indexOf(info.ext) === -1) {
                     return;
                 }

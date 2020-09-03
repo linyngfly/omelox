@@ -3,7 +3,7 @@
 set -e
 
 cp ./README.md ./packages/omelox/README.md
-npm run authors
+# npm run authors
 
 lerna run build
 
