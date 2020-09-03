@@ -50,7 +50,7 @@ import { ChannelComponent } from './components/channel';
  * @module
  */
 
-export class Pinus {
+export class Omelox {
     private _app: Application;
     /**
      * Framework version.
@@ -131,7 +131,7 @@ export class Pinus {
      * Create an omelox application.
      *
      * @return {Application}
-     * @memberOf Pinus
+     * @memberOf Omelox
      * @api public
      */
     createApp(opts ?: ApplicationOptions) {
@@ -149,4 +149,4 @@ export class Pinus {
     }
 }
 
-export let omelox = new Pinus();
+export let omelox = new Omelox();
