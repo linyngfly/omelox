@@ -1,8 +1,12 @@
 
-
 [![Build Status](https://travis-ci.org/node-omelox/omelox.svg?branch=master)](https://travis-ci.org/node-omelox/omelox)
+[![Actions Status](https://github.com/node-omelox/omelox/workflows/ci/badge.svg?branch=master&event=push)](https://github.com/node-omelox/omelox/actions)
 
-示例工程请参见：https://github.com/node-omelox/omelox-example
+官方网站：[https://omelox.io](https://omelox.io)
+欢迎加Omelox官方QQ群：xxxxxxxx
+
+
+示例工程请参见：https://github.com/node-omelox/omelox/tree/master/examples/simple-example
 
 手动安装：
 npm install omelox -g
@@ -12,6 +16,26 @@ cd testProject
 初始化项目
 omelox init
 
+### 与Pomelo的关系
+
+1. omelox是pomelo的TS版本，框架内部把回调改为了Promise。
+1. 框架与pomelo一样，所以可以看pomelo的相关教程。
+1. 协议与pomelo一样，所以pomelo的客户端代码可以直接对接上omelox服务端。
+
+
+### 框架编译方法
+
+```
+git clone https://github.com/node-omelox/omelox.git
+cd omelox
+yarn
+yarn run build
+```
+
+编译好以后可以使用 yarn link 或者 npm link 软链接到自己的项目。
+也可以用 yarn 的 workspace
+
+#### [查看omelox CHANGELOG](CHANGELOG.md)
 
 ## Omelox -- a fast, scalable game server framework for node.js
 
@@ -53,3 +77,6 @@ Omelox is also suitable for real-time web applications; its distributed architec
 Fast, scalable, real-time game server development is not an easy job, and a good container or framework can reduce its complexity.
 Unfortunately, unlike web, finding a game server framework solution is difficult, especially an open source solution. Omelox fills this gap, providing a full solution for building game server frameworks.
 
+### Thanks JetBrains
+
+[JetBrains WebStrom](https://www.jetbrains.com/?from=omelox)
