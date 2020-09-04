@@ -70,6 +70,14 @@ export abstract class ExportBase {
     protected abstract genLangModel(filename: string, content: string, datas: any[]): void;
 
     /**
+     * 生成错误码模型
+     * @param filename 文件名
+     * @param content 文件功能描述
+     * @param datas 数据
+     */
+    protected abstract genErrorModel(filename: string, content: string, datas: any[]): void;
+
+    /**
      * 生成数据配置读取器
      */
     protected abstract genConfigDataGetter(): void;
@@ -248,6 +256,22 @@ export abstract class ExportBase {
             this.mkdirsSync(pathInfo.dir);
 
             this.genLangModel(filename, content, sheetJson.slice(consts.CONFIG_SKIP_ROW));
+        } else if (config_type === CONFIG_TYPE.ERROR) {
+            // 生成ERROR模型
+            let modelData = workBook.Sheets['default'];
+            if (!modelData) {
+                console.log(`${filePath} 无default表单`);
+                return;
+            }
+
+            let content = descriptionSheetJson[5][1];
+            let sheetJson = XLSX.utils.sheet_to_json(modelData, { header: 1, raw: true, blankrows: false });
+            let filename = `${this.outRootDir}/${oriFilename}`;
+
+            const pathInfo = path.parse(filename);
+            this.mkdirsSync(pathInfo.dir);
+
+            this.genErrorModel(filename, content, sheetJson.slice(consts.CONFIG_SKIP_ROW));
         }
 
         for (let pub of this.publishChannel) {
@@ -275,8 +299,11 @@ export abstract class ExportBase {
             } else if (config_type === CONFIG_TYPE.LANG) {
                 // 语言配置类型
                 fmtType = CONFIG_TYPE.LANG;
-                filename = `${this.outRootDir}/i18n`;
-            } else {
+                // filename = `${this.outRootDir}/i18n`;
+            } else if (config_type === CONFIG_TYPE.ERROR) {
+                fmtType = CONFIG_TYPE.ERROR;
+            }
+            else {
                 // 常规数据类型
                 fmtType = CONFIG_TYPE.DATA;
             }
@@ -286,7 +313,7 @@ export abstract class ExportBase {
 
             this.genDataBuffer(filename, fmtType, fields, types, sheetJson.slice(consts.CONFIG_SKIP_ROW), descs);
 
-            if (CONFIG_TYPE.LANG === fmtType) {
+            if (CONFIG_TYPE.LANG === fmtType || CONFIG_TYPE.ERROR === fmtType) {
                 break;
             }
         }

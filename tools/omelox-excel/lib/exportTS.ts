@@ -144,7 +144,45 @@ export class ${modelrName} extends config_model_base {\r\n`
     }
 
     public static getConfigName(filename?: string): string {
-		return \`\${filename}.json\`;
+		return \`${oriFilename}-\${filename}.json\`;
+    }
+
+    public static getUrl(filename: string): string {
+		let configUrl = null;
+		if (process.env.CONFIG_DIR) {
+			configUrl = \`\${path.join(process.env.CONFIG_DIR, 'i18n', filename)}\`;
+		} else {
+			configUrl = \`\${path.join(__dirname, 'i18n', filename)}\`;
+		}
+		return configUrl;
+	}
+}`
+
+        fs.writeFileSync(`${path.parse(filename).dir}/${modelrName}.ts`, str);
+    }
+
+    protected genErrorModel(filename: string, content: string, datas: any[]): void {
+        const oriFilename = path.parse(filename).name;
+        let modelrName = `${oriFilename}_model`;
+
+        let str = `import path = require('path');
+import { config_model_base } from './config_model';
+
+/**
+ * ${content}
+ */
+export class ${modelrName} extends config_model_base {\r\n`
+        // 字段定义
+        str += this._genErrorFieldDefine(datas);
+        str += `\r\n`
+
+        str += `\r\n`
+        str += `\tpublic static getClassName(): string {
+        return \'${modelrName}\'
+    }
+
+    public static getConfigName(filename?: string): string {
+		return \`${oriFilename}-\${filename}.json\`;
     }
 
     public static getUrl(filename: string): string {
@@ -426,7 +464,10 @@ export class config_lang_getter {
                 str = this.genConstConfigBuffer(oriFilename, fields, types, datas, descs)
                 break;
             case CONFIG_TYPE.LANG:
-                str = this.genLangConfigBuffer(filename, fields, types, datas, descs);
+                this.genLangConfigBuffer(oriFilename, fields, types, datas, descs);
+                break;
+            case CONFIG_TYPE.ERROR:
+                str = this.genErrorConfigBuffer(filename, fields, types, datas, descs);
                 break;
             default:
                 console.log(`${filename} 不支持的配置结构`)
@@ -497,6 +538,26 @@ export class config_lang_getter {
             const keyCst = rowArray[0].toString().trim();
             str += `\t/** ${rowArray[1]} */\r\n`
             str += `\t${keyCst}: string;\r\n`
+        }
+
+        return str;
+    }
+
+    /**
+     * 生成错误码字段定义
+     * @param datas 数据
+     */
+    private _genErrorFieldDefine(datas: any[]) {
+        let str = '';
+        for (let i = 0; i < datas.length; i++) {
+            let rowArray = datas[i];
+            if (rowArray.length < 1) {
+                return;
+            }
+
+            const keyCst = rowArray[0].toString().trim();
+            str += `\t/** ${rowArray[2]} */\r\n`
+            str += `\tstatic readonly ${keyCst} = ${rowArray[1]};\r\n`
         }
 
         return str;
@@ -625,15 +686,14 @@ export class config_lang_getter {
      * @param types 字段类型
      * @param datas 数据
      */
-    private genLangConfigBuffer(filename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
-
+    private genLangConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
         for (let i = 1; i < fields.length; i++) {
             let oriFilenameData = fields[i];
             let str = `{\r\n`;
             for (let j = 0; j < datas.length; j++) {
                 let rowArray = datas[j];
                 if (rowArray.length < 2) {
-                    console.log(`配置文件${filename}第${i + 1 + CONFIG_SKIP_ROW}行数据异常, 列数不足4`, JSON.stringify(rowArray));
+                    console.log(`配置文件${oriFilename}第${i + 1 + CONFIG_SKIP_ROW}行数据异常, 列数不足4`, JSON.stringify(rowArray));
                     return;
                 }
 
@@ -647,7 +707,38 @@ export class config_lang_getter {
             str += `}\r\n`
 
             if (str) {
-                let filename1 = `${filename}/${oriFilenameData}.json`
+                let filename1 = `${this.outRootDir}/i18n/${oriFilename}-${oriFilenameData}.json`
+                const pathInfo = path.parse(filename1);
+                this.mkdirsSync(pathInfo.dir);
+
+                fs.writeFileSync(filename1, str);
+            }
+
+        }
+    }
+
+    private genErrorConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
+        for (let i = 1; i < fields.length; i++) {
+            let oriFilenameData = fields[i];
+            let str = `{\r\n`;
+            for (let j = 0; j < datas.length; j++) {
+                let rowArray = datas[j];
+                if (rowArray.length < 2) {
+                    console.log(`配置文件${oriFilename}第${i + 1 + CONFIG_SKIP_ROW}行数据异常, 列数不足4`, JSON.stringify(rowArray));
+                    return;
+                }
+
+                const keyCst = rowArray[0].toString().trim();
+                if (j === datas.length - 1) {
+                    str += `\t\"${keyCst}\":\"${rowArray[i].toString().trim()}\"\r\n`
+                } else {
+                    str += `\t\"${keyCst}\":\"${rowArray[i].toString().trim()}\",\r\n`
+                }
+            }
+            str += `}\r\n`
+
+            if (str) {
+                let filename1 = `${this.outRootDir}/i18n/${oriFilename}-${oriFilenameData}.json`
                 const pathInfo = path.parse(filename1);
                 this.mkdirsSync(pathInfo.dir);
 

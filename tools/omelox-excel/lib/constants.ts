@@ -33,7 +33,9 @@ export const CONFIG_TYPE = {
     /** 常量配置 */
     CONST: 'const',
     /** 语言配置 */
-    LANG: 'lang'
+    LANG: 'lang',
+    /** 错误码配置 */
+    ERROR: 'error'
 }
 
 /** 配置适用范围 */
