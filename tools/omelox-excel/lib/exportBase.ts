@@ -32,6 +32,7 @@ export abstract class ExportBase {
         this.genConfigDataGetter();
         this.genConfigConstGetter();
         this.genConfigLangGetter();
+        this.genConfigErrorGetter();
         this.walkExcels(this.excelDir);
         this.genDataFileName();
     }
@@ -91,6 +92,10 @@ export abstract class ExportBase {
      * 生成语言配置读取器
      */
     protected abstract genConfigLangGetter(): void;
+    /**
+     * 生成错误码配置读取器
+     */
+    protected abstract genConfigErrorGetter(): void;
 
     /**
      * 生成数据配置文件

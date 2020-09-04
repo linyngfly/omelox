@@ -172,10 +172,6 @@ import { config_model_base } from './config_model';
  * ${content}
  */
 export class ${modelrName} extends config_model_base {\r\n`
-        // 字段定义
-        str += this._genErrorFieldDefine(datas);
-        str += `\r\n`
-
         str += `\r\n`
         str += `\tpublic static getClassName(): string {
         return \'${modelrName}\'
@@ -195,6 +191,11 @@ export class ${modelrName} extends config_model_base {\r\n`
 		return configUrl;
 	}
 }`
+        str += `\r\n`
+        str += `export enum ${oriFilename} {`
+        // 字段定义
+        str += this._genErrorFieldDefine(datas);
+        str += `}`
 
         fs.writeFileSync(`${path.parse(filename).dir}/${modelrName}.ts`, str);
     }
@@ -420,7 +421,7 @@ export class config_lang_getter {
     * @param configClass 数据模型类
     * @param lang 语言标识
     */
-    public getConstData<T extends config_model_base>(configClass: ConfigClass<T>, lang: string): T {
+    public getLangData<T extends config_model_base>(configClass: ConfigClass<T>, lang: string = 'zh-CN'): T {
         let configData = this.getConfigData(configClass, lang);
         return configData;
     }
@@ -443,6 +444,53 @@ export class config_lang_getter {
 }`
         fs.writeFileSync(`${this.outRootDir}/config_lang_getter.ts`, str);
     }
+
+
+    protected genConfigErrorGetter(): void {
+        let str = `import { config_model_base, ConfigClass } from './config_model';
+export class config_error_getter {
+    /** 配置数据 */
+    private modelDatas = new Map<string, any>();
+
+    private static _instance: config_error_getter = null;
+
+    public static get instance() {
+        if (null == config_error_getter._instance) {
+            config_error_getter._instance = new config_error_getter();
+        }
+
+        return config_error_getter._instance;
+    }
+
+    /**
+    * 读取配置
+    * @param configClass 数据模型类
+    * @param lang 语言标识
+    */
+    public getLangMsg<T extends config_model_base>(configClass: ConfigClass<T>, code: string, lang: string = 'zh-CN'): string {
+        let configData = this.getConfigData(configClass, lang);
+        return configData[code];
+    }
+
+    private getConfigData<T extends config_model_base>(uiClass: ConfigClass<T>, filename: string) {
+        let cfgFileName = uiClass.getConfigName(filename);
+        let configData = this.modelDatas.get(cfgFileName)
+        if (!configData) {
+            let configUrl = uiClass.getUrl(cfgFileName);
+            configData = config_model_base.loadJson(configUrl);
+            this.modelDatas.set(cfgFileName, configData);
+        }
+
+        if (!configData) {
+            console.log(\`配置文件\${cfgFileName}不存在, 请检查\`);
+        }
+
+        return configData;
+    }
+}`
+        fs.writeFileSync(`${this.outRootDir}/config_error_getter.ts`, str);
+    }
+
     /**
      * 生成JOSN数据配置
      * @param filename 文件名称
@@ -467,7 +515,7 @@ export class config_lang_getter {
                 this.genLangConfigBuffer(oriFilename, fields, types, datas, descs);
                 break;
             case CONFIG_TYPE.ERROR:
-                str = this.genErrorConfigBuffer(filename, fields, types, datas, descs);
+                this.genErrorConfigBuffer(oriFilename, fields, types, datas, descs);
                 break;
             default:
                 console.log(`${filename} 不支持的配置结构`)
@@ -557,7 +605,7 @@ export class config_lang_getter {
 
             const keyCst = rowArray[0].toString().trim();
             str += `\t/** ${rowArray[2]} */\r\n`
-            str += `\tstatic readonly ${keyCst} = ${rowArray[1]};\r\n`
+            str += `\t${keyCst} = ${rowArray[1]},\r\n`
         }
 
         return str;
@@ -718,7 +766,7 @@ export class config_lang_getter {
     }
 
     private genErrorConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
-        for (let i = 1; i < fields.length; i++) {
+        for (let i = 2; i < fields.length; i++) {
             let oriFilenameData = fields[i];
             let str = `{\r\n`;
             for (let j = 0; j < datas.length; j++) {
