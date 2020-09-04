@@ -10,5 +10,5 @@
   "scripts": [
     "lib/client/protobuf.js"
   ],
-  "repo": "https://github.com/pinusnode/omelox-protobuf"
+  "repo": "https://github.com/omeloxnode/omelox-protobuf"
 }

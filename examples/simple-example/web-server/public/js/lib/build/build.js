@@ -728,7 +728,7 @@ require.register("node-omelox-omelox-protocol/lib/protocol.js", function(exports
 })('object' === typeof module ? module.exports : (this.Protocol = {}),'object' === typeof module ? Buffer : Uint8Array, this);
 
 });
-require.register("pinusnode-omelox-protobuf/lib/client/protobuf.js", function(exports, require, module){
+require.register("omeloxnode-omelox-protobuf/lib/client/protobuf.js", function(exports, require, module){
 /* ProtocolBuffer client 0.1.0*/
 
 /**
@@ -1343,7 +1343,7 @@ require.register("pinusnode-omelox-protobuf/lib/client/protobuf.js", function(ex
 
 
 });
-require.register("pinusnode-omelox-jsclient-websocket/lib/omelox-client.js", function(exports, require, module){
+require.register("omeloxnode-omelox-jsclient-websocket/lib/omelox-client.js", function(exports, require, module){
 (function() {
   var JS_WS_CLIENT_TYPE = 'js-websocket';
   var JS_WS_CLIENT_VERSION = '0.0.1';
@@ -1720,11 +1720,11 @@ require.alias("node-omelox-omelox-protocol/lib/protocol.js", "boot/deps/omelox-p
 require.alias("node-omelox-omelox-protocol/lib/protocol.js", "boot/deps/omelox-protocol/index.js");
 require.alias("node-omelox-omelox-protocol/lib/protocol.js", "node-omelox-omelox-protocol/index.js");
 
-require.alias("pinusnode-omelox-protobuf/lib/client/protobuf.js", "boot/deps/omelox-protobuf/lib/client/protobuf.js");
-require.alias("pinusnode-omelox-protobuf/lib/client/protobuf.js", "boot/deps/omelox-protobuf/index.js");
-require.alias("pinusnode-omelox-protobuf/lib/client/protobuf.js", "pinusnode-omelox-protobuf/index.js");
+require.alias("omeloxnode-omelox-protobuf/lib/client/protobuf.js", "boot/deps/omelox-protobuf/lib/client/protobuf.js");
+require.alias("omeloxnode-omelox-protobuf/lib/client/protobuf.js", "boot/deps/omelox-protobuf/index.js");
+require.alias("omeloxnode-omelox-protobuf/lib/client/protobuf.js", "omeloxnode-omelox-protobuf/index.js");
 
-require.alias("pinusnode-omelox-jsclient-websocket/lib/omelox-client.js", "boot/deps/omelox-jsclient-websocket/lib/omelox-client.js");
-require.alias("pinusnode-omelox-jsclient-websocket/lib/omelox-client.js", "boot/deps/omelox-jsclient-websocket/index.js");
-require.alias("pinusnode-omelox-jsclient-websocket/lib/omelox-client.js", "pinusnode-omelox-jsclient-websocket/index.js");
+require.alias("omeloxnode-omelox-jsclient-websocket/lib/omelox-client.js", "boot/deps/omelox-jsclient-websocket/lib/omelox-client.js");
+require.alias("omeloxnode-omelox-jsclient-websocket/lib/omelox-client.js", "boot/deps/omelox-jsclient-websocket/index.js");
+require.alias("omeloxnode-omelox-jsclient-websocket/lib/omelox-client.js", "omeloxnode-omelox-jsclient-websocket/index.js");
 
