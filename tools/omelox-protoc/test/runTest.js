@@ -1,5 +1,5 @@
 require('ts-node/register');
-const main = require('./src/');
+const main = require('../lib');
 
 
 let test = main.parseToOmeloxProtobuf('./testInterface');

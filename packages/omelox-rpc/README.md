@@ -8,7 +8,7 @@ The client part generates the RPC client proxy, routes the message to the approp
 
 The server part exports the remote services, dispatches the remote requests to the services and also manages the network communications.
 
-And the remote service codes would loaded by omelox-loader module and more details please access this [link](https://github.com/node-omelox/omelox-loader).
+And the remote service codes would loaded by omelox-loader module and more details please access this [link](https://gitee.com/gamingcity/omelox-loader).
 
 + Tags: node.js
 

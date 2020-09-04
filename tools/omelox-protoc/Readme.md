@@ -1,12 +1,10 @@
-![test-parse](https://github.com/whtiehack/omelox-parse-interface/workflows/test-parse/badge.svg)
-
 
 ####  parse TS interface to omelox-protobuf JSON 
 解析  ts 的interface 到 omelox-protobuf用的 json格式。
 
 
 
-omelox: https://github.com/node-omelox/omelox
+omelox: https://gitee.com/gamingcity/omelox
 
 ## changelog
 ```
@@ -31,17 +29,17 @@ v0.1.3:
 ```
 ## install
 
-`npm install omelox-parse-interface`
+`npm install omelox-protoc`
 
 or
 
-`yarn add omelox-parse-interface`
+`yarn add omelox-protoc`
 
 
 ## usage
 
 ```
-const main = require('omelox-parse-interface');
+const main = require('omelox-protoc');
 
 const test = main.parseToOmeloxProtobuf('path_to_you_interface_dir');
 console.log('result',JSON.stringify(test,null,4));

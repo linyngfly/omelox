@@ -13,6 +13,6 @@
     "testInterface"
   ],
   "include": [
-    "./src/**/*.ts"
+    "./**/*.ts"
   ]
 }
