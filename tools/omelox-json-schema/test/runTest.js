@@ -8,7 +8,7 @@ let test = main.parseToJsonSchem('./tools/omelox-json-schema/testInterface');
 // console.log('server result', JSON.stringify(test, null, 4));
 fs.writeFileSync("schema_struct.json", JSON.stringify(test, null, 4))
 
-main.parseAndWrite('./testInterface', './clientProtos.json','./serverProtos.json');
+// main.parseAndWrite('./testInterface', './clientProtos.json','./serverProtos.json');
 let compare = JSON.stringify({
     "client": {
         "rank.playerHandler.beginGame": {

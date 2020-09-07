@@ -1,670 +1,86 @@
 {
     "client": {
-        "rank.playerHandler.beginGame": {
+        "gate/clientApi/auth": {
             "type": "object",
             "properties": {
-                "token": {
-                    "description": "Specify individual fields in items.",
-                    "minimum": 0,
-                    "maximum": 100,
+                "pay_type": {
+                    "description": "支付类型",
                     "type": "number"
                 },
-                "msg": {
-                    "type": "string"
+                "auth_type": {
+                    "description": "授权渠道",
+                    "type": "number"
                 },
-                "duplicateIgg": {
-                    "$ref": "#/definitions/IGG_1"
+                "auth_data": {
+                    "description": "授权数据",
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/WechatAuthData"
+                        },
+                        {
+                            "$ref": "#/definitions/FacebookAuthData"
+                        }
+                    ]
                 },
-                "sharewithServerused": {
-                    "$ref": "#/definitions/GGG"
+                "plat_id": {
+                    "description": "平台标识",
+                    "$ref": "#/definitions/PlatIdentify"
+                },
+                "options": {
+                    "description": "定制选项(可选)"
                 }
             },
             "required": [
-                "token"
+                "auth_data",
+                "auth_type",
+                "pay_type"
             ],
             "definitions": {
-                "EnumTestInt": {
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ],
-                    "type": "number"
-                },
-                "EnumTest": {
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ],
-                    "type": "number"
-                },
-                "GGG": {
+                "WechatAuthData": {
+                    "description": "微信授权数据",
                     "type": "object",
                     "properties": {
-                        "ccgg": {
-                            "type": "number"
+                        "code": {
+                            "description": "授权code",
+                            "type": "string"
                         }
                     },
                     "required": [
-                        "ccgg"
+                        "code"
                     ]
                 },
-                "MyRank": {
+                "FacebookAuthData": {
+                    "description": "facebook授权数据",
                     "type": "object",
                     "properties": {
-                        "nickname": {
-                            "type": "number"
-                        },
-                        "ggg": {
-                            "$ref": "#/definitions/GGG"
-                        },
-                        "xxx": {
-                            "$ref": "#/definitions/GGG"
+                        "access_token": {
+                            "description": "facebook授权token",
+                            "type": "string"
                         }
                     },
                     "required": [
-                        "ggg",
-                        "nickname",
-                        "xxx"
+                        "access_token"
                     ]
                 },
-                "IGG": {
+                "PlatIdentify": {
                     "type": "object",
                     "properties": {
-                        "ggenv": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                },
-                "IGG_1": {
-                    "type": "object",
-                    "properties": {
-                        "ggenv": {
-                            "description": "================.",
-                            "type": "array",
-                            "items": {
-                                "type": "integer",
-                                "minimum": 0,
-                                "maximum": 100
-                            }
+                        "plat_code": {
+                            "description": "平台编码",
+                            "type": "string"
                         },
-                        "zz": {
-                            "minimum": 0,
-                            "maximum": 100,
-                            "type": "number"
+                        "line_code": {
+                            "description": "平台子线路编码",
+                            "type": "string"
                         }
                     },
                     "required": [
-                        "ggenv",
-                        "zz"
-                    ]
-                }
-            },
-            "$schema": "http://json-schema.org/draft-07/schema#"
-        },
-        "rank.playerHandler.onlyNotify": {
-            "type": "object",
-            "properties": {
-                "token": {
-                    "type": "uInt32"
-                },
-                "msg": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "token"
-            ],
-            "definitions": {
-                "EnumTestInt": {
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ],
-                    "type": "number"
-                },
-                "EnumTest": {
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ],
-                    "type": "number"
-                },
-                "GGG": {
-                    "type": "object",
-                    "properties": {
-                        "ccgg": {
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "ccgg"
-                    ]
-                },
-                "MyRank": {
-                    "type": "object",
-                    "properties": {
-                        "nickname": {
-                            "type": "number"
-                        },
-                        "ggg": {
-                            "$ref": "#/definitions/GGG"
-                        },
-                        "xxx": {
-                            "$ref": "#/definitions/GGG"
-                        }
-                    },
-                    "required": [
-                        "ggg",
-                        "nickname",
-                        "xxx"
-                    ]
-                },
-                "IGG": {
-                    "type": "object",
-                    "properties": {
-                        "ggenv": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                },
-                "IGG_1": {
-                    "type": "object",
-                    "properties": {
-                        "ggenv": {
-                            "description": "================.",
-                            "type": "array",
-                            "items": {
-                                "type": "integer",
-                                "minimum": 0,
-                                "maximum": 100
-                            }
-                        },
-                        "zz": {
-                            "minimum": 0,
-                            "maximum": 100,
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "ggenv",
-                        "zz"
+                        "plat_code"
                     ]
                 }
             },
             "$schema": "http://json-schema.org/draft-07/schema#"
         }
     },
-    "server": {
-        "rank.playerHandler.beginGame": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "number"
-                },
-                "msg": {
-                    "type": "string"
-                },
-                "currank": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "currank"
-            ],
-            "definitions": {
-                "EnumTestInt": {
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ],
-                    "type": "number"
-                },
-                "EnumTest": {
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ],
-                    "type": "number"
-                },
-                "GGG": {
-                    "type": "object",
-                    "properties": {
-                        "ccgg": {
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "ccgg"
-                    ]
-                },
-                "MyRank": {
-                    "type": "object",
-                    "properties": {
-                        "nickname": {
-                            "type": "number"
-                        },
-                        "ggg": {
-                            "$ref": "#/definitions/GGG"
-                        },
-                        "xxx": {
-                            "$ref": "#/definitions/GGG"
-                        }
-                    },
-                    "required": [
-                        "ggg",
-                        "nickname",
-                        "xxx"
-                    ]
-                },
-                "IGG": {
-                    "type": "object",
-                    "properties": {
-                        "ggenv": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                },
-                "IGG_1": {
-                    "type": "object",
-                    "properties": {
-                        "ggenv": {
-                            "description": "================.",
-                            "type": "array",
-                            "items": {
-                                "type": "integer",
-                                "minimum": 0,
-                                "maximum": 100
-                            }
-                        },
-                        "zz": {
-                            "minimum": 0,
-                            "maximum": 100,
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "ggenv",
-                        "zz"
-                    ]
-                }
-            },
-            "$schema": "http://json-schema.org/draft-07/schema#"
-        },
-        "enumTest": {
-            "type": "object",
-            "properties": {
-                "aa": {
-                    "type": "string"
-                },
-                "bb": {
-                    "type": "number"
-                },
-                "cc": {
-                    "$ref": "#/definitions/EnumTestInt",
-                    "type": "uInt32"
-                },
-                "enumstr": {
-                    "enum": [
-                        "aa",
-                        "cc"
-                    ],
-                    "type": "string"
-                }
-            },
-            "required": [
-                "bb",
-                "cc"
-            ],
-            "definitions": {
-                "EnumTestInt": {
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ],
-                    "type": "number"
-                },
-                "EnumTest": {
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ],
-                    "type": "number"
-                },
-                "GGG": {
-                    "type": "object",
-                    "properties": {
-                        "ccgg": {
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "ccgg"
-                    ]
-                },
-                "MyRank": {
-                    "type": "object",
-                    "properties": {
-                        "nickname": {
-                            "type": "number"
-                        },
-                        "ggg": {
-                            "$ref": "#/definitions/GGG"
-                        },
-                        "xxx": {
-                            "$ref": "#/definitions/GGG"
-                        }
-                    },
-                    "required": [
-                        "ggg",
-                        "nickname",
-                        "xxx"
-                    ]
-                },
-                "IGG": {
-                    "type": "object",
-                    "properties": {
-                        "ggenv": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                },
-                "IGG_1": {
-                    "type": "object",
-                    "properties": {
-                        "ggenv": {
-                            "description": "================.",
-                            "type": "array",
-                            "items": {
-                                "type": "integer",
-                                "minimum": 0,
-                                "maximum": 100
-                            }
-                        },
-                        "zz": {
-                            "minimum": 0,
-                            "maximum": 100,
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "ggenv",
-                        "zz"
-                    ]
-                }
-            },
-            "$schema": "http://json-schema.org/draft-07/schema#"
-        },
-        "onAdd": {
-            "type": "object",
-            "properties": {
-                "nickname": {
-                    "type": "string"
-                },
-                "nickname11": {
-                    "type": "number"
-                },
-                "nowplayers": {
-                    "type": "number"
-                },
-                "nowplayers2": {
-                    "description": "The float of the nowplayers.",
-                    "type": "float"
-                },
-                "nowplayers3": {
-                    "description": "The float of the nowplayers.",
-                    "type": "double"
-                }
-            },
-            "required": [
-                "nickname",
-                "nickname11",
-                "nowplayers",
-                "nowplayers2",
-                "nowplayers3"
-            ],
-            "definitions": {
-                "EnumTestInt": {
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ],
-                    "type": "number"
-                },
-                "EnumTest": {
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ],
-                    "type": "number"
-                },
-                "GGG": {
-                    "type": "object",
-                    "properties": {
-                        "ccgg": {
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "ccgg"
-                    ]
-                },
-                "MyRank": {
-                    "type": "object",
-                    "properties": {
-                        "nickname": {
-                            "type": "number"
-                        },
-                        "ggg": {
-                            "$ref": "#/definitions/GGG"
-                        },
-                        "xxx": {
-                            "$ref": "#/definitions/GGG"
-                        }
-                    },
-                    "required": [
-                        "ggg",
-                        "nickname",
-                        "xxx"
-                    ]
-                },
-                "IGG": {
-                    "type": "object",
-                    "properties": {
-                        "ggenv": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                },
-                "IGG_1": {
-                    "type": "object",
-                    "properties": {
-                        "ggenv": {
-                            "description": "================.",
-                            "type": "array",
-                            "items": {
-                                "type": "integer",
-                                "minimum": 0,
-                                "maximum": 100
-                            }
-                        },
-                        "zz": {
-                            "minimum": 0,
-                            "maximum": 100,
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "ggenv",
-                        "zz"
-                    ]
-                }
-            },
-            "$schema": "http://json-schema.org/draft-07/schema#"
-        },
-        "onRank": {
-            "type": "object",
-            "properties": {
-                "normalArr": {
-                    "description": "The float of the nowplayers.",
-                    "additionalProperties": "uInt32",
-                    "type": "array"
-                },
-                "enum": {
-                    "$ref": "#/definitions/EnumTest",
-                    "type": "uInt32"
-                },
-                "normalStrArr": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "innerGGG": {
-                    "$ref": "#/definitions/GGG"
-                },
-                "ranks": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/MyRank"
-                    }
-                },
-                "rk": {
-                    "$ref": "#/definitions/MyRank"
-                },
-                "val": {
-                    "type": "number"
-                },
-                "ffname": {
-                    "type": "string"
-                },
-                "aa": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/IGG"
-                    }
-                },
-                "ggenv": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            },
-            "required": [
-                "enum",
-                "ffname",
-                "normalArr",
-                "normalStrArr",
-                "ranks"
-            ],
-            "definitions": {
-                "EnumTestInt": {
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ],
-                    "type": "number"
-                },
-                "EnumTest": {
-                    "enum": [
-                        0,
-                        1,
-                        2
-                    ],
-                    "type": "number"
-                },
-                "GGG": {
-                    "type": "object",
-                    "properties": {
-                        "ccgg": {
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "ccgg"
-                    ]
-                },
-                "MyRank": {
-                    "type": "object",
-                    "properties": {
-                        "nickname": {
-                            "type": "number"
-                        },
-                        "ggg": {
-                            "$ref": "#/definitions/GGG"
-                        },
-                        "xxx": {
-                            "$ref": "#/definitions/GGG"
-                        }
-                    },
-                    "required": [
-                        "ggg",
-                        "nickname",
-                        "xxx"
-                    ]
-                },
-                "IGG": {
-                    "type": "object",
-                    "properties": {
-                        "ggenv": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                },
-                "IGG_1": {
-                    "type": "object",
-                    "properties": {
-                        "ggenv": {
-                            "description": "================.",
-                            "type": "array",
-                            "items": {
-                                "type": "integer",
-                                "minimum": 0,
-                                "maximum": 100
-                            }
-                        },
-                        "zz": {
-                            "minimum": 0,
-                            "maximum": 100,
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "ggenv",
-                        "zz"
-                    ]
-                }
-            },
-            "$schema": "http://json-schema.org/draft-07/schema#"
-        }
-    }
+    "server": {}
 }

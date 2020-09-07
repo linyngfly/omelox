@@ -1,6 +1,6 @@
 {
   "name": "omelox-excel",
-  "version": "3.0.15",
+  "version": "3.0.16",
   "author": "yng <linyngfly@163.com>",
   "private": false,
   "description": "excel to h5 json configuration",
