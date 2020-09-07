@@ -192,7 +192,7 @@ export class ${modelrName} extends config_model_base {\r\n`
 	}
 }`
         str += `\r\n`
-        str += `export enum ${oriFilename} {`
+        str += `export enum ${oriFilename} {\r\n`
         // 字段定义
         str += this._genErrorFieldDefine(datas);
         str += `}`
@@ -708,8 +708,6 @@ export class config_error_getter {
                 return;
             }
 
-
-
             const keyCst = rowArray[0].toString().trim();
             let value = this.paresFieldValue(rowArray[1], rowArray[2])
             if (null == value) {
@@ -746,6 +744,7 @@ export class config_error_getter {
                 }
 
                 const keyCst = rowArray[0].toString().trim();
+                rowArray[i] = rowArray[i] || '';
                 if (j === datas.length - 1) {
                     str += `\t\"${keyCst}\":\"${rowArray[i].toString().trim()}\"\r\n`
                 } else {
@@ -777,6 +776,7 @@ export class config_error_getter {
                 }
 
                 const keyCst = rowArray[0].toString().trim();
+                rowArray[i] = rowArray[i] || '';
                 if (j === datas.length - 1) {
                     str += `\t\"${keyCst}\":\"${rowArray[i].toString().trim()}\"\r\n`
                 } else {
