@@ -1,39 +1,41 @@
-import * as util  from 'util';
-import * as  vm  from 'vm';
+import * as util from 'util';
+import * as  vm from 'vm';
 import { EventEmitter } from 'events';
-import * as  monitor  from '../monitor/monitor';
-import * as  fs  from 'fs';
-import * as  path  from 'path';
+import * as  monitor from '../monitor/monitor';
+import * as  fs from 'fs';
+import * as  path from 'path';
 import { logging, Logger } from '../common/logging';
 import { AgentCfg } from './agent';
 
 
 export interface IActor {
-    id: number;
+  id: number;
 
-    emit(type: 'start' | 'end' , action: string , reqId: string): void;
-    emit(type: 'incr' | 'decr' , action: string): void;
+  emit(type: 'start' | 'end', action: string, reqId: string): void;
+  emit(type: 'incr' | 'decr', action: string): void;
 }
 
 export class Actor extends EventEmitter implements IActor {
   id: number;
   script: string;
+  gameConf: any;
   log: Logger = logging;
-  constructor(conf: AgentCfg, aid: number) {
+  constructor(conf: AgentCfg, aid: number, gameConf: any) {
     super();
+    this.gameConf = gameConf;
     this.id = aid;
     if (conf.script) {
       this.script = conf.script;
     }
     else {
-     if(path.isAbsolute(conf.scriptFile)) {
-      this.script = `require("${conf.scriptFile}").default(actor);`;
-     }
-     else {
-      this.script = `require("${path.join(process.cwd() , conf.scriptFile)}").default(actor);`;
-     }
+      if (path.isAbsolute(conf.scriptFile)) {
+        this.script = `require("${conf.scriptFile}").default(actor);`;
+      }
+      else {
+        this.script = `require("${path.join(process.cwd(), conf.scriptFile)}").default(actor);`;
+      }
     }
-    console.log('runScript ' , this.script);
+    console.log('runScript ', this.script);
     this.on('start', (action: string, reqId: number) => {
       monitor.beginTime(action, this.id, reqId);
     });

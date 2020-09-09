@@ -1,10 +1,10 @@
-import {Agent, AgentCfg } from './agent/agent';
-import {Server, ServerCfg}  from './master/server';
-import {HTTP_SERVER} from './console/http';
+import { Agent, AgentCfg } from './agent/agent';
+import { Server, ServerCfg } from './master/server';
+import { HTTP_SERVER } from './console/http';
 
 export interface RobotCfg {
-  clients ?: Array<string>;
-  master ?: {host: string, port: number, interval: number, webport: number};
+  clients?: Array<string>;
+  master?: { host: string, port: number, interval: number, webport: number };
   scriptFile: string;
 }
 /**
@@ -18,11 +18,13 @@ export interface RobotCfg {
  */
 export class Robot {
   conf: RobotCfg;
+  gameConf: any;
   master: Server = null;
   agent: Agent = null;
 
-  constructor(conf: RobotCfg) {
+  constructor(conf: RobotCfg, gameConf: any) {
     this.conf = conf;
+    this.gameConf = gameConf;
   }
 
   /*
@@ -32,12 +34,12 @@ export class Robot {
  *
  */
   runMaster(mainFile: string) {
-    let conf = { } as ServerCfg, master;
+    let conf = {} as ServerCfg, master;
     conf.clients = this.conf.clients;
     conf.mainFile = mainFile;
     this.master = new Server(conf);
     this.master.listen(this.conf.master.port);
-    HTTP_SERVER.start(`http://${this.conf.master.host}:${this.conf.master.port}` , this.conf.master.webport);
+    HTTP_SERVER.start(`http://${this.conf.master.host}:${this.conf.master.port}`, this.conf.master.webport);
   }
 
   /**
@@ -50,7 +52,7 @@ export class Robot {
     let conf = {} as AgentCfg;
     conf.master = this.conf.master;
     conf.scriptFile = scriptFile;
-    this.agent = new Agent(conf);
+    this.agent = new Agent(conf, this.gameConf);
     this.agent.start();
   }
 

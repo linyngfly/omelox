@@ -14,7 +14,7 @@ let HEARTBEAT_PERIOD = 30 * 1000; // 30 seconds
 let HEARTBEAT_FAILS = 3; // Reconnect after 3 missed heartbeats
 
 export interface AgentCfg {
-    master: {host: string, port: number, interval: number};
+    master: { host: string, port: number, interval: number };
     script: string;
     scriptFile: string;
 }
@@ -28,6 +28,7 @@ export interface AgentCfg {
 export class Agent {
     log: Logger = logging;
     conf: AgentCfg;
+    gameConf: any;
     last_heartbeat: any;
     connected: boolean;
     reconnecting: boolean;
@@ -35,9 +36,10 @@ export class Agent {
     count: number;
     socket: Socket;
     nodeId: string;
-    constructor(conf: AgentCfg) {
+    constructor(conf: AgentCfg, gameConf: any) {
         this.log = logging;
         this.conf = conf || <AgentCfg>{};
+        this.gameConf = gameConf;
         this.last_heartbeat = null;
         this.connected = false;
         this.reconnecting = false;
@@ -50,10 +52,10 @@ export class Agent {
     connect() {
         let agent = this;
         let uri = 'http://' + agent.conf.master.host + ':' + agent.conf.master.port;
-        console.log('connecting:' , uri);
+        console.log('connecting:', uri);
         agent.socket = io.connect(uri, { forceNew: true, multiplex: false });
         agent.socket.on('error', function (reason: Error) {
-            console.error('err:' , reason);
+            console.error('err:', reason);
             agent.reconnect();
         });
         // Register announcement callback
@@ -116,7 +118,7 @@ export class Agent {
         let offset = index * this.count;
         for (let i = 0; i < this.count; i++) {
             let aid = i + offset; // calc database key offset;
-            let actor = new Actor(conf, aid);
+            let actor = new Actor(conf, aid, this.gameConf);
             this.actors[aid] = actor;
             (function (actor) {
                 actor.on('error', function (error: Error) {
