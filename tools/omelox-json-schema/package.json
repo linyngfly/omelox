@@ -1,6 +1,6 @@
 {
   "name": "omelox-json-schema",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "dependencies": {
     "ajv": "^6.12.4",
     "cliff": "^0.1.10",

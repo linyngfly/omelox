@@ -128,25 +128,25 @@ function parseFile(baseDir: string, filename: string, program: TJS.Program, gene
     let server;
     if (symbolClient) {
         client = symbolClient;
-        let symbolServer;
-        if (symbols.includes(filename + responseStr)) {
-            if (!client) {
-                console.warn('WARNING:', filename, `has ${responseStr} without ${requestStr}`);
-            }
-            symbolServer = generator.getSchemaForSymbol(filename + responseStr);
-        }
-        if (!symbolServer) {
-            if (client) {
-                //   console.warn('WARNING:',filename,`has ${requestStr} without ${responseStr}`);
-            }
-            if (symbols.includes(filename)) {
-                symbolServer = generator.getSchemaForSymbol(filename);
-            }
-        }
-        if (!symbolServer) {
-            return { client: client };
-        }
-        server = symbolServer;
-        return { client: client, server: server };
     }
+    let symbolServer;
+    if (symbols.includes(filename + responseStr)) {
+        if (!client) {
+            console.warn('WARNING:', filename, `has ${responseStr} without ${requestStr}`);
+        }
+        symbolServer = generator.getSchemaForSymbol(filename + responseStr);
+    }
+    if (!symbolServer) {
+        if (client) {
+            //   console.warn('WARNING:',filename,`has ${requestStr} without ${responseStr}`);
+        }
+        if (symbols.includes(filename)) {
+            symbolServer = generator.getSchemaForSymbol(filename);
+        }
+    }
+    if (!symbolServer) {
+        return { client: client };
+    }
+    server = symbolServer;
+    return { client: client, server: server };
 }

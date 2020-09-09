@@ -40,10 +40,23 @@ export interface gate_clientApi_auth_Req {
      * 授权渠道
      */
     auth_type: number;
-    /** 授权数据 */
+    /** 
+     * 授权数据
+     */
     auth_data: WechatAuthData | FacebookAuthData;
-    /** 平台标识 */
+    /** 
+     * 平台标识
+     */
     plat_id?: PlatIdentify;
-    /** 定制选项(可选) */
+    /** 
+     * 定制选项(可选)
+     */
     options?: any;
+}
+
+export interface gate_clientApi_auth_Res {
+    /**
+     * 授权token
+     */
+    token: string;
 }
