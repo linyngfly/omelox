@@ -8,13 +8,13 @@ export default class Store {
         return randomBytes(length).toString('hex');
     }
 
-    async get(sid: any) {
+    async get(sid: any, ctx?: any) {
         if (!this.sessions.has(sid)) return undefined;
         // We are decoding data coming from our Store, so, we assume it was sanitized before storing
         return JSON.parse(this.sessions.get(sid));
     }
 
-    async set(session: any, { sid = this.getID(24), maxAge = 0 } = {}) {
+    async set(session: any, { sid = this.getID(64), maxAge = 0 } = {}, ctx?: any) {
         // Just a demo how to use maxAge and some cleanup
         if (this.sessions.has(sid) && this.__timer.has(sid)) {
             const __timeout = this.__timer.get(sid);
@@ -33,7 +33,7 @@ export default class Store {
         return sid;
     }
 
-    destroy(sid: any) {
+    destroy(sid: any, ctx?: any) {
         this.sessions.delete(sid);
         this.__timer.delete(sid);
     }

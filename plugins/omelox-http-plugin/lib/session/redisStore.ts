@@ -1,37 +1,56 @@
-// import Redis from 'ioredis';
-// import Store from './store';
+import * as redis from 'redis';
+import Store from './store';
+import * as path from 'path';
+import { promisify } from 'util';
+import { getLogger } from 'omelox-logger';
+const logger = getLogger('omelox', path.basename(__filename));
 
-// class RedisStore extends Store {
-//     redis: any = null;
-//     constructor(opts) {
-//         super();
-//         this.redis = new Redis({
-//             port: opts.port,
-//             host: opts.host,
-//             password: opts.auth ? opts.password : null,
-//             db: opts.db
-//         });
-//     }
+class RedisStore extends Store {
+    redisClient: redis.RedisClient = null;
+    getAsync: any = null;
+    setAsync: any = null;
+    delAsync: any = null;
 
-//     async get(sid, ctx) {
-//         let data = await this.redis.get(`SESSION:${sid}`);
-//         return JSON.parse(data);
-//     }
+    constructor(opts: any) {
+        super();
 
-//     async set(session, {
-//         sid = this.getID(24),
-//         maxAge = 1000000
-//     } = {}, ctx) {
-//         try {
-//             // Use redis set EX to automatically drop expired sessions
-//             await this.redis.set(`SESSION:${sid}`, JSON.stringify(session), 'EX', maxAge / 1000);
-//         } catch (e) { }
-//         return sid;
-//     }
+        this.redisClient = redis.createClient({
+            port: opts.port,
+            host: opts.host,
+            password: opts.auth ? opts.password : null,
+            db: opts.db,
+            prefix: 'common:http'
+        })
 
-//     async destroy(sid, ctx) {
-//         return await this.redis.del(`SESSION:${sid}`);
-//     }
-// }
+        this.redisClient.on('error', function (error: any) {
+            logger.error('http session redis connect error ', error);
+        });
 
-// module.exports = RedisStore;
+        this.getAsync = promisify(this.redisClient.get).bind(this.redisClient);
+        this.setAsync = promisify(this.redisClient.set).bind(this.redisClient);
+        this.delAsync = promisify(this.redisClient.del).bind(this.redisClient);
+    }
+
+    async get(sid: any, ctx?: any) {
+        let data = await this.getAsync.get(`SESSIONID:${sid}`);
+        return JSON.parse(data);
+    }
+
+    async set(session: any, {
+        sid = this.getID(64),
+        maxAge = 1000000
+    } = {}, ctx?: any) {
+        try {
+            // Use redis set EX to automatically drop expired sessions
+            await this.setAsync.set(`SESSIONID:${sid}`, JSON.stringify(session), 'EX');
+            this.redisClient.expire(`SESSIONID:${sid}`, maxAge / 1000);
+        } catch (e) { }
+        return sid;
+    }
+
+    async destroy(sid: any, ctx?: any) {
+        return await this.setAsync.del(`SESSIONID:${sid}`);
+    }
+}
+
+module.exports = RedisStore;

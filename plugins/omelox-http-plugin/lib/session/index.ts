@@ -2,7 +2,7 @@ import Store from './store';
 
 export default (opts: any = {}) => {
     const {
-        key = 'koa:sess', store = new Store()
+        key = 'omelox-http:session', store = new Store()
     } = opts;
 
     return async (ctx: any, next: any) => {
@@ -23,7 +23,7 @@ export default (opts: any = {}) => {
         await next();
 
         // if not changed
-        if (old == JSON.stringify(ctx.session)) return;
+        if (old === JSON.stringify(ctx.session)) return;
 
         // if is an empty object
         if (ctx.session instanceof Object && !Object.keys(ctx.session).length) {
