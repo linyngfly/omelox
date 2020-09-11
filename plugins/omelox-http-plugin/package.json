@@ -19,8 +19,8 @@
   "engines": {
     "node": ">=8.5"
   },
-  "main": "./dist/index",
-  "types": "./index",
+  "main": "./dist/lib/index",
+  "types": "./lib/index",
   "dependencies": {
     "co-body": "^6.0.0",
     "debug": "^3.2.6",

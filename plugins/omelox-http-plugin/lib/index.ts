@@ -1,5 +1,5 @@
 import { IPlugin } from 'omelox';
-import { KoaHttpComponent } from './lib/components/koaHttp';
+import { KoaHttpComponent } from './components/koaHttp';
 
 class OmeloxHttpPlugin implements IPlugin {
     name = 'omeloxHttpPlugin';
