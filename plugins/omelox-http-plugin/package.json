@@ -1,6 +1,6 @@
 {
   "name": "omelox-http-plugin",
-  "version": "3.0.11",
+  "version": "3.0.13",
   "description": "omelox http plugin",
   "files": [
     "dist",
@@ -22,7 +22,7 @@
   "main": "./dist/index",
   "types": "./index",
   "dependencies": {
-    "co-body": "^5.2.0",
+    "co-body": "^6.0.0",
     "debug": "^3.2.6",
     "ejs": "^2.7.4",
     "formidable": "^1.2.2",
@@ -36,6 +36,7 @@
     "redis": "^3.0.2"
   },
   "devDependencies": {
+    "@types/co-body": "^5.1.0",
     "@types/koa": "^2.11.4",
     "@types/koa-json": "^2.0.18",
     "@types/koa-router": "^7.4.1",

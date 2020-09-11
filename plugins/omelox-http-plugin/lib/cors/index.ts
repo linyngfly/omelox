@@ -6,24 +6,26 @@
  *  - {Array} exposeHeaders `Access-Control-Expose-Headers`
  *  - {String|Number} maxAge `Access-Control-Max-Age` in seconds
  *  - {Boolean} credentials `Access-Control-Allow-Credentials`
- *  - {Array} allowMethods `Access-Control-Allow-Methods`, default is ['GET', 'PUT', 'POST', 'DELETE', 'HEAD', 'OPTIONS']
+ *  - {Array} allowMethods `Access-Control-Allow-Methods`,
+ *    default is ['GET', 'PUT', 'POST', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS']
  *  - {Array} allowHeaders `Access-Control-Allow-Headers`
  * @return {Function}
  * @api public
  */
 export default function crossOrigin(options: any = {}) {
-  const defaultOptions: any = {
+  const defaultOptions = {
     allowMethods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
   };
 
   // set defaultOptions to options
-  for (let key in defaultOptions) {
-    if (!Object.prototype.hasOwnProperty.call(options, key)) {
-      options[key] = defaultOptions[key];
-    }
-  }
+  options = Object.assign({}, defaultOptions, options); // eslint-disable-line no-param-reassign
 
-  return async function (ctx: any, next: Function) {
+  // eslint-disable-next-line consistent-return
+  return async function cors(ctx: any, next: any) {
+    // always set vary Origin Header
+    // https://github.com/rs/cors/issues/10
+    ctx.vary('Origin');
+
     let origin;
     if (typeof options.origin === 'function') {
       origin = options.origin(ctx);
@@ -78,9 +80,6 @@ export default function crossOrigin(options: any = {}) {
         } else {
           ctx.set('Access-Control-Allow-Credentials', 'true');
         }
-
-        //TODO why?
-        ctx.set('Access-Control-Allow-Credentials', 'true');
       }
 
       // Access-Control-Expose-Headers

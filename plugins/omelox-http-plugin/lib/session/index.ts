@@ -1,4 +1,12 @@
 import Store from './store';
+import RedisStore from './redisStore';
+
+export enum StoreType {
+    Memory = 1,
+    Redis = 2,
+    MemoryCache = 3,
+    Mysql = 4,
+}
 
 export default (opts: any = {}) => {
     const {
@@ -43,4 +51,25 @@ export default (opts: any = {}) => {
 
         ctx.cookies.set(key, sid, opts);
     }
+}
+
+export function genStore(type: StoreType, opts: any) {
+    let store = null;
+    switch (type) {
+        case StoreType.Redis:
+            store = new RedisStore(opts);
+            break;
+        case StoreType.MemoryCache:
+            break;
+        case StoreType.Mysql:
+            break;
+        default:
+            break;
+    }
+
+    if (!store) {
+        return;
+    }
+
+    return store;
 }

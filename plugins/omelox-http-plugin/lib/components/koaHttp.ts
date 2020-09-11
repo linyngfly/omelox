@@ -10,13 +10,13 @@ const onerror = require('koa-onerror');
 import * as koastatic from 'koa-static';
 import cors from '../cors';
 import bodyparser from '../body';
-import session from '../session';
+import session, { genStore, StoreType } from '../session';
 import { IComponent, Application } from 'omelox';
 import * as cluster from 'cluster';
 import * as os from 'os';
 const numCPUs = os.cpus().length;
 import * as Router from 'koa-router';
-import { getLogger, ILogger } from 'omelox-logger';
+import { getLogger } from 'omelox-logger';
 const logger = getLogger('omelox', path.basename(__filename));
 
 interface HttpOpts {
@@ -76,10 +76,18 @@ export class KoaHttpComponent implements IComponent {
 
         // session
         if (!!this.opts.session) {
-            this.http.use(session({
-                // store: new RedisStore(this.opts.session.store),
+            let sessionOpts: any = {
                 maxAge: this.opts.session.maxAge
-            }));
+            }
+
+            if (!!this.opts.session.redis) {
+                sessionOpts.store = genStore(StoreType.Redis, this.opts.session.redis);
+            } else if (!!this.opts.session.memoryCache) {
+                sessionOpts.store = genStore(StoreType.MemoryCache, this.opts.session.memoryCache);
+            } else if (!!this.opts.session.Mysql) {
+                sessionOpts.store = genStore(StoreType.Mysql, this.opts.session.mysql);
+            }
+            this.http.use(session(sessionOpts));
         }
 
         // error handler

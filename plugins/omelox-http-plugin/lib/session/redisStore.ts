@@ -5,7 +5,7 @@ import { promisify } from 'util';
 import { getLogger } from 'omelox-logger';
 const logger = getLogger('omelox', path.basename(__filename));
 
-class RedisStore extends Store {
+export default class RedisStore extends Store {
     redisClient: redis.RedisClient = null;
     getAsync: any = null;
     setAsync: any = null;
@@ -14,13 +14,10 @@ class RedisStore extends Store {
     constructor(opts: any) {
         super();
 
-        this.redisClient = redis.createClient({
-            port: opts.port,
-            host: opts.host,
-            password: opts.auth ? opts.password : null,
-            db: opts.db,
-            prefix: 'common:http'
-        })
+        opts.password = opts.auth ? opts.password : null;
+        opts.prefix = opts.prefix || 'common:http';
+
+        this.redisClient = redis.createClient(opts);
 
         this.redisClient.on('error', function (error: any) {
             logger.error('http session redis connect error ', error);
@@ -52,5 +49,3 @@ class RedisStore extends Store {
         return await this.setAsync.del(`SESSIONID:${sid}`);
     }
 }
-
-module.exports = RedisStore;
