@@ -80,7 +80,7 @@ export function parseToJsonSchem(baseDir: string, reqStr = '_Req', resStr = '_Re
         }
         const obj = parseFile(baseDir, val, program, generator, symbols, clientMessages, serverMessages);
         const tmp = path.parse(val);
-        let name = tmp.name.replace(/\./g, '/');
+        let name = '/' + tmp.name.replace(/\./g, '/');
         retObj.client[name] = obj.client;
         retObj.server[name] = obj.server;
     });
