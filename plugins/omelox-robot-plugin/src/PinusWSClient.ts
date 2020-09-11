@@ -187,11 +187,11 @@ export class PinusWSClient {
 
     private onClose(e: any): void {
         console.error('[Omelox] connect close:', e);
-        // this.emit(Pinus.EVENT_CLOSE,e);
+        // this.emit(OmeloxWSClientEvent.EVENT_CLOSE,e);
     }
 
     private onIOError(e: any): void {
-        // this.emit(Pinus.EVENT_IO_ERROR, e);
+        // this.emit(OmeloxWSClientEvent.EVENT_IO_ERROR, e);
         console.error('socket error: ', e);
     }
 

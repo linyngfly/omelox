@@ -13,7 +13,12 @@ import * as WebSocket from 'ws';
  * and yicaoyimu @ http://bbs.egret.com/forum.php?mod=viewthread&tid=2538&highlight=omelox
  */
 
-
+export enum OmeloxWSClientEvent {
+    EVENT_IO_ERROR = 'io-error',
+    EVENT_CLOSE = 'close',
+    EVENT_KICK = 'onKick',
+    EVENT_HEART_BEAT_TIMEOUT = 'heartbeat timeout'
+}
 
 
 export class WSClient {
@@ -198,11 +203,11 @@ export class WSClient {
 
     private onClose(e: any): void {
         console.error('[Omelox] connect close:', e);
-        // this.emit(Pinus.EVENT_CLOSE,e);
+        // this.emit(OmeloxWSClientEvent.EVENT_CLOSE,e);
     }
 
     private onIOError(e: any): void {
-        // this.emit(Pinus.EVENT_IO_ERROR, e);
+        // this.emit(OmeloxWSClientEvent.EVENT_IO_ERROR, e);
         console.error('socket error: ', e);
     }
 
