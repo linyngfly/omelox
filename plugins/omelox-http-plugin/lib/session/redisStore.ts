@@ -15,12 +15,12 @@ export default class RedisStore extends Store {
         super();
 
         opts.password = opts.auth ? opts.password : null;
-        opts.prefix = opts.prefix || 'common:http';
+        opts.prefix = opts.prefix || 'plugin:http';
 
         this.redisClient = redis.createClient(opts);
 
         this.redisClient.on('error', function (error: any) {
-            logger.error('http session redis connect error ', error);
+            logger.error('plugin http session redis connect error ', error);
         });
 
         this.getAsync = promisify(this.redisClient.get).bind(this.redisClient);
