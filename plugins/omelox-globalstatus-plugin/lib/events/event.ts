@@ -4,7 +4,7 @@ const logger = getLogger('omelox', path.basename(__filename));
 import { Application, IApplicationEvent, Session } from 'omelox';
 import { GlobalStatusService } from '../service/statusService';
 
-class Event implements IApplicationEvent {
+export class GlobalStatusEvent implements IApplicationEvent {
   globalStatusService: GlobalStatusService;
 
   constructor(private app: Application) {

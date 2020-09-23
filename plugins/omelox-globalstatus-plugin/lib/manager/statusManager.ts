@@ -1,23 +1,11 @@
 import { getLogger } from 'omelox-logger';
 import * as path from 'path';
 const logger = getLogger('omelox', path.basename(__filename));
-import { Application } from 'omelox';
+import { Application, FRONTENDID, UID } from 'omelox';
 import * as redis from 'redis';
-import { promisify } from 'util';
 import { utils } from '../util/utils';
 
-// let redis = require('redis');
-
 let DEFAULT_PREFIX = 'plugin:globalStatus';
-
-// let StatusManager = function (app: Application, opts: any) {
-//   this.app = app;
-//   this.opts = opts || {};
-//   this.prefix = opts.prefix || DEFAULT_PREFIX;
-//   this.host = opts.host;
-//   this.port = opts.port;
-//   this.redis = null;
-// };
 
 export class StatusManager {
   opts: any;
@@ -34,20 +22,15 @@ export class StatusManager {
     this.port = opts.port;
   }
 
-  start(cb) {
+  start(cb: Function) {
     this.redisClient = redis.createClient(this.opts);
     this.redisClient.on('error', function (error: any) {
       logger.error('plugin globalStatus redis connect error ', error.stack);
     });
 
-    // this.redisClient = redis.createClient(this.opts);
-    // if (this.opts.auth_pass) {
-    //   this.redis.auth(this.opts.auth_pass);
-    // }
-    // this.redis.on('error', function (err) {
-    //   console.error('[status-plugin][redis]' + err.stack);
-    // });
-    // this.redis.once('ready', cb);
+    this.redisClient.once('ready', () => {
+      utils.invokeCallback(cb);
+    });
   }
 
   stop(force: boolean, cb: Function) {
@@ -59,9 +42,9 @@ export class StatusManager {
   }
 
   clean(cb: Function) {
-    let cmds = [];
+    let cmds: any[] = [];
     let self = this;
-    this.redis.keys(genCleanKey(this), function (err, list) {
+    this.redisClient.keys(genCleanKey(this), function (err: any, list: any[]) {
       if (!!err) {
         utils.invokeCallback(cb, err);
         return;
@@ -69,54 +52,54 @@ export class StatusManager {
       for (let i = 0; i < list.length; i++) {
         cmds.push(['del', list[i]]);
       }
-      execMultiCommands(self.redis, cmds, cb);
+      execMultiCommands(self.redisClient, cmds, cb);
     });
   }
 
-  add(uid, sid, cb) {
-    this.redis.sadd(genKey(this, uid), sid, function (err) {
+  add(uid: UID, sid: FRONTENDID, cb: Function) {
+    this.redisClient.sadd(genKey(this, uid), sid, function (err: any) {
       utils.invokeCallback(cb, err);
     });
   }
 
-  leave(uid, sid, cb) {
-    this.redis.srem(genKey(this, uid), sid, function (err) {
+  leave(uid: UID, sid: FRONTENDID, cb: Function) {
+    this.redisClient.srem(genKey(this, uid), sid, function (err: any) {
       utils.invokeCallback(cb, err);
     });
   }
 
-  getSidsByUid = function (uid, cb) {
-    this.redis.smembers(genKey(this, uid), function (err, list) {
+  getSidsByUid(uid: UID, cb: Function) {
+    this.redisClient.smembers(genKey(this, uid), function (err: any, list: any) {
       utils.invokeCallback(cb, err, list);
     });
   }
 
-  getSidsByUids = function (uids, cb) {
+  getSidsByUids(uids: UID[], cb: Function) {
     let cmds = [];
     for (let i = 0; i < uids.length; i++) {
       cmds.push(['exists', genKey(this, uids[i])]);
     }
-    execMultiCommands(this.redis, cmds, function (err, list) {
+    execMultiCommands(this.redisClient, cmds, function (err: any, list: any) {
       utils.invokeCallback(cb, err, list);
     });
   }
 }
 
 
-let execMultiCommands = function (redis, cmds, cb) {
+let execMultiCommands = function (redisClient: redis.RedisClient, cmds: any, cb: Function) {
   if (!cmds.length) {
     utils.invokeCallback(cb);
     return;
   }
-  redis.multi(cmds).exec(function (err, replies) {
+  redisClient.multi(cmds).exec(function (err: any, replies: any) {
     utils.invokeCallback(cb, err, replies);
   });
 };
 
-let genKey = function (self, uid) {
+let genKey = function (self: any, uid: any) {
   return self.prefix + ':' + uid;
 };
 
-let genCleanKey = function (self) {
+let genCleanKey = function (self: any) {
   return self.prefix + '*';
 };

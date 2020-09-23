@@ -1,11 +1,9 @@
-import { Application } from "omelox";
-import { StatusManager } from "../manager/statusManager";
-
-// var DefaultStatusManager = require('../manager/statusManager');
-var utils = require('../util/utils');
-var util = require('util');
-var countDownLatch = require('../util/countDownLatch');
-var logger = require('omelo-logger').getLogger(__filename);
+import { Application } from 'omelox';
+import { StatusManager } from '../manager/statusManager';
+import { UID, FRONTENDID } from '../../../../packages/omelox/lib/util/constants';
+import { utils } from '../util/utils';
+import * as util from 'util';
+import { CountDownLatch } from '../util/countDownLatch';
 
 enum ST {
   ST_INITED = 0,
@@ -34,13 +32,13 @@ export class GlobalStatusService {
 
     if (typeof this.manager.start === 'function') {
       let self = this;
-      this.manager.start(function (err) {
+      this.manager.start(function (err: any) {
         if (!err) {
           self.state = ST.ST_STARTED;
         }
         if (!!self.cleanOnStartUp) {
-          self.manager.clean(function (err) {
-            utils.invokeCallback(cb, err);
+          self.manager.clean(function (err1: any) {
+            utils.invokeCallback(cb, err1);
           });
         } else {
           utils.invokeCallback(cb, err);
@@ -65,7 +63,7 @@ export class GlobalStatusService {
     }
   }
 
-  add(uid, sid, cb) {
+  add(uid: UID, sid: FRONTENDID, cb: Function) {
     if (this.state !== ST.ST_STARTED) {
       utils.invokeCallback(cb, new Error('invalid state'));
       return;
@@ -74,7 +72,7 @@ export class GlobalStatusService {
     this.manager.add(uid, sid, cb);
   }
 
-  leave = function (uid, sid, cb) {
+  leave(uid: UID, sid: FRONTENDID, cb: Function) {
     if (this.state !== ST.ST_STARTED) {
       utils.invokeCallback(cb, new Error('invalid state'));
       return;
@@ -83,7 +81,7 @@ export class GlobalStatusService {
     this.manager.leave(uid, sid, cb);
   }
 
-  getSidsByUid = function (uid, cb) {
+  getSidsByUid(uid: UID, cb: Function) {
     if (this.state !== ST.ST_STARTED) {
       utils.invokeCallback(cb, new Error('invalid state'));
       return;
@@ -92,40 +90,40 @@ export class GlobalStatusService {
     this.manager.getSidsByUid(uid, cb);
   }
 
-  getStatusByUid = function (uid, cb) {
+  getStatusByUid(uid: UID, cb: Function) {
     if (this.state !== ST.ST_STARTED) {
       utils.invokeCallback(cb, new Error('invalid state'));
       return;
     }
 
-    this.manager.getSidsByUid(uid, function (err, list) {
+    this.manager.getSidsByUid(uid, function (err: any, list: any[]) {
       if (!!err) {
         utils.invokeCallback(cb, new Error(util.format('failed to get serverIds by uid: [%s], err: %j', uid, err.stack)), null);
         return;
       }
-      var status = (list !== undefined && list.length >= 1)
+      let status = (list !== undefined && list.length >= 1)
         ? true // online
         : false; // offline
       utils.invokeCallback(cb, null, status);
     });
   }
 
-  getStatusByUids = function (uids, cb) {
+  getStatusByUids(uids: UID[], cb: Function) {
     if (this.state !== ST.ST_STARTED) {
       utils.invokeCallback(cb, new Error('invalid state'));
       return;
     }
 
-    this.manager.getSidsByUids(uids, function (err, replies) {
+    this.manager.getSidsByUids(uids, function (err: any, replies: any) {
       if (!!err) {
         utils.invokeCallback(cb, new Error(util.format('failed to get serverIds by uids, err: %j', err.stack)), null);
         return;
       }
 
-      var statuses = {
+      let statuses: any = {
       };
-      for (var i = 0; i < uids.length; i++) {
-        statuses[uids[i]] = (replies[i] == 1)
+      for (let i = 0; i < uids.length; i++) {
+        statuses[uids[i]] = (replies[i] === 1)
           ? true // online
           : false; // offline
       }
@@ -134,23 +132,23 @@ export class GlobalStatusService {
     });
   }
 
-  pushByUids = function (uids, route, msg, cb) {
+  pushByUids(uids: UID[], route: string, msg: any, cb: Function) {
     if (this.state !== ST.ST_STARTED) {
       utils.invokeCallback(cb, new Error('invalid state'));
       return;
     }
-    var channelService = this.app.get('channelService');
-    var successFlag = false;
-    var count = utils.size(uids);
-    var records = [];
+    let channelService = this.app.get('channelService');
+    let successFlag = false;
+    let count = utils.size(uids);
+    let records: any[] = [];
 
-    var latch = countDownLatch.createCountDownLatch(count, function () {
+    let latch = CountDownLatch.createCountDownLatch(count, function () {
       if (!successFlag) {
         utils.invokeCallback(cb, new Error(util.format('failed to get sids for uids: %j', uids)), null);
         return;
       }
       else {
-        if (records != null && records.length != 0) {
+        if (records != null && records.length !== 0) {
           channelService.pushMessageByUids(route, msg, records, cb);
         } else {
           utils.invokeCallback(cb, null, null);
@@ -158,14 +156,14 @@ export class GlobalStatusService {
       }
     });
 
-    for (var i = 0; i < uids.length; i++) {
+    for (let i = 0; i < uids.length; i++) {
       (function (self, arg) {
-        self.getSidsByUid(uids[arg], function (err, list) {
+        self.getSidsByUid(uids[arg], function (err: any, list: any[]) {
           if (!!err) {
             utils.invokeCallback(cb, new Error(util.format('failed to get serverIds by uid: [%s], err: %j', uids[arg], err.stack)), null);
             return;
           }
-          for (var j = 0, l = list.length; j < l; j++) {
+          for (let j = 0, l = list.length; j < l; j++) {
             records.push({
               uid: uids[arg], sid: list[j]
             });
