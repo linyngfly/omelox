@@ -1,6 +1,5 @@
-import { Application } from 'omelox';
+import { Application, UID, FRONTENDID } from 'omelox';
 import { StatusManager } from '../manager/statusManager';
-import { UID, FRONTENDID } from '../../../../packages/omelox/lib/util/constants';
 import { utils } from '../util/utils';
 import * as util from 'util';
 import { CountDownLatch } from '../util/countDownLatch';

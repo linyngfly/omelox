@@ -1,7 +1,7 @@
 {
-  "name": "omelox-http-plugin",
+  "name": "omelox-globalstatus-plugin",
   "version": "3.0.1",
-  "description": "omelox http plugin",
+  "description": "omelox globalstatus plugin",
   "files": [
     "dist",
     "src",
