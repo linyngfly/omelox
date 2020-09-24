@@ -14,12 +14,12 @@ export class StatusManager {
   port: number;
   redisClient: redis.RedisClient = null;
   constructor(private app: Application, opts: any) {
-    opts.password = opts.auth ? opts.password : null;
-    opts.prefix = opts.prefix || 'plugin:http';
     this.opts = opts || {};
-    this.prefix = opts.prefix || DEFAULT_PREFIX;
-    this.host = opts.host;
-    this.port = opts.port;
+    opts.password = opts.auth ? opts.password : null;
+    let prefix = opts.prefix ? opts.prefix : null;
+    if (prefix) {
+      this.prefix = prefix + ':' + DEFAULT_PREFIX;
+    }
   }
 
   start(cb: Function) {
