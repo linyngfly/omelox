@@ -1,15 +1,14 @@
 import { getLogger } from 'omelox-logger';
 import * as path from 'path';
 const logger = getLogger('omelox', path.basename(__filename));
-import { Application, IApplicationEvent, Session } from 'omelox';
+import { omelox, IApplicationEvent, Session } from 'omelox';
 import { GlobalStatusService } from '../service/statusService';
 
 export class GlobalStatusEvent implements IApplicationEvent {
   globalStatusService: GlobalStatusService;
 
-  constructor(private app: Application) {
-    this.app = app;
-    this.globalStatusService = app.get('globalStatusService');
+  constructor(opts: any) {
+    this.globalStatusService = omelox.app.get('globalStatusService');
   }
 
   bind_session(session: Session): void {
@@ -29,7 +28,7 @@ export class GlobalStatusEvent implements IApplicationEvent {
       return;
     }
     // don't remove entry if another session for the same user on the same frontend remain
-    let currentUserSessions = this.app.get('sessionService').getByUid(session.uid);
+    let currentUserSessions = omelox.app.get('sessionService').getByUid(session.uid);
     if (currentUserSessions !== undefined) {
       logger.debug('at least another session exists for this user on this frontend: [%s] [%s]', session.uid, session.frontendId);
       return;

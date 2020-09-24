@@ -8,22 +8,25 @@ import { utils } from '../util/utils';
 let DEFAULT_PREFIX = 'plugin:globalStatus';
 
 export class StatusManager {
-  opts: any;
   prefix: string;
   host: string;
   port: number;
   redisClient: redis.RedisClient = null;
-  constructor(private app: Application, opts: any) {
-    this.opts = opts || {};
-    opts.password = opts.auth ? opts.password : null;
-    let prefix = opts.prefix ? opts.prefix : null;
-    if (prefix) {
-      this.prefix = prefix + ':' + DEFAULT_PREFIX;
-    }
+  constructor(private app: Application, private opts: any) {
   }
 
   start(cb: Function) {
-    this.redisClient = redis.createClient(this.opts);
+    this.redisClient = redis.createClient({
+      host: this.opts.host,
+      port: this.opts.port,
+      db: this.opts.db,
+      prefix: this.opts.prefix,
+    });
+
+    if (this.opts.auth) {
+      this.redisClient.auth(this.opts.password);
+    }
+
     this.redisClient.on('error', function (error: any) {
       logger.error('plugin globalStatus redis connect error ', error.stack);
     });
@@ -97,9 +100,9 @@ let execMultiCommands = function (redisClient: redis.RedisClient, cmds: any, cb:
 };
 
 let genKey = function (self: any, uid: any) {
-  return self.prefix + ':' + uid;
+  return DEFAULT_PREFIX + ':' + uid;
 };
 
 let genCleanKey = function (self: any) {
-  return self.prefix + '*';
+  return DEFAULT_PREFIX + '*';
 };
