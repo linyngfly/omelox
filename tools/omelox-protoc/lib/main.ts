@@ -26,11 +26,11 @@ let MergeMessage = false
  * @param resStr
  * @param mergeMessage message 结构放到顶层 (默认的客户端不支持,需要修改客户端)
  */
-export function parseToOmeloxProtobuf(baseDir: string, reqStr = '_Req', resStr = '_Res', mergeMessage = false): { client: object, server: object } {
+export function parseToOmeloxProtobuf(baseDir: string, reqStr = '_Req', resStr = '_Res', mergeMessage = false): { client: object, server: object, dictionary: string[] } {
     responseStr = resStr;
     requestStr = reqStr;
     MergeMessage = mergeMessage
-    let retObj = { client: {}, server: {} };
+    let retObj = { client: {}, server: {}, dictionary: [] };
     const files = fs.readdirSync(baseDir);
     const tsFilePaths: string[] = [];
     files.forEach(val => {
@@ -42,6 +42,7 @@ export function parseToOmeloxProtobuf(baseDir: string, reqStr = '_Req', resStr =
         // const tmp = path.parse(val);
         // retObj.client[tmp.name] = obj.client;
         // retObj.server[tmp.name] = obj.server;
+        retObj.dictionary.push(path.parse(val).name);
     });
 
     // optionally pass argument to schema generator
@@ -49,7 +50,7 @@ export function parseToOmeloxProtobuf(baseDir: string, reqStr = '_Req', resStr =
         required: true
     };
 
-// optionally pass ts compiler options
+    // optionally pass ts compiler options
     const compilerOptions: TJS.CompilerOptions = {
         strictNullChecks: true
     };
@@ -143,7 +144,7 @@ function parseFile(baseDir: string, filename: string, program: TJS.Program, gene
     let symbolServer;
     if (symbols.includes(filename + responseStr)) {
         if (!client) {
-            console.warn('WARNING:', filename, `has ${ responseStr } without ${ requestStr }`);
+            console.warn('WARNING:', filename, `has ${responseStr} without ${requestStr}`);
         }
         symbolServer = generator.getSchemaForSymbol(filename + responseStr);
     }

@@ -5,7 +5,9 @@ const main = require('../lib');
 let test = main.parseToOmeloxProtobuf('./testInterface');
 console.log('server result', JSON.stringify(test, null, 4));
 
-main.parseAndWrite('./testInterface', './clientProtos.json','./serverProtos.json');
+// node dist / bin / omelox - protoc.js gen - i testInterface - s test / serverProtos.json - c test / clientProtos.json - d test / dictionary.json
+
+main.parseAndWrite('./testInterface', './clientProtos.json', './serverProtos.json');
 let compare = JSON.stringify({
     "client": {
         "rank.playerHandler.beginGame": {

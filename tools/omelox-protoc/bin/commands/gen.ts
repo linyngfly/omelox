@@ -10,6 +10,7 @@ export default function (programs: program.CommanderStatic) {
         .option('-i, --interfacedir <interface define directory>', 'The interface define directory')
         .option('-s, --serverfile <server proto filename>', 'Gen server proto filename ./path/serverProtos.json', 'serverProtos.json')
         .option('-c, --clientfile <client proto filename>', 'Gen client proto filename ./path/clientProtos.json', 'clientProtos.json')
+        .option('-d, --dictionaryfile <dictionary filename>', 'Gen dictionary filename ./path/dictionary.json', 'dictionary.json')
         .action(function (opts) {
             gen(opts);
         });
@@ -23,6 +24,7 @@ function abort(str: string) {
 const INTERFACE_DIR_NOT_FOUND = ('Fail to find interface define directory,\nplease check the current work directory or the directory specified by option `--interfacedir`.\n' as any).red;
 const SERVER_PROTO_FILE_NOT_FOUND = ('server proto filename invalid,\nplease check the current work directory or the directory specified by option `--serverfile`.\n' as any).red;
 const CLIENT_PROTO_FILE_NOT_FOUND = ('client proto filename invalid,\nplease check the current work directory or the directory specified by option `--clientfile`.\n' as any).red;
+const DICTIONARY_FILE_NOT_FOUND = ('dictionary filename invalid,\nplease check the current work directory or the directory specified by option `--dictionaryfile`.\n' as any).red;
 
 function gen(opts: any) {
     if (!fs.existsSync(opts.interfacedir)) {
@@ -32,7 +34,7 @@ function gen(opts: any) {
     let sdir = path.parse(opts.serverfile).dir;
     let sname = path.parse(opts.serverfile).name;
     let sext = path.parse(opts.serverfile).ext;
-console.log(11, sdir, sname);
+    console.log(11, sdir, sname);
     if (!sext || !sname || sdir !== '' && !fs.existsSync(sdir)) {
         abort(SERVER_PROTO_FILE_NOT_FOUND);
     }
@@ -45,5 +47,13 @@ console.log(11, sdir, sname);
         abort(CLIENT_PROTO_FILE_NOT_FOUND);
     }
 
-    parseAndWrite(opts.interfacedir, opts.clientfile, opts.serverfile);
+    let dicdir = path.parse(opts.dictionaryfile).dir;
+    let dicname = path.parse(opts.dictionaryfile).name;
+    let dicext = path.parse(opts.dictionaryfile).ext;
+    console.log(22, dicdir, dicname);
+    if (!dicext || !dicname || dicdir !== '' && !fs.existsSync(dicdir)) {
+        abort(DICTIONARY_FILE_NOT_FOUND);
+    }
+
+    parseAndWrite(opts.interfacedir, opts.clientfile, opts.serverfile, opts.dictionaryfile);
 }
