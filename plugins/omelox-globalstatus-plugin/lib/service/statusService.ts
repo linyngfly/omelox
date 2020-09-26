@@ -18,7 +18,7 @@ export class GlobalStatusService {
   constructor(private app: Application, opts: any) {
     this.app = app;
     this.opts = opts || {};
-    this.cleanOnStartUp = opts.cleanOnStartUp;
+    this.cleanOnStartUp = opts.cleanOnStartUp || true;
     this.manager = getStatusManager(app, opts);
     this.state = ST.ST_INITED;
   }
