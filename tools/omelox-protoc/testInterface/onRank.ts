@@ -9,39 +9,39 @@
 //     "repeated Array ranks": 1
 // },
 
-import {GGG, MyRank} from "./share/myrank";
+import { GGG, MyRank } from "./impl/myrank";
 
 
-interface IGG{
-    ggenv?:string[];
+interface IGG {
+    ggenv?: string[];
 }
 
-interface IFF{
-    ffname:string;
-    aa?:IGG[];
+interface IFF {
+    ffname: string;
+    aa?: IGG[];
 }
 
-enum EnumTest{
+enum EnumTest {
     AA,
     BB,
     CC
 }
 
-export interface onRank extends IFF,IGG{
+export interface onRank extends IFF, IGG {
     /**
      * The float of the nowplayers.
      *
      * @additionalProperties uInt32
      * @TJS-type array
      */
-    normalArr:number[];
+    normalArr: number[];
     /**
      * @TJS-type uInt32
      */
-    enum:EnumTest;
-    normalStrArr:string[];
-    innerGGG?:GGG;
-    ranks:MyRank[];
-    rk?:MyRank;
-    val?:number;
+    enum: EnumTest;
+    normalStrArr: string[];
+    innerGGG?: GGG;
+    ranks: MyRank[];
+    rk?: MyRank;
+    val?: number;
 }

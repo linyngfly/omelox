@@ -19,6 +19,25 @@ let responseStr = '_Res';
 let requestStr = '_Req';
 let MergeMessage = false
 
+function walkDir(dir, handler, filters = []) {
+    fs.readdirSync(dir).forEach(function (filename) {
+        if (filters.indexOf(filename) !== -1) {
+            return;
+        }
+        console.log('walkDir=', filename)
+        const _path = dir + '/' + filename;
+        const stat = fs.statSync(_path);
+        if (stat && stat.isDirectory()) {
+            walkDir(_path, handler, filters);
+        }
+        else {
+            if (handler) {
+                handler(_path);
+            }
+        }
+    });
+}
+
 /**
  *
  * @param baseDir
@@ -31,19 +50,15 @@ export function parseToOmeloxProtobuf(baseDir: string, reqStr = '_Req', resStr =
     requestStr = reqStr;
     MergeMessage = mergeMessage
     let retObj = { client: {}, server: {}, dictionary: [] };
-    const files = fs.readdirSync(baseDir);
     const tsFilePaths: string[] = [];
-    files.forEach(val => {
+
+    walkDir(baseDir, (val: string) => {
         if (!val.endsWith('.ts')) {
             return;
         }
-        tsFilePaths.push(resolve(baseDir + '/' + val));
-        // const obj = parseFile(baseDir,val);
-        // const tmp = path.parse(val);
-        // retObj.client[tmp.name] = obj.client;
-        // retObj.server[tmp.name] = obj.server;
+        tsFilePaths.push(resolve(val));
         retObj.dictionary.push(path.parse(val).name);
-    });
+    }, ['impl'])
 
     // optionally pass argument to schema generator
     const settings: TJS.PartialArgs = {
@@ -61,7 +76,8 @@ export function parseToOmeloxProtobuf(baseDir: string, reqStr = '_Req', resStr =
     const symbols = generator.getMainFileSymbols(program);
     let clientMessages = {}
     let serverMessages = {}
-    files.forEach(val => {
+
+    walkDir(baseDir, (val: string) => {
         if (!val.endsWith('.ts')) {
             return;
         }
@@ -73,7 +89,8 @@ export function parseToOmeloxProtobuf(baseDir: string, reqStr = '_Req', resStr =
         const tmp = path.parse(val);
         retObj.client[tmp.name] = obj.client;
         retObj.server[tmp.name] = obj.server;
-    });
+    }, ['impl'])
+
     retObj.client = sortMsg(retObj.client)
     retObj.server = sortMsg(retObj.server)
     if (mergeMessage) {

@@ -7,7 +7,7 @@
  */
 
 // duplicate IGG name
-import { GGG } from "./share/myrank";
+import { GGG } from "./impl/myrank";
 
 interface IGG {
     ggenv?: string[];
