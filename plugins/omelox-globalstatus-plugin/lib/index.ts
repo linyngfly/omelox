@@ -1,5 +1,5 @@
 import { IPlugin } from 'omelox';
-import { GlobalStatusComponent } from './components/status';
+import { GlobalStatusComponent } from './components/globalStatus';
 import { GlobalStatusEvent } from './events/event';
 
 export * from './service/statusService'

@@ -1,0 +1,36 @@
+{
+  "name": "omelox-globalchannel-plugin",
+  "version": "1.0.4",
+  "description": "omelox globalchannel plugin",
+  "files": [
+    "dist",
+    "src",
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "yarn run build && node dist/index",
+    "lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json src/**/*.ts",
+    "fix-lint": "node_modules/.bin/tslint --format prose -c ../../tslint.json src/**/*.ts --fix",
+    "test": "yarn run build",
+    "cov": "nyc mocha",
+    "ci": "yarn run test",
+    "gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox-monitor lib/"
+  },
+  "engines": {
+    "node": ">=8.5"
+  },
+  "main": "./dist/lib/index",
+  "types": "./lib/index",
+  "dependencies": {
+    "redis": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.6",
+    "@types/redis": "^2.8.27",
+    "tslint": "5.20.1",
+    "typescript": "^3.9.7"
+  },
+  "license": "MIT",
+  "gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"
+}

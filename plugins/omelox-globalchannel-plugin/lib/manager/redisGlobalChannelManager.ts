@@ -1,14 +1,15 @@
-import { getLogger } from 'omelox-logger';
-import * as path from 'path';
-const logger = getLogger('omelox', path.basename(__filename));
 import { Application, FRONTENDID, UID } from 'omelox';
+import * as path from 'path';
+import { getLogger } from 'omelox-logger';
+const logger = getLogger('omelox', path.basename(__filename));
 import * as redis from 'redis';
 import { utils } from '../util/utils';
 
-let DEFAULT_PREFIX = 'plugin:globalStatus';
+let DEFAULT_PREFIX = 'plugin:globalChannel';
 
-export class StatusManager {
+export class GlobalChannelManager {
   redisClient: redis.RedisClient = null;
+
   constructor(private app: Application, private opts: any) {
   }
 
@@ -25,7 +26,7 @@ export class StatusManager {
     }
 
     this.redisClient.on('error', function (error: any) {
-      logger.error('plugin globalStatus redis connect error ', error.stack);
+      logger.error('plugin globalChannel redis connect error ', error.stack);
     });
 
     this.redisClient.once('ready', () => {
@@ -56,35 +57,36 @@ export class StatusManager {
     });
   }
 
-  add(uid: UID, sid: FRONTENDID, cb: Function) {
-    this.redisClient.sadd(genKey(this, uid), sid, function (err: any) {
-      utils.invokeCallback(cb, err);
-    });
-  }
-
-  leave(uid: UID, sid: FRONTENDID, cb: Function) {
-    this.redisClient.srem(genKey(this, uid), sid, function (err: any) {
-      utils.invokeCallback(cb, err);
-    });
-  }
-
-  getSidsByUid(uid: UID, cb: Function) {
-    this.redisClient.smembers(genKey(this, uid), function (err: any, list: any) {
-      utils.invokeCallback(cb, err, list);
-    });
-  }
-
-  getSidsByUids(uids: UID[], cb: Function) {
-    let cmds = [];
-    for (let i = 0; i < uids.length; i++) {
-      cmds.push(['exists', genKey(this, uids[i])]);
+  destroyChannel(name: string, cb: Function) {
+    let servers = this.app.getServers();
+    let server, cmds = [];
+    for (let sid in servers) {
+      server = servers[sid];
+      if (this.app.isFrontend(server)) {
+        cmds.push(['del', genKey(this, name, sid)]);
+      }
     }
-    execMultiCommands(this.redisClient, cmds, function (err: any, list: any) {
+    execMultiCommands(this.redisClient, cmds, cb);
+  }
+
+  add(name: string, uid: UID, sid: FRONTENDID, cb: Function) {
+    this.redisClient.sadd(genKey(this, name, sid), uid, function (err: any) {
+      utils.invokeCallback(cb, err);
+    });
+  }
+
+  leave(name: string, uid: UID, sid: FRONTENDID, cb: Function) {
+    this.redisClient.srem(genKey(this, name, sid), uid, function (err: any) {
+      utils.invokeCallback(cb, err);
+    });
+  }
+
+  getMembersBySid(name: string, sid: FRONTENDID, cb: Function) {
+    this.redisClient.smembers(genKey(this, name, sid), function (err, list) {
       utils.invokeCallback(cb, err, list);
     });
   }
 }
-
 
 const execMultiCommands = function (redisClient: redis.RedisClient, cmds: any, cb: Function) {
   if (!cmds.length) {
@@ -92,12 +94,12 @@ const execMultiCommands = function (redisClient: redis.RedisClient, cmds: any, c
     return;
   }
   redisClient.multi(cmds).exec(function (err: any, replies: any) {
-    utils.invokeCallback(cb, err, replies);
+    utils.invokeCallback(cb, err);
   });
 };
 
-const genKey = function (self: any, uid: any) {
-  return DEFAULT_PREFIX + ':' + uid;
+const genKey = function (self: any, name: string, sid: string) {
+  return DEFAULT_PREFIX + ':' + name + ':' + sid;
 };
 
 const genCleanKey = function (self: any) {
