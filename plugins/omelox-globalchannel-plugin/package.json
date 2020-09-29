@@ -1,6 +1,6 @@
 {
   "name": "omelox-globalchannel-plugin",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "omelox globalchannel plugin",
   "files": [
     "dist",
@@ -21,7 +21,6 @@
     "node": ">=8.5"
   },
   "main": "./dist/lib/index",
-  "types": "./lib/index",
   "dependencies": {
     "redis": "^3.0.2"
   },

@@ -1,10 +1,9 @@
 import { GlobalChannelManager } from '../manager/redisGlobalChannelManager';
 import { utils } from '../util/utils';
 import { CountDownLatch } from '../util/countDownLatch';
-import { Application, UID } from 'omelox';
+import { Application, UID, FRONTENDID } from 'omelox';
 import * as path from 'path';
 import { getLogger } from 'omelox-logger';
-import { FRONTENDID } from '../../../../packages/omelox/lib/util/constants';
 const logger = getLogger('omelox', path.basename(__filename));
 
 enum ST {
