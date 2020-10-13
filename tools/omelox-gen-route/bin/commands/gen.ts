@@ -6,7 +6,7 @@ import { genHTTPRouteFile, genWSLocalRouteFile, genWSMapRouteFile, genWSRouteFil
 export default function (programs: program.CommanderStatic) {
     programs.command('gen')
         .description('gen proto protocol')
-        .option('-w, --wsroute <wsroute define directory>', 'Gen ws route define file', 'shared/protocols/ws,shared/protocols/ws.routes.ts')
+        .option('-w, --wsroute <wsroute define directory>', 'Gen ws route define file', 'shared/protocols/ws,shared/protocols/ws.push.routes.ts')
         .option('-l, --wslocalroute <wslocalroute define directory>', 'Gen ws local route define file', 'shared/protocols/ws,shared/protocols/ws.local.routes.ts')
         .option('-m, --wsroutemap <wsroutemap define directory>', 'Gen ws route map define file', 'shared/protocols/ws,shared/protocols/ws.map.routes.ts')
         .option('-h, --httproute <httproute define directory>', 'Gen http route define file', 'shared/protocols/http,shared/protocols/http.routes.ts')

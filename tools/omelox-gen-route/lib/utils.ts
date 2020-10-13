@@ -71,7 +71,7 @@ export function genWSRouteFile(routeSrcDir: string, routeFilePath: string) {
         dicObj[serverTag][moduleTag][typeTag][nameTag] = item;
     }
 
-    let data = `export const wsRoutes = ${util.inspect(dicObj, { depth: 10 })}`;
+    let data = `export const wsPushRoutes = ${util.inspect(dicObj, { depth: 10 })}`;
     fs.writeFileSync(routeFilePath, data);
 }
 
