@@ -124,7 +124,31 @@ export function genWSLocalRouteFile(routeSrcDir: string, routeFilePath: string) 
         dicObj[serverTag][moduleTag][typeTag][nameTag] = nameTag;
     }
 
-    let data = `export const wsRoutes = ${util.inspect(dicObj, { depth: 10 })}`;
+    let data = `export const wsLocalRoutes = ${util.inspect(dicObj, { depth: 10 })}`;
+    fs.writeFileSync(routeFilePath, data);
+}
+
+export function genWSMapRouteFile(routeSrcDir: string, routeFilePath: string) {
+    const tsFileNames: string[] = [];
+
+    walkDir(routeSrcDir, (val: string) => {
+        if (!val.endsWith('.ts')) {
+            return;
+        }
+        tsFileNames.push(path.parse(val).name);
+    }, ['impl']);
+
+    let dicObj: any = {};
+    for (let item of tsFileNames) {
+        let arr = item.split('.');
+        if (arr.length !== 3) {
+            continue;
+        }
+        let nameTag = arr[2];
+        dicObj[item] = nameTag;
+    }
+
+    let data = `export const wsMapRoutes = ${util.inspect(dicObj, { depth: 10 })}`;
     fs.writeFileSync(routeFilePath, data);
 }
 

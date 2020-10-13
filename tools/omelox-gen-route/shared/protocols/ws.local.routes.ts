@@ -1,4 +1,4 @@
-export const wsRoutes = { chess:
+export const wsLocalRoutes = { chess:
    { client:
       { request:
          { c_enterScene: 'c_enterScene',
