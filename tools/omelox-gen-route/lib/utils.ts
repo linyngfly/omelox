@@ -106,7 +106,7 @@ export function genHTTPRouteFile(routeSrcDir: string, routeFilePath: string) {
         if (!dicObj[serverTag][moduleTag]) {
             dicObj[serverTag][moduleTag] = {};
         }
-        dicObj[serverTag][moduleTag][nameTag] = item;
+        dicObj[serverTag][moduleTag][nameTag] = `/${item.replace(/\./g, '/')}`;
     }
 
     let data = `export const httpRoutes = ${util.inspect(dicObj, { depth: 10 })}`;

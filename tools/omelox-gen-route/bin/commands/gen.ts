@@ -6,8 +6,8 @@ import { genHTTPRouteFile, genWSRouteFile } from '../../lib/utils';
 export default function (programs: program.CommanderStatic) {
     programs.command('gen')
         .description('gen proto protocol')
-        .option('-w, --wsroute <wsroute define directory>', 'Gen ws route define file', 'shared/protocols/ws,shared/protocols/ws.route.ts')
-        .option('-h, --httproute <httproute define directory>', 'Gen http route define file', 'shared/protocols/http,shared/protocols/http.route.ts')
+        .option('-w, --wsroute <wsroute define directory>', 'Gen ws route define file', 'shared/protocols/ws,shared/protocols/ws.routes.ts')
+        .option('-h, --httproute <httproute define directory>', 'Gen http route define file', 'shared/protocols/http,shared/protocols/http.routes.ts')
         .action(function (opts) {
             gen(opts);
         });
