@@ -16,6 +16,7 @@ export class GlobalStatusService {
   cleanOnStartUp: boolean;
   state: ST;
   constructor(private app: Application, opts: any) {
+    this.app = app;
     this.opts = opts || {};
     this.cleanOnStartUp = opts.cleanOnStartUp || true;
     this.manager = getStatusManager(app, opts);
@@ -106,7 +107,7 @@ export class GlobalStatusService {
     });
   }
 
-  getStatusByUids(uids: UID[], cb: Function) {
+  getStatusByUids(uids: UID[], cb: (err: any, res: { [key: string]: boolean }) => void) {
     if (this.state !== ST.ST_STARTED) {
       utils.invokeCallback(cb, new Error('invalid state'));
       return;
@@ -130,7 +131,7 @@ export class GlobalStatusService {
     });
   }
 
-  pushByUids(uids: UID[], route: string, msg: any, cb: Function) {
+  pushByUids(uids: UID[], route: string, msg: any, cb: (err: any, result: any) => void) {
     if (this.state !== ST.ST_STARTED) {
       utils.invokeCallback(cb, new Error('invalid state'));
       return;
