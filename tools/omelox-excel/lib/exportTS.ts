@@ -195,6 +195,12 @@ export class ${modelrName} extends config_model_base {\r\n`
         str += `export enum ${oriFilename} {\r\n`
         // 字段定义
         str += this._genErrorFieldDefine(datas);
+        str += `}\r\n`
+
+        str += `\r\n`
+        str += `export const ${oriFilename}_obj = {\r\n`
+        // 字段定义
+        str += this._genErrorFieldObj(datas);
         str += `}`
 
         fs.writeFileSync(`${path.parse(filename).dir}/${modelrName}.ts`, str);
@@ -606,6 +612,29 @@ export class config_error_getter {
             const keyCst = rowArray[0].toString().trim();
             str += `\t/** ${rowArray[2]} */\r\n`
             str += `\t${keyCst} = ${rowArray[1]},\r\n`
+        }
+
+        return str;
+    }
+
+    /**
+     * 生成错误码字段定义
+     * @param datas 数据
+     */
+    private _genErrorFieldObj(datas: any[]) {
+        let str = '';
+        for (let i = 0; i < datas.length; i++) {
+            let rowArray = datas[i];
+            if (rowArray.length < 1) {
+                return;
+            }
+
+            const keyCst = rowArray[0].toString().trim();
+            str += `\t/** ${rowArray[2]} */\r\n`
+            str += `\t${keyCst}: {\r\n`
+            str += `\t\tcode: ${rowArray[1]},\r\n`
+            str += `\t\tmsg: ${rowArray[2]}\r\n`
+            str += `\t},\r\n`
         }
 
         return str;
