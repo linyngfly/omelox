@@ -633,7 +633,7 @@ export class config_error_getter {
             str += `\t/** ${rowArray[2]} */\r\n`
             str += `\t${keyCst}: {\r\n`
             str += `\t\tcode: ${rowArray[1]},\r\n`
-            str += `\t\tmsg: ${rowArray[2]}\r\n`
+            str += `\t\tmsg: \'${rowArray[2]}\'\r\n`
             str += `\t},\r\n`
         }
 
