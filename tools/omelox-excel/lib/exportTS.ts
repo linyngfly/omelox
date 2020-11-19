@@ -28,6 +28,7 @@ const config_data_file_name = {\r\n`
         let str = `import path = require('path');
 import fs = require('fs');
 
+/** 配置模型基础类 */
 export abstract class config_model_base {
     public static getUrl(filename: string): string {
         let configUrl = null;
@@ -44,7 +45,7 @@ export abstract class config_model_base {
             console.log(\`配置文件\${configUrl}不存在\`);
             return;
         }
-        return JSON.parse(fs.readFileSync(configUrl).toString());
+        return require(configUrl);
     }
 }
 
