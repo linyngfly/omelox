@@ -30,7 +30,7 @@ export class Encoder {
 
         // Check msg
         if (!this.checkMsg(msg, protos)) {
-            console.error('check msg failed! msg : %j, proto : %j', msg, protos);
+            console.error('check msg failed! route:%s msg : %j, proto : %j', route, msg, protos);
             return null;
         }
 

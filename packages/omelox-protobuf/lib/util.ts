@@ -48,7 +48,7 @@ export function checkMsgValid(msg: { [key: string]: any }, protos: { [key: strin
                 if (typeof (msg[name]) !== 'undefined') {
                     let message = protos.__messages[proto.type] || fullProto['message ' + proto.type];
                     if (!!message && !checkMsgValid(msg[name], message, fullProto)) {
-                        console.warn('inner proto error! name: %j, proto: %j, msg: %j', name, proto, msg);
+                        console.warn('inner proto optional error! name: %j, proto: %j, msg: %j', name, proto, msg);
                         return false;
                     }
                 }
@@ -59,6 +59,7 @@ export function checkMsgValid(msg: { [key: string]: any }, protos: { [key: strin
                 if (!!msg[name] && !!message) {
                     for (let i = 0; i < msg[name].length; i++) {
                         if (!checkMsgValid(msg[name][i], message, fullProto)) {
+                            console.warn('inner proto repeated error! name: %j, proto: %j, msg: %j', name, proto, msg);
                             return false;
                         }
                     }
