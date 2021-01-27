@@ -7,7 +7,7 @@ preload();
 import * as pinusrpc from '..';
 import {configure} from 'omelox-logger';
 import {getLogger} from 'omelox-logger';
-import {createTcpMailBox} from '..';
+import {createTcpMailBox} from '../';
 // configure('./config/log4js.json');
 let logger = getLogger('omelox-rpc', 'sample-client');
 
