@@ -1,6 +1,6 @@
 {
   "name": "omelox-globalchannel-plugin",
-  "version": "1.0.11",
+  "version": "3.0.14",
   "description": "omelox globalchannel plugin",
   "files": [
     "dist",
