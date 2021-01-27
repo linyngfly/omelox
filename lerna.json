@@ -1,10 +1,6 @@
 {
   "lerna": "3.22.1",
   "packages": [
-    "examples/robot-sample",
-    "examples/simple-example/*",
-    "examples/websocket-chat-ts-run/*",
-    "examples/websocket-chat/*",
     "packages/*",
     "plugins/*",
     "tools/*"
