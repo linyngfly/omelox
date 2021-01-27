@@ -10,7 +10,7 @@ let config = {
     master: {host: argv.host, port: argv.port, interval: argv.interval}
 } as RobotCfg;
 
-let robot = new Robot(config);
+let robot = new Robot(config, {});
 robot.runAgent(argv.scriptFile as any);
 
 process.on('uncaughtException', function (err) {

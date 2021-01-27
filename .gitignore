@@ -14,4 +14,7 @@ _book
 coverage
 run
 yarn.lock
-lerna.json
+packages/omelox/test/config/servers.json
+packages/omelox/test/config/master.json
+packages/omelox/test/config/log4js.json
+packages/package.json

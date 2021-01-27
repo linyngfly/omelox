@@ -3,7 +3,7 @@ let config = require('./app/config/' + envConfig.env + '/config');
 import { Robot } from 'omelox-robot';
 import * as  fs from 'fs';
 
-let robot = new Robot(config);
+let robot = new Robot(config, {});
 let mode = 'master';
 
 if (process.argv.length > 2) {

@@ -5,7 +5,7 @@ let path = __filename.substring(0, __filename.lastIndexOf('/'));
 import { Robot } from 'omelox-robot';
 import * as cluster from 'cluster';
 
-let robot = new Robot(config);
+let robot = new Robot(config, {});
 
 function run(num) {
     for (let i = 0; i < num; i++) {

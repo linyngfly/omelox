@@ -18,7 +18,7 @@ export class RobotPlugin implements IPlugin {
      * @param app
      */
     afterStartAll(app: Application): void {
-        let robot = new Robot(this.conf);
+        let robot = new Robot(this.conf, {});
         let mode = 'master';
         let scriptFile = path.normalize(this.conf.scriptFile);
         if(path.sep === '\\') {

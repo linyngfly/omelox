@@ -61,7 +61,7 @@ export class DictionaryComponent implements IComponent {
                 if (!p) {
                     continue;
                 }
-                let handlers = Loader.load(p, this.app, false, false, LoaderPathType.PINUS_HANDLER);
+                let handlers = Loader.load(p, this.app, false, false, LoaderPathType.OMELOX_HANDLER);
 
                 for (let name in handlers) {
                     let handler = handlers[name];

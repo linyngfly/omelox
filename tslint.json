@@ -10,18 +10,15 @@
       "node_modules"
     ]
   },
-
-
   "rules": {
-    "experimentalDecorators": false,
     "jsdoc-format": false,
-    "class-name": false,
+    "class-name": true,
     "comment-format": [
       true,
       "check-space"
     ],
     "indent": [
-      false,
+      true,
       "spaces"
     ],
     "no-duplicate-variable": true,

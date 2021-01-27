@@ -4,8 +4,8 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import {getFromContainer, removeFromContainer, isUseContainer} from './container';
-import {LoaderPathType, isDefined} from './decoraters';
+import { getFromContainer, removeFromContainer, isUseContainer } from './container';
+import { LoaderPathType, isDefined } from './decoraters';
 
 /**
  * Load modules under the path.
@@ -148,7 +148,7 @@ const clearRequireCache = function (path: string) {
 
 let requireUncached = function (module: string) {
     if (isUseContainer()) {
-        let m = require.cache[require.resolve(module)];
+        let m: any = require.cache[require.resolve(module)];
         if (m) {
             if (typeof m.default === 'function') {
                 removeFromContainer(m.default);
