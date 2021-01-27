@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/node-omelox/omelox.svg?branch=master)](https://travis-ci.org/node-omelox/omelox)
 
-示例工程请参见：https://gitee.com/gamingcity/omelox-example
+示例工程请参见：https://github.com/linyngfly/omelox-example
 
 手动安装：
 npm install omelox-excel -g

@@ -12,10 +12,10 @@
     "@types/node": "^12.12.6",
     "ts-node": "8.9.1"
   },
-  "homepage": "https://gitee.com/gamingcity/omelox",
+  "homepage": "https://github.com/linyngfly/omelox",
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/gamingcity/omelox.git"
+    "url": "https://github.com/linyngfly/omelox.git"
   },
   "engines": {
     "node": ">=8"

@@ -3,7 +3,7 @@
 omelox-logger
 ========
 
-omelox-logger is a [log4js](https://github.com/nomiddlename/log4js-node) wrapper for [omelox](https://gitee.com/gamingcity/omelox) which provides some useful features.  
+omelox-logger is a [log4js](https://github.com/nomiddlename/log4js-node) wrapper for [omelox](https://github.com/linyngfly/omelox) which provides some useful features.  
 
 ## Installation
 ```

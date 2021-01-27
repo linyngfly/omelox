@@ -27,10 +27,10 @@
   "bin": {
     "omelox-excel": "./dist/bin/omelox-excel.js"
   },
-  "homepage": "https://gitee.com/gamingcity/omelox",
+  "homepage": "https://github.com/linyngfly/omelox",
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/gamingcity/omelox.git"
+    "url": "https://github.com/linyngfly/omelox.git"
   },
   "keywords": [
     "excel",

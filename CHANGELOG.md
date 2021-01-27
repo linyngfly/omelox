@@ -1,12 +1,12 @@
 
 #### 1.4.10
 
-[omelox] [修复win10 mqtt 超时问题](https://gitee.com/gamingcity/omelox/pull/137)
+[omelox] [修复win10 mqtt 超时问题](https://github.com/linyngfly/omelox/pull/137)
 
 
 #### 1.4.9
 
-[omelox-protobuf]: [在开启encode缓存时,优化protobuf encode性能. (提升1倍)](https://gitee.com/gamingcity/omelox/commit/721eda3437fdc1e704a426718776c72b073029d3)
+[omelox-protobuf]: [在开启encode缓存时,优化protobuf encode性能. (提升1倍)](https://github.com/linyngfly/omelox/commit/721eda3437fdc1e704a426718776c72b073029d3)
 ```
  test Protobuf time: 914.453ms
  Protobuf length total: 1780000
@@ -15,20 +15,20 @@
  ProtobufCache length total: 1780000
 ```
 
-[omelox]: [fixed bug:指定服务配置auto-restart失效](https://gitee.com/gamingcity/omelox/pull/132)   
+[omelox]: [fixed bug:指定服务配置auto-restart失效](https://github.com/linyngfly/omelox/pull/132)   
  
-[Example]:  [add nodejs ts client.](https://gitee.com/gamingcity/omelox/commit/bdcdc9bdbccdff6aeecfbfe8b18ec43f42228d76) 
+[Example]:  [add nodejs ts client.](https://github.com/linyngfly/omelox/commit/bdcdc9bdbccdff6aeecfbfe8b18ec43f42228d76) 
 
 
 
 #### 1.4.8
 
-fix #128 https://gitee.com/gamingcity/omelox/issues/128  解决 mqtt-connection
+fix #128 https://github.com/linyngfly/omelox/issues/128  解决 mqtt-connection
 
 
 #### 1.4.7
 
-fix #129  https://gitee.com/gamingcity/omelox/issues/129
+fix #129  https://github.com/linyngfly/omelox/issues/129
 
 #### 1.4.6
 
@@ -37,7 +37,7 @@ revert 1.4.5 -> 3
 
 #### 1.4.5
 
-1. 更新 package.json,转移不需要的包到dev依赖. d58657d523c6ca1782dba1ec4c7d7d5cc62e5e22 https://gitee.com/gamingcity/omelox/issues/128
+1. 更新 package.json,转移不需要的包到dev依赖. d58657d523c6ca1782dba1ec4c7d7d5cc62e5e22 https://github.com/linyngfly/omelox/issues/128
 
 2. [omelox]: manualReloadCrons 添加重载前清除选项. 8c1708ee74f68a9ef583827882a36cb0e59ead28
 
@@ -108,20 +108,20 @@ fix omelox-cli lost dependency.
 
 
 #### 1.4.1
-try fix [#63](https://gitee.com/gamingcity/omelox/issues/65)  运行目录问题，先与pomelo的代码行为保持一致。
+try fix [#63](https://github.com/linyngfly/omelox/issues/65)  运行目录问题，先与pomelo的代码行为保持一致。
 
 添加 error handler 和 globalfilter示例 [examples/websocket-chat-ts-run/game-server/app.ts](examples/websocket-chat-ts-run/game-server/app.ts)
 
-修复 因为修复  [#110](https://gitee.com/gamingcity/omelox/issues/110) 导致的 所有日志级别都变为INFO的问题。 
+修复 因为修复  [#110](https://github.com/linyngfly/omelox/issues/110) 导致的 所有日志级别都变为INFO的问题。 
 
 #### 1.4.0
 
 更新所有依赖库版本，并修复编译错误。
 typescript 版本 3.7.2
 
-fix [#110](https://gitee.com/gamingcity/omelox/issues/110)  omelox-logger 的logger对象换成原始的 log4js 对象。
+fix [#110](https://github.com/linyngfly/omelox/issues/110)  omelox-logger 的logger对象换成原始的 log4js 对象。
 
 #### 1.3.14
 
-fix [#104](https://gitee.com/gamingcity/omelox/issues/104)
+fix [#104](https://github.com/linyngfly/omelox/issues/104)
 

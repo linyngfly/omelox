@@ -22,10 +22,10 @@
 		"ci": "yarn run test",
 		"gen-api-ref": "node ../../node_modules/typedoc/bin/typedoc --mode file --hideGenerator --excludeExternals --ignoreCompilerErrors --out ../../run/site/public/api-reference/omelox-rpc lib/"
 	},
-	"homepage": "https://gitee.com/gamingcity/omelox",
+	"homepage": "https://github.com/linyngfly/omelox",
 	"repository": {
 		"type": "git",
-		"url": "https://gitee.com/gamingcity/omelox.git"
+		"url": "https://github.com/linyngfly/omelox.git"
 	},
 	"dependencies": {
 		"async": "^3.0.0",

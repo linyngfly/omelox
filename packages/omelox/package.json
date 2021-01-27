@@ -3,10 +3,10 @@
   "version": "3.0.14",
   "author": "yng <linyngfly@163.com>",
   "private": false,
-  "homepage": "https://gitee.com/gamingcity/omelox",
+  "homepage": "https://github.com/linyngfly/omelox",
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/gamingcity/omelox.git"
+    "url": "https://github.com/linyngfly/omelox.git"
   },
   "scripts": {
     "build": "tsc",
@@ -23,12 +23,12 @@
     "node": ">=8.5"
   },
   "bugs": {
-    "url": "https://gitee.com/gamingcity/omelox/issues"
+    "url": "https://github.com/linyngfly/omelox/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://gitee.com/gamingcity/omelox#license"
+      "url": "https://github.com/linyngfly/omelox#license"
     }
   ],
   "keywords": [

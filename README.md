@@ -1,12 +1,12 @@
 
 [![Build Status](https://travis-ci.org/node-omelox/omelox.svg?branch=master)](https://travis-ci.org/node-omelox/omelox)
-[![Actions Status](https://gitee.com/gamingcity/omelox/workflows/ci/badge.svg?branch=master&event=push)](https://gitee.com/gamingcity/omelox/actions)
+[![Actions Status](https://github.com/linyngfly/omelox/workflows/ci/badge.svg?branch=master&event=push)](https://github.com/linyngfly/omelox/actions)
 
 官方网站：[https://omelox.io](https://omelox.io)
 欢迎加Omelox官方QQ群：xxxxxxxx
 
 
-示例工程请参见：https://gitee.com/gamingcity/omelox/tree/master/examples/simple-example
+示例工程请参见：https://github.com/linyngfly/omelox/tree/master/examples/simple-example
 
 手动安装：
 npm install omelox -g
@@ -26,7 +26,7 @@ omelox init
 ### 框架编译方法
 
 ```
-git clone https://gitee.com/gamingcity/omelox.git
+git clone https://github.com/linyngfly/omelox.git
 cd omelox
 yarn
 yarn run build

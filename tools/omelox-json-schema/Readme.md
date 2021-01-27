@@ -4,7 +4,7 @@
 
 
 
-omelox: https://gitee.com/gamingcity/omelox
+omelox: https://github.com/linyngfly/omelox
 
 ## changelog
 ```
