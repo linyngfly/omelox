@@ -76,7 +76,11 @@ export abstract class ExportBase {
      * @param content 文件功能描述
      * @param datas 数据
      */
-    protected abstract genErrorModel(filename: string, content: string, datas: any[]): void;
+    protected abstract genErrorModel(filename: string, content: string, datas: any[], baseCodeConfig: {
+        path: string,
+        baseCode: string,
+        baseObj: string
+    }): void;
 
     /**
      * 生成数据配置读取器
@@ -269,14 +273,27 @@ export abstract class ExportBase {
                 return;
             }
 
-            let content = descriptionSheetJson[5][1];
+            let baseCodeConfig = descriptionSheetJson[5][1];
+            let content = descriptionSheetJson[6][1];
             let sheetJson = XLSX.utils.sheet_to_json(modelData, { header: 1, raw: true, blankrows: false });
             let filename = `${this.outRootDir}/${oriFilename}`;
+
+            if (baseCodeConfig && baseCodeConfig !== '') {
+                try {
+                    baseCodeConfig = JSON.parse(baseCodeConfig);
+                } catch (error) {
+                    console.log('继承错误码配置异常， 请检查', filename, baseCodeConfig);
+                    return;
+                }
+
+            } else {
+                baseCodeConfig = null;
+            }
 
             const pathInfo = path.parse(filename);
             this.mkdirsSync(pathInfo.dir);
 
-            this.genErrorModel(filename, content, sheetJson.slice(consts.CONFIG_SKIP_ROW));
+            this.genErrorModel(filename, content, sheetJson.slice(consts.CONFIG_SKIP_ROW), baseCodeConfig);
         }
 
         for (let pub of this.publishChannel) {

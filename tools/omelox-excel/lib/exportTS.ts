@@ -162,12 +162,18 @@ export class ${modelrName} extends config_model_base {\r\n`
         fs.writeFileSync(`${path.parse(filename).dir}/${modelrName}.ts`, str);
     }
 
-    protected genErrorModel(filename: string, content: string, datas: any[]): void {
+    protected genErrorModel(filename: string, content: string, datas: any[], baseCodeConfig: {
+        path: string,
+        baseCode: string,
+        baseObj: string
+    }): void {
         const oriFilename = path.parse(filename).name;
         let modelrName = `${oriFilename}_model`;
-
-        let str = `import path = require('path');
-import { config_model_base } from './config_model';
+        let str = 'import path = require(\'path\');\r\n';
+        if (baseCodeConfig) {
+            str += `import { ${baseCodeConfig.baseCode}, ${baseCodeConfig.baseObj}} from '${baseCodeConfig.path}';\r\n`
+        }
+        str += `import { config_model_base } from './config_model';
 
 /**
  * ${content}
@@ -193,13 +199,19 @@ export class ${modelrName} extends config_model_base {\r\n`
 	}
 }`
         str += `\r\n`
-        str += `export enum ${oriFilename} {\r\n`
+        str += `export const ${oriFilename} = {\r\n`
+        if (baseCodeConfig) {
+            str += `...${baseCodeConfig.baseCode},\r\n`
+        }
         // 字段定义
         str += this._genErrorFieldDefine(datas);
         str += `}\r\n`
 
         str += `\r\n`
         str += `export const ${oriFilename}_obj = {\r\n`
+        if (baseCodeConfig) {
+            str += `...${baseCodeConfig.baseObj},\r\n`
+        }
         // 字段定义
         str += this._genErrorFieldObj(datas);
         str += `}`
@@ -612,7 +624,7 @@ export class config_error_getter {
 
             const keyCst = rowArray[0].toString().trim();
             str += `\t/** ${rowArray[2]} */\r\n`
-            str += `\t${keyCst} = ${rowArray[1]},\r\n`
+            str += `\t${keyCst} : ${rowArray[1]},\r\n`
         }
 
         return str;
