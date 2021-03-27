@@ -124,7 +124,7 @@ export class ${modelrName} extends config_model_base {\r\n`
         fs.writeFileSync(`${path.parse(filename).dir}/${modelrName}.ts`, str);
     }
 
-    protected genLangModel(filename: string, content: string, datas: any[]): void {
+    protected genLangModel(filename: string, content: string, fields: number, fieldsDef: number, datas: any[]): void {
         const oriFilename = path.parse(filename).name;
         let modelrName = `${oriFilename}_model`;
 
@@ -135,9 +135,17 @@ import { config_model_base } from './config_model';
  * ${content}
  */
 export class ${modelrName} extends config_model_base {\r\n`
-        // 字段定义
-        str += this._genLangFieldDefine(datas);
-        str += `\r\n`
+        if (fieldsDef) {
+            // 字段定义
+            str += this._genLangFieldDefine(datas);
+            str += `\r\n`
+        }
+
+        if (fields === 1) {
+            str += `\tpublic static readonly FIELDS = {\r\n`
+            str += this._genLangFields(datas);
+            str += `\t}\r\n`
+        }
 
         str += `\r\n`
         str += `\tpublic static getClassName(): string {
@@ -610,6 +618,26 @@ export class config_error_getter {
             const keyCst = rowArray[0].toString().trim();
             str += `\t/** ${rowArray[1]} */\r\n`
             str += `\t${keyCst}: string;\r\n`
+        }
+
+        return str;
+    }
+
+    /**
+     * 生成语言字段名常量集合
+     * @param datas 数据
+     */
+    private _genLangFields(datas: any[]) {
+        let str = '';
+        for (let i = 0; i < datas.length; i++) {
+            let rowArray = datas[i];
+            if (rowArray.length < 1) {
+                return;
+            }
+
+            const keyCst = rowArray[0].toString().trim().toUpperCase();
+            str += `\t\t/** ${rowArray[1]} */\r\n`
+            str += `\t\t${keyCst}: \'${keyCst}\',\r\n`
         }
 
         return str;

@@ -68,7 +68,7 @@ export abstract class ExportBase {
      * @param content 文件功能描述
      * @param datas 数据
      */
-    protected abstract genLangModel(filename: string, content: string, datas: any[]): void;
+    protected abstract genLangModel(filename: string, content: string, fields: number, fieldsDef: number, datas: any[]): void;
 
     /**
      * 生成错误码模型
@@ -258,13 +258,14 @@ export abstract class ExportBase {
             }
 
             let content = descriptionSheetJson[5][1];
+            let fields = Number(descriptionSheetJson[6][1]);
+            let fieldsDef = Number(descriptionSheetJson[7][1]);
             let sheetJson = XLSX.utils.sheet_to_json(modelData, { header: 1, raw: true, blankrows: false });
             let filename = `${this.outRootDir}/${oriFilename}`;
-
             const pathInfo = path.parse(filename);
             this.mkdirsSync(pathInfo.dir);
 
-            this.genLangModel(filename, content, sheetJson.slice(consts.CONFIG_SKIP_ROW));
+            this.genLangModel(filename, content, fields, fieldsDef, sheetJson.slice(consts.CONFIG_SKIP_ROW));
         } else if (config_type === CONFIG_TYPE.ERROR) {
             // 生成ERROR模型
             let modelData = workBook.Sheets['default'];
