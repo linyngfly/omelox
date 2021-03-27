@@ -201,16 +201,21 @@ export class ${modelrName} extends config_model_base {\r\n`
         str += `\r\n`
         str += `export const ${oriFilename} = {\r\n`
         if (baseCodeConfig) {
-            str += `...${baseCodeConfig.baseCode},\r\n`
+            str += `\t...${baseCodeConfig.baseCode},\r\n`
         }
         // 字段定义
         str += this._genErrorFieldDefine(datas);
         str += `}\r\n`
 
+        str += `export const ${oriFilename}_key = {};\r\n`
+        str += `for (let [k, v] of Object.entries(${oriFilename})) {\r\n`
+        str += `\t${oriFilename}_key[v] = k;\r\n`
+        str += `}\r\n`
+
         str += `\r\n`
         str += `export const ${oriFilename}_obj = {\r\n`
         if (baseCodeConfig) {
-            str += `...${baseCodeConfig.baseObj},\r\n`
+            str += `\t...${baseCodeConfig.baseObj},\r\n`
         }
         // 字段定义
         str += this._genErrorFieldObj(datas);
