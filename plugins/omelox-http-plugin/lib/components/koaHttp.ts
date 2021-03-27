@@ -22,7 +22,6 @@ const logger = getLogger('omelox', path.basename(__filename));
 interface HttpOpts {
     cors: boolean;
 }
-
 export class KoaHttpComponent implements IComponent {
     name = 'KoaHttpComponent';
     app: Application;
