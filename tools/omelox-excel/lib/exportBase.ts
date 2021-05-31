@@ -29,6 +29,7 @@ export abstract class ExportBase {
     public genConfig() {
         this.dataFileName = {};
         this.genBaseModel();
+        this.genModelMap();
         this.genConfigDataGetter();
         this.genConfigConstGetter();
         this.genConfigLangGetter();
@@ -47,12 +48,17 @@ export abstract class ExportBase {
     protected abstract genBaseModel(): void;
 
     /**
+     * 生成模型类名映射
+     */
+    protected abstract genModelMap(): void;
+
+    /**
      * 生成数据配置模型
      * @param filename 文件名
      * @param content 文件功能描述
      * @param datas 数据
      */
-    protected abstract genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[]): void;
+    protected abstract genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[], isPublic: boolean): void;
 
     /**
      * 生成常量模型
@@ -208,6 +214,9 @@ export abstract class ExportBase {
             return;
         }
 
+        // 是否公共配置
+        let isPublic = descriptionSheetJson[7] && descriptionSheetJson[7][1] || 0;
+
         if (config_type === CONFIG_TYPE.MODEL) {
             // 根据模型文件生成数据配置模型
             let modelData = workBook.Sheets['model'];
@@ -218,6 +227,7 @@ export abstract class ExportBase {
 
             let category = descriptionSheetJson[5][1];
             let content = descriptionSheetJson[6][1];
+
             let sheetJson = XLSX.utils.sheet_to_json<any>(modelData, { header: 1, raw: true, blankrows: false });
 
             // 字段名
@@ -232,7 +242,7 @@ export abstract class ExportBase {
             const pathInfo = path.parse(filename);
             this.mkdirsSync(pathInfo.dir);
 
-            this.genDataModel(filename, content, fields, types, descs);
+            this.genDataModel(filename, content, fields, types, descs, isPublic);
         } else if (config_type === CONFIG_TYPE.CONST) {
             // 生成CONST模型
             let modelData = workBook.Sheets['model'];
@@ -312,8 +322,10 @@ export abstract class ExportBase {
             // 字段描述
             let descs: any = sheetJson[2];
 
-
             let filename = `${this.outRootDir}/${pub}/${oriFilename}`;
+            if (isPublic) {
+                filename = `${this.outRootDir}/public/${oriFilename}`;
+            }
 
             let fmtType = null; // 数组
             if (config_type === CONFIG_TYPE.CONST) {

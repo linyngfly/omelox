@@ -19,7 +19,9 @@ export const FIELD_RULE = {
     /** 创建字段映射索引 */
     INDEX: 'index',
     /** 检测字段唯一性 */
-    UNIQUE: 'unique'
+    UNIQUE: 'unique',
+    /** 联合索引 */
+    UNION_INDEX: 'union'
 };
 
 /** 配置类型定义 */
