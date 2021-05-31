@@ -245,7 +245,7 @@ export abstract class ExportBase {
             let isAppendData = false;
             for (let pub of this.publishChannel) {
                 let sheetData = workBook.Sheets[pub] || workBook.Sheets['default'];
-                if (!sheetData) {
+                if (sheetData) {
                     isAppendData = true;
                     break;
                 }

@@ -126,16 +126,16 @@ export class ${modelrName} extends config_model_base {\r\n`
 
         if (isAppendData) {
             str += `
-            public static getConfigName(filename?: string): string {
-                return filename || config_data_file_name.${oriFilename};
-            }
+    public static getConfigName(filename?: string): string {
+        return filename || config_data_file_name.${oriFilename};
+    }
 
         `
         } else {
             str += `
-            public static getConfigName(filename?: string): string {
-                return filename;
-            }
+    public static getConfigName(filename?: string): string {
+        return filename;
+    }
 
         `
         }
