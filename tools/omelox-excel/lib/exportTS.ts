@@ -121,7 +121,6 @@ export class ${modelrName} extends config_model_base {\r\n`
         str += `\tpublic static getClassName(): string {
         return \'${modelrName}\'
     }
-
 `
 
         if (isAppendData) {
@@ -129,15 +128,13 @@ export class ${modelrName} extends config_model_base {\r\n`
     public static getConfigName(filename?: string): string {
         return filename || config_data_file_name.${oriFilename};
     }
-
-        `
+`
         } else {
             str += `
     public static getConfigName(filename?: string): string {
         return filename;
     }
-
-        `
+`
         }
 
 
@@ -146,10 +143,11 @@ export class ${modelrName} extends config_model_base {\r\n`
     public static isPublic(): boolean {
         return true;
     }
-
 `
         }
-        str += '}';
+
+        str += `
+}`;
 
         fs.writeFileSync(`${path.parse(filename).dir}/${modelrName}.ts`, str);
     }
