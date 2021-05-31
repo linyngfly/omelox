@@ -99,7 +99,7 @@ export class lang_model_map {
         fs.writeFileSync(targetFilename, str);
     }
 
-    protected genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[], isPublic: boolean): void {
+    protected genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[], isPublic: boolean, isAppendData: boolean): void {
         const oriFilename = path.parse(filename).name;
         let modelrName = `${oriFilename}_model`;
 
@@ -122,10 +122,25 @@ export class ${modelrName} extends config_model_base {\r\n`
         return \'${modelrName}\'
     }
 
-    public static getConfigName(filename?: string): string {
-        return filename || config_data_file_name.${oriFilename};
-    }
 `
+
+        if (isAppendData) {
+            str += `
+            public static getConfigName(filename?: string): string {
+                return filename || config_data_file_name.${oriFilename};
+            }
+
+        `
+        } else {
+            str += `
+            public static getConfigName(filename?: string): string {
+                return filename;
+            }
+
+        `
+        }
+
+
         if (isPublic) {
             str += `
     public static isPublic(): boolean {

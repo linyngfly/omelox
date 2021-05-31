@@ -58,7 +58,7 @@ export abstract class ExportBase {
      * @param content 文件功能描述
      * @param datas 数据
      */
-    protected abstract genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[], isPublic: boolean): void;
+    protected abstract genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[], isPublic: boolean, isAppendData: boolean): void;
 
     /**
      * 生成常量模型
@@ -242,7 +242,16 @@ export abstract class ExportBase {
             const pathInfo = path.parse(filename);
             this.mkdirsSync(pathInfo.dir);
 
-            this.genDataModel(filename, content, fields, types, descs, isPublic);
+            let isAppendData = false;
+            for (let pub of this.publishChannel) {
+                let sheetData = workBook.Sheets[pub] || workBook.Sheets['default'];
+                if (!sheetData) {
+                    isAppendData = true;
+                    break;
+                }
+            }
+
+            this.genDataModel(filename, content, fields, types, descs, isPublic, isAppendData);
         } else if (config_type === CONFIG_TYPE.CONST) {
             // 生成CONST模型
             let modelData = workBook.Sheets['model'];
