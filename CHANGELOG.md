@@ -3,7 +3,7 @@
 
 [template] [添加了打包时对配置文件的复制处理](https://github.com/linyngfly/omelox/pull/138)
 
-[pinus]  [DictionaryComponent 添加选项 ignoreAutoRouter](https://github.com/linyngfly/omelox/commit/780b0efa105d4b2438cd7c7a289dc0dc0e49541a)
+[omelox]  [DictionaryComponent 添加选项 ignoreAutoRouter](https://github.com/linyngfly/omelox/commit/780b0efa105d4b2438cd7c7a289dc0dc0e49541a)
 
 > 可以自主控制dict的序号id.
 

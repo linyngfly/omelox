@@ -110,7 +110,7 @@ export function terminal(signal: string, opts: any) {
         process.exit(1);
         return;
     }
-    let id = 'pinus_terminal_' + Date.now();
+    let id = 'omelox_terminal_' + Date.now();
     connectToMaster(id, opts, function (client) {
         client.request(co.moduleId, {
             signal: signal, ids: opts.serverIds

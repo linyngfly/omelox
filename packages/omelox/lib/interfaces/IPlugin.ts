@@ -30,7 +30,7 @@ export interface ApplicationEventContructor {
 }
 
 /**
- * 一个pinus插件
+ * 一个omelox插件
  */
 export interface IPlugin extends ILifeCycle {
     /**

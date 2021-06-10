@@ -4,7 +4,7 @@ require('source-map-support/register');
 
 import {preload} from './preload';
 preload();
-import * as pinusrpc from '..';
+import * as omeloxrpc from '..';
 import {configure} from 'omelox-logger';
 import {getLogger} from 'omelox-logger';
 import {createTcpMailBox} from '../';
@@ -40,7 +40,7 @@ const routeFunc = function(routeParam: any, msg: any,
   cb(null, routeContext[0].id);
 };
 
-const client = pinusrpc.createClient({routeContext: routeContext,
+const client = omeloxrpc.createClient({routeContext: routeContext,
     router: routeFunc, context: context,
     mailboxFactory: createTcpMailBox,
     bufferMsg: true,

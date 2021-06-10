@@ -2,20 +2,20 @@
 import * as program from 'commander';
 import { DEFAULT_USERNAME, DEFAULT_PWD, DEFAULT_MASTER_HOST, DEFAULT_MASTER_PORT } from '../utils/constants';
 import { connectToMaster } from '../utils/utils';
-import {AdminClient} from 'omelox-admin';
+import { AdminClient } from 'omelox-admin';
 import * as cliff from 'cliff';
 import { ConsoleModule as co } from '../../lib/modules/console';
 
 export default function (program: program.CommanderStatic) {
     program.command('list')
-    .description('list the servers')
-    .option('-u, --username <username>', 'administration user name', DEFAULT_USERNAME)
-    .option('-p, --password <password>', 'administration password', DEFAULT_PWD)
-    .option('-h, --host <master-host>', 'master server host', DEFAULT_MASTER_HOST)
-    .option('-P, --port <master-port>', 'master server port', DEFAULT_MASTER_PORT)
-    .action(function (opts) {
-        list(opts);
-    });
+        .description('list the servers')
+        .option('-u, --username <username>', 'administration user name', DEFAULT_USERNAME)
+        .option('-p, --password <password>', 'administration password', DEFAULT_PWD)
+        .option('-h, --host <master-host>', 'master server host', DEFAULT_MASTER_HOST)
+        .option('-P, --port <master-port>', 'master server port', DEFAULT_MASTER_PORT)
+        .action(function (opts) {
+            list(opts);
+        });
 }
 /**
  * List omelox processes.
@@ -23,7 +23,7 @@ export default function (program: program.CommanderStatic) {
  * @param {Object} opts options for `list` operation
  */
 function list(opts: any) {
-    let id = 'pinus_list_' + Date.now();
+    let id = 'omelox_list_' + Date.now();
     connectToMaster(id, opts, function (client: AdminClient) {
         client.request(co.moduleId, { signal: 'list' }, function (err: Error, data: any) {
             if (err) {

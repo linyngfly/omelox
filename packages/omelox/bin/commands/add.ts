@@ -27,7 +27,7 @@ export default function (program: program.CommanderStatic) {
  * @param {Object} opts options for `add` operation
  */
 function add(opts: any) {
-    let id = 'pinus_add_' + Date.now();
+    let id = 'omelox_add_' + Date.now();
     connectToMaster(id, opts, function (client) {
         client.request(co.moduleId, { signal: 'add', args: opts.args }, function (err: Error) {
             if (err) {
