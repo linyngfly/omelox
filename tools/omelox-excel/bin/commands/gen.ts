@@ -1,7 +1,8 @@
 require('cliff');
 import * as program from 'commander';
 import * as fs from 'fs';
-import ExportTS from '../../lib/exportTS';
+import ExportServerTS from '../../lib/exportServerTS';
+import ExportClientTS from '../../lib/ExportClientTS';
 
 export default function (programs: program.CommanderStatic) {
     programs.command('gen')
@@ -32,6 +33,11 @@ function gen(opts: any) {
         abort(OUT_DIR_NOT_FOUND);
     }
 
-    let exportTS = new ExportTS(opts);
-    exportTS.genConfig();
+    if (Number(opts.type) === 2) {
+        let exportTS = new ExportClientTS(opts);
+        exportTS.genConfig();
+    } else {
+        let exportTS = new ExportServerTS(opts);
+        exportTS.genConfig();
+    }
 }

@@ -1,7 +1,7 @@
 import * as should from 'should';
-import ExportTS from '../lib/exportTS';
+import ExportServerTS from '../lib/exportServerTS';
 
-let exportTS = new ExportTS({
+let exportTS = new ExportServerTS({
     inputdir: '../template',
     outdir: '../out',
     channel: 'wechat,google',
@@ -13,7 +13,7 @@ exportTS.genConfig()
 // describe('utils test', function () {
 //     describe('#invokeCallback', function () {
 //         it('should gen config ok', function () {
-//             let exportTS = new ExportTS({
+//             let exportTS = new ExportServerTS({
 //                 inputdir: '../template',
 //                 outdir: '../out',
 //                 channel: 'wechat,google',

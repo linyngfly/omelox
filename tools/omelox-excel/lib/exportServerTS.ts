@@ -9,7 +9,7 @@ TSTypeLink[FIELD_TYPE.INT] = 'number';
 TSTypeLink[FIELD_TYPE.STRING] = 'string';
 TSTypeLink[FIELD_TYPE.TABLE] = 'any';
 
-export default class ExportTS extends ExportBase {
+export default class ExportServerTS extends ExportBase {
     protected genDataFileName(): void {
         let str = `/** 数据文件名 */
 const config_data_file_name = {\r\n`
@@ -626,7 +626,7 @@ export class config_error_getter {
      * @param types 字段类型
      * @param descs 字段描述
      */
-    private _genFieldDefine(fields: string[], types: string[], descs: string[]) {
+    protected _genFieldDefine(fields: string[], types: string[], descs: string[]) {
         let str = '';
         for (let i = 0; i < fields.length; i++) {
             let fieldType = types[i].split(',')[0];
@@ -645,7 +645,7 @@ export class config_error_getter {
      * @param oriFilename 文件名
      * @param datas 行数据
      */
-    private _genConstFieldDefine(oriFilename: string, datas: any[]) {
+    protected _genConstFieldDefine(oriFilename: string, datas: any[]) {
         let str = '';
         for (let i = 0; i < datas.length; i++) {
             let rowArray = datas[i];
@@ -667,7 +667,7 @@ export class config_error_getter {
      * 生成语言字段定义
      * @param datas 数据
      */
-    private _genLangFieldDefine(datas: any[]) {
+    protected _genLangFieldDefine(datas: any[]) {
         let str = '';
         for (let i = 0; i < datas.length; i++) {
             let rowArray = datas[i];
@@ -687,7 +687,7 @@ export class config_error_getter {
      * 生成语言字段名常量集合
      * @param datas 数据
      */
-    private _genLangFields(datas: any[]) {
+    protected _genLangFields(datas: any[]) {
         let str = '';
         for (let i = 0; i < datas.length; i++) {
             let rowArray = datas[i];
@@ -707,7 +707,7 @@ export class config_error_getter {
      * 生成错误码字段定义
      * @param datas 数据
      */
-    private _genErrorFieldDefine(datas: any[]) {
+    protected _genErrorFieldDefine(datas: any[]) {
         let str = '';
         for (let i = 0; i < datas.length; i++) {
             let rowArray = datas[i];
@@ -727,7 +727,7 @@ export class config_error_getter {
      * 生成错误码字段定义
      * @param datas 数据
      */
-    private _genErrorFieldObj(datas: any[]) {
+    protected _genErrorFieldObj(datas: any[]) {
         let str = '';
         for (let i = 0; i < datas.length; i++) {
             let rowArray = datas[i];
@@ -751,7 +751,7 @@ export class config_error_getter {
      * @param types 类型
      * @param fields 字段
      */
-    private _genFIELDS(types: string[], fields: string[]) {
+    protected _genFIELDS(types: string[], fields: string[]) {
         let str = '';
         for (let i = 0; i < fields.length; i++) {
             let fieldType = types[i].split(',')[0];
@@ -771,7 +771,7 @@ export class config_error_getter {
      * @param types 字段类型
      * @param datas 数据
      */
-    private genDataConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[]): string {
+    protected genDataConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[]): string {
         let str = `{\r\n`
         str += `\t\"fieldData\" : [`;
         for (let i = 0; i < datas.length; i++) {
@@ -861,7 +861,7 @@ export class config_error_getter {
      * @param types 字段类型
      * @param datas 数据
      */
-    private genConstConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
+    protected genConstConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
 
         let str = `{\r\n`;
         for (let i = 0; i < datas.length; i++) {
@@ -895,7 +895,7 @@ export class config_error_getter {
      * @param types 字段类型
      * @param datas 数据
      */
-    private genLangConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
+    protected genLangConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
         for (let i = 1; i < fields.length; i++) {
             let oriFilenameData = fields[i];
             let str = `{\r\n`;
@@ -927,7 +927,7 @@ export class config_error_getter {
         }
     }
 
-    private genErrorConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
+    protected genErrorConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
         for (let i = 2; i < fields.length; i++) {
             let oriFilenameData = fields[i];
             let str = `{\r\n`;
