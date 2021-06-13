@@ -255,7 +255,7 @@ export abstract class ExportBase {
             // 字段描述
             let descs = sheetJson[2];
 
-            let filename = `${this.getHandlerOutDir()} /${category}`;
+            let filename = `${this.getHandlerOutDir()}/${category}`;
 
             const pathInfo = path.parse(filename);
             this.mkdirsSync(pathInfo.dir);
