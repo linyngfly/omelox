@@ -14,7 +14,7 @@ export default class ExportClientTS extends ExportServerTS {
     protected getDataOutDir(pub: string, isPublic: boolean) {
         let dir = `${this.outRootDir}/config_${pub}`;
         if (isPublic) {
-            dir = `${this.outRootDir}/config_public`;
+            dir = `${this.outRootDir}/config_common`;
         }
 
         return dir;
@@ -31,7 +31,7 @@ export abstract class config_model_base {
     /** 获取文件链接 */
     public static getUrl(filename: string): string {
         let configUrl = null;
-        let dir = this.isPublic() ? 'config_public' : \`config_\${window['PubPlatform']}\`;
+        let dir = this.isPublic() ? 'config_common' : \`config_\${window['PubPlatform']}\`;
 
         if (window['RemoteConfigURL']) {
             configUrl = \`\${window['RemoteConfigURL']}/\${dir}/\${filename}\`
