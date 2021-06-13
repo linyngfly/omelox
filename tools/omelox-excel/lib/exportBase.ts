@@ -37,6 +37,24 @@ export abstract class ExportBase {
         this.walkExcels(this.excelDir);
         this.genDataFileName();
     }
+
+    protected getHandlerOutDir() {
+        return this.outRootDir;
+    }
+
+    protected getLanOutDir() {
+        return `${this.outRootDir}/i18n`
+    }
+
+    protected getDataOutDir(pub: string, isPublic: boolean) {
+        let dir = `${this.outRootDir}/${pub}`;
+        if (isPublic) {
+            dir = `${this.outRootDir}/public`;
+        }
+
+        return dir;
+    }
+
     /**
      * 生成配置文件名集合
      */
@@ -210,7 +228,7 @@ export abstract class ExportBase {
         // let useRange = Number(descriptionSheetJson[3][1]);
         let config_type = descriptionSheetJson[4][1];
         if (Object.values(CONFIG_TYPE).indexOf(config_type) === -1) {
-            console.log(`${filePath} description描述表单config_type不支持，只支持${Object.values(CONFIG_TYPE)}`);
+            console.log(`${filePath} description描述表单config_type不支持，只支持${Object.values(CONFIG_TYPE)} `);
             return;
         }
 
@@ -237,7 +255,7 @@ export abstract class ExportBase {
             // 字段描述
             let descs = sheetJson[2];
 
-            let filename = `${this.outRootDir}/${category}`;
+            let filename = `${this.getHandlerOutDir()} /${category}`;
 
             const pathInfo = path.parse(filename);
             this.mkdirsSync(pathInfo.dir);
@@ -262,7 +280,7 @@ export abstract class ExportBase {
 
             let content = descriptionSheetJson[5][1];
             let sheetJson = XLSX.utils.sheet_to_json(modelData, { header: 1, raw: true, blankrows: false });
-            let filename = `${this.outRootDir}/${oriFilename}`;
+            let filename = `${this.getHandlerOutDir()}/${oriFilename}`;
 
             const pathInfo = path.parse(filename);
             this.mkdirsSync(pathInfo.dir);
@@ -280,7 +298,7 @@ export abstract class ExportBase {
             let fields = Number(descriptionSheetJson[6][1]);
             let fieldsDef = Number(descriptionSheetJson[7][1]);
             let sheetJson = XLSX.utils.sheet_to_json(modelData, { header: 1, raw: true, blankrows: false });
-            let filename = `${this.outRootDir}/${oriFilename}`;
+            let filename = `${this.getHandlerOutDir()}/${oriFilename}`;
             const pathInfo = path.parse(filename);
             this.mkdirsSync(pathInfo.dir);
 
@@ -296,7 +314,7 @@ export abstract class ExportBase {
             let baseCodeConfig = descriptionSheetJson[5][1];
             let content = descriptionSheetJson[6][1];
             let sheetJson = XLSX.utils.sheet_to_json(modelData, { header: 1, raw: true, blankrows: false });
-            let filename = `${this.outRootDir}/${oriFilename}`;
+            let filename = `${this.getHandlerOutDir()}/${oriFilename}`;
 
             if (baseCodeConfig && baseCodeConfig !== '') {
                 try {
@@ -331,10 +349,7 @@ export abstract class ExportBase {
             // 字段描述
             let descs: any = sheetJson[2];
 
-            let filename = `${this.outRootDir}/${pub}/${oriFilename}`;
-            if (isPublic) {
-                filename = `${this.outRootDir}/public/${oriFilename}`;
-            }
+            let filename = `${this.getDataOutDir(pub, isPublic)}/${oriFilename}`;
 
             let fmtType = null; // 数组
             if (config_type === CONFIG_TYPE.CONST) {
@@ -343,7 +358,6 @@ export abstract class ExportBase {
             } else if (config_type === CONFIG_TYPE.LANG) {
                 // 语言配置类型
                 fmtType = CONFIG_TYPE.LANG;
-                // filename = `${this.outRootDir}/i18n`;
             } else if (config_type === CONFIG_TYPE.ERROR) {
                 fmtType = CONFIG_TYPE.ERROR;
             }

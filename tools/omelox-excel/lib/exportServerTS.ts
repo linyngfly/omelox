@@ -10,6 +10,8 @@ TSTypeLink[FIELD_TYPE.STRING] = 'string';
 TSTypeLink[FIELD_TYPE.TABLE] = 'any';
 
 export default class ExportServerTS extends ExportBase {
+
+
     protected genDataFileName(): void {
         let str = `/** 数据文件名 */
 const config_data_file_name = {\r\n`
@@ -21,7 +23,7 @@ const config_data_file_name = {\r\n`
         str += `\r\n`
         str += `export { config_data_file_name };`
 
-        fs.writeFileSync(`${this.outRootDir}/config_data_file_name.ts`, str);
+        fs.writeFileSync(`${this.getHandlerOutDir()}/config_data_file_name.ts`, str);
     }
 
     protected genBaseModel(): void {
@@ -70,7 +72,7 @@ export interface ConfigClass<T extends config_model_base> {
     isPublic(): boolean;
 }`;
 
-        let targetFilename = `${this.outRootDir}/config_model.ts`;
+        let targetFilename = `${this.getHandlerOutDir()}/config_model.ts`;
         const pathInfo = path.parse(targetFilename);
         this.mkdirsSync(pathInfo.dir);
         fs.writeFileSync(targetFilename, str);
@@ -93,7 +95,7 @@ export class lang_model_map {
     }
 }`;
 
-        let targetFilename = `${this.outRootDir}/lang_model_map.ts`;
+        let targetFilename = `${this.getHandlerOutDir()}/lang_model_map.ts`;
         const pathInfo = path.parse(targetFilename);
         this.mkdirsSync(pathInfo.dir);
         fs.writeFileSync(targetFilename, str);
@@ -444,7 +446,7 @@ export class config_data_getter {
 		return configData;
 	}
 }`
-        fs.writeFileSync(`${this.outRootDir}/config_data_getter.ts`, str);
+        fs.writeFileSync(`${this.getHandlerOutDir()}/config_data_getter.ts`, str);
     }
 
     protected genConfigConstGetter(): void {
@@ -489,7 +491,7 @@ export class config_const_getter {
         return configData;
     }
 }`
-        fs.writeFileSync(`${this.outRootDir}/config_const_getter.ts`, str);
+        fs.writeFileSync(`${this.getHandlerOutDir()}/config_const_getter.ts`, str);
     }
 
     protected genConfigLangGetter(): void {
@@ -534,7 +536,7 @@ export class config_lang_getter {
         return configData;
     }
 }`
-        fs.writeFileSync(`${this.outRootDir}/config_lang_getter.ts`, str);
+        fs.writeFileSync(`${this.getHandlerOutDir()}/config_lang_getter.ts`, str);
     }
 
 
@@ -580,7 +582,7 @@ export class config_error_getter {
         return configData;
     }
 }`
-        fs.writeFileSync(`${this.outRootDir}/config_error_getter.ts`, str);
+        fs.writeFileSync(`${this.getHandlerOutDir()}/config_error_getter.ts`, str);
     }
 
     /**
@@ -917,7 +919,7 @@ export class config_error_getter {
             str += `}\r\n`
 
             if (str) {
-                let filename1 = `${this.outRootDir}/i18n/${oriFilename}-${oriFilenameData}.json`
+                let filename1 = `${this.getLanOutDir()}/${oriFilename}-${oriFilenameData}.json`
                 const pathInfo = path.parse(filename1);
                 this.mkdirsSync(pathInfo.dir);
 
@@ -949,7 +951,7 @@ export class config_error_getter {
             str += `}\r\n`
 
             if (str) {
-                let filename1 = `${this.outRootDir}/i18n/${oriFilename}-${oriFilenameData}.json`
+                let filename1 = `${this.getLanOutDir()}/${oriFilename}-${oriFilenameData}.json`
                 const pathInfo = path.parse(filename1);
                 this.mkdirsSync(pathInfo.dir);
 
