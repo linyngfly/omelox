@@ -35,7 +35,7 @@ export abstract class config_model_base {
     /** 获取文件链接 */
     public static getUrl(filename: string): string {
         let configUrl = null;
-        let dir = this.isPublic() ? 'public' : process.env.PUB_PLATFORM;
+        let dir = this.isPublic() ? 'common' : process.env.PUB_PLATFORM;
 
         if (process.env.CONFIG_DIR) {
             configUrl = \`\${path.join(process.env.CONFIG_DIR, dir, filename)}\`;
