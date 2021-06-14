@@ -42,7 +42,7 @@ export abstract class ExportBase {
         return this.outRootDir;
     }
 
-    protected getLanOutDir() {
+    protected getLanOutDir(lang?: string) {
         return `${this.outRootDir}/i18n`
     }
 

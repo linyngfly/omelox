@@ -11,6 +11,7 @@ export default function (programs: program.CommanderStatic) {
         .option('-i, --inputdir <input directory>', 'excel input dir')
         .option('-o, --outdir <out directory>', 'the gen directory')
         .option('-t, --type <server(1) or client(2) type>', 'gen config type server or client', 1)
+        .option('-h, --handlerdir <excel config data handler directory>', 'excel config data handler directory', '')
         .action(function (opts) {
             gen(opts);
         });

@@ -3,12 +3,18 @@ import * as fs from 'fs';
 import ExportServerTS from './exportServerTS';
 
 export default class ExportClientTS extends ExportServerTS {
+    /** 配置输出目录 */
+    handlerDir: string;
+    constructor(opts: any) {
+        super(opts);
+        this.handlerDir = opts.handlerdir;
+    }
     protected getHandlerOutDir() {
-        return `${this.outRootDir}/handler`;
+        return this.handlerDir;
     }
 
-    protected getLanOutDir() {
-        return `${this.outRootDir}/config_i18n`
+    protected getLanOutDir(lang?: string) {
+        return `${this.outRootDir}/config_i18n_${lang}`
     }
 
     protected getDataOutDir(pub: string, isPublic: boolean) {
@@ -29,7 +35,7 @@ export abstract class config_model_base {
     private static loaderHander: JsonLoaderHander;
 
     /** 获取文件链接 */
-    public static getUrl(filename: string): string {
+    public static getUrl(filename: string, lang?: string): string {
         let configUrl = null;
         let dir = this.isPublic() ? 'config_common' : \`config_\${window['PubPlatform']}\`;
 
@@ -61,7 +67,7 @@ export abstract class config_model_base {
 export interface ConfigClass<T extends config_model_base> {
     new(): T;
     FIELDS?: any;
-    getUrl(filename: string): string;
+    getUrl(filename: string, lang?: string): string;
     loadJson(configUrl: string): any;
     getConfigName(filename?: string): string;
     getClassName(): string;
@@ -107,13 +113,13 @@ export class ${modelrName} extends config_model_base {\r\n`
 		return \`${oriFilename}-\${filename}.json\`;
     }
 
-    public static getUrl(filename: string): string {
+    public static getUrl(filename: string, lang?: string): string {
 		let configUrl = null;
 
         if (window['RemoteConfigURL']) {
-            configUrl = \`\${window['RemoteConfigURL']}/config_i18n/\${filename}\`
+            configUrl = \`\${window['RemoteConfigURL']}/config_i18n_\${lang}/\${filename}\`
         } else {
-            configUrl = \`config_i18n/\${filename}\`
+            configUrl = \`config_i18n_\${lang}/\${filename}\`
         }
 
 		return configUrl;
@@ -151,12 +157,12 @@ export class ${modelrName} extends config_model_base {\r\n`
 		return \`${oriFilename}-\${filename}.json\`;
     }
 
-    public static getUrl(filename: string): string {
+    public static getUrl(filename: string, lang?: string): string {
 		let configUrl = null;
         if (window['RemoteConfigURL']) {
-            configUrl = \`\${window['RemoteConfigURL']}/config_i18n/\${filename}\`
+            configUrl = \`\${window['RemoteConfigURL']}/config_i18n_\${lang}/\${filename}\`
         } else {
-            configUrl = \`config_i18n/\${filename}\`
+            configUrl = \`config_i18n_\${lang}/\${filename}\`
         }
 		return configUrl;
 	}
@@ -185,5 +191,95 @@ export class ${modelrName} extends config_model_base {\r\n`
         str += `}`
 
         fs.writeFileSync(`${path.parse(filename).dir}/${modelrName}.ts`, str);
+    }
+
+    protected genConfigErrorGetter(): void {
+        let str = `import { config_model_base, ConfigClass } from './config_model';
+export class config_error_getter {
+    /** 配置数据 */
+    private modelDatas = new Map<string, any>();
+
+    private static _instance: config_error_getter = null;
+
+    public static get instance() {
+        if (null == config_error_getter._instance) {
+            config_error_getter._instance = new config_error_getter();
+        }
+
+        return config_error_getter._instance;
+    }
+
+    /**
+    * 读取配置
+    * @param configClass 数据模型类
+    * @param lang 语言标识
+    */
+    public getLangMsg<T extends config_model_base>(configClass: ConfigClass<T>, code: string, lang: string = 'zh-CN'): string {
+        let configData = this.getConfigData(configClass, lang);
+        return configData[code];
+    }
+
+    private getConfigData<T extends config_model_base>(uiClass: ConfigClass<T>, filename: string) {
+        let cfgFileName = uiClass.getConfigName(filename);
+        let configData = this.modelDatas.get(cfgFileName)
+        if (!configData) {
+            let configUrl = uiClass.getUrl(cfgFileName, filename);
+            configData = config_model_base.loadJson(configUrl);
+            this.modelDatas.set(cfgFileName, configData);
+        }
+
+        if (!configData) {
+            console.log(\`配置文件\${cfgFileName}不存在, 请检查\`);
+        }
+
+        return configData;
+    }
+}`
+        fs.writeFileSync(`${this.getHandlerOutDir()}/config_error_getter.ts`, str);
+    }
+
+    protected genConfigLangGetter(): void {
+        let str = `import { config_model_base, ConfigClass } from './config_model';
+export class config_lang_getter {
+    /** 配置数据 */
+    private modelDatas = new Map<string, any>();
+
+    private static _instance: config_lang_getter = null;
+
+    public static get instance() {
+        if (null == config_lang_getter._instance) {
+            config_lang_getter._instance = new config_lang_getter();
+        }
+
+        return config_lang_getter._instance;
+    }
+
+    /**
+    * 读取配置
+    * @param configClass 数据模型类
+    * @param lang 语言标识
+    */
+    public getLangData<T extends config_model_base>(configClass: ConfigClass<T>, lang: string = 'zh-CN'): T {
+        let configData = this.getConfigData(configClass, lang);
+        return configData;
+    }
+
+    private getConfigData<T extends config_model_base>(uiClass: ConfigClass<T>, filename: string) {
+        let cfgFileName = uiClass.getConfigName(filename);
+        let configData = this.modelDatas.get(cfgFileName)
+        if (!configData) {
+            let configUrl = uiClass.getUrl(cfgFileName, filename);
+            configData = config_model_base.loadJson(configUrl);
+            this.modelDatas.set(cfgFileName, configData);
+        }
+
+        if (!configData) {
+            console.log(\`配置文件\${cfgFileName}不存在, 请检查\`);
+        }
+
+        return configData;
+    }
+}`
+        fs.writeFileSync(`${this.getHandlerOutDir()}/config_lang_getter.ts`, str);
     }
 }

@@ -241,7 +241,7 @@ lang_model_map.add(${modelrName});`
         let modelrName = `${oriFilename}_model`;
         let str = 'import path = require(\'path\');\r\n';
         if (baseCodeConfig) {
-            str += `import { ${baseCodeConfig.baseCode}, ${baseCodeConfig.baseObj}} from '${baseCodeConfig.path}';\r\n`
+            str += `import { error_code_base, error_code_base_obj} from './error_code_base_model';\r\n`;
         }
         str += `import { config_model_base } from './config_model';
 
@@ -899,7 +899,7 @@ export class config_error_getter {
      */
     protected genLangConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
         for (let i = 1; i < fields.length; i++) {
-            let oriFilenameData = fields[i];
+            let lang = fields[i];
             let str = `{\r\n`;
             for (let j = 0; j < datas.length; j++) {
                 let rowArray = datas[j];
@@ -919,7 +919,7 @@ export class config_error_getter {
             str += `}\r\n`
 
             if (str) {
-                let filename1 = `${this.getLanOutDir()}/${oriFilename}-${oriFilenameData}.json`
+                let filename1 = `${this.getLanOutDir(lang)}/${oriFilename}-${lang}.json`
                 const pathInfo = path.parse(filename1);
                 this.mkdirsSync(pathInfo.dir);
 
@@ -931,7 +931,7 @@ export class config_error_getter {
 
     protected genErrorConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], descs: string[]): string {
         for (let i = 2; i < fields.length; i++) {
-            let oriFilenameData = fields[i];
+            let lang = fields[i];
             let str = `{\r\n`;
             for (let j = 0; j < datas.length; j++) {
                 let rowArray = datas[j];
@@ -951,7 +951,7 @@ export class config_error_getter {
             str += `}\r\n`
 
             if (str) {
-                let filename1 = `${this.getLanOutDir()}/${oriFilename}-${oriFilenameData}.json`
+                let filename1 = `${this.getLanOutDir(lang)}/${oriFilename}-${lang}.json`
                 const pathInfo = path.parse(filename1);
                 this.mkdirsSync(pathInfo.dir);
 
