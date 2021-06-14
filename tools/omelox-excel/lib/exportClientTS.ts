@@ -14,13 +14,13 @@ export default class ExportClientTS extends ExportServerTS {
     }
 
     protected getLanOutDir(lang?: string) {
-        return `${this.outRootDir}/config_i18n_${lang}`
+        return `${this.outRootDir}/config_i18n_${lang}/config_i18n_${lang}`
     }
 
     protected getDataOutDir(pub: string, isPublic: boolean) {
-        let dir = `${this.outRootDir}/config_${pub}`;
+        let dir = `${this.outRootDir}/config_${pub}/config_${pub}`;
         if (isPublic) {
-            dir = `${this.outRootDir}/config_common`;
+            dir = `${this.outRootDir}/config_common/config_common`;
         }
 
         return dir;
