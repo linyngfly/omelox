@@ -241,7 +241,7 @@ lang_model_map.add(${modelrName});`
         let modelrName = `${oriFilename}_model`;
         let str = 'import path = require(\'path\');\r\n';
         if (baseCodeConfig) {
-            str += `import { error_code_base, error_code_base_obj} from './error_code_base_model';\r\n`;
+            str += `import { ${baseCodeConfig.baseCode}, ${baseCodeConfig.baseObj}} from '${baseCodeConfig.path}';\r\n`
         }
         str += `import { config_model_base } from './config_model';
 
