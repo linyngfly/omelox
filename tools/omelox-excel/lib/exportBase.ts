@@ -49,7 +49,7 @@ export abstract class ExportBase {
     protected getDataOutDir(pub: string, isPublic: boolean) {
         let dir = `${this.outRootDir}/${pub}`;
         if (isPublic) {
-            dir = `${this.outRootDir}/public`;
+            dir = `${this.outRootDir}/common`;
         }
 
         return dir;
