@@ -165,9 +165,12 @@ export function kill(pids: string[], servers: ServerInfo[]) {
 export function sshrun(cmd: string, host: string, cb ?: (err?: string | number) => void) {
     let args = [];
     args.push(host);
-    let ssh_params = omelox.app.get(Constants.RESERVED.SSH_CONFIG_PARAMS);
-    if (!!ssh_params && Array.isArray(ssh_params)) {
-        args = args.concat(ssh_params);
+    // omelox masterha 命令下pinus.app为undefined
+    if (omelox.app) {
+        let ssh_params = omelox.app.get(Constants.RESERVED.SSH_CONFIG_PARAMS);
+        if (!!ssh_params && Array.isArray(ssh_params)) {
+            args = args.concat(ssh_params);
+        }
     }
     args.push(cmd);
 
