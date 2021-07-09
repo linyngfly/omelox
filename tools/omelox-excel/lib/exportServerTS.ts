@@ -697,9 +697,9 @@ export class config_error_getter {
                 return;
             }
 
-            const keyCst = rowArray[0].toString().trim().toUpperCase();
+            const keyCst = rowArray[0].toString().trim();
             str += `\t\t/** ${rowArray[1]} */\r\n`
-            str += `\t\t${keyCst}: \'${keyCst}\',\r\n`
+            str += `\t\t${keyCst.toUpperCase()}: \'${keyCst}\',\r\n`
         }
 
         return str;
