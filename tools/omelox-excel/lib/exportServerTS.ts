@@ -10,8 +10,6 @@ TSTypeLink[FIELD_TYPE.STRING] = 'string';
 TSTypeLink[FIELD_TYPE.TABLE] = 'any';
 
 export default class ExportServerTS extends ExportBase {
-
-
     protected genDataFileName(): void {
         let str = `/** 数据文件名 */
 const config_data_file_name = {\r\n`
