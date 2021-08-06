@@ -215,7 +215,7 @@ let processArgs = function (app: Application, args: ServerStartArgs) {
         app.set(Constants.RESERVED.STARTID, startId, true);
     }
     if (!!net) {
-        app.set(Constants.RESERVED.Net, net, true);
+        app.set(Constants.RESERVED.NET, net, true);
     }
 
     if (masterha === 'true') {

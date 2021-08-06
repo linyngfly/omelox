@@ -45,7 +45,7 @@ export enum RESERVED {
     MASTER = 'master',
     SERVERS = 'servers',
     ENV = 'env',
-    Net = 'net',
+    NET = 'net',
     CPU = 'cpu',
     ENV_DEV = 'development',
     ENV_PRO = 'production',
