@@ -125,7 +125,7 @@ export class Server extends EventEmitter {
 
         let routeRecord = parseRoute(msg.route);
         if (!routeRecord) {
-            utils.invokeCallback(cb, new Error(`meet unknown route message ${ msg.route }`));
+            utils.invokeCallback(cb, new Error(`meet unknown route message ${msg.route}`));
             return;
         }
         if (routeRecord.method === 'constructor') {
@@ -262,7 +262,7 @@ let loadCronHandlers = function (app: Application, manualReload = false) {
     for (let plugin of app.usedPlugins) {
         if (plugin.cronPath) {
             if (!_checkCanRequire(plugin.cronPath)) {
-                logger.error(`插件[${ plugin.name }的cronPath[${ plugin.cronPath }不存在。]]`);
+                logger.error(`插件[${plugin.name}的cronPath[${plugin.cronPath}不存在。]]`);
                 continue;
             }
             let crons = Loader.load(plugin.cronPath, app, manualReload, true, LoaderPathType.OMELOX_CRONNER);
@@ -377,7 +377,7 @@ let handleError = function (isGlobal: boolean, server: Server, err: Error, msg: 
         handler = server.app.get(Constants.RESERVED.ERROR_HANDLER);
     }
     if (!handler) {
-        logger.error(`${ server.app.serverId } no default error handler msg[${ JSON.stringify(msg) }] to resolve unknown exception: sessionId:${ JSON.stringify(session.export()) } , error stack: ${ err.stack }`);
+        logger.warn(`${server.app.serverId} no default error handler msg[${JSON.stringify(msg)}] to resolve unknown exception: sessionId:${JSON.stringify(session.export())} , error stack: ${err.stack}`);
         utils.invokeCallback(cb, err, resp);
     } else {
         if (handler.length === 5) {
@@ -443,12 +443,12 @@ let doForward = function (app: Application, msg: any, session: FrontendOrBackend
                 finished = true;
                 utils.invokeCallback(cb, null, resp);
             }).catch(function (err: Error) {
-            logger.error(app.serverId + ' fail to process remote message:' + err.stack);
-            utils.invokeCallback(cb, err);
-        });
+                logger.warn(app.serverId + ' fail to process remote message:' + err.stack);
+                utils.invokeCallback(cb, err);
+            });
     } catch (err) {
         if (!finished) {
-            logger.error(app.serverId + ' fail to forward message:' + err.stack);
+            logger.warn(app.serverId + ' fail to forward message:' + err.stack);
             utils.invokeCallback(cb, err);
         }
     }
