@@ -1,30 +1,23 @@
-
-
-
 import * as fs from 'fs';
-import * as os from 'os';
 import * as path from 'path';
-import * as util from 'util';
 import * as program from 'commander';
 import * as constants from '../../lib/util/constants';
-import { connectToMaster, abort } from '../utils/utils';
-import { ConsoleModule as co } from '../../lib/modules/console';
-import { DEFAULT_USERNAME, DEFAULT_PWD, DEFAULT_MASTER_HOST, DEFAULT_MASTER_PORT, ADD_SERVER_INFO, CLOSEAPP_INFO, KILL_CMD_WIN, KILL_CMD_LUX, DEFAULT_ENV, DEFAULT_GAME_SERVER_DIR, SCRIPT_NOT_FOUND, DAEMON_INFO } from '../utils/constants';
-import { exec, spawn } from 'child_process';
-
-
+import { abort } from '../utils/utils';
+import { DEFAULT_ENV, DEFAULT_GAME_SERVER_DIR, SCRIPT_NOT_FOUND, DAEMON_INFO } from '../utils/constants';
+import { spawn } from 'child_process';
 
 export default function (program: program.CommanderStatic) {
     program.command('start')
-    .description('start the application')
-    .option('-e, --env <env>', 'the used environment', DEFAULT_ENV)
-    .option('-D, --daemon', 'enable the daemon start')
-    .option('-d, --directory, <directory>', 'the code directory', DEFAULT_GAME_SERVER_DIR)
-    .option('-t, --type <server-type>,', 'start server type')
-    .option('-i, --id <server-id>', 'start server id')
-    .action(function (opts) {
-        start(opts);
-    });
+        .description('start the application')
+        .option('-e, --env <env>', 'the used environment', DEFAULT_ENV)
+        .option('-D, --daemon', 'enable the daemon start')
+        .option('-d, --directory, <directory>', 'the code directory', DEFAULT_GAME_SERVER_DIR)
+        .option('-t, --type <server-type>,', 'start server type')
+        .option('-i, --id <server-id>', 'start server id')
+        .option('-n, --net <net-index>', 'set net adapter name, default auto set first available')
+        .action(function (opts) {
+            start(opts);
+        });
 }
 /**
  * Start application.
@@ -47,6 +40,9 @@ function start(opts: any) {
     let params = [absScript, 'env=' + opts.env, 'type=' + type];
     if (!!opts.id) {
         params.push('startId=' + opts.id);
+    }
+    if (!!opts.net) {
+        params.push('net=' + opts.net);
     }
     if (opts.daemon) {
         ls = spawn(process.execPath, params, { detached: true, stdio: 'ignore' });

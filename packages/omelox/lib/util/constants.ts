@@ -2,21 +2,21 @@ import { RemoteServerCode } from '../index';
 
 
 export enum KEYWORDS {
-    BEFORE_FILTER= '__befores__',
-    AFTER_FILTER= '__afters__',
-    GLOBAL_BEFORE_FILTER= '__globalBefores__',
-    GLOBAL_AFTER_FILTER= '__globalAfters__',
-    ROUTE= '__routes__',
-    BEFORE_STOP_HOOK= '__beforeStopHook__',
-    MODULE= '__modules__',
-    SERVER_MAP= '__serverMap__',
-    RPC_BEFORE_FILTER= '__rpcBefores__',
-    RPC_AFTER_FILTER= '__rpcAfters__',
-    MASTER_WATCHER= '__masterwatcher__',
-    MONITOR_WATCHER= '__monitorwatcher__'
+    BEFORE_FILTER = '__befores__',
+    AFTER_FILTER = '__afters__',
+    GLOBAL_BEFORE_FILTER = '__globalBefores__',
+    GLOBAL_AFTER_FILTER = '__globalAfters__',
+    ROUTE = '__routes__',
+    BEFORE_STOP_HOOK = '__beforeStopHook__',
+    MODULE = '__modules__',
+    SERVER_MAP = '__serverMap__',
+    RPC_BEFORE_FILTER = '__rpcBefores__',
+    RPC_AFTER_FILTER = '__rpcAfters__',
+    MASTER_WATCHER = '__masterwatcher__',
+    MONITOR_WATCHER = '__monitorwatcher__'
 }
 
-export enum FILEPATH  {
+export enum FILEPATH {
     MASTER = '/config/master.json',
     SERVER = '/config/servers.json',
     CRON = '/config/crons.json',
@@ -29,7 +29,7 @@ export enum FILEPATH  {
     CONFIG_DIR = '/config'
 }
 
-export enum DIR  {
+export enum DIR {
     HANDLER = 'handler',
     REMOTE = 'remote',
     CRON = 'cron',
@@ -39,12 +39,13 @@ export enum DIR  {
     COMPONENT = 'components'
 }
 
-export enum RESERVED  {
+export enum RESERVED {
     BASE = 'base',
     MAIN = 'main',
     MASTER = 'master',
     SERVERS = 'servers',
     ENV = 'env',
+    Net = 'net',
     CPU = 'cpu',
     ENV_DEV = 'development',
     ENV_PRO = 'production',
@@ -76,31 +77,31 @@ export enum RESERVED  {
     SSH_CONFIG_PARAMS = 'ssh_config_params'
 }
 
-export enum COMMAND  {
+export enum COMMAND {
     TASKSET = 'taskset',
     KILL = 'kill',
     TASKKILL = 'taskkill',
     SSH = 'ssh'
 }
 
-export enum PLATFORM  {
+export enum PLATFORM {
     WIN = 'win32',
     LINUX = 'linux'
 }
 
-export enum LIFECYCLE  {
+export enum LIFECYCLE {
     BEFORE_STARTUP = 'beforeStartup',
     BEFORE_SHUTDOWN = 'beforeShutdown',
     AFTER_STARTUP = 'afterStartup',
     AFTER_STARTALL = 'afterStartAll'
 }
 
-export enum SIGNAL  {
+export enum SIGNAL {
     FAIL = 0,
     OK = 1
 }
 
-export enum TIME  {
+export enum TIME {
     TIME_WAIT_STOP = 3 * 1000,
     TIME_WAIT_KILL = 5 * 1000,
     TIME_WAIT_RESTART = 5 * 1000,
@@ -135,18 +136,18 @@ export interface ServerInfo {
     port: number;
     clientHost?: string;
     clientPort?: number;
-    frontend ?: boolean;
+    frontend?: boolean;
 
-    args ?: string | string[];
-    cpu ?: number;
+    args?: string | string[];
+    cpu?: number;
 
-    ['max-connections'] ?: number;
-    ['auto-restart'] ?: boolean;
-    ['restart-force'] ?: boolean;
-    ['clusterCount'] ?: number;
+    ['max-connections']?: number;
+    ['auto-restart']?: boolean;
+    ['restart-force']?: boolean;
+    ['clusterCount']?: number;
 
-    handlerPaths ?: string[];
-    remoterPaths ?: RemoteServerCode[];
+    handlerPaths?: string[];
+    remoterPaths?: RemoteServerCode[];
     // 进程id  number
     pid?: any;
     // 进程启动时的 env 参数

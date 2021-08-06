@@ -84,7 +84,7 @@ export function loadDefaultComponents(app: Application) {
  * @param  {Boolean}  force whether stop component immediately
  * @param  {Function} cb
  */
-export function stopComps(comps: IComponent[], index: number, force: boolean, cb: () => void ) {
+export function stopComps(comps: IComponent[], index: number, force: boolean, cb: () => void) {
     if (index >= comps.length) {
         utils.invokeCallback(cb);
         return;
@@ -130,12 +130,12 @@ export function optComponents(comps: IComponent[], method: string, cb: (err?: Er
     });
 }
 
-export function optLifecycles(comps: ILifeCycle[], method: string, app: Application, cb: (err?: Error) => void, arg2 ?: any) {
+export function optLifecycles(comps: ILifeCycle[], method: string, app: Application, cb: (err?: Error) => void, arg2?: any) {
     let i = 0;
     async.forEachSeries(comps, function (comp, done) {
         i++;
         if (typeof (comp as any)[method] === 'function') {
-            (comp as any)[method](app , done , arg2);
+            (comp as any)[method](app, done, arg2);
         } else {
             done();
         }
@@ -158,7 +158,7 @@ export function optLifecycles(comps: ILifeCycle[], method: string, app: Applicat
 let loadServers = function (app: Application) {
     app.loadConfigBaseApp(Constants.RESERVED.SERVERS, Constants.FILEPATH.SERVER);
     let servers = app.get(Constants.RESERVED.SERVERS);
-    let serverMap: {[serverId: string]: ServerInfo} = {}, slist, i, l, server;
+    let serverMap: { [serverId: string]: ServerInfo } = {}, slist, i, l, server;
     for (let serverType in servers) {
         slist = servers[serverType];
         for (i = 0, l = slist.length; i < l; i++) {
@@ -187,10 +187,11 @@ let loadMaster = function (app: Application) {
 
 export interface ServerStartArgs extends ServerInfo {
     mode?: Constants.RESERVED.CLUSTER | Constants.RESERVED.STAND_ALONE;
-    masterha ?: 'true' | 'false';
-    type ?: Constants.RESERVED.ALL;
-    startId ?: string;
-    main ?: string;
+    masterha?: 'true' | 'false';
+    type?: Constants.RESERVED.ALL;
+    startId?: string;
+    main?: string;
+    net?: string;
 }
 
 /**
@@ -203,6 +204,7 @@ let processArgs = function (app: Application, args: ServerStartArgs) {
     let masterha = args.masterha || 'false';
     let type = args.type || Constants.RESERVED.ALL;
     let startId = args.startId;
+    let net = args.net;
 
     app.set(Constants.RESERVED.MAIN, args.main, true);
     app.set(Constants.RESERVED.SERVER_TYPE, serverType, true);
@@ -211,6 +213,9 @@ let processArgs = function (app: Application, args: ServerStartArgs) {
     app.set(Constants.RESERVED.TYPE, type, true);
     if (!!startId) {
         app.set(Constants.RESERVED.STARTID, startId, true);
+    }
+    if (!!net) {
+        app.set(Constants.RESERVED.Net, net, true);
     }
 
     if (masterha === 'true') {
@@ -226,13 +231,13 @@ let processArgs = function (app: Application, args: ServerStartArgs) {
 /**
  * Setup enviroment.
  */
-let setupEnv = function (app: Application, args: {env: string}) {
+let setupEnv = function (app: Application, args: { env: string }) {
     app.set(Constants.RESERVED.ENV, args.env || process.env.NODE_ENV || Constants.RESERVED.ENV_DEV, true);
 };
 let _checkCanRequire = (path: string) => {
     try {
         path = require.resolve(path);
-    } catch(err) {
+    } catch (err) {
         return null;
     }
     return path;
@@ -295,7 +300,7 @@ let loadLifecycle = function (app: Application) {
     let filePath = path.join(app.getBase(), Constants.FILEPATH.SERVER_DIR, app.serverType, Constants.FILEPATH.LIFECYCLE);
     try {
         filePath = require.resolve(filePath);
-    } catch(err) {
+    } catch (err) {
         return;
     }
 
