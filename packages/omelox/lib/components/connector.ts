@@ -1,24 +1,24 @@
-import {getLogger} from 'omelox-logger';
+import { getLogger } from 'omelox-logger';
 import * as taskManager from '../common/manager/taskManager';
-import {omelox} from '../omelox';
+import { omelox } from '../omelox';
 
 let rsa = require('node-bignumber');
-import {default as events} from '../util/events';
+import { default as events } from '../util/events';
 import * as utils from '../util/utils';
-import {Application} from '../application';
-import {ConnectionComponent} from './connection';
-import {IComponent} from '../interfaces/IComponent';
-import {PushSchedulerComponent} from './pushScheduler';
-import {SIOConnector, SIOConnectorOptions} from '../connectors/sioconnector';
-import {ConnectionService} from '../common/service/connectionService';
-import {Server} from '../server/server';
-import {ServerComponent} from './server';
-import {UID, SID} from '../util/constants';
-import {ScheduleOptions} from '../interfaces/IPushScheduler';
-import {SessionComponent} from './session';
-import {IConnector, IEncoder, IDecoder} from '../interfaces/IConnector';
-import {ISocket} from '../interfaces/ISocket';
-import {Session} from '../common/service/sessionService';
+import { Application } from '../application';
+import { ConnectionComponent } from './connection';
+import { IComponent } from '../interfaces/IComponent';
+import { PushSchedulerComponent } from './pushScheduler';
+import { SIOConnector, SIOConnectorOptions } from '../connectors/sioconnector';
+import { ConnectionService } from '../common/service/connectionService';
+import { Server } from '../server/server';
+import { ServerComponent } from './server';
+import { UID, SID } from '../util/constants';
+import { ScheduleOptions } from '../interfaces/IPushScheduler';
+import { SessionComponent } from './session';
+import { IConnector, IEncoder, IDecoder } from '../interfaces/IConnector';
+import { ISocket } from '../interfaces/ISocket';
+import { Session } from '../common/service/sessionService';
 import * as path from 'path';
 
 let logger = getLogger('omelox', path.basename(__filename));
@@ -133,7 +133,7 @@ export class ConnectorComponent implements IComponent {
         }
     }
 
-    send(reqId: number, route: string, msg: any, recvs: SID[], opts: ScheduleOptions, cb: (err?: Error, resp ?: any) => void) {
+    send(reqId: number, route: string, msg: any, recvs: SID[], opts: ScheduleOptions, cb: (err?: Error, resp?: any) => void) {
         logger.debug('[%s] send message reqId: %s, route: %s, msg: %j, receivers: %j, opts: %j', this.app.serverId, reqId, route, msg, recvs, opts);
         // if (this.useAsyncCoder) {
         //     return this.sendAsync(reqId, route, msg, recvs, opts, cb);
@@ -151,7 +151,7 @@ export class ConnectorComponent implements IComponent {
         this.doSend(reqId, route, emsg, recvs, opts, cb);
     }
 
-    sendAsync(reqId: number, route: string, msg: any, recvs: SID[], opts: ScheduleOptions, cb: (err?: Error, resp ?: any) => void) {
+    sendAsync(reqId: number, route: string, msg: any, recvs: SID[], opts: ScheduleOptions, cb: (err?: Error, resp?: any) => void) {
         let emsg = msg;
         let self = this;
 
@@ -444,7 +444,7 @@ export class ConnectorComponent implements IComponent {
             if (!msg.id && !resp) return;
             if (!resp) resp = {};
             if (!!err && !resp.code) {
-                resp.code = 500;
+                resp.error = err;
             }
             let opts: ScheduleOptions = {
                 type: 'response'
