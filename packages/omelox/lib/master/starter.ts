@@ -53,8 +53,9 @@ export function runServers(app: Application) {
  * @param {Object} server
  * @return {Void}
  */
-export function run(app: Application, server: ServerInfo, cb ?: (err?: string | number) => void) {
+export function run(app: Application, server: ServerInfo, cb?: (err?: string | number) => void) {
     env = app.get(Constants.RESERVED.ENV);
+    let net = app.get(Constants.RESERVED.NET);
     let cmd, key;
     if (utils.isLocal(server.host)) {
         let options: string[] = [];
@@ -68,6 +69,9 @@ export function run(app: Application, server: ServerInfo, cb ?: (err?: string | 
         cmd = app.get(Constants.RESERVED.MAIN);
         options.push(cmd);
         options.push(util.format('env=%s', env));
+        if (net) {
+            options.push(util.format('net=%s', net));
+        }
         for (key in server) {
             if (key === Constants.RESERVED.CPU) {
                 cpus[server.id] = server[key];
@@ -93,6 +97,9 @@ export function run(app: Application, server: ServerInfo, cb ?: (err?: string | 
                 cpus[server.id] = server[key];
             }
             cmd += util.format(' %s=%s ', key, (server as any)[key]);
+        }
+        if (net) {
+            cmd += util.format(' net=%s ', net);
         }
         sshrun(cmd, server.host, cb);
     }
@@ -162,7 +169,7 @@ export function kill(pids: string[], servers: ServerInfo[]) {
  * @param {Function} cb callback function
  *
  */
-export function sshrun(cmd: string, host: string, cb ?: (err?: string | number) => void) {
+export function sshrun(cmd: string, host: string, cb?: (err?: string | number) => void) {
     let args = [];
     args.push(host);
     // omelox masterha 命令下pinus.app为undefined
@@ -186,7 +193,7 @@ export function sshrun(cmd: string, host: string, cb ?: (err?: string | number) 
  * @param {Callback} callback
  *
  */
-export function localrun(cmd: string, host: string, options: string[], callback ?: (err?: string | number) => void) {
+export function localrun(cmd: string, host: string, options: string[], callback?: (err?: string | number) => void) {
     logger.info('Executing ' + cmd + ' ' + options + ' locally');
     spawnProcess(cmd, host, options, callback);
 }
@@ -199,7 +206,7 @@ export function localrun(cmd: string, host: string, options: string[], callback 
  * @param {Callback} callback
  *
  */
-let spawnProcess = function (command: string, host: string, options: string[], cb ?: (result: string | number) => void) {
+let spawnProcess = function (command: string, host: string, options: string[], cb?: (result: string | number) => void) {
     let child = null;
 
     if (env === Constants.RESERVED.ENV_DEV) {
