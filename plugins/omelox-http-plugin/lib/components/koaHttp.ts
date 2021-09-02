@@ -101,7 +101,7 @@ export class KoaHttpComponent implements IComponent {
             }));
         }
 
-        this.http.use(bodyparser());
+        this.http.use(bodyparser(this.opts.body || {}));
         this.http.use(json());
 
         if (this.opts.views) {
