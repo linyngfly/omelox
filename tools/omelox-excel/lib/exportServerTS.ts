@@ -76,6 +76,8 @@ export interface ConfigClass<T extends config_model_base> {
         fs.writeFileSync(targetFilename, str);
     }
 
+    protected getModelGetUrl(): string { return; };
+
     /**
      * 生成模型类名映射
      */
@@ -110,6 +112,11 @@ import { config_model_base } from './config_model';
  * ${content}
  */
 export class ${modelrName} extends config_model_base {\r\n`
+
+        if (this.getModelGetUrl()) {
+            str += this.getModelGetUrl();
+            str += `\r\n`
+        }
         // 字段定义
         str += this._genFieldDefine(fields, types, descs);
         str += `\r\n`
@@ -164,6 +171,10 @@ import { config_model_base } from './config_model';
  * ${content}
  */
 export class ${modelrName} extends config_model_base {\r\n`
+        if (this.getModelGetUrl()) {
+            str += this.getModelGetUrl();
+            str += `\r\n`
+        }
         // 字段定义
         str += this._genConstFieldDefine(oriFilename, datas);
         str += `\r\n`
@@ -629,7 +640,14 @@ export class config_error_getter {
     protected _genFieldDefine(fields: string[], types: string[], descs: string[]) {
         let str = '';
         for (let i = 0; i < fields.length; i++) {
-            let fieldType = types[i].split(',')[0];
+            let typeRules = types[i].split(',');
+            if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType === 2) {
+                continue;
+            }
+            if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType === 1) {
+                continue;
+            }
+            let fieldType = typeRules[0];
             if (fieldType === FIELD_TYPE.UNEXPORT) {
                 continue;
             }
@@ -754,7 +772,15 @@ export class config_error_getter {
     protected _genFIELDS(types: string[], fields: string[]) {
         let str = '';
         for (let i = 0; i < fields.length; i++) {
-            let fieldType = types[i].split(',')[0];
+            let typeRules = types[i].split(',');
+            if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType === 2) {
+                continue;
+            }
+            if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType === 1) {
+                continue;
+            }
+
+            let fieldType = typeRules[0];
             if (fieldType === FIELD_TYPE.UNEXPORT) {
                 continue;
             }
@@ -779,7 +805,15 @@ export class config_error_getter {
 
             let parseDatas = [];
             for (let j = 0; j < fields.length; j++) {
-                let rcType = types[j].split(',')[0];
+                let typeRules = types[j].split(',');
+                if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType === 2) {
+                    continue;
+                }
+                if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType === 1) {
+                    continue;
+                }
+
+                let rcType = typeRules[0];
                 if (rcType === FIELD_TYPE.UNEXPORT) {
                     continue;
                 }
@@ -805,21 +839,28 @@ export class config_error_getter {
                 dotstr = '';
             }
             for (let j = 0; j < fields.length; j++) {
+                let typeRules = types[j].split(',');
+                if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType === 2) {
+                    continue;
+                }
+                if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType === 1) {
+                    continue;
+                }
 
-                let rcType = types[j].split(',')[0];
+                let rcType = typeRules[0];
                 if (rcType === FIELD_TYPE.UNEXPORT) {
                     // 不倒出字段
                     continue;
                 }
 
-                switch (types[j].split(',')[1]) {
+                switch (typeRules[1]) {
                     case FIELD_RULE.INDEX: {
                         str += `\"${fields[j].trim()}_${datas[i][j].toString().trim()}\":${i}${dotstr}`
                         noKey = false;
                     }
                         break;
                     case FIELD_RULE.UNION_INDEX: {
-                        let unionString = types[j].split(',')[2];
+                        let unionString = typeRules[2];
                         if (!unionString) {
                             console.error(`配置文件联合索引未配置索引字段, 请检查配置`);
                             return;

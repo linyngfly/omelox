@@ -3,27 +3,53 @@ import * as fs from 'fs';
 import ExportServerTS from './exportServerTS';
 
 export default class ExportClientTS extends ExportServerTS {
-    /** 配置输出目录 */
-    handlerDir: string;
+    /** Getter配置输出目录 */
+    getterdir: string;
     constructor(opts: any) {
         super(opts);
-        this.handlerDir = opts.handlerdir;
+        this.getterdir = opts.getterdir;
     }
     protected getHandlerOutDir() {
-        return this.handlerDir;
+        return this.getterdir;
     }
 
+    /** 多语言json数据输出目录 */
     protected getLanOutDir(lang?: string) {
-        return `${this.outRootDir}/config_i18n_${lang}/config_i18n_${lang}`
+        if (this.subdir) {
+            return `${this.outRootDir}/config_${this.subdir}_i18n_${lang}/config_${this.subdir}_i18n_${lang}`;
+        }
+        return `${this.outRootDir}/config_i18n_${lang}/config_i18n_${lang}`;
     }
 
+    /** json数据输出目录 */
     protected getDataOutDir(pub: string, isPublic: boolean) {
-        let dir = `${this.outRootDir}/config_${pub}/config_${pub}`;
+        let dir = this.subdir ? `${this.outRootDir}/config_${this.subdir}_${pub}/config_${this.subdir}_${pub}` : `${this.outRootDir}/config_${pub}/config_${pub}`;
         if (isPublic) {
-            dir = `${this.outRootDir}/config_common/config_common`;
+            dir = this.subdir ? `${this.outRootDir}/config_${this.subdir}_common/config_${this.subdir}_common` : `${this.outRootDir}/config_common/config_common`;
+        }
+        return dir;
+    }
+
+    protected getModelGetUrl(): string {
+        let str = `
+    /** 获取文件链接 */
+    public static getUrl(filename: string, lang?:string): string {
+        let configUrl = null;
+        let dir = this.isPublic() ? 'config_common' : \`config_\${window['PubPlatform']}\`;
+        if(${this.subdir}){
+            dir = this.isPublic() ? 'config_${this.subdir}_common' : \`config_${this.subdir}_\${window['PubPlatform']}\`;
         }
 
-        return dir;
+        if (window['RemoteConfigURL']) {
+            configUrl = \`\${window['RemoteConfigURL']}/\${dir}/\${filename}\`
+        } else {
+            configUrl = \`\${dir}/\${filename}\`
+        }
+
+        return configUrl;
+    }`
+
+        return str;
     }
 
     protected genBaseModel(): void {
@@ -35,7 +61,7 @@ export abstract class config_model_base {
     private static loaderHander: JsonLoaderHander;
 
     /** 获取文件链接 */
-    public static getUrl(filename: string, lang?: string): string {
+    public static getUrl(filename: string, lang?:string): string {
         let configUrl = null;
         let dir = this.isPublic() ? 'config_common' : \`config_\${window['PubPlatform']}\`;
 
@@ -112,14 +138,22 @@ export class ${modelrName} extends config_model_base {\r\n`
     public static getConfigName(filename?: string): string {
 		return \`${oriFilename}-\${filename}.json\`;
     }
-
+    
     public static getUrl(filename: string, lang?: string): string {
 		let configUrl = null;
 
         if (window['RemoteConfigURL']) {
-            configUrl = \`\${window['RemoteConfigURL']}/config_i18n_\${lang}/\${filename}\`
+            if(${this.subdir}){
+                configUrl = \`\${window['RemoteConfigURL']}/config_${this.subdir}_i18n_\${lang}/\${filename}\`;
+            }else{
+                configUrl = \`\${window['RemoteConfigURL']}/config_i18n_\${lang}/\${filename}\`;
+            }
         } else {
-            configUrl = \`config_i18n_\${lang}/\${filename}\`
+            if(${this.subdir}){
+                configUrl = \`config_${this.subdir}_i18n_\${lang}/\${filename}\`;
+            }else{
+                configUrl = \`config_i18n_\${lang}/\${filename}\`;
+            }
         }
 
 		return configUrl;
@@ -160,9 +194,17 @@ export class ${modelrName} extends config_model_base {\r\n`
     public static getUrl(filename: string, lang?: string): string {
 		let configUrl = null;
         if (window['RemoteConfigURL']) {
-            configUrl = \`\${window['RemoteConfigURL']}/config_i18n_\${lang}/\${filename}\`
+            if(${this.subdir}){
+                configUrl = \`\${window['RemoteConfigURL']}/config_${this.subdir}_i18n_\${lang}/\${filename}\`
+            }else{
+                configUrl = \`\${window['RemoteConfigURL']}/config_i18n_\${lang}/\${filename}\`
+            }
         } else {
-            configUrl = \`config_i18n_\${lang}/\${filename}\`
+            if(${this.subdir}){
+                configUrl = \`config_${this.subdir}_i18n_\${lang}/\${filename}\` 
+            }else{
+                configUrl = \`config_i18n_\${lang}/\${filename}\`
+            }
         }
 		return configUrl;
 	}

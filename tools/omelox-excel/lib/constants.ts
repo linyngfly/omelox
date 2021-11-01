@@ -21,7 +21,11 @@ export const FIELD_RULE = {
     /** 检测字段唯一性 */
     UNIQUE: 'unique',
     /** 联合索引 */
-    UNION_INDEX: 'union'
+    UNION_INDEX: 'union',
+    /** 客戶端专用 */
+    ONLY_CLIENT: 'oc',
+    /** 服务端专用 */
+    ONLY_SERVER: 'os',
 };
 
 /** 配置类型定义 */

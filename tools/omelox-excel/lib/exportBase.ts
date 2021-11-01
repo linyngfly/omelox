@@ -10,17 +10,20 @@ export abstract class ExportBase {
     supportTypes: string[] = Object.values(FIELD_TYPE);
     /** 配置输出目录 */
     outRootDir: string;
+    /** 子配置目录 */
+    subdir: string;
     /** 发布渠道 */
     publishChannel: string[];
     /** 数据文件名集合 */
     dataFileName: any = {};
     /** excel目录 */
     excelDir: string;
-    /** 发布类型(服务器、客户端) */
+    /** 发布类型(服务器1、客户端2) */
     publishType: number = 1;
     constructor(opts: any) {
         this.excelDir = opts.inputdir;
         this.outRootDir = opts.outdir;
+        this.subdir = opts.subdir;
         let chans = opts.channel.split(',');
         this.publishChannel = chans;
         this.publishType = opts.type;
@@ -42,10 +45,12 @@ export abstract class ExportBase {
         return this.outRootDir;
     }
 
+    /** 多语言json数据输出目录 */
     protected getLanOutDir(lang?: string) {
         return `${this.outRootDir}/i18n`
     }
 
+    /** json数据输出目录 */
     protected getDataOutDir(pub: string, isPublic: boolean) {
         let dir = `${this.outRootDir}/${pub}`;
         if (isPublic) {

@@ -9,9 +9,10 @@ export default function (programs: program.CommanderStatic) {
         .description('gen excels to json config')
         .option('-c, --channel <publish channel>', 'the used publish channel', 'default')
         .option('-i, --inputdir <input directory>', 'excel input dir')
-        .option('-o, --outdir <out directory>', 'the gen directory')
+        .option('-o, --outdir <out root directory>', 'the gen root directory')
         .option('-t, --type <server(1) or client(2) type>', 'gen config type server or client', 1)
-        .option('-h, --handlerdir <excel config data handler directory>', 'excel config data handler directory', '')
+        .option('-h, --getterdir <excel config data getter directory>', 'excel config data getter directory', '')
+        .option('-s, --subdir <sub config path tag>', 'sub config path tag', '')
         .action(function (opts) {
             gen(opts);
         });
