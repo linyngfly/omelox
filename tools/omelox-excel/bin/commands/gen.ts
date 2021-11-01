@@ -12,7 +12,6 @@ export default function (programs: program.CommanderStatic) {
         .option('-o, --outdir <out root directory>', 'the gen root directory')
         .option('-t, --type <server(1) or client(2) type>', 'gen config type server or client', 1)
         .option('-h, --getterdir <excel config data getter directory>', 'excel config data getter directory', '')
-        .option('-s, --subdir <sub config path tag>', 'sub config path tag', '')
         .action(function (opts) {
             gen(opts);
         });

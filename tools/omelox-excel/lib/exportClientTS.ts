@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import ExportServerTS from './exportServerTS';
+import { DocConfigKey } from './constants';
 
 export default class ExportClientTS extends ExportServerTS {
     /** Getter配置输出目录 */
@@ -11,6 +12,15 @@ export default class ExportClientTS extends ExportServerTS {
     }
     protected getHandlerOutDir() {
         return this.getterdir;
+    }
+
+    /** 配置资源Bundle子目录 */
+    get subdir(): any {
+        let bundleName = this.docConfigKey.get(DocConfigKey.sub_bundle);
+        if (!bundleName || bundleName.length === 0) {
+            return;
+        }
+        return bundleName;
     }
 
     /** 多语言json数据输出目录 */
@@ -36,7 +46,7 @@ export default class ExportClientTS extends ExportServerTS {
     public static getUrl(filename: string, lang?:string): string {
         let configUrl = null;
         let dir = this.isPublic() ? 'config_common' : \`config_\${window['PubPlatform']}\`;
-        if(${this.subdir}){
+        if(${this.subdir ? true : false}){
             dir = this.isPublic() ? 'config_${this.subdir}_common' : \`config_${this.subdir}_\${window['PubPlatform']}\`;
         }
 
@@ -138,18 +148,18 @@ export class ${modelrName} extends config_model_base {\r\n`
     public static getConfigName(filename?: string): string {
 		return \`${oriFilename}-\${filename}.json\`;
     }
-    
+
     public static getUrl(filename: string, lang?: string): string {
 		let configUrl = null;
 
         if (window['RemoteConfigURL']) {
-            if(${this.subdir}){
+            if(${this.subdir ? true : false}){
                 configUrl = \`\${window['RemoteConfigURL']}/config_${this.subdir}_i18n_\${lang}/\${filename}\`;
             }else{
                 configUrl = \`\${window['RemoteConfigURL']}/config_i18n_\${lang}/\${filename}\`;
             }
         } else {
-            if(${this.subdir}){
+            if(${this.subdir ? true : false}){
                 configUrl = \`config_${this.subdir}_i18n_\${lang}/\${filename}\`;
             }else{
                 configUrl = \`config_i18n_\${lang}/\${filename}\`;
@@ -194,13 +204,13 @@ export class ${modelrName} extends config_model_base {\r\n`
     public static getUrl(filename: string, lang?: string): string {
 		let configUrl = null;
         if (window['RemoteConfigURL']) {
-            if(${this.subdir}){
+            if(${this.subdir ? true : false}){
                 configUrl = \`\${window['RemoteConfigURL']}/config_${this.subdir}_i18n_\${lang}/\${filename}\`
             }else{
                 configUrl = \`\${window['RemoteConfigURL']}/config_i18n_\${lang}/\${filename}\`
             }
         } else {
-            if(${this.subdir}){
+            if(${this.subdir ? true : false}){
                 configUrl = \`config_${this.subdir}_i18n_\${lang}/\${filename}\` 
             }else{
                 configUrl = \`config_i18n_\${lang}/\${filename}\`

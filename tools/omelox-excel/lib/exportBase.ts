@@ -2,6 +2,7 @@ import * as XLSX from 'xlsx';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as consts from './constants';
+import { DocConfigKey } from './constants';
 const FIELD_TYPE = consts.FIELD_TYPE;
 const CONFIG_TYPE = consts.CONFIG_TYPE;
 
@@ -10,8 +11,6 @@ export abstract class ExportBase {
     supportTypes: string[] = Object.values(FIELD_TYPE);
     /** 配置输出目录 */
     outRootDir: string;
-    /** 子配置目录 */
-    subdir: string;
     /** 发布渠道 */
     publishChannel: string[];
     /** 数据文件名集合 */
@@ -20,13 +19,21 @@ export abstract class ExportBase {
     excelDir: string;
     /** 发布类型(服务器1、客户端2) */
     publishType: number = 1;
+    /** 文档配置选项KEY */
+    docConfigKey: Map<DocConfigKey, any>;
+
     constructor(opts: any) {
         this.excelDir = opts.inputdir;
         this.outRootDir = opts.outdir;
-        this.subdir = opts.subdir;
         let chans = opts.channel.split(',');
         this.publishChannel = chans;
         this.publishType = opts.type;
+        this.docConfigKey = new Map<DocConfigKey, any>();
+    }
+
+    /** 配置资源Bundle子目录 */
+    get subdir(): any {
+        return null;
     }
 
     public genConfig() {
@@ -225,20 +232,31 @@ export abstract class ExportBase {
         }
         let descriptionSheetJson: any = XLSX.utils.sheet_to_json(descriptionData, { header: 1, raw: true, blankrows: false });
 
-        if (descriptionSheetJson[3][0] !== 'use_range' || descriptionSheetJson[4][0] !== 'config_type') {
-            console.log(`${filePath} description描述表单配置缺少client_use_only、config_type定义`);
+        for (let i = 3; ; i++) {
+            if (!descriptionSheetJson[i]) {
+                break;
+            }
+            let key = descriptionSheetJson[i][0];
+            if (!key) {
+                break;
+            }
+            this.docConfigKey.set(key, descriptionSheetJson[i][1]);
+        }
+
+        if (!this.docConfigKey.has(DocConfigKey.use_range) || !this.docConfigKey.has(DocConfigKey.config_type)) {
+            console.log(`${filePath} description描述表单配置缺少use_range、config_type定义`);
             return;
         }
 
-        // let useRange = Number(descriptionSheetJson[3][1]);
-        let config_type = descriptionSheetJson[4][1];
+        let config_type = this.docConfigKey.get(DocConfigKey.config_type);
         if (Object.values(CONFIG_TYPE).indexOf(config_type) === -1) {
             console.log(`${filePath} description描述表单config_type不支持，只支持${Object.values(CONFIG_TYPE)} `);
             return;
         }
 
         // 是否公共配置
-        let isPublic = descriptionSheetJson[7] && descriptionSheetJson[7][1] || 0;
+        let isPublic = this.docConfigKey.get(DocConfigKey.public) || 0;
+        let content = this.docConfigKey.get(DocConfigKey.content);
 
         if (config_type === CONFIG_TYPE.MODEL) {
             // 根据模型文件生成数据配置模型
@@ -248,8 +266,7 @@ export abstract class ExportBase {
                 return;
             }
 
-            let category = descriptionSheetJson[5][1];
-            let content = descriptionSheetJson[6][1];
+            let category = this.docConfigKey.get(DocConfigKey.category);
 
             let sheetJson = XLSX.utils.sheet_to_json<any>(modelData, { header: 1, raw: true, blankrows: false });
 
@@ -283,7 +300,6 @@ export abstract class ExportBase {
                 return;
             }
 
-            let content = descriptionSheetJson[5][1];
             let sheetJson = XLSX.utils.sheet_to_json(modelData, { header: 1, raw: true, blankrows: false });
             let filename = `${this.getHandlerOutDir()}/${oriFilename}`;
 
@@ -299,9 +315,8 @@ export abstract class ExportBase {
                 return;
             }
 
-            let content = descriptionSheetJson[5][1];
-            let fields = Number(descriptionSheetJson[6][1]);
-            let fieldsDef = Number(descriptionSheetJson[7][1]);
+            let fields = this.docConfigKey.get(DocConfigKey.fields);
+            let fieldsDef = this.docConfigKey.get(DocConfigKey.fieldsDef);
             let sheetJson = XLSX.utils.sheet_to_json(modelData, { header: 1, raw: true, blankrows: false });
             let filename = `${this.getHandlerOutDir()}/${oriFilename}`;
             const pathInfo = path.parse(filename);
@@ -316,8 +331,7 @@ export abstract class ExportBase {
                 return;
             }
 
-            let baseCodeConfig = descriptionSheetJson[5][1];
-            let content = descriptionSheetJson[6][1];
+            let baseCodeConfig = this.docConfigKey.get(DocConfigKey.base_code_config);
             let sheetJson = XLSX.utils.sheet_to_json(modelData, { header: 1, raw: true, blankrows: false });
             let filename = `${this.getHandlerOutDir()}/${oriFilename}`;
 
