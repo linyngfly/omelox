@@ -340,7 +340,6 @@ export class config_data_getter {
 
 	/**
 	 * 通过数组索引获取数据
-	 * 字段key必须定义为索引字段
 	 * @param configClass 数据模型类
 	 * @param index 数组坐标
 	 * @param dataFile 数据文件名
@@ -392,18 +391,21 @@ export class config_data_getter {
 	 * @param value 值
 	 * @param dataFile 数据文件名
 	*/
-	public getRowByEnumKV<T extends config_model_base>(configClass: ConfigClass<T>, key: string, value: any, dataFile?: string): T {
+	public getRowByEnumKV<T extends config_model_base>(configClass: ConfigClass<T>, key: string, value: any, dataFile?: string): T[] {
 		let configData = this.getConfigData(configClass, dataFile);
 		if (null == configData) {
 			return;
 		}
 
+        let datas: T[] = [];
 		for (let i = 0; i <= configData.fieldData.length; i++) {
 			let rowData: any = this.getRowById(configClass, i, dataFile) as any;
 			if (rowData && rowData[key] === value) {
-				return rowData;
+                datas.push(rowData)
 			}
 		}
+
+        return datas;
 	}
 
 	/**
