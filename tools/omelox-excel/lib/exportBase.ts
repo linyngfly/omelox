@@ -222,6 +222,7 @@ export abstract class ExportBase {
         if (oriFilename.startsWith('~$')) {
             return;
         }
+        this.docConfigKey.clear();
 
         let workBook = XLSX.readFile(filePath, { type: 'binary' })
 
