@@ -18,10 +18,10 @@ export const FIELD_TYPE = {
 export const FIELD_RULE = {
     /** 创建字段映射索引 */
     INDEX: 'index',
+    /** 创建多字段联合索引 */
+    INDEXS: 'indexs',
     /** 检测字段唯一性 */
     UNIQUE: 'unique',
-    /** 联合索引 */
-    UNION_INDEX: 'union',
     /** 客戶端专用 */
     ONLY_CLIENT: 'oc',
     /** 服务端专用 */

@@ -286,7 +286,7 @@ export class ${modelrName} extends config_model_base {\r\n`
         str += this._genErrorFieldDefine(datas);
         str += `}\r\n`
 
-        str += `export const ${oriFilename}_key = {};\r\n`
+        str += `export const ${oriFilename}_key:any = {};\r\n`
         str += `for (let [k, v] of Object.entries(${oriFilename})) {\r\n`
         str += `\t${oriFilename}_key[v] = k;\r\n`
         str += `}\r\n`
@@ -834,6 +834,7 @@ export class config_error_getter {
 
         str += `\t\"fieldMap\" : {`;
 
+        const repeateCheckObj: any = {};
         for (let i = 0; i < datas.length; i++) {
             let noKey = true;
             let dotstr = ',';
@@ -842,49 +843,68 @@ export class config_error_getter {
             }
             for (let j = 0; j < fields.length; j++) {
                 let typeRules = types[j].split(',');
-                if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType == 2) {
-                    continue;
-                }
-                if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType == 1) {
-                    continue;
-                }
-
                 let rcType = typeRules[0];
                 if (rcType === FIELD_TYPE.UNEXPORT) {
                     // 不倒出字段
                     continue;
                 }
 
-                switch (typeRules[1]) {
-                    case FIELD_RULE.INDEX: {
-                        str += `\"${fields[j].trim()}_${datas[i][j].toString().trim()}\":${i}${dotstr}`
-                        noKey = false;
+                if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType == 2) {
+                    // 服务器专用字段
+                    continue;
+                }
+                if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType == 1) {
+                    // 客户端专用字段
+                    continue;
+                }
+
+                if (typeRules.indexOf(FIELD_RULE.INDEX) !== -1) {
+                    let key = `${fields[j].trim()}_${datas[i][j].toString().trim()}`;
+                    str += `\"${key}\":${i}${dotstr}`;
+                    if (repeateCheckObj[key]) {
+                        console.error(`配置文件index索引字段字段key=${key}重复, row=${i} col=${j}, 请检查配置`);
+                        return;
                     }
-                        break;
-                    case FIELD_RULE.UNION_INDEX: {
-                        let unionString = typeRules[2];
-                        if (!unionString) {
-                            console.error(`配置文件联合索引未配置索引字段, 请检查配置`);
+                    repeateCheckObj[key] = true;
+                    noKey = false;
+                } else if (typeRules.indexOf(FIELD_RULE.INDEXS) !== -1) {
+                    let unionString = typeRules[typeRules.indexOf(FIELD_RULE.INDEXS) + 1];
+                    if (!unionString) {
+                        console.error(`配置文件联合索引未配置索引字段, 请检查配置`);
+                        return;
+                    }
+
+                    let unionKey = '';
+                    let unions = unionString.split('|');
+                    unions.push(fields[j].trim());
+                    unions = [...new Set(unions)];
+                    unions.forEach((uField, idx) => {
+                        let uIndex = fields.indexOf(uField);
+                        if (uIndex < 0) {
+                            console.error(`配置文件联合索引字段${uField}不存在, 请检查配置`);
                             return;
                         }
 
-                        let unionKey = '';
-                        let unions = unionString.split('|');
-                        unions.forEach((uField, idx) => {
-                            let uIndex = fields.indexOf(uField);
-                            if (uIndex < 0) {
-                                console.error(`配置文件联合索引字段${uField}不存在, 请检查配置`);
-                                return;
-                            }
+                        let dot = idx === unions.length - 1 ? '' : '_';
+                        unionKey += `${datas[i][uIndex]}${dot}`;
+                    })
 
-                            let dot = idx === unions.length - 1 ? '' : '_';
-                            unionKey += `${datas[i][uIndex]}${dot}`;
-                        })
-
-                        str += `\"${unionKey}\":${i}${dotstr}`
-                        noKey = false;
+                    unionKey = `${fields[j].trim()}_${unionKey}`;
+                    if (repeateCheckObj[unionKey]) {
+                        console.error(`配置文件联合索引字段字段key=${unionKey}重复, row=${i} col=${j}, 请检查配置`);
+                        return;
                     }
-                        break;
+                    repeateCheckObj[unionKey] = true;
+                    str += `\"${unionKey}\":${i}${dotstr}`
+                    noKey = false;
+                } else if (typeRules.indexOf(FIELD_RULE.UNIQUE) !== -1) {
+                    let key = `${fields[j].trim()}_${datas[i][j].toString().trim()}`;
+                    if (repeateCheckObj[key]) {
+                        console.error(`配置文件unique字段key=${key}重复, row=${i} col=${j}, 请检查配置`);
+                        return;
+                    }
+                    repeateCheckObj[key] = true;
+                    noKey = false;
                 }
             }
 
