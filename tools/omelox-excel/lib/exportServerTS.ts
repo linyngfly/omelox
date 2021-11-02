@@ -112,7 +112,6 @@ import { config_model_base } from './config_model';
  * ${content}
  */
 export class ${modelrName} extends config_model_base {\r\n`
-
         if (this.getModelGetUrl()) {
             str += this.getModelGetUrl();
             str += `\r\n`
@@ -126,7 +125,7 @@ export class ${modelrName} extends config_model_base {\r\n`
 
         str += `\r\n`
         str += `\tpublic static getClassName(): string {
-        return \'${modelrName}\'
+return \'${modelrName}\'
     }
 `
 
