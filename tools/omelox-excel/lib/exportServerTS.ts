@@ -643,10 +643,10 @@ export class config_error_getter {
         let str = '';
         for (let i = 0; i < fields.length; i++) {
             let typeRules = types[i].split(',');
-            if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType === 2) {
+            if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType == 2) {
                 continue;
             }
-            if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType === 1) {
+            if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType == 1) {
                 continue;
             }
             let fieldType = typeRules[0];
@@ -775,10 +775,10 @@ export class config_error_getter {
         let str = '';
         for (let i = 0; i < fields.length; i++) {
             let typeRules = types[i].split(',');
-            if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType === 2) {
+            if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType == 2) {
                 continue;
             }
-            if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType === 1) {
+            if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType == 1) {
                 continue;
             }
 
@@ -808,10 +808,10 @@ export class config_error_getter {
             let parseDatas = [];
             for (let j = 0; j < fields.length; j++) {
                 let typeRules = types[j].split(',');
-                if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType === 2) {
+                if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType == 2) {
                     continue;
                 }
-                if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType === 1) {
+                if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType == 1) {
                     continue;
                 }
 
@@ -842,10 +842,10 @@ export class config_error_getter {
             }
             for (let j = 0; j < fields.length; j++) {
                 let typeRules = types[j].split(',');
-                if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType === 2) {
+                if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType == 2) {
                     continue;
                 }
-                if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType === 1) {
+                if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType == 1) {
                     continue;
                 }
 

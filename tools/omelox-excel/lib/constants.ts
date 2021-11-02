@@ -44,6 +44,27 @@ export const CONFIG_TYPE = {
     ERROR: 'error'
 }
 
+export enum DocConfigKey {
+    /** USE_RANGE定义 1:双端共享2：服务器专用3：客户端专用 */
+    use_range = 'use_range',
+    /** model：模型；data：数据配置；const：常量配置；lang：语言配置;  error：错误码; */
+    config_type = 'config_type',
+    /** 数据文件模型名称 */
+    category = 'category',
+    /** 客户端资源分包 */
+    sub_bundle = 'sub_bundle',
+    /** 内容说明 */
+    content = 'content',
+    /** 多语言文件,是否生产fields集合 0：不生成，1：生成 */
+    fields = 'fields',
+    /** 多语言文件,是否生产fields字段类型定义 0：不生成，1：生成 */
+    fieldsDef = 'fieldsDef',
+    /** 基础错误码配置 */
+    base_code_config = 'base_code_config',
+    /** 公共配置 */
+    public = 'public',
+}
+
 /** 配置适用范围 */
 export const USE_RANGE = {
     /** 双端共享 */
