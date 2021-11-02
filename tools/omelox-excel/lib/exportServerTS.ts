@@ -344,7 +344,7 @@ export class config_data_getter {
 	 * @param index 数组坐标
 	 * @param dataFile 数据文件名
 	 */
-	public getRowById<T extends config_model_base>(configClass: ConfigClass<T>, index: number, dataFile?: string): T {
+	public getRowByIndex<T extends config_model_base>(configClass: ConfigClass<T>, index: number, dataFile?: string): T {
 		let configData = this.getConfigData(configClass, dataFile);
 		if (null == configData) {
 			return;
@@ -365,7 +365,7 @@ export class config_data_getter {
 	 * @param value 索引值
 	 * @param dataFile 数据文件名
 	 */
-	public getRowByIndex<T extends config_model_base>(configClass: ConfigClass<T>, key: string, value: any, dataFile?: string): T {
+	public getRowById<T extends config_model_base>(configClass: ConfigClass<T>, key: string, value: any, dataFile?: string): T {
 		let configData = this.getConfigData(configClass, dataFile);
 		if (null == configData) {
 			return;
@@ -399,7 +399,7 @@ export class config_data_getter {
 
         let datas: T[] = [];
 		for (let i = 0; i <= configData.fieldData.length; i++) {
-			let rowData: any = this.getRowById(configClass, i, dataFile) as any;
+			let rowData: any = this.getRowByIndex(configClass, i, dataFile) as any;
 			if (rowData && rowData[key] === value) {
                 datas.push(rowData)
 			}
