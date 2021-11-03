@@ -1,6 +1,6 @@
 {
   "name": "omelox-excel",
-  "version": "3.1.41",
+  "version": "3.1.43",
   "author": "yng <linyngfly@163.com>",
   "private": false,
   "description": "excel to h5 json configuration",
@@ -42,12 +42,10 @@
   "files": [
     "bin",
     "dist",
-    "lib",
     "template",
     "test"
   ],
   "main": "./dist/lib/index",
-  "types": "./lib/index",
   "license": "ISC",
   "gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"
 }
