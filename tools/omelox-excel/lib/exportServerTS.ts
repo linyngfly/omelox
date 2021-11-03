@@ -364,13 +364,23 @@ export class config_data_getter {
 	 * @param value 索引值
 	 * @param dataFile 数据文件名
 	 */
-	public getRowById<T extends config_model_base>(configClass: ConfigClass<T>, key: string, value: any, dataFile?: string): T {
+	public getRowById<T extends config_model_base>(configClass: ConfigClass<T>, key: string, value: any | any[], dataFile?: string): T {
 		let configData = this.getConfigData(configClass, dataFile);
 		if (null == configData) {
 			return;
 		}
 
-		let rowDataIndex = configData.fieldMap[key + '_' + value.toString()];
+		let vKey = '';
+		if (value instanceof Array) {
+			value.forEach((item, idx) => {
+				let dot = idx === value.length - 1 ? '' : '_';
+				vKey += \`\${item}\${dot}\`;
+			})
+		} else {
+			vKey = value.toString();
+		}
+
+		let rowDataIndex = configData.fieldMap[key + '_' + vKey];
 		if (null == rowDataIndex) {
 			console.log(\`在模型配置文件\${configClass.getClassName()}中,字段【\${key}】未创建索引, 不能通过该字段查找数据\`);
 			return null;
