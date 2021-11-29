@@ -51,7 +51,7 @@ export default class ExportClientTS extends ExportServerTS {
         let dir = this.isPublic() ? 'config_${this.subdir}_common' : \`config_${this.subdir}_\${window['PubPlatform']}\`;
         `
         } else {
-            `
+            str += `
         let dir = this.isPublic() ? 'config_common' : \`config_\${window['PubPlatform']}\`;   
             `
         }

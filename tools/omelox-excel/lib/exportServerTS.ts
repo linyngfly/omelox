@@ -101,18 +101,31 @@ export class lang_model_map {
         fs.writeFileSync(targetFilename, str);
     }
 
-    protected genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[], isPublic: boolean, isAppendData: boolean): void {
+    protected genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[], isPublic: boolean, isAppendData: boolean, parent_class: {
+        path: string,
+        classname: string,
+    }): void {
         const oriFilename = path.parse(filename).name;
         let modelrName = `${oriFilename}_model`;
+        let str = '';
+        if (isAppendData) {
+            str += `import { config_data_file_name } from './config_data_file_name';\r\n`
+        }
 
-        let str = `import { config_data_file_name } from './config_data_file_name';
-import { config_model_base } from './config_model';
+        let parentClassname = 'config_model_base'
+        if (parent_class) {
+            str += `import { ${parent_class.classname} } from \'${parent_class.path}\';`
+            parentClassname = parent_class.classname;
+        } else {
+            str += `import { config_model_base } from './config_model';`
+        }
 
+        str += `
 /**
  * ${content}
  */
-export class ${modelrName} extends config_model_base {\r\n`
-        if (this.getModelGetUrl()) {
+export class ${modelrName} extends ${parentClassname} {\r\n`
+        if (this.getModelGetUrl() && isAppendData) {
             str += this.getModelGetUrl();
             str += `\r\n`
         }
@@ -120,6 +133,9 @@ export class ${modelrName} extends config_model_base {\r\n`
         str += this._genFieldDefine(fields, types, descs);
         str += `\r\n`
         str += `\tpublic static readonly FIELDS = {\r\n`
+        if (parent_class) {
+            str += `\t\t...${parentClassname}.FIELDS,\r\n`
+        }
         str += this._genFIELDS(types, fields);
         str += `\t}\r\n`
 
@@ -650,6 +666,9 @@ export class config_error_getter {
      */
     protected _genFieldDefine(fields: string[], types: string[], descs: string[]) {
         let str = '';
+        if (!fields) {
+            return str;
+        }
         for (let i = 0; i < fields.length; i++) {
             let typeRules = types[i].split(',');
             if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType == 2) {
@@ -782,6 +801,10 @@ export class config_error_getter {
      */
     protected _genFIELDS(types: string[], fields: string[]) {
         let str = '';
+        if (!fields) {
+            return str;
+        }
+
         for (let i = 0; i < fields.length; i++) {
             let typeRules = types[i].split(',');
             if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType == 2) {

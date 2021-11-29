@@ -59,6 +59,8 @@ export enum DocConfigKey {
     fields = 'fields',
     /** 多语言文件,是否生产fields字段类型定义 0：不生成，1：生成 */
     fieldsDef = 'fieldsDef',
+    /** 模型继承父类 */
+    parent_class = 'parent_class',
     /** 基础错误码配置 */
     base_code_config = 'base_code_config',
     /** 公共配置 */

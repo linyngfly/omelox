@@ -88,7 +88,10 @@ export abstract class ExportBase {
      * @param content 文件功能描述
      * @param datas 数据
      */
-    protected abstract genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[], isPublic: boolean, isAppendData: boolean): void;
+    protected abstract genDataModel(filename: string, content: string, fields: string[], types: string[], descs: string[], isPublic: boolean, isAppendData: boolean, parent_class: {
+        path: string,
+        classname: string,
+    }): void;
 
     /**
      * 生成常量模型
@@ -257,32 +260,50 @@ export abstract class ExportBase {
 
         // 是否公共配置
         let isPublic = this.docConfigKey.get(DocConfigKey.public) || 0;
+        // 配置表描述
         let content = this.docConfigKey.get(DocConfigKey.content);
 
         if (config_type === CONFIG_TYPE.MODEL) {
+            let category = this.docConfigKey.get(DocConfigKey.category);
+            let filename = `${this.getHandlerOutDir()}/${category}`;
+            let parent_class = this.docConfigKey.get(DocConfigKey.parent_class);
+            if (parent_class && parent_class !== '') {
+                try {
+                    parent_class = JSON.parse(parent_class);
+                } catch (error) {
+                    console.log('继承模型配置异常， 请检查', filename, parent_class);
+                    return;
+                }
+
+            } else {
+                parent_class = null;
+            }
+
             // 根据模型文件生成数据配置模型
             let modelData = workBook.Sheets['model'];
-            if (!modelData) {
+            if (!modelData && !parent_class) {
                 console.log(`${filePath} 无template表单`);
                 return;
             }
 
-            let category = this.docConfigKey.get(DocConfigKey.category);
 
             let sheetJson = XLSX.utils.sheet_to_json<any>(modelData, { header: 1, raw: true, blankrows: false });
 
             // 字段名
             let fields = sheetJson[0];
             // 数据类型：unexport（不导出）、float（小数）、int(整数)、string（字符串）、table(对象)、key,cst第一列类型可以取key（map）、cst(常量)
+            // 字段类型约束：index->创建字段映射索引(id,index),indexs->创建多字段映射索引(类型,indexs,level|scene_id),
+            // unique->检测字段唯一性(name_key,unique),oc->客戶端专用(res_name,oc),os->服务端专用(baseRate,os)
             let types = sheetJson[1];
             // 字段描述
             let descs = sheetJson[2];
 
-            let filename = `${this.getHandlerOutDir()}/${category}`;
+
 
             const pathInfo = path.parse(filename);
             this.mkdirsSync(pathInfo.dir);
 
+            // 是否携带配置数据
             let isAppendData = false;
             for (let pub of this.publishChannel) {
                 let sheetData = workBook.Sheets[pub] || workBook.Sheets['default'];
@@ -292,7 +313,7 @@ export abstract class ExportBase {
                 }
             }
 
-            this.genDataModel(filename, content, fields, types, descs, isPublic, isAppendData);
+            this.genDataModel(filename, content, fields, types, descs, isPublic, isAppendData, parent_class);
         } else if (config_type === CONFIG_TYPE.CONST) {
             // 生成CONST模型
             let modelData = workBook.Sheets['model'];
