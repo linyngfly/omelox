@@ -876,10 +876,11 @@ export class config_error_getter {
         }
 
         let configModels = this.modelDefines.get(categoryModel) || this.modelDefines.get(this.modelParent.get(categoryModel));
-        if (!configModels) {
+        if (!configModels || configModels.fields.length === 0) {
             console.log(`配置文件${oriFilename}指定的category文件模型未定义模型，请检查配置`);
             return;
         }
+
         for (let i = 0; i < configModels.fields.length; i++) {
             let fid = fields.indexOf(configModels.fields[i]);
             if (configModels.fields[i] !== fields[i]) {
