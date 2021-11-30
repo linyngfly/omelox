@@ -120,6 +120,28 @@ export class lang_model_map {
             str += `import { config_model_base } from './config_model';`
         }
 
+        // 检查当前model是否是其他的父类，是则追加字段到子类
+        for (let [child, par] of this.modelParent.entries()) {
+            if (par === modelrName) {
+                let childModel = this.modelDefines.get(child);
+                this.modelDefines.set(child, { fields: fields.concat(childModel.fields), types: fields.concat(childModel.types), descs: fields.concat(childModel.descs) })
+            }
+        }
+
+        if (this.modelDefines.has(parentClassname)) {
+            // 存在父类model,则附加上父类定义
+            let parent = this.modelDefines.get(parentClassname);
+            this.modelDefines.set(modelrName, { fields: parent.fields.concat(fields), types: parent.types.concat(types), descs: parent.descs.concat(descs) })
+        } else {
+            this.modelDefines.set(modelrName, { fields, types, descs })
+            if (parentClassname) {
+                // 保持我的父类model,等待父类model出现后，进行定义追加
+                this.modelParent.set(modelrName, parentClassname);
+            }
+        }
+
+        parentClassname = parentClassname || 'config_model_base'
+
         str += `
 /**
  * ${content}
@@ -630,13 +652,13 @@ export class config_error_getter {
      * @param datas 数据
      * @param descs 描述
      */
-    protected genDataBuffer(filename: string, fmtType: string, fields: string[], types: any[], datas: any[], descs: string[]): void {
+    protected genDataBuffer(filename: string, fmtType: string, fields: string[], types: any[], datas: any[], descs: string[], categoryModel: string): void {
         let oriFilename = path.parse(filename).name;
         let str = null;
         switch (fmtType) {
             case CONFIG_TYPE.DATA:
             case CONFIG_TYPE.MODEL:
-                str = this.genDataConfigBuffer(oriFilename, fields, types, datas)
+                str = this.genDataConfigBuffer(oriFilename, fields, types, datas, categoryModel)
                 break;
             case CONFIG_TYPE.CONST:
                 str = this.genConstConfigBuffer(oriFilename, fields, types, datas, descs)
@@ -831,7 +853,46 @@ export class config_error_getter {
      * @param types 字段类型
      * @param datas 数据
      */
-    protected genDataConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[]): string {
+    protected genDataConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[], categoryModel: string): string {
+        if (!datas || datas.length === 0) {
+            console.log(`配置文件${oriFilename}数据为空，请检查配置`);
+            return;
+        }
+        let dataModel: { fields: string[], types: string[] } = {
+            fields: [],
+            types: []
+        }
+        // 验证model和数据定义是否完全匹配
+        for (let j = 0; j < fields.length; j++) {
+            let typeRules = types[j].split(',');
+            if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType == 2) {
+                continue;
+            }
+            if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType == 1) {
+                continue;
+            }
+            dataModel.fields.push(fields[j]);
+            dataModel.types.push(types[j]);
+        }
+
+        let configModels = this.modelDefines.get(categoryModel) || this.modelDefines.get(this.modelParent.get(categoryModel));
+        if (!configModels) {
+            console.log(`配置文件${oriFilename}指定的category文件模型未定义模型，请检查配置`);
+            return;
+        }
+        for (let i = 0; i < configModels.fields.length; i++) {
+            let fid = fields.indexOf(configModels.fields[i]);
+            if (configModels.fields[i] !== fields[i]) {
+                console.log(`配置文件${oriFilename}第${i}列数据字段${fields[i]}和模型第${i}列数据字段${configModels.fields[i]}不匹配，请检查配置`);
+                return;
+            }
+
+            if (types[fid] !== configModels.types[i]) {
+                console.log(`配置文件${oriFilename}第${i}列数据字段${fields[i]}类型${types[fid]}和模型第${i}列数据字段类型${configModels.types[i]}不匹配，请检查配置`);
+                return;
+            }
+        }
+
         let str = `{\r\n`
         str += `\t\"fieldData\" : [`;
         for (let i = 0; i < datas.length; i++) {
