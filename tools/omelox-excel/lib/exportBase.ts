@@ -322,13 +322,13 @@ export abstract class ExportBase {
             let sheetJson = XLSX.utils.sheet_to_json<any>(modelData, { header: 1, raw: true, blankrows: false });
 
             // 字段名
-            let fields = sheetJson[0];
+            let fields = sheetJson[0] || [];
             // 数据类型：unexport（不导出）、float（小数）、int(整数)、string（字符串）、table(对象)、key,cst第一列类型可以取key（map）、cst(常量)
             // 字段类型约束：index->创建字段映射索引(id,index),indexs->创建多字段映射索引(类型,indexs,level|scene_id),
             // unique->检测字段唯一性(name_key,unique),oc->客戶端专用(res_name,oc),os->服务端专用(baseRate,os)
-            let types = sheetJson[1];
+            let types = sheetJson[1] || [];
             // 字段描述
-            let descs = sheetJson[2];
+            let descs = sheetJson[2] || [];
 
             const pathInfo = path.parse(filename);
             this.mkdirsSync(pathInfo.dir);
