@@ -69,6 +69,8 @@ export abstract class ExportBase {
         this.excelFiles.forEach((filePath) => {
             this.handleDataExcel(filePath)
         })
+
+        this.genDataFileName();
     }
 
     protected getHandlerOutDir() {
