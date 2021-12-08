@@ -124,7 +124,7 @@ export class lang_model_map {
         for (let [child, par] of this.modelParent.entries()) {
             if (par === modelrName) {
                 let childModel = this.modelDefines.get(child);
-                this.modelDefines.set(child, { fields: fields.concat(childModel.fields), types: fields.concat(childModel.types), descs: fields.concat(childModel.descs) })
+                this.modelDefines.set(child, { fields: fields.concat(childModel.fields), types: types.concat(childModel.types), descs: descs.concat(childModel.descs) })
             }
         }
 
