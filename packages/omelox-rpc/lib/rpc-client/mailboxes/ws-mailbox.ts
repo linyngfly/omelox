@@ -62,7 +62,7 @@ export class WSMailBox extends EventEmitter {
       return;
     }
     let self = this;
-    this.socket = io.connect(this.host + ':' + this.port, <any>{
+    this.socket = io(this.host + ':' + this.port, <any>{
       'force new connection': true,
       'reconnect': false
     });

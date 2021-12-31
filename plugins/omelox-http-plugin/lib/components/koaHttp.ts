@@ -12,7 +12,7 @@ import cors from '../cors';
 import bodyparser from '../body';
 import session, { genStore, StoreType } from '../session';
 import { IComponent, Application } from 'omelox';
-import * as cluster from 'cluster';
+import cluster from 'cluster';
 import * as os from 'os';
 const numCPUs = os.cpus().length;
 import * as Router from 'koa-router';
@@ -159,7 +159,7 @@ export class KoaHttpComponent implements IComponent {
             this.http.use(item);
         })
 
-        if (this.useCluster && cluster.isMaster) {
+        if (this.useCluster && cluster.isPrimary) {
 
             // 启动 worker 并监听包含 notifyRequest 的消息
             for (let i = 0; i < numCPUs; i++) {
