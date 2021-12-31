@@ -52,11 +52,11 @@
     "@types/socket.io": "^2.1.6",
     "async": "^3.0.0",
     "cliff": "^0.1.10",
-    "commander": "^3.0.0",
-    "crc": "^3.5.0",
+    "commander": "^8.0.0",
+    "crc": "^3.8.0",
     "eyes": "^0.1.8",
-    "mkdirp": "^0.5.1",
-    "mqtt-connection": "^4.0.0",
+    "mkdirp": "^1.0.4",
+    "mqtt-connection": "^4.1.0",
     "node-bignumber": "^1.2.1",
     "omelox-admin": "^3.1.2",
     "omelox-loader": "^3.1.1",
@@ -66,27 +66,27 @@
     "omelox-rpc": "^3.1.1",
     "omelox-scheduler": "^3.1.1",
     "seq-queue": "^0.0.5",
-    "socket.io": "^2.3.0",
-    "ws": "^7.0.0"
+    "socket.io": "^4.1.3",
+    "ws": "8.4.0"
   },
   "bin": {
     "omelox": "./dist/bin/omelox.js"
   },
   "devDependencies": {
-    "@types/async": "3.0.3",
-    "@types/cliff": "0.1.4",
+    "@types/async": "3.2.8",
+    "@types/cliff": "0.1.6",
     "@types/commander": "2.12.2",
     "@types/crc": "3.4.0",
-    "@types/eyes": "0.1.31",
-    "@types/mkdirp": "0.5.2",
+    "@types/eyes": "0.1.32",
+    "@types/mkdirp": "1.0.2",
     "@types/mocha": "^5.0.0",
-    "@types/ws": "6.0.4",
+    "@types/ws": "8.2.2",
     "mocha": "6.2.2",
     "muk": "0.5.3",
-    "nyc": "14.1.1",
+    "nyc": "15.1.0",
     "should": "13.2.3",
-    "tslint": "5.20.1",
-    "typescript": "^3.9.7"
+    "tslint": "^6.1.3",
+    "typescript": "^4.3.5"
   },
   "gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"
 }

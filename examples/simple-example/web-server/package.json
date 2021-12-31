@@ -3,7 +3,7 @@
   "version": "3.1.1",
   "private": false,
   "dependencies": {
-    "express": "3.4.8"
+    "express": "4.17.1"
   },
   "gitHead": "66bbfca6dc3e8deae2abb0fac2a93e44db3feaa7"
 }

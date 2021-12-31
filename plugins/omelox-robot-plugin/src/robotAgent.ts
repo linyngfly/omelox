@@ -1,8 +1,7 @@
 import { Application , IPlugin} from 'omelox';
 import { Robot, RobotCfg } from 'omelox-robot';
 import * as  fs from 'fs';
-import * as yargs from 'yargs';
-let argv = yargs.argv;
+import { argv } from 'yargs';
 
 console.log('启动robotAgent');
 

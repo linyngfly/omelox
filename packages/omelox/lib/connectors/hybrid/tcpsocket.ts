@@ -1,10 +1,10 @@
-import {Stream} from 'stream';
+import { Stream } from 'stream';
 import * as util from 'util';
 import * as net from 'net';
-import {Package} from 'omelox-protocol';
-import {getLogger} from 'omelox-logger';
-import {ISocket} from '../../interfaces/ISocket';
-import {IHybridSocket} from './IHybridSocket';
+import { Package } from 'omelox-protocol';
+import { getLogger } from 'omelox-logger';
+import { ISocket } from '../../interfaces/ISocket';
+import { IHybridSocket } from './IHybridSocket';
 import * as path from 'path';
 
 let logger = getLogger('omelox', path.basename(__filename));
@@ -85,8 +85,8 @@ export class TcpSocket extends Stream implements IHybridSocket {
     }
 
 
-    send(msg: any, options: { binary?: boolean }, cb?: (err ?: Error) => void) {
-        this._socket.write(msg, options as string, cb);
+    send(msg: any, options: { binary?: boolean }, cb?: (err?: Error) => void) {
+        this._socket.write(msg, options.binary ? 'binary' : 'utf8', cb);
     }
 
     close() {

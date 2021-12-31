@@ -6,7 +6,7 @@
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import * as program from 'commander';
+import { program } from 'commander';
 import { COMMAND_ERROR } from './utils/constants';
 import { version } from './utils/utils';
 import { isFunction } from 'util';

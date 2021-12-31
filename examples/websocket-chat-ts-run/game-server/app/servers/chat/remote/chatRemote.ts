@@ -8,13 +8,13 @@ export default function (app: Application) {
 // 你也可以用其它方法解决，或者没有遇到过这个问题的话，定义还是可以放在这里。
 
 // UserRpc的命名空间自动合并
-// declare global {
-//     interface UserRpc {
-//         chat: {
-//             chatRemote: RemoterClass<FrontendSession, ChatRemote>;
-//         };
-//     }
-// }
+declare global {
+    interface UserRpc {
+        chat: {
+            chatRemote: RemoterClass<FrontendSession, ChatRemote>;
+        };
+    }
+}
 export class ChatRemote {
 
     constructor(private app: Application) {

@@ -32,7 +32,7 @@ export interface ServerCfg {
 export class Server {
     log: Logger;
     nodes: { [key: string]: any } = {};
-    web_clients: { [key: string]:  _wc.WebClient } = {};
+    web_clients: { [key: string]: _wc.WebClient } = {};
     conf: ServerCfg;
     runconfig = { maxuser: 1, agent: 1 };
     status: number = STATUS_RUNNING;
@@ -47,7 +47,9 @@ export class Server {
     }
 
     listen(port: number | string) {
-        this.io = io.listen(port);
+        const server = require('http').createServer();
+        this.io = io(server);
+        server.listen(port);
         this.register();
     }
     // Registers new Node with Server, announces to WebClients
@@ -99,7 +101,7 @@ export class Server {
         /* temporary code */
     }
     // Registers new WebClient with Server
-    announce_web_client(socket:any) {
+    announce_web_client(socket: any) {
         let rserver = this;
         let web_client = new _wc.WebClient(socket, rserver);
         rserver.web_clients[web_client.id] = web_client;
@@ -130,7 +132,7 @@ export class Server {
     register() {
         let rserver = this;
         // rserver.io.set('log level', 1);
-        rserver.io.sockets.on('connection', function (socket:any) {
+        rserver.io.sockets.on('connection', function (socket: any) {
             socket.on('announce_node', function (message: string) {
                 rserver.log.info('Registering new node ' + JSON.stringify(message));
                 rserver.announce_node(socket, message);
@@ -164,7 +166,7 @@ export class Server {
                 });
 
                 socket.on('exit4reready', function () {
-                    __.each(rserver.nodes, function (obj: { socket:any}) {
+                    __.each(rserver.nodes, function (obj: { socket: any }) {
                         obj.socket.emit('exit4reready');
                     });
                     rserver.nodes = {};

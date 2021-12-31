@@ -1,12 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import * as program from 'commander';
+import { Command } from 'commander';
 import * as constants from '../../lib/util/constants';
 import { abort } from '../utils/utils';
 import { DEFAULT_ENV, DEFAULT_GAME_SERVER_DIR, SCRIPT_NOT_FOUND, DAEMON_INFO } from '../utils/constants';
 import { spawn } from 'child_process';
 
-export default function (program: program.CommanderStatic) {
+export default function (program: Command) {
     program.command('start')
         .description('start the application')
         .option('-e, --env <env>', 'the used environment', DEFAULT_ENV)
