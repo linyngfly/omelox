@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 require('cliff');
-import * as program from 'commander';
+import { program } from 'commander';
 import * as fs from 'fs';
 import { isFunction } from 'util';
 const version = require('../../package.json').version;

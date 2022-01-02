@@ -10,7 +10,6 @@
 
 import {MqttClient} from '../protocol/mqtt/mqttClient';
 import * as protocol from '../util/protocol';
-// let io = require('socket.io-client');
 import * as utils from '../util/utils';
 import { Callback } from '../util/constants';
 

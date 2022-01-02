@@ -1,10 +1,10 @@
 require('cliff');
-import * as program from 'commander';
+import { Command } from 'commander';
 import * as fs from 'fs';
 import * as path from 'path';
 import { parseAndWrite } from '../../lib/utils';
 
-export default function (programs: program.CommanderStatic) {
+export default function (programs: Command) {
     programs.command('gen')
         .description('gen proto protocol')
         .option('-i, --interfacedir <interface define directory>', 'The interface define directory')

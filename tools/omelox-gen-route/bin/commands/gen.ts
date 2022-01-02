@@ -1,9 +1,9 @@
 require('cliff');
-import * as program from 'commander';
+import { Command } from 'commander';
 import * as fs from 'fs';
 import { genHTTPRouteFile, genWSLocalRouteFile, genWSMapRouteFile, genWSRouteFile } from '../../lib/utils';
 
-export default function (programs: program.CommanderStatic) {
+export default function (programs: Command) {
     programs.command('gen')
         .description('gen proto protocol')
         .option('-w, --wsroute <wsroute define directory>', 'Gen ws route define file', 'shared/protocols/ws,shared/protocols/ws.push.routes.ts')

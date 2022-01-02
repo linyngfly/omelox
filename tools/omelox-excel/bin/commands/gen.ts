@@ -1,16 +1,16 @@
 require('cliff');
-import * as program from 'commander';
+import { Command } from 'commander';
 import * as fs from 'fs';
 import ExportServerTS from '../../lib/exportServerTS';
 import ExportClientTS from '../../lib/ExportClientTS';
 
-export default function (programs: program.CommanderStatic) {
+export default function (programs: Command) {
     programs.command('gen')
         .description('gen excels to json config')
         .option('-c, --channel <publish channel>', 'the used publish channel', 'default')
         .option('-i, --inputdir <input directory>', 'excel input dir')
         .option('-o, --outdir <out root directory>', 'the gen root directory')
-        .option('-t, --type <server(1) or client(2) type>', 'gen config type server or client', 1)
+        .option('-t, --type <server(1) or client(2) type>', 'gen config type server or client', '1')
         .option('-h, --getterdir <excel config data getter directory>', 'excel config data getter directory', '')
         .action(function (opts) {
             gen(opts);
