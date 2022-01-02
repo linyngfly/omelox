@@ -1,18 +1,18 @@
-import { Package , Protocol } from 'omelox-protocol';
+import { Package, Protocol } from 'omelox-protocol';
 import { getLogger } from 'omelox-logger';
 import { ISocket } from '../../interfaces/ISocket';
 import * as path from 'path';
 let logger = getLogger('omelox', path.basename(__filename));
 
 
-let handlers: {[packageType: number]: (socket: ISocket , pkg: any) => void} = {};
+let handlers: { [packageType: number]: (socket: ISocket, pkg: any) => void } = {};
 
 let ST_INITED = 0;
 let ST_WAIT_ACK = 1;
 let ST_WORKING = 2;
 let ST_CLOSED = 3;
 
-let handleHandshake = function (socket: ISocket , pkg: any) {
+let handleHandshake = function (socket: ISocket, pkg: any) {
     if (socket.state !== ST_INITED) {
         return;
     }
@@ -23,7 +23,7 @@ let handleHandshake = function (socket: ISocket , pkg: any) {
     }
 };
 
-let handleHandshakeAck = function (socket: ISocket , pkg: any) {
+let handleHandshakeAck = function (socket: ISocket, pkg: any) {
     if (socket.state !== ST_WAIT_ACK) {
         return;
     }
@@ -31,14 +31,14 @@ let handleHandshakeAck = function (socket: ISocket , pkg: any) {
     socket.emit('heartbeat');
 };
 
-let handleHeartbeat = function (socket: ISocket , pkg: any) {
+let handleHeartbeat = function (socket: ISocket, pkg: any) {
     if (socket.state !== ST_WORKING) {
         return;
     }
     socket.emit('heartbeat');
 };
 
-let handleData = function (socket: ISocket , pkg: any) {
+let handleData = function (socket: ISocket, pkg: any) {
     if (socket.state !== ST_WORKING) {
         return;
     }
@@ -50,7 +50,7 @@ handlers[Package.TYPE_HANDSHAKE_ACK] = handleHandshakeAck;
 handlers[Package.TYPE_HEARTBEAT] = handleHeartbeat;
 handlers[Package.TYPE_DATA] = handleData;
 
-export default function (socket: ISocket, pkg: any) {
+export default function (socket: ISocket, pkg: { type: number, body: any }) {
     let handler = handlers[pkg.type];
     if (!!handler) {
         handler(socket, pkg);

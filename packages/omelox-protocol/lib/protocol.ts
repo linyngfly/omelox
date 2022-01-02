@@ -22,8 +22,8 @@ export namespace Protocol {
    * socketio current support string
    */
   export function strencode(str: string) {
-      // encoding defaults to 'utf8'
-      return Buffer.from(str);
+    // encoding defaults to 'utf8'
+    return Buffer.from(str);
   }
 
   /**
@@ -32,8 +32,8 @@ export namespace Protocol {
    * return Message Object
    */
   export function strdecode(buffer: object) {
-      // encoding defaults to 'utf8'
-      return buffer.toString();
+    // encoding defaults to 'utf8'
+    return buffer.toString();
   }
 }
 
@@ -102,14 +102,14 @@ export namespace Package {
       let type = bytes[offset++];
       length = ((bytes[offset++]) << 16 | (bytes[offset++]) << 8 | bytes[offset++]) >>> 0;
       if (!isValidType(type) || length > bytes.length) {
-        return { 'type': type }; // return invalid type, then disconnect!
+        return { type }; // return invalid type, then disconnect!
       }
       let body = length ? Buffer.alloc(length) : null;
       if (body) {
         copyArray(body, 0, bytes, offset, length);
       }
       offset += length;
-      rs.push({ 'type': type, 'body': body });
+      rs.push({ type, body });
     }
     return rs.length === 1 ? rs[0] : rs;
   }

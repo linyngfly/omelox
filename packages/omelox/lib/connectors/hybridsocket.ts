@@ -1,13 +1,10 @@
-import * as util from 'util';
-import * as net from 'net';
-import {EventEmitter} from 'events';
-import {default as handler} from './common/handler';
-import {Package} from 'omelox-protocol';
-import {getLogger} from 'omelox-logger';
-import {ISocket} from '../interfaces/ISocket';
-import * as WebSocket from 'ws';
-import {TcpSocket} from './hybrid/tcpsocket';
-import {IHybridSocket} from './hybrid/IHybridSocket';
+import { EventEmitter } from 'events';
+import { default as handler } from './common/handler';
+import { Package } from 'omelox-protocol';
+import { getLogger } from 'omelox-logger';
+import { ISocket } from '../interfaces/ISocket';
+import { TcpSocket } from './hybrid/tcpsocket';
+import { IHybridSocket } from './hybrid/IHybridSocket';
 import * as path from 'path';
 
 let logger = getLogger('omelox', path.basename(__filename));
@@ -73,7 +70,7 @@ export class HybridSocket extends EventEmitter implements ISocket {
         }
         let self = this;
 
-        this.socket.send(msg, {binary: true}, (err) => {
+        this.socket.send(msg, { binary: true }, (err) => {
             if (!!err) {
                 logger.error('websocket send binary data failed: %j', err.stack);
                 return;
@@ -118,7 +115,7 @@ export class HybridSocket extends EventEmitter implements ISocket {
         if (this.state === ST_CLOSED) {
             return;
         }
-        this.socket.send(msg, {binary: true});
+        this.socket.send(msg, { binary: true });
     }
 
     /**
@@ -131,7 +128,7 @@ export class HybridSocket extends EventEmitter implements ISocket {
             return;
         }
 
-        this.socket.send(resp, {binary: true});
+        this.socket.send(resp, { binary: true });
         this.state = ST_WAIT_ACK;
     }
 
