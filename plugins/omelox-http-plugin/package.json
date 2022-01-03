@@ -1,6 +1,6 @@
 {
   "name": "omelox-http-plugin",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "omelox http plugin",
   "files": [
     "dist",
