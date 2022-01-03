@@ -1,6 +1,6 @@
 {
 	"name": "omelox-loader",
-	"version": "4.2.3",
+	"version": "4.2.4",
 	"author": "yng <linyngfly@163.com>",
 	"private": false,
 	"main": "./dist/index",

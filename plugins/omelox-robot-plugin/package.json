@@ -1,6 +1,6 @@
 {
   "name": "omelox-robot-plugin",
-  "version": "4.2.3",
+  "version": "4.2.4",
   "description": "omelox robot plugin",
   "files": [
     "dist",
@@ -22,7 +22,7 @@
   "main": "./dist/index",
   "types": "./src/index",
   "dependencies": {
-    "omelox": "^4.2.3",
+    "omelox": "^4.2.4",
     "yargs": "^17.0.1"
   },
   "devDependencies": {
