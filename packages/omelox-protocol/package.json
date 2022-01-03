@@ -1,6 +1,6 @@
 {
  "name": "omelox-protocol",
- "version": "3.1.2",
+ "version": "3.1.1",
  "author": "yng <linyngfly@163.com>",
  "private": false,
  "main": "./dist",

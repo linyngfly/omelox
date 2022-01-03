@@ -1,6 +1,6 @@
 {
     "name": "omelox-sample-websocket-chat-game-server",
-    "version": "3.1.2",
+    "version": "3.1.1",
     "private": false,
     "main": "./dist/app",
     "scripts": {
@@ -20,9 +20,9 @@
         "@types/node": "16.11.17",
         "bluebird": "^3.7.2",
         "crc": "^3.8.0",
-        "omelox": "^3.1.2",
-        "omelox-robot": "^3.1.2",
-        "omelox-robot-plugin": "^3.1.2",
+        "omelox": "^3.1.1",
+        "omelox-robot": "^3.1.1",
+        "omelox-robot-plugin": "^3.1.1",
         "reflect-metadata": "^0.1.10",
         "source-map-support": "^0.5.0"
     },

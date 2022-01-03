@@ -1,6 +1,6 @@
 {
   "name": "omelox-admin-web",
-  "version": "3.1.2",
+  "version": "3.1.1",
   "private": false,
   "dependencies": {
     "body-parser": "1.19.0",
