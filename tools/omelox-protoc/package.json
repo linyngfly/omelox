@@ -1,6 +1,6 @@
 {
   "name": "omelox-protoc",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "dependencies": {
     "cliff": "^0.1.10",
     "commander": "^8.0.0",
