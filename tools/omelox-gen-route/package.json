@@ -34,5 +34,6 @@
     "json",
     "parser",
     "protobuf"
-  ]
+  ],
+  "gitHead": "74380e10f86882a972286534fbfdaed864e54e7d"
 }
