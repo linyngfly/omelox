@@ -1,6 +1,6 @@
 {
 	"name": "omelox-sample-websocket-chat-web-server-ts-run",
-	"version": "4.1.3",
+	"version": "4.2.1",
 	"private": false,
 	"dependencies": {
 		"express": "4.17.1"

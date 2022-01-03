@@ -1,6 +1,6 @@
 {
   "name": "omelox-robot",
-  "version": "4.1.3",
+  "version": "4.2.1",
   "author": "yng <linyngfly@163.com>",
   "private": false,
   "dependencies": {
