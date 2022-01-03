@@ -1,6 +1,6 @@
 {
     "name": "omelox-monitor",
-    "version": "4.1.3",
+    "version": "4.2.0",
     "author": "yng <linyngfly@163.com>",
     "private": false,
     "main": "./dist/index",

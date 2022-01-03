@@ -1,6 +1,6 @@
 {
   "name": "omelox-gen-route",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "dependencies": {
     "cliff": "^0.1.10",
     "commander": "^8.0.0",

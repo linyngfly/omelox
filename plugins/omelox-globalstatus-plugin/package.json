@@ -1,6 +1,6 @@
 {
   "name": "omelox-globalstatus-plugin",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "omelox globalstatus plugin",
   "files": [
     "dist",
