@@ -1,6 +1,6 @@
 {
 	"name": "omelox-rpc",
-	"version": "3.1.2",
+	"version": "4.1.3",
 	"author": "yng <linyngfly@163.com>",
 	"private": false,
 	"main": "./dist/index",
@@ -33,8 +33,8 @@
 		"bluebird": "^3.7.2",
 		"crc": "^3.8.0",
 		"mqtt-connection": "^4.1.0",
-		"omelox-loader": "^3.1.2",
-		"omelox-logger": "^3.1.2",
+		"omelox-loader": "^4.1.3",
+		"omelox-logger": "^4.1.3",
 		"socket.io": "^4.1.3",
 		"source-map-support": "^0.5.0",
 		"stream-pkg": "0.0.5",
