@@ -1,14 +1,6 @@
-
-
-
-import * as os from 'os';
 import { Command } from 'commander';
-import * as constants from '../../lib/util/constants';
-import { connectToMaster, terminal } from '../utils/utils';
-import { ConsoleModule as co } from '../../lib/modules/console';
-import { DEFAULT_USERNAME, DEFAULT_PWD, DEFAULT_MASTER_HOST, DEFAULT_MASTER_PORT, ADD_SERVER_INFO, CLOSEAPP_INFO, KILL_CMD_WIN, KILL_CMD_LUX } from '../utils/constants';
-import { exec } from 'child_process';
-
+import { terminal } from '../utils/utils';
+import { DEFAULT_USERNAME, DEFAULT_PWD, DEFAULT_MASTER_HOST, DEFAULT_MASTER_PORT } from '../utils/constants';
 
 export default function (program: Command) {
     program.command('stop')
@@ -17,9 +9,8 @@ export default function (program: Command) {
         .option('-p, --password <password>', 'administration password', DEFAULT_PWD)
         .option('-h, --host <master-host>', 'master server host', DEFAULT_MASTER_HOST)
         .option('-P, --port <master-port>', 'master server port', (value) => parseInt(value), DEFAULT_MASTER_PORT)
-        .action(function () {
+        .action(function (opts) {
             let args = [].slice.call(arguments, 0);
-            let opts = args[args.length - 1];
             opts.serverIds = args.slice(0, -1);
             terminal('stop', opts);
         });

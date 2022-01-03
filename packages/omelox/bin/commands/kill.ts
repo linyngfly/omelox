@@ -1,7 +1,6 @@
 import { Command } from 'commander';
-import { connectToMaster, terminal } from '../utils/utils';
-import { ConsoleModule as co } from '../../lib/modules/console';
-import { DEFAULT_USERNAME, DEFAULT_PWD, DEFAULT_MASTER_HOST, DEFAULT_MASTER_PORT, ADD_SERVER_INFO } from '../utils/constants';
+import { terminal } from '../utils/utils';
+import { DEFAULT_USERNAME, DEFAULT_PWD, DEFAULT_MASTER_HOST, DEFAULT_MASTER_PORT } from '../utils/constants';
 
 export default function (program: Command) {
     program.command('kill')
@@ -11,9 +10,8 @@ export default function (program: Command) {
         .option('-h, --host <master-host>', 'master server host', DEFAULT_MASTER_HOST)
         .option('-P, --port <master-port>', 'master server port', (value) => parseInt(value), DEFAULT_MASTER_PORT)
         .option('-f, --force', 'using this option would kill all the node processes')
-        .action(function () {
+        .action(function (opts) {
             let args = [].slice.call(arguments, 0);
-            let opts = args[args.length - 1];
             opts.serverIds = args.slice(0, -1);
             terminal('kill', opts);
         });

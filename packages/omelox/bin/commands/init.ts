@@ -1,13 +1,8 @@
-
 import { Command } from 'commander';
-import { CUR_DIR, INIT_PROJ_NOTICE, TIME_INIT, FILEREAD_ERROR } from '../utils/constants';
+import { CUR_DIR, INIT_PROJ_NOTICE } from '../utils/constants';
 import { confirm, abort, version, prompt } from '../utils/utils';
-
 import * as fs from 'fs';
-import * as os from 'os';
 import * as path from 'path';
-import * as util from 'util';
-import * as cliff from 'cliff';
 import * as mkdirp from 'mkdirp';
 
 export default function (program: Command) {
