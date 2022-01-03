@@ -17,3 +17,6 @@ npm publish tools/omelox-gen-route
 npm publish tools/omelox-json-schema
 npm publish tools/omelox-protoc
 npm publish tools/omelox-robot
+
+# 一键发布
+# lerna publish from-package
