@@ -1,6 +1,6 @@
 {
   "name": "omelox-cli",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "omelox command line client for managing omelox",
   "scripts": {
     "build": "tsc",
@@ -32,8 +32,8 @@
   "dependencies": {
     "async": "^3.0.0",
     "cliff": "^0.1.10",
-    "omelox-admin": "^4.2.1",
-    "omelox-logger": "^4.2.1",
+    "omelox-admin": "^4.2.2",
+    "omelox-logger": "^4.2.2",
     "optimist": "^0.6.1"
   },
   "devDependencies": {
