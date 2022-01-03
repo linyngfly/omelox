@@ -35,7 +35,6 @@
 		"mqtt-connection": "^4.1.0",
 		"omelox-loader": "^4.2.2",
 		"omelox-logger": "^4.2.2",
-		"socket.io": "^4.4.0",
 		"source-map-support": "^0.5.0",
 		"stream-pkg": "0.0.5",
 		"uuid": "^8.3.2",

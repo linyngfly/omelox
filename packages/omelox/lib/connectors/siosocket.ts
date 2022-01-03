@@ -1,7 +1,7 @@
 import * as util from 'util';
 import { EventEmitter } from 'events';
 import { ISocket } from '../interfaces/ISocket';
-import { Socket } from 'socket.io';
+// import { Socket } from 'socket.io';
 
 let ST_INITED = 0;
 let ST_CLOSED = 1;
@@ -11,11 +11,13 @@ let ST_CLOSED = 1;
  */
 export class SioSocket extends EventEmitter implements ISocket {
     id: number;
-    socket: Socket;
+    // socket: Socket;
+    socket: any;
     remoteAddress: { ip: string };
     state: number;
 
-    constructor(id: number, socket: Socket) {
+    // constructor(id: number, socket: Socket) {
+    constructor(id: number, socket: any) {
         super();
         this.id = id;
         this.socket = socket;
@@ -29,7 +31,8 @@ export class SioSocket extends EventEmitter implements ISocket {
 
         socket.on('error', this.emit.bind(this, 'error'));
 
-        socket.on('message', function (msg) {
+        // socket.on('message', function (msg) {
+        socket.on('message', function (msg: any) {
             self.emit('message', msg);
         });
 

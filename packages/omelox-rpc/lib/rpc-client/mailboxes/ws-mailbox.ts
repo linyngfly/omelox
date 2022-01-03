@@ -3,7 +3,7 @@ let logger = getLogger('omelox-rpc', 'ws-mailbox');
 import { EventEmitter } from 'events';
 import { constants } from '../../util/constants';
 import { Tracer } from '../../util/tracer';
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 import * as utils from '../../util/utils';
 import * as util from 'util';
 import { Msg } from '../../util/coder';
@@ -62,10 +62,11 @@ export class WSMailBox extends EventEmitter {
       return;
     }
     let self = this;
-    this.socket = io(this.host + ':' + this.port, <any>{
-      'force new connection': true,
-      'reconnect': false
-    });
+    // this.socket = io(this.host + ':' + this.port, <any>{
+    //   'force new connection': true,
+    //   'reconnect': false
+    // });
+    this.socket = {};
     this.socket.on('message', function (pkg: MailBoxPkg) {
       try {
         if (pkg instanceof Array) {

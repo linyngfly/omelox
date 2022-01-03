@@ -65,7 +65,6 @@
     "omelox-rpc": "^4.2.2",
     "omelox-scheduler": "^4.2.2",
     "seq-queue": "^0.0.5",
-    "socket.io": "^4.4.0",
     "ws": "8.4.0"
   },
   "bin": {

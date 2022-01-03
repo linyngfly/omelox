@@ -4,7 +4,7 @@ import * as  _wc from './webclient.js';
 import { logging, Logger } from '../common/logging';
 import * as  stat from '../monitor/stat';
 import * as  starter from './starter';
-const io = require('socket.io');
+// const io = require('socket.io');
 
 let STATUS_INTERVAL = 60 * 1000; // 60 seconds
 let HEARTBEAT_INTERVAL = 30 * 1000; // 30 seconds
@@ -48,7 +48,8 @@ export class Server {
 
     listen(port: number | string) {
         const server = require('http').createServer();
-        this.io = io(server);
+        // this.io = io(server);
+        this.io = {};
         server.listen(port);
         this.register();
     }

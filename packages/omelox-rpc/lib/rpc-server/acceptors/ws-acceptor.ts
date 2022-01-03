@@ -3,7 +3,7 @@ let logger = getLogger('omelox-rpc', 'ws-acceptor');
 import { EventEmitter } from 'events';
 import { Tracer } from '../../util/tracer';
 import * as utils from '../../util/utils';
-import { Server } from 'socket.io';
+// import { Server } from 'socket.io';
 import * as util from 'util';
 import * as Coder from '../../util/coder';
 
@@ -61,7 +61,8 @@ export class WSAcceptor extends EventEmitter {
 
     let self = this;
 
-    this.server = new Server(port);
+    // this.server = new Server(port);
+    this.server = {} as any;
 
     this.server.set('log level', 0);
 
