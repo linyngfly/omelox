@@ -229,6 +229,39 @@ export class ${modelrName} extends ${parentClassname} {\r\n`
 
         return str;
     }
+    /**
+     * 生成常量DATA配置字段定义
+     * @param oriFilename 文件名
+     * @param datas 行数据
+     */
+    protected _genConstFIELDS(oriFilename: string, types: string[], datas: any[]) {
+        // 查找常量定义key，desc
+        let keyCol = null;
+        let keyDescCol = null;
+        for (let i = 0; i < types.length; i++) {
+            let typeRules = types[i].split(',');
+            if (typeRules.indexOf(FIELD_RULE.KEY) !== -1) {
+                keyCol = i;
+            }
+            if (typeRules.indexOf(FIELD_RULE.KEY_DESC) !== -1) {
+                keyDescCol = i;
+            }
+        }
+
+        if (null == keyCol || null == keyDescCol) {
+            throw `${oriFilename} 常量Data配置异常，未配置字段约束${FIELD_RULE.KEY}或者${FIELD_RULE.KEY_DESC}`;
+        }
+
+        let str = '';
+        for (let i = 0; i < datas.length; i++) {
+            let rowArray = datas[i];
+            const keyCst = rowArray[keyCol].toString().trim();
+            str += `\t\t/** ${rowArray[keyDescCol]} */\r\n`
+            str += `\t\t${keyCst.toUpperCase()}: \'${keyCst}\',\r\n`
+        }
+
+        return str;
+    }
 
     protected genDataConstModel(filename: string, content: string, fields: string[], types: string[], descs: string[], isPublic: boolean, datas: any[]): void {
         const oriFilename = path.parse(filename).name;
@@ -257,6 +290,11 @@ export class ${modelrName} extends config_model_base {\r\n`
         str += `\r\n`
         str += `\tpublic static readonly FIELDS = {\r\n`
         str += this._genFIELDS(types, fields);
+        str += `\t}\r\n`
+
+        str += `\r\n`
+        str += `\tpublic static readonly CONST_FIELDS = {\r\n`
+        str += this._genConstFIELDS(filename, types, datas);
         str += `\t}\r\n`
 
         str += `\r\n`
