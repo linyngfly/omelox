@@ -59,6 +59,7 @@ export abstract class ExportBase {
         this.genModelMap();
         this.genConfigDataGetter();
         this.genConfigConstGetter();
+        this.genConfigDataConstGetter();
         this.genConfigLangGetter();
         this.genConfigErrorGetter();
         /** 遍历所有excel文件 */
@@ -163,6 +164,11 @@ export abstract class ExportBase {
      * 生成常量配置读取器
      */
     protected abstract genConfigConstGetter(): void;
+
+    /**
+     * 生成常量Data配置读取器
+     */
+    protected abstract genConfigDataConstGetter(): void;
 
     /**
      * 生成语言配置读取器
@@ -351,7 +357,7 @@ export abstract class ExportBase {
                 }
             }
             this.genDataModel(filename, content, fields, types, descs, isPublic, isAppendData, parent_class);
-        } else if (config_type === CONFIG_TYPE.CONST_MODEL) {
+        } else if (config_type === CONFIG_TYPE.DATA_CONST) {
             let category = this.docConfigKey.get(DocConfigKey.category);
             let filename = `${this.getHandlerOutDir()}/${category}`;
 
@@ -516,6 +522,8 @@ export abstract class ExportBase {
                 fmtType = CONFIG_TYPE.LANG;
             } else if (config_type === CONFIG_TYPE.ERROR) {
                 fmtType = CONFIG_TYPE.ERROR;
+            } else if (config_type === CONFIG_TYPE.DATA_CONST) {
+                fmtType = CONFIG_TYPE.DATA_CONST;
             }
             else {
                 // 常规数据类型
@@ -544,7 +552,7 @@ export abstract class ExportBase {
 
             this.genDataBuffer(filename, fmtType, fields, types, sheetJson.slice(consts.CONFIG_SKIP_ROW), descs, `${categoryModel}_model`);
 
-            if (CONFIG_TYPE.LANG === fmtType || CONFIG_TYPE.ERROR === fmtType) {
+            if (CONFIG_TYPE.LANG === fmtType || CONFIG_TYPE.ERROR === fmtType || CONFIG_TYPE.DATA_CONST === fmtType) {
                 break;
             }
         }

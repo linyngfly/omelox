@@ -253,10 +253,14 @@ export class ${modelrName} extends config_model_base {\r\n`
             str += this.getModelGetUrl();
             str += `\r\n`
         }
-        // 字段定义
 
         str += `\r\n`
+        str += `\tpublic static readonly FIELDS = {\r\n`
+        str += this._genFIELDS(types, fields);
+        str += `\t}\r\n`
 
+        str += `\r\n`
+        // 字段定义
         str += this._genConstDataFieldDefine(filename, types, datas, `${modelrName}_data_item`);
 
         str += `\r\n`
@@ -641,6 +645,62 @@ export class config_const_getter {
         fs.writeFileSync(`${this.getHandlerOutDir()}/config_const_getter.ts`, str);
     }
 
+    protected genConfigDataConstGetter(): void {
+        let str = `import { config_model_base, ConfigClass } from './config_model';
+export class config_data_const_getter {
+    /** 配置数据 */
+    private modelDatas = new Map<string, any>();
+
+    private static _instance: config_data_const_getter = null;
+
+    public static get instance() {
+        if (null == config_data_const_getter._instance) {
+            config_data_const_getter._instance = new config_data_const_getter();
+        }
+
+        return config_data_const_getter._instance;
+    }
+
+    /**
+    * 读取配置
+    * @param configClass 数据模型类
+    * @param dataFile 数据文件名
+    */
+    public getConstData<T extends config_model_base>(configClass: ConfigClass<T>, dataFile?: string): T {
+        let configData = this.getConfigData(configClass, dataFile);
+        return configData;
+    }
+
+    private getConfigData<T extends config_model_base>(uiClass: ConfigClass<T>, filename: string) {
+        let cfgFileName = uiClass.getConfigName(filename);
+        let configData = this.modelDatas.get(cfgFileName)
+        if (!configData) {
+            let configUrl = uiClass.getUrl(cfgFileName);
+            configData = config_model_base.loadJson(configUrl);
+            let newDatas = {};
+            for (let key in configData.fieldMap) {
+                let dataItem = configData.fieldData[configData.fieldMap[key]];
+                let dataObjItem = {};
+                let keys: string[] = Object.values(uiClass.FIELDS);
+                for (let i = 0; i < keys.length; i++) {
+                    dataObjItem[keys[i]] = dataItem[i];
+                }
+                newDatas[key] = dataObjItem;
+            }
+            this.modelDatas.set(cfgFileName, newDatas);
+            configData = newDatas;
+        }
+
+        if (!configData) {
+            console.log(\`配置文件\${cfgFileName}不存在, 请检查\`);
+        }
+
+        return configData;
+    }
+}`
+        fs.writeFileSync(`${this.getHandlerOutDir()}/config_data_const_getter.ts`, str);
+    }
+
     protected genConfigLangGetter(): void {
         let str = `import { config_model_base, ConfigClass } from './config_model';
 export class config_lang_getter {
@@ -748,6 +808,9 @@ export class config_error_getter {
             case CONFIG_TYPE.DATA:
             case CONFIG_TYPE.MODEL:
                 str = this.genDataConfigBuffer(oriFilename, fields, types, datas, categoryModel)
+                break;
+            case CONFIG_TYPE.DATA_CONST:
+                str = this.genDataConstConfigBuffer(oriFilename, fields, types, datas);
                 break;
             case CONFIG_TYPE.CONST:
                 str = this.genConstConfigBuffer(oriFilename, fields, types, datas, descs)
@@ -1100,6 +1163,94 @@ export class config_error_getter {
 
         return str;
     }
+
+    /**
+     * 生成数据JSON配置
+     * @param oriFilename 文件名称
+     * @param fields 字段
+     * @param types 字段类型
+     * @param datas 数据
+     */
+    protected genDataConstConfigBuffer(oriFilename: string, fields: string[], types: string[], datas: any[]): string {
+        if (!datas || datas.length === 0) {
+            console.log(`配置文件${oriFilename}数据为空，请检查配置`);
+            return;
+        }
+
+        let str = `{\r\n`
+        str += `\t\"fieldData\" : [`;
+        for (let i = 0; i < datas.length; i++) {
+            let rowDatas = datas[i];
+
+            let parseDatas = [];
+            for (let j = 0; j < fields.length; j++) {
+                let typeRules = types[j].split(',');
+                if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType == 2) {
+                    continue;
+                }
+                if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType == 1) {
+                    continue;
+                }
+
+                let rcType = typeRules[0];
+                if (rcType === FIELD_TYPE.UNEXPORT) {
+                    continue;
+                }
+                // 字段值合法性校验
+                let value = this.paresFieldValue(rowDatas[j], rcType)
+                if (null == value) {
+                    console.log(`配置文件${oriFilename}第${i + 1 + CONFIG_SKIP_ROW}行字段${fields[j]}值类型${rcType}, 异常配置为`, JSON.stringify(rowDatas[j]));
+                    return;
+                }
+                parseDatas.push(value);
+
+            }
+            str += `${JSON.stringify(parseDatas).trim()}${datas.length - 1 === i ? '' : ','}`
+        }
+        str += `],\r\n`
+
+        str += `\t\"fieldMap\" : {`;
+
+        const repeateCheckObj: any = {};
+        for (let i = 0; i < datas.length; i++) {
+            let dotstr = ',';
+            if (i === datas.length - 1) {
+                dotstr = '';
+            }
+            for (let j = 0; j < fields.length; j++) {
+                let typeRules = types[j].split(',');
+                let rcType = typeRules[0];
+                if (rcType === FIELD_TYPE.UNEXPORT) {
+                    // 不倒出字段
+                    continue;
+                }
+
+                if (typeRules.indexOf(FIELD_RULE.ONLY_SERVER) !== -1 && this.publishType == 2) {
+                    // 服务器专用字段
+                    continue;
+                }
+                if (typeRules.indexOf(FIELD_RULE.ONLY_CLIENT) !== -1 && this.publishType == 1) {
+                    // 客户端专用字段
+                    continue;
+                }
+
+                if (typeRules.indexOf(FIELD_RULE.KEY) !== -1) {
+                    let key = `${datas[i][j].toString().trim()}`;
+                    str += `\"${key}\":${i}${dotstr}`;
+                    if (repeateCheckObj[key]) {
+                        console.error(`配置文件${oriFilename}key索引字段字段${fields[j]} value=${key}重复, row=${i} col=${j}, 请检查配置`);
+                        return;
+                    }
+                    repeateCheckObj[key] = true;
+                }
+            }
+        }
+        str += `}\r\n`
+        str += `}\r\n`
+
+        return str;
+    }
+
     /**
      * 生成常量JSON配置
      * @param oriFilename 文件名称

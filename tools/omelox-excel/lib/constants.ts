@@ -40,14 +40,15 @@ export const CONFIG_TYPE = {
     MODEL: 'model',
     /** 常规配置 */
     DATA: 'data',
+    /** Data模板+常量配置 */
+    DATA_CONST: 'data_const',
     /** 常量配置 */
     CONST: 'const',
     /** 语言配置 */
     LANG: 'lang',
     /** 错误码配置 */
     ERROR: 'error',
-    /** Data模板+常量配置 */
-    CONST_MODEL: 'const_model',
+
 }
 
 export enum DocConfigKey {
