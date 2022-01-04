@@ -119,6 +119,14 @@ export abstract class ExportBase {
     }): void;
 
     /**
+ * 生成数据配置模型
+ * @param filename 文件名
+ * @param content 文件功能描述
+ * @param datas 数据
+ */
+    protected abstract genDataConstModel(filename: string, content: string, fields: string[], types: string[], descs: string[], isPublic: boolean, datas: any[]): void;
+
+    /**
      * 生成常量模型
      * @param filename 文件名
      * @param content 文件功能描述
@@ -342,8 +350,32 @@ export abstract class ExportBase {
                     break;
                 }
             }
-
             this.genDataModel(filename, content, fields, types, descs, isPublic, isAppendData, parent_class);
+        } else if (config_type === CONFIG_TYPE.CONST_MODEL) {
+            let category = this.docConfigKey.get(DocConfigKey.category);
+            let filename = `${this.getHandlerOutDir()}/${category}`;
+
+            // 根据模型文件生成数据配置模型
+            let modelData = workBook.Sheets['default'];
+            if (!modelData) {
+                console.log(`${filePath} 无default表单`);
+                return;
+            }
+
+            let sheetJson = XLSX.utils.sheet_to_json<any>(modelData, { header: 1, raw: true, blankrows: false });
+
+            // 字段名
+            let fields = sheetJson[0] || [];
+            // 数据类型：unexport（不导出）、float（小数）、int(整数)、string（字符串）、table(对象)、key,cst第一列类型可以取key（map）、cst(常量)
+            // 字段类型约束：index->创建字段映射索引(id,index),indexs->创建多字段映射索引(类型,indexs,level|scene_id),
+            // unique->检测字段唯一性(name_key,unique),oc->客戶端专用(res_name,oc),os->服务端专用(baseRate,os)
+            let types = sheetJson[1] || [];
+            // 字段描述
+            let descs = sheetJson[2] || [];
+
+            const pathInfo = path.parse(filename);
+            this.mkdirsSync(pathInfo.dir);
+            this.genDataConstModel(filename, content, fields, types, descs, isPublic, sheetJson.slice(consts.CONFIG_SKIP_ROW));
         }
     }
 
@@ -397,7 +429,7 @@ export abstract class ExportBase {
 
         if (config_type === CONFIG_TYPE.CONST) {
             // 生成CONST模型
-            let modelData = workBook.Sheets['model'];
+            let modelData = workBook.Sheets['default'];
             if (!modelData) {
                 console.log(`${filePath} 无template表单`);
                 return;

@@ -196,6 +196,95 @@ export class ${modelrName} extends ${parentClassname} {\r\n`
         fs.writeFileSync(`${path.parse(filename).dir}/${modelrName}.ts`, str);
     }
 
+    /**
+     * 生成常量DATA配置字段定义
+     * @param oriFilename 文件名
+     * @param datas 行数据
+     */
+    protected _genConstDataFieldDefine(oriFilename: string, types: string[], datas: any[], TYPE: string) {
+        // 查找常量定义key，desc
+        let keyCol = null;
+        let keyDescCol = null;
+        for (let i = 0; i < types.length; i++) {
+            let typeRules = types[i].split(',');
+            if (typeRules.indexOf(FIELD_RULE.KEY) !== -1) {
+                keyCol = i;
+            }
+            if (typeRules.indexOf(FIELD_RULE.KEY_DESC) !== -1) {
+                keyDescCol = i;
+            }
+        }
+
+        if (null == keyCol || null == keyDescCol) {
+            throw `${oriFilename} 常量Data配置异常，未配置字段约束${FIELD_RULE.KEY}或者${FIELD_RULE.KEY_DESC}`;
+        }
+
+        let str = '';
+        for (let i = 0; i < datas.length; i++) {
+            let rowArray = datas[i];
+            const keyCst = rowArray[keyCol].toString().trim();
+            str += `\t/** ${rowArray[keyDescCol]} */\r\n`
+            str += `\t${keyCst}: ${TYPE};\r\n`
+        }
+
+        return str;
+    }
+
+    protected genDataConstModel(filename: string, content: string, fields: string[], types: string[], descs: string[], isPublic: boolean, datas: any[]): void {
+        const oriFilename = path.parse(filename).name;
+        let modelrName = `${oriFilename}_model`;
+        let str = '';
+        str += `import { config_data_file_name } from './config_data_file_name';\r\n`
+
+        str += `import { config_model_base } from './config_model';`
+
+        // 加入data item定义
+        str += `
+export type ${modelrName}_data_item = {
+    ${this._genFieldDefine(fields, types, descs)}
+}`
+
+        str += `
+/**
+ * ${content}
+ */
+export class ${modelrName} extends config_model_base {\r\n`
+        if (this.getModelGetUrl()) {
+            str += this.getModelGetUrl();
+            str += `\r\n`
+        }
+        // 字段定义
+
+        str += `\r\n`
+
+        str += this._genConstDataFieldDefine(filename, types, datas, `${modelrName}_data_item`);
+
+        str += `\r\n`
+        str += `\tpublic static getClassName(): string {
+        return \'${modelrName}\'
+    }
+`
+
+        str += `
+    public static getConfigName(filename?: string): string {
+        return filename || config_data_file_name.${oriFilename};
+    }
+`
+
+        if (isPublic) {
+            str += `
+    public static isPublic(): boolean {
+        return true;
+    }
+`
+        }
+
+        str += `
+}`;
+
+        fs.writeFileSync(`${path.parse(filename).dir}/${modelrName}.ts`, str);
+    }
+
     protected genConstModel(filename: string, content: string, datas: any[]): void {
         const oriFilename = path.parse(filename).name;
         let modelrName = `${oriFilename}_model`;

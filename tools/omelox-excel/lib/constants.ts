@@ -18,6 +18,10 @@ export const FIELD_TYPE = {
 export const FIELD_RULE = {
     /** 创建字段映射索引 */
     INDEX: 'index',
+    /** KEY索引，用户常量data配置 */
+    KEY: 'key',
+    /** KEY索引，用户常量data配置 */
+    KEY_DESC: 'keydesc',
     /** 创建多字段联合索引 */
     INDEXS: 'indexs',
     /** 检测字段唯一性 */
@@ -41,7 +45,9 @@ export const CONFIG_TYPE = {
     /** 语言配置 */
     LANG: 'lang',
     /** 错误码配置 */
-    ERROR: 'error'
+    ERROR: 'error',
+    /** Data模板+常量配置 */
+    CONST_MODEL: 'const_model',
 }
 
 export enum DocConfigKey {

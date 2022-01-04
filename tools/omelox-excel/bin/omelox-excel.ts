@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-require('cliff');
 import { program } from 'commander';
 import * as fs from 'fs';
-import { isFunction } from 'util';
+require('cliff');
 const version = require('../../package.json').version;
 const COMMAND_ERROR = ('Illegal command format. Use `omelox-excel --help` to get more info.\n' as any).red;
 
@@ -17,7 +16,7 @@ fs.readdirSync(__dirname + '/commands').forEach(function (filename) {
     if (/\.js$/.test(filename)) {
         let name = filename.substr(0, filename.lastIndexOf('.'));
         let _command = require('./commands/' + name).default;
-        if (isFunction(_command)) {
+        if (typeof _command === 'function') {
             _command(program);
         }
     }
