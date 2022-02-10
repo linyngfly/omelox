@@ -56,6 +56,7 @@ export function runServers(app: Application) {
 export function run(app: Application, server: ServerInfo, cb?: (err?: string | number) => void) {
     env = app.get(Constants.RESERVED.ENV);
     let net = app.get(Constants.RESERVED.NET);
+    let pub = app.get(Constants.RESERVED.PUB);
     let cmd, key;
     if (utils.isLocal(server.host)) {
         let options: string[] = [];
@@ -69,9 +70,8 @@ export function run(app: Application, server: ServerInfo, cb?: (err?: string | n
         cmd = app.get(Constants.RESERVED.MAIN);
         options.push(cmd);
         options.push(util.format('env=%s', env));
-        if (net) {
-            options.push(util.format('net=%s', net));
-        }
+        if (net) options.push(util.format('net=%s', net));
+        if (pub) options.push(util.format('pub=%s', pub));
         for (key in server) {
             if (key === Constants.RESERVED.CPU) {
                 cpus[server.id] = server[key];
@@ -98,9 +98,8 @@ export function run(app: Application, server: ServerInfo, cb?: (err?: string | n
             }
             cmd += util.format(' %s=%s ', key, (server as any)[key]);
         }
-        if (net) {
-            cmd += util.format(' net=%s ', net);
-        }
+        if (net) cmd += util.format(' net=%s ', net);
+        if (pub) cmd += util.format(' pub=%s ', pub);
         sshrun(cmd, server.host, cb);
     }
 }

@@ -15,6 +15,7 @@ export default function (program: Command) {
         .option('-t, --type <server-type>,', 'start server type')
         .option('-i, --id <server-id>', 'start server id')
         .option('-n, --net <net-index>', 'set net adapter name, default auto set first available')
+        .option('-p, --pub <pub-env>', 'set publish env')
         .action(function (opts) {
             start(opts);
         });
@@ -43,6 +44,9 @@ function start(opts: any) {
     }
     if (!!opts.net) {
         params.push('net=' + opts.net);
+    }
+    if (!!opts.pub) {
+        params.push('pub=' + opts.pub);
     }
     if (opts.daemon) {
         ls = spawn(process.execPath, params, { detached: true, stdio: 'ignore' });
