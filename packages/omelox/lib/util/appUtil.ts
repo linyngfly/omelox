@@ -20,7 +20,6 @@ let logger = getLogger('omelox', path.basename(__filename));
 export function defaultConfiguration(app: Application) {
     let args = parseArgs(process.argv);
     setupEnv(app, args);
-    setupPubEnv(app, args);
     loadMaster(app);
     loadServers(app);
     processArgs(app, args);
@@ -193,7 +192,6 @@ export interface ServerStartArgs extends ServerInfo {
     startId?: string;
     main?: string;
     net?: string;
-    pub?: string;
 }
 
 /**
@@ -207,7 +205,6 @@ let processArgs = function (app: Application, args: ServerStartArgs) {
     let type = args.type || Constants.RESERVED.ALL;
     let startId = args.startId;
     let net = args.net;
-    let pub = args.pub;
 
     app.set(Constants.RESERVED.MAIN, args.main, true);
     app.set(Constants.RESERVED.SERVER_TYPE, serverType, true);
@@ -219,9 +216,6 @@ let processArgs = function (app: Application, args: ServerStartArgs) {
     }
     if (!!net) {
         app.set(Constants.RESERVED.NET, net, true);
-    }
-    if (!!pub) {
-        app.set(Constants.RESERVED.PUB, pub, true);
     }
 
     if (masterha === 'true') {
@@ -240,12 +234,7 @@ let processArgs = function (app: Application, args: ServerStartArgs) {
 let setupEnv = function (app: Application, args: { env: string }) {
     app.set(Constants.RESERVED.ENV, args.env || process.env.NODE_ENV || Constants.RESERVED.ENV_DEV, true);
 };
-/**
- * Setup pub enviroment.
- */
-let setupPubEnv = function (app: Application, args: { pub: string }) {
-    app.set(Constants.RESERVED.PUB, args.pub || undefined, true);
-};
+
 let _checkCanRequire = (path: string) => {
     try {
         path = require.resolve(path);
