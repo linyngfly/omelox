@@ -24,17 +24,29 @@ export class HybridSocket extends EventEmitter implements ISocket {
     remoteAddress: { ip: string, port: number };
     state: number;
 
-    constructor(id: number, socket: IHybridSocket) {
+    constructor(id: number, socket: IHybridSocket, request: any) {
         super();
         this.id = id;
         this.socket = socket;
 
         if (!(socket as TcpSocket)._socket) {
+            // WS
             this.remoteAddress = {
                 ip: (socket as any).address().address,
                 port: (socket as any).address().port
             };
+
+            if (request.headers['x-nginx-proxy']) {
+                // nginx反向代理，获取到玩家真实ip
+                const ipArr = request.headers['x-forwarded-for'].split(',');
+                if (ipArr.length > 0) {
+                    this.remoteAddress.ip = ipArr[0];
+                } else {
+                    this.remoteAddress.ip = request.headers['x-real-ip'];
+                }
+            }
         } else {
+            // TCP
             this.remoteAddress = {
                 ip: (socket as TcpSocket)._socket.remoteAddress,
                 port: (socket as TcpSocket)._socket.remotePort
