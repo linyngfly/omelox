@@ -1,9 +1,9 @@
-import {EventEmitter} from 'events';
+import { EventEmitter } from 'events';
 import * as  util from 'util';
-import {getLogger} from 'omelox-logger';
+import { getLogger } from 'omelox-logger';
 import * as utils from '../../util/utils';
-import {SID, FRONTENDID, UID} from '../../util/constants';
-import {ISocket} from '../../interfaces/ISocket';
+import { SID, FRONTENDID, UID } from '../../util/constants';
+import { ISocket } from '../../interfaces/ISocket';
 import * as path from 'path';
 
 let logger = getLogger('omelox', path.basename(__filename));
@@ -34,7 +34,7 @@ export class SessionService {
     sessions: { [sid: number]: Session };
     uidMap: { [uid: string]: Session[] };
 
-    constructor(opts ?: SessionServiceOptions) {
+    constructor(opts?: SessionServiceOptions) {
         opts = opts || {};
         this.singleSession = opts.singleSession;
         this.sessions = {};     // sid -> session
@@ -66,7 +66,7 @@ export class SessionService {
      * @memberOf SessionService
      * @api private
      */
-    bind(sid: SID, uid: UID, cb: (err: Error | null, result ?: void) => void) {
+    bind(sid: SID, uid: UID, cb: (err: Error | null, result?: void) => void) {
         let session = this.sessions[sid];
 
         if (!session) {
@@ -125,7 +125,7 @@ export class SessionService {
      * @memberOf SessionService
      * @api private
      */
-    unbind(sid: SID, uid: UID, cb: (err ?: Error, result ?: void) => void) {
+    unbind(sid: SID, uid: UID, cb: (err?: Error, result?: void) => void) {
         let session = this.sessions[sid];
 
         if (!session) {
@@ -225,7 +225,7 @@ export class SessionService {
      *
      * @api private
      */
-    import(sid: SID, key: string, value: string, cb: (err ?: Error, result ?: void) => void) {
+    import(sid: SID, key: string, value: string, cb: (err?: Error, result?: void) => void) {
         let session = this.sessions[sid];
         if (!session) {
             utils.invokeCallback(cb, new Error('session does not exist, sid: ' + sid));
@@ -241,7 +241,7 @@ export class SessionService {
      * @memberOf SessionService
      * @api private
      */
-    importAll(sid: SID, settings: { [key: string]: any }, cb: (err ?: Error, result ?: void) => void) {
+    importAll(sid: SID, settings: { [key: string]: any }, cb: (err?: Error, result?: void) => void) {
         let session = this.sessions[sid];
         if (!session) {
             utils.invokeCallback(cb, new Error('session does not exist, sid: ' + sid));
@@ -262,7 +262,7 @@ export class SessionService {
      *
      * @memberOf SessionService
      */
-    kick(uid: UID, reason ?: string, cb ?: (err ?: Error, result ?: void) => void) {
+    kick(uid: UID, reason?: string, cb?: (err?: Error, result?: void) => void) {
         // compatible for old kick(uid, cb);
         if (typeof reason === 'function') {
             cb = reason;
@@ -300,7 +300,7 @@ export class SessionService {
      *
      * @memberOf SessionService
      */
-    kickBySessionId(sid: SID, reason ?: string, cb ?: (err ?: Error, result ?: void) => void) {
+    kickBySessionId(sid: SID, reason?: string, cb?: (err?: Error, result?: void) => void) {
         if (typeof reason === 'function') {
             cb = reason;
             reason = 'kick';
@@ -419,8 +419,8 @@ export class SessionService {
     }
 
 
-    akick: (uid: UID, reason ?: string) => Promise<void> = utils.promisify(this.kick.bind(this));
-    akickBySessionId: (sid: SID, reason ?: string) => Promise<void> = utils.promisify(this.kickBySessionId.bind(this));
+    akick: (uid: UID, reason?: string) => Promise<void> = utils.promisify(this.kick.bind(this));
+    akickBySessionId: (sid: SID, reason?: string) => Promise<void> = utils.promisify(this.kickBySessionId.bind(this));
     abind: (sid: SID, uid: UID) => Promise<void> = utils.promisify(this.bind.bind(this));
     aunbind: (sid: SID, uid: UID) => Promise<void> = utils.promisify(this.unbind.bind(this));
     aimport: (sid: SID, key: string, value: any) => Promise<void> = utils.promisify(this.import.bind(this));
@@ -517,7 +517,7 @@ export class Session extends EventEmitter implements ISession {
      */
     set(values: { [key: string]: any }): void;
     set(key: string, value: any): void;
-    set(keyOrValues: string | { [key: string]: any }, value ?: any) {
+    set(keyOrValues: string | { [key: string]: any }, value?: any) {
         if (utils.isObject(keyOrValues)) {
             let values = keyOrValues as { [key: string]: any };
             for (let i in values) {
@@ -625,7 +625,7 @@ export class FrontendSession extends EventEmitter implements ISession {
     }
 
 
-    bind(uid: UID, cb: (err ?: Error, result ?: void) => void) {
+    bind(uid: UID, cb: (err?: Error, result?: void) => void) {
         let self = this;
         this.__sessionService__.bind(this.id, uid, function (err) {
             if (!err) {
@@ -635,7 +635,7 @@ export class FrontendSession extends EventEmitter implements ISession {
         });
     }
 
-    unbind(uid: UID, cb: (err ?: Error, result ?: void) => void) {
+    unbind(uid: UID, cb: (err?: Error, result?: void) => void) {
         let self = this;
         this.__sessionService__.unbind(this.id, uid, function (err) {
             if (!err) {
@@ -653,11 +653,11 @@ export class FrontendSession extends EventEmitter implements ISession {
         return this.settings[key];
     }
 
-    push(key: string, cb: (err ?: Error, result ?: void) => void) {
+    push(key: string, cb: (err?: Error, result?: void) => void) {
         this.__sessionService__.import(this.id, key, this.get(key), cb);
     }
 
-    pushAll(cb: (err ?: Error, result ?: void) => void) {
+    pushAll(cb: (err?: Error, result?: void) => void) {
         this.__sessionService__.importAll(this.id, this.settings, cb);
     }
 
@@ -666,11 +666,11 @@ export class FrontendSession extends EventEmitter implements ISession {
         return super.on(event, listener);
     }
 
-    abind(uid: string, ) {
+    abind(uid: string,) {
         return new Promise((resolve, reject) => this.bind(uid, (err, ret) => err ? reject(err) : resolve(ret as any)));
     }
 
-    aunbind(uid: string, ) {
+    aunbind(uid: string,) {
         return new Promise((resolve, reject) => this.unbind(uid, (err, ret) => err ? reject(err) : resolve(ret as any)));
     }
 
