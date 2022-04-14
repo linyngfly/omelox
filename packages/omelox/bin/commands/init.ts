@@ -8,7 +8,7 @@ import * as mkdirp from 'mkdirp';
 export default function (program: Command) {
     program.command('init [path]')
         .description('create a new application')
-        .action(function (path) {
+        .action((path) => {
             init(path || CUR_DIR);
         });
 }

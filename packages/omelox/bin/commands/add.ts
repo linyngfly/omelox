@@ -10,9 +10,10 @@ export default function (program: Command) {
         .option('-p, --password <password>', 'administration password', DEFAULT_PWD)
         .option('-h, --host <master-host>', 'master server host', DEFAULT_MASTER_HOST)
         .option('-P, --port <master-port>', 'master server port', (value) => parseInt(value), DEFAULT_MASTER_PORT)
-        .action(function (opts) {
+        .action((opts) => {
             let args = [].slice.call(arguments, 0);
-            opts.args = args.slice(0, -1);
+            let command = args[args.length - 1];
+            opts.args = command.args.slice();
             add(opts);
         });
 }
