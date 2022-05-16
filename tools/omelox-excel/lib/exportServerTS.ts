@@ -619,7 +619,7 @@ export class config_data_getter {
 							console.log(\`配置文件\${cfgFileName}数据和模型不匹配，请重新生成配置\`);
 							return;
 						}
-						item[fields[j]] = rowDatas[j];
+						item[fields[j] as string] = rowDatas[j];
 					}
 					newFiledData.push(item);
 				}
