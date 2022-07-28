@@ -1317,7 +1317,12 @@ export class config_error_getter {
                 value = JSON.stringify(value);
             }
 
-            str += `\t\"${keyCst}\":${value}${datas.length - 1 === i ? '' : ','}\r\n`
+            if (rowArray[2] == FIELD_TYPE.STRING) {
+                str += `\t\"${keyCst}\":\"${value}\"${datas.length - 1 === i ? '' : ','}\r\n`
+            } else {
+                str += `\t\"${keyCst}\":${value}${datas.length - 1 === i ? '' : ','}\r\n`
+            }
+
         }
         str += `}\r\n`
 
