@@ -202,6 +202,7 @@ export abstract class ExportBase {
             case FIELD_TYPE.INT:
                 if (typeof value === 'number' || typeof Number(value) === 'number') {
                     result = Number(value);
+                    result = Number(result.toFixed(8));
                 }
                 break;
             case FIELD_TYPE.STRING:
