@@ -1,6 +1,6 @@
 {
   "name": "omelox",
-  "version": "4.2.6",
+  "version": "4.2.7",
   "author": "yng <linyngfly@163.com>",
   "private": false,
   "homepage": "https://github.com/linyngfly/omelox",
@@ -60,7 +60,7 @@
     "omelox-admin": "^4.2.4",
     "omelox-loader": "^4.2.4",
     "omelox-logger": "^4.2.4",
-    "omelox-protobuf": "^4.2.4",
+    "omelox-protobuf": "^4.2.5",
     "omelox-protocol": "^4.2.4",
     "omelox-rpc": "^4.2.4",
     "omelox-scheduler": "^4.2.4",
