@@ -65,18 +65,21 @@ export class Encoder {
         for (let name in msg) {
             if (!!protos[name]) {
                 let proto = protos[name];
-
-                switch (proto.option) {
-                    case 'required':
-                    case 'optional':
-                        offset = this.writeBytes(buffer, offset, this.encodeTag(proto.type, proto.tag));
-                        offset = this.encodeProp(msg[name], proto.type, offset, buffer, protos);
-                        break;
-                    case 'repeated':
-                        if (!!msg[name] && msg[name].length > 0) {
-                            offset = this.encodeArray(msg[name], proto, offset, buffer, protos);
-                        }
-                        break;
+                try {
+                    switch (proto.option) {
+                        case 'required':
+                        case 'optional':
+                            offset = this.writeBytes(buffer, offset, this.encodeTag(proto.type, proto.tag));
+                            offset = this.encodeProp(msg[name], proto.type, offset, buffer, protos);
+                            break;
+                        case 'repeated':
+                            if (!!msg[name] && msg[name].length > 0) {
+                                offset = this.encodeArray(msg[name], proto, offset, buffer, protos);
+                            }
+                            break;
+                    }
+                } catch (error) {
+                    console.warn('property value error! name: %j, proto: %j, msg: %j', name, proto, msg);
                 }
             }
         }
