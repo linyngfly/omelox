@@ -894,7 +894,7 @@ export class config_error_getter {
                 continue;
             }
             str += `\t/** ${descs[i]} */\r\n`
-            str += `\t${fields[i]}: ${TSTypeLink[fieldType]};\r\n`
+            str += `\t\'${fields[i]}\': ${TSTypeLink[fieldType]};\r\n`
         }
 
         return str;
@@ -1030,7 +1030,7 @@ export class config_error_getter {
             if (fieldType === FIELD_TYPE.UNEXPORT) {
                 continue;
             }
-            str += `\t\t${fields[i].toUpperCase()}: \'${fields[i]}\',\r\n`
+            str += `\t\t\'${fields[i].toUpperCase()}\': \'${fields[i]}\',\r\n`
         }
 
         return str;
