@@ -68,7 +68,13 @@ export class Encoder {
                 try {
                     switch (proto.option) {
                         case 'required':
+                            offset = this.writeBytes(buffer, offset, this.encodeTag(proto.type, proto.tag));
+                            offset = this.encodeProp(msg[name], proto.type, offset, buffer, protos);
+                            break;
                         case 'optional':
+                            if (msg[name] == null) {
+                                continue;
+                            }
                             offset = this.writeBytes(buffer, offset, this.encodeTag(proto.type, proto.tag));
                             offset = this.encodeProp(msg[name], proto.type, offset, buffer, protos);
                             break;
